@@ -575,7 +575,7 @@ if(count($data_customer) > 0){
 			<?php 
 			for($i=0;$i<count($data_hot_article);$i++){
 				$id=$data_hot_article[$i]['id'];			
-				$permalink=url('/'.$setting['com_article'].'/'.$data_hot_article[$i]['alias'].'.html');
+				$permalink=url($data_hot_article[$i]['alias'].'.html');
 				$featureImg=asset('/upload/'.$data_hot_article[$i]['image']);
 				$fullname=$data_hot_article[$i]['fullname'];
 				$intro=$data_hot_article[$i]['intro'];

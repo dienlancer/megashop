@@ -9,7 +9,7 @@
 					$k=1;									
 					for($i=0;$i<count($items);$i++){							
 						$id=$items[$i]['id'];			
-						$permalink=url('/'.$setting['com_product'].'/'.$items[$i]['alias'].'.html');
+						$permalink=url($items[$i]['alias'].'.html');
 						$featureImg=asset('/upload/'.$setting['product_width'].'x'.$setting['product_height'].'-'.$items[$i]['image']);
 						$fullname=$items[$i]['fullname'];	
 						$price=$items[$i]['price'];

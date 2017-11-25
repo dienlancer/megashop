@@ -31,13 +31,13 @@ if(count($arrCart) > 0){
         $product_code			=	$value["product_code"];
         $product_price 			=	$value["product_price"];        
         $product_image 			=  	asset('/upload/'.$product_width.'x'.$product_height.'-'.$value['product_image']) ;        
-        $product_link 			= 	url('/'.$setting['com_product'].'/'.$value['product_alias'].'.html');			
+        $product_link 			= 	url($value['product_alias'].'.html');			
 		$product_quantity		=	$value["product_quantity"];
 		$product_price 			=	fnPrice($value["product_price"]);
 		$product_total_price 	= 	fnPrice($value["product_total_price"]);
 		$total_price+=(float)$value["product_total_price"];		
 		$delete_cart			=	url("/xoa-gio-hang");
-		$continue_link 			=	url('/'.$setting['com_category_product'].'/sofa.html');
+		$continue_link 			=	url('sofa.html');
 		$delete_link 			=	url("/xoa/".$product_id);
 		$checkout_link 			=	url("/thanh-toan");
 	 	?>

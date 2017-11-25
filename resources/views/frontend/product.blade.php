@@ -5,7 +5,7 @@ $product_width=$setting['product_width'];
 $product_height=$setting['product_height'];
 if(count($item) > 0){
     $id=$item['id'];           
-    $permalink=url('/'.$setting['com_product'].'/'.$item['alias'].'.html');
+    $permalink=url($item['alias'].'.html');
     $featureImg=asset('/upload/'.$product_width.'x'.$product_height.'-'.$item['image']); 
     $largeImg=asset('/upload/'.$item['image']); 
     $fullname=$item['fullname'];   
