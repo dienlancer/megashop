@@ -74,14 +74,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
         <form class="form-horizontal" role="form" enctype="multipart/form-data">
             <div class="form-body">
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Cấu hình</b></label>
                         <div class="col-md-9">
                             <?php echo $inputFullName; ?>
                             <span class="help-block"></span>
                         </div>
-                    </div>   
-                    <div class="form-group col-md-6">
+                    </div> 
+                </div>
+                <div class="row">  
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Alias</b></label>
                         <div class="col-md-9">
                             <?php echo $inputAlias; ?>
@@ -90,14 +92,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                     </div>     
                 </div>      
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Số bài viết trên 1 trang</b></label>
                         <div class="col-md-9">
                             <?php echo $inputArticlePerpage; ?>
                             <span class="help-block"></span>
                         </div>
-                    </div>   
-                    <div class="form-group col-md-6">
+                    </div>  
+                </div>
+                <div class="row">   
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Độ rộng hình bài viết</b></label>
                         <div class="col-md-9">
                             <?php echo $inputArticleWidth; ?>
@@ -106,14 +110,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                     </div>     
                 </div>     
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Chiều cao hình bài viết</b></label>
                         <div class="col-md-9">
                             <?php echo $inputArticleHeight; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>   
-                    <div class="form-group col-md-6">
+                </div>
+                <div class="row">  
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Số sản phẩm trên 1 trang</b></label>
                         <div class="col-md-9">
                             <?php echo $inputProductPerpage; ?>
@@ -122,14 +128,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                     </div>     
                 </div>    
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Độ rộng hình sản phẩm</b></label>
                         <div class="col-md-9">
                             <?php echo $inputProductWidth; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>   
-                    <div class="form-group col-md-6">
+                </div>
+                <div class="row">  
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Độ cao hình bài viết</b></label>
                         <div class="col-md-9">
                             <?php echo $inputProductHeight; ?>
@@ -138,14 +146,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                     </div>     
                 </div>    
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Đơn vị tiền tệ</b></label>
                         <div class="col-md-9">
                             <?php echo $inputCurrencyUnit; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>   
-                    <div class="form-group col-md-6">
+                </div>
+                <div class="row">  
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Smtp host</b></label>
                         <div class="col-md-9">
                             <?php echo $inputSmtpHost; ?>
@@ -154,14 +164,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                     </div>     
                 </div>    
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Smtp port</b></label>
                         <div class="col-md-9">
                             <?php echo $inputSmtpPort; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>   
-                    <div class="form-group col-md-6">
+                </div>
+                <div class="row">  
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Encription</b></label>
                         <div class="col-md-9">
                             <?php echo $inputEncription; ?>
@@ -170,14 +182,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                     </div>     
                 </div>
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Smtp authication</b></label>
                         <div class="col-md-9">
                             <?php echo $ddlAuthentication; ?>
                             <span class="help-block"></span>
                         </div>
-                    </div>   
-                    <div class="form-group col-md-6">
+                    </div> 
+                </div>
+                <div class="row">    
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Smtp username</b></label>
                         <div class="col-md-9">
                             <?php echo $inputSmtpUsername; ?>
@@ -186,14 +200,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                     </div>     
                 </div>
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Smtp password</b></label>
                         <div class="col-md-9">
                             <?php echo $inputSmtpPassword; ?>
                             <span class="help-block"></span>
                         </div>
-                    </div>   
-                    <div class="form-group col-md-6">
+                    </div>  
+                </div>
+                <div class="row">   
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Email from</b></label>
                         <div class="col-md-9">
                             <?php echo $inputEmailFrom; ?>
@@ -202,14 +218,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                     </div>     
                 </div>    
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Email to</b></label>
                         <div class="col-md-9">
                             <?php echo $inputEmailTo; ?>
                             <span class="help-block"></span>
                         </div>
-                    </div>   
-                    <div class="form-group col-md-6">
+                    </div>  
+                </div>
+                <div class="row">   
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>From name</b></label>
                         <div class="col-md-9">
                             <?php echo $inputFromName; ?>
@@ -218,14 +236,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                     </div>     
                 </div>    
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>To name</b></label>
                         <div class="col-md-9">
                             <?php echo $inputToName; ?>
                             <span class="help-block"></span>
                         </div>
-                    </div>   
-                    <div class="form-group col-md-6">
+                    </div> 
+                </div>
+                <div class="row">    
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Điện thoại liên lạc</b></label>
                         <div class="col-md-9">
                             <?php echo $inputContactPhone; ?>
@@ -234,14 +254,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                     </div>     
                 </div>    
                 <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>Dịa chỉ</b></label>
+                    <div class="form-group col-md-12">
+                        <label class="col-md-3 control-label"><b>Địa chỉ</b></label>
                         <div class="col-md-9">
                             <?php echo $inputAddress; ?>
                             <span class="help-block"></span>
                         </div>
-                    </div>   
-                    <div class="form-group col-md-6">
+                    </div>  
+                </div>
+                <div class="row">   
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Website</b></label>
                         <div class="col-md-9">
                             <?php echo $inputWebsite; ?>
@@ -250,14 +272,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                     </div>     
                 </div>    
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Telephone</b></label>
                         <div class="col-md-9">
                             <?php echo $inputTelephone; ?>
                             <span class="help-block"></span>
                         </div>
-                    </div>   
-                    <div class="form-group col-md-6">
+                    </div>  
+                </div>
+                <div class="row">   
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Giờ mở cửa</b></label>
                         <div class="col-md-9">
                             <?php echo $inputOpenedTime; ?>
@@ -266,14 +290,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                     </div>     
                 </div>    
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Ngày mở cửa</b></label>
                         <div class="col-md-9">
                             <?php echo $inputOpenedDate; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>   
-                    <div class="form-group col-md-6">
+                </div>
+                <div class="row">  
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Contacted name</b></label>
                         <div class="col-md-9">
                             <?php echo $inputContactedName; ?>
@@ -282,14 +308,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                     </div>     
                 </div>    
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Facebook url</b></label>
                         <div class="col-md-9">
                             <?php echo $inputFacebookUrl; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>   
-                    <div class="form-group col-md-6">
+                </div>
+                <div class="row">  
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Twitter url</b></label>
                         <div class="col-md-9">
                             <?php echo $inputTwitterUrl; ?>
@@ -298,14 +326,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                     </div>     
                 </div>    
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Google plus</b></label>
                         <div class="col-md-9">
                             <?php echo $inputGooglePlus; ?>
                             <span class="help-block"></span>
                         </div>
-                    </div>   
-                    <div class="form-group col-md-6">
+                    </div>  
+                </div>
+                <div class="row">   
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Youtube url</b></label>
                         <div class="col-md-9">
                             <?php echo $inputYoutubeUrl; ?>
@@ -314,14 +344,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                     </div>     
                 </div>    
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Instagram url</b></label>
                         <div class="col-md-9">
                             <?php echo $inputInstagramUrl; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>   
-                    <div class="form-group col-md-6">
+                </div>
+                <div class="row">  
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Pinterest url</b></label>
                         <div class="col-md-9">
                             <?php echo $inputPinterestUrl; ?>
@@ -330,14 +362,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                     </div>     
                 </div>    
                 <div class="row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Slogan</b></label>
                         <div class="col-md-9">
                             <?php echo $inputSloganAbout; ?>
                             <span class="help-block"></span>
                         </div>
-                    </div>   
-                    <div class="form-group col-md-6">
+                    </div>  
+                </div>
+                <div class="row">   
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Map url</b></label>
                         <div class="col-md-9">
                             <?php echo $inputMapUrl; ?>
@@ -346,14 +380,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                     </div>     
                 </div>                                          
                 <div class="row">                    
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Sắp xếp</b></label>
                         <div class="col-md-9">
                             <?php echo $inputSortOrder; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>   
-                    <div class="form-group col-md-6">
+                </div>
+                <div class="row">  
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Trạng thái</b></label>
                         <div class="col-md-9">                            
                             <?php echo $ddlStatus; ?>
@@ -362,14 +398,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                     </div>     
                 </div>    
                 <div class="row">                    
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Com Category Article</b></label>
                         <div class="col-md-9">
                             <?php echo $inputComCategoryArticle; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>   
-                    <div class="form-group col-md-6">
+                </div>
+                <div class="row">  
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Com Category Product</b></label>
                         <div class="col-md-9">                            
                             <?php echo $inputComCategoryProduct; ?>
@@ -378,14 +416,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                     </div>     
                 </div>    
                 <div class="row">                    
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Com Article</b></label>
                         <div class="col-md-9">
                             <?php echo $inputComArticle; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>   
-                    <div class="form-group col-md-6">
+                </div>
+                <div class="row">  
+                    <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Com Product</b></label>
                         <div class="col-md-9">                            
                             <?php echo $inputComProduct; ?>
