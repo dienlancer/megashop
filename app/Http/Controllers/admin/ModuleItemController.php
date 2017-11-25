@@ -69,7 +69,7 @@ class ModuleItemController extends Controller {
           if(empty($fullname)){
                  $checked = 0;
                  $error["fullname"]["type_msg"] = "has-error";
-                 $error["fullname"]["msg"] = "Fullname is required";
+                 $error["fullname"]["msg"] = "Thiếu tên module";
           }else{
               $data=array();
               if (empty($id)) {
@@ -80,23 +80,23 @@ class ModuleItemController extends Controller {
               if (count($data) > 0) {
                   $checked = 0;
                   $error["fullname"]["type_msg"] = "has-error";
-                  $error["fullname"]["msg"] = "Fullname is existed in system";
+                  $error["fullname"]["msg"] = "Tên module đã tồn tại";
               }      	
           } 
           if(empty($item_id)){
              $checked = 0;
              $error["item_id"]["type_msg"]   = "has-error";
-             $error["item_id"]["msg"]    = "Sort order imported data required";
+             $error["item_id"]["msg"]    = "Thiếu sắp xếp dữ liệu danh sách";
           }         
           if(empty($sort_order)){
              $checked = 0;
              $error["sort_order"]["type_msg"] 	= "has-error";
-             $error["sort_order"]["msg"] 		= "Sort order is required";
+             $error["sort_order"]["msg"] 		= "Thiếu sắp xếp";
           }
           if((int)$status==-1){
              $checked = 0;
              $error["status"]["type_msg"] 		= "has-error";
-             $error["status"]["msg"] 			= "Status is required";
+             $error["status"]["msg"] 			= "Thiếu trạng thái";
           }
           if ($checked == 1) {    
                 if(empty($id)){
@@ -116,7 +116,7 @@ class ModuleItemController extends Controller {
                 $item->save();  	                
                 $info = array(
                   'type_msg' 			=> "has-success",
-                  'msg' 				=> 'Save data successfully',
+                  'msg' 				=> 'Lưu dữ liệu thành công',
                   "checked" 			=> 1,
                   "error" 			=> $error,
                   "id"    			=> $id
@@ -124,7 +124,7 @@ class ModuleItemController extends Controller {
             }else {
                     $info = array(
                       'type_msg' 			=> "has-error",
-                      'msg' 				=> 'Input data has some warning',
+                      'msg' 				=> 'Dữ liệu nhập gặp sự cố',
                       "checked" 			=> 0,
                       "error" 			=> $error,
                       "id"				=> ""
@@ -136,7 +136,7 @@ class ModuleItemController extends Controller {
                   $id             =       (int)$request->id;     
                   $checked                =   1;
                   $type_msg               =   "alert-success";
-                  $msg                    =   "Update successfully";              
+                  $msg                    =   "Cập nhật thành công";              
                   $status         =       (int)$request->status;
                   $item           =       ModuleItemModel::find((int)@$id);        
                   $item->status   =       $status;
@@ -155,7 +155,7 @@ class ModuleItemController extends Controller {
             $id                     =   (int)$request->id;              
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Delete successfully";                    
+            $msg                    =   "Xóa thành công";                    
             if($checked == 1){
               $item = ModuleItemModel::find((int)@$id);
               $item->delete();
@@ -175,7 +175,7 @@ class ModuleItemController extends Controller {
           $arrID                 =   explode(",", $str_id)  ;          
           $checked                =   1;
           $type_msg               =   "alert-success";
-          $msg                    =   "Update successfully";     
+          $msg                    =   "Cập nhật thành công";     
           if(empty($str_id)){
                     $checked                =   0;
                     $type_msg               =   "alert-warning";            
@@ -203,7 +203,7 @@ class ModuleItemController extends Controller {
             $str_id                 =   $request->str_id;   
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Delete successfully";      
+            $msg                    =   "Xóa thành công";      
             $arrID                  =   explode(",", $str_id)  ;        
             if(empty($str_id)){
               $checked     =   0;
@@ -230,7 +230,7 @@ class ModuleItemController extends Controller {
             $data_order             =   json_decode($sort_json);   
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Update successfully";      
+            $msg                    =   "Cập nhật thành công";      
             if(count($data_order) > 0){              
               foreach($data_order as $key => $value){       
               if(!empty($value)){

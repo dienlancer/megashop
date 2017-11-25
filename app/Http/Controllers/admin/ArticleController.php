@@ -89,7 +89,7 @@ class ArticleController extends Controller {
           if(empty($fullname)){
                  $checked = 0;
                  $error["fullname"]["type_msg"] = "has-error";
-                 $error["fullname"]["msg"] = "Fullname is required";
+                 $error["fullname"]["msg"] = "Thiếu tên bài viết";
           }else{
               $data=array();
               if (empty($id)) {
@@ -100,13 +100,13 @@ class ArticleController extends Controller {
               if (count($data) > 0) {
                   $checked = 0;
                   $error["fullname"]["type_msg"] = "has-error";
-                  $error["fullname"]["msg"] = "Fullname is existed in system";
+                  $error["fullname"]["msg"] = "Bài viết đã tồn tại";
               }      	
           }          
           if(empty($alias)){
                 $checked = 0;
                 $error["alias"]["type_msg"] = "has-error";
-                $error["alias"]["msg"] = "Alias is required";
+                $error["alias"]["msg"] = "Thiếu alias";
           }else{
                 $dataCategoryArticle=array();
               $dataCategoryProduct=array();
@@ -123,33 +123,33 @@ class ArticleController extends Controller {
             if (count($dataCategoryArticle) > 0) {
               $checked = 0;
               $error["alias"]["type_msg"]   = "has-error";
-              $error["alias"]["msg"]      = "Alias is existed in system";
+              $error["alias"]["msg"]      = "Alias đã tồn tại";
             }
             if (count($dataCategoryProduct) > 0) {
               $checked = 0;
               $error["alias"]["type_msg"]   = "has-error";
-              $error["alias"]["msg"]      = "Alias is existed in system";
+              $error["alias"]["msg"]      = "Alias đã tồn tại";
             }
             if (count($dataArticle) > 0) {
               $checked = 0;
               $error["alias"]["type_msg"]   = "has-error";
-              $error["alias"]["msg"]      = "Alias is existed in system";
+              $error["alias"]["msg"]      = "Alias đã tồn tại";
             }
             if (count($dataProduct) > 0) {
               $checked = 0;
               $error["alias"]["type_msg"]   = "has-error";
-              $error["alias"]["msg"]      = "Alias is existed in system";
+              $error["alias"]["msg"]      = "Alias đã tồn tại";
             }       	
           }
           if(empty($sort_order)){
              $checked = 0;
              $error["sort_order"]["type_msg"] 	= "has-error";
-             $error["sort_order"]["msg"] 		= "Sort order is required";
+             $error["sort_order"]["msg"] 		= "Thiếu sắp xếp";
           }
           if((int)$status==-1){
              $checked = 0;
              $error["status"]["type_msg"] 		= "has-error";
-             $error["status"]["msg"] 			= "Status is required";
+             $error["status"]["msg"] 			= "Thiếu trạng thái";
           }
           if ($checked == 1) {    
                 if(empty($id)){
@@ -208,7 +208,7 @@ class ArticleController extends Controller {
                 }
                 $info = array(
                   'type_msg' 			=> "has-success",
-                  'msg' 				=> 'Save data successfully',
+                  'msg' 				=> 'Lưu dữ liệu thành công',
                   "checked" 			=> 1,
                   "error" 			=> $error,
                   "id"    			=> $id
@@ -216,7 +216,7 @@ class ArticleController extends Controller {
             }else {
                     $info = array(
                       'type_msg' 			=> "has-error",
-                      'msg' 				=> 'Input data has some warning',
+                      'msg' 				=> 'Lưu dữ liệu thất bại',
                       "checked" 			=> 0,
                       "error" 			=> $error,
                       "id"				=> ""
@@ -228,7 +228,7 @@ class ArticleController extends Controller {
                   $id             =       (int)$request->id;     
                   $checked                =   1;
                   $type_msg               =   "alert-success";
-                  $msg                    =   "Update successfully";              
+                  $msg                    =   "Cập nhật thành công";              
                   $status         =       (int)$request->status;
                   $item           =       ArticleModel::find((int)@$id);        
                   $item->status   =       $status;
@@ -246,7 +246,7 @@ class ArticleController extends Controller {
             $id                     =   (int)$request->id;              
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Delete successfully";                      
+            $msg                    =   "Xóa thành công";                      
             if($checked == 1){
                 $item = ArticleModel::find((int)@$id);
                 $item->image     = null;      
@@ -263,7 +263,7 @@ class ArticleController extends Controller {
             $id                     =   (int)$request->id;              
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Delete successfully";                    
+            $msg                    =   "Xóa thành công";                    
             if($checked == 1){
               $item = ArticleModel::find((int)@$id);
                 $item->delete();
@@ -284,11 +284,11 @@ class ArticleController extends Controller {
           $arrID                 =   explode(",", $str_id)  ;
           $checked                =   1;
           $type_msg               =   "alert-success";
-          $msg                    =   "Update successfully";     
+          $msg                    =   "Cập nhật thành công";     
           if(empty($str_id)){
                     $checked                =   0;
                     $type_msg               =   "alert-warning";            
-                    $msg                    =   "Please choose at least one item to delete";
+                    $msg                    =   "Vui lòng chọn ít nhất một phần tử để xóa";
           }
           if($checked==1){
               foreach ($arrID as $key => $value) {
@@ -312,12 +312,12 @@ class ArticleController extends Controller {
             $str_id                 =   $request->str_id;   
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Delete successfully";      
+            $msg                    =   "Xóa thành công";      
             $arrID                  =   explode(",", $str_id)  ;        
             if(empty($str_id)){
               $checked     =   0;
               $type_msg           =   "alert-warning";            
-              $msg                =   "Please choose at least one item to delete";
+              $msg                =   "Vui lòng chọn ít nhất một phần tử để xóa";
             }
             if($checked == 1){                
                   $strID = implode(',',$arrID);   
@@ -342,7 +342,7 @@ class ArticleController extends Controller {
           
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Update successfully";      
+            $msg                    =   "Cập nhật thành công";      
             if(count($data_order) > 0){              
               foreach($data_order as $key => $value){      
                 if(!empty($value)){

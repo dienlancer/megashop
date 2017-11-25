@@ -56,12 +56,12 @@ class PaymentMethodController extends Controller {
           if(empty($sort_order)){
              $checked = 0;
              $error["sort_order"]["type_msg"]   = "has-error";
-             $error["sort_order"]["msg"]    = "Sort order is required";
+             $error["sort_order"]["msg"]    = "Thiếu sắp xếp";
           }
           if((int)$status==-1){
              $checked = 0;
              $error["status"]["type_msg"]     = "has-error";
-             $error["status"]["msg"]      = "Status is required";
+             $error["status"]["msg"]      = "Thiếu trạng thái";
           }                    
           if ($checked == 1) {    
                 if(empty($id)){
@@ -79,7 +79,7 @@ class PaymentMethodController extends Controller {
                 $item->save();                    
                 $info = array(
                   'type_msg'      => "has-success",
-                  'msg'         => 'Save data successfully',
+                  'msg'         => 'Lưu dữ liệu thành công',
                   "checked"       => 1,
                   "error"       => $error,
                   "id"          => $id
@@ -87,7 +87,7 @@ class PaymentMethodController extends Controller {
             }else {
                     $info = array(
                       'type_msg'      => "has-error",
-                      'msg'         => 'Input data has some warning',
+                      'msg'         => 'Dữ liệu nhập gặp sự cố',
                       "checked"       => 0,
                       "error"       => $error,
                       "id"        => ""
@@ -99,7 +99,7 @@ class PaymentMethodController extends Controller {
                   $id             =       (int)$request->id;     
                   $checked                =   1;
                   $type_msg               =   "alert-success";
-                  $msg                    =   "Update successfully";              
+                  $msg                    =   "Cập nhật thành công";              
                   $status         =       (int)$request->status;
                   $item           =       PaymentMethodModel::find((int)@$id);        
                   $item->status   =       $status;
@@ -118,7 +118,7 @@ class PaymentMethodController extends Controller {
             $id                     =   (int)@$request->id;              
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Delete successfully";                    
+            $msg                    =   "Xóa thành công";                    
             if($checked == 1){
                 $item = PaymentMethodModel::find((int)@$id);
                 $item->delete();                
@@ -138,7 +138,7 @@ class PaymentMethodController extends Controller {
           $arrID                 =   explode(",", $str_id)  ;          
           $checked                =   1;
           $type_msg               =   "alert-success";
-          $msg                    =   "Update successfully";     
+          $msg                    =   "Cập nhật thành công";     
           if(empty($str_id)){
                     $checked                =   0;
                     $type_msg               =   "alert-warning";            
@@ -166,7 +166,7 @@ class PaymentMethodController extends Controller {
             $str_id                 =   $request->str_id;   
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Delete successfully";      
+            $msg                    =   "Xóa thành công";      
             $arrID                  =   explode(",", $str_id)  ;        
             if(empty($str_id)){
               $checked     =   0;
@@ -193,7 +193,7 @@ class PaymentMethodController extends Controller {
             $data_order             =   json_decode($sort_json);       
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Update successfully";      
+            $msg                    =   "Cập nhật thành công";      
             if(count($data_order) > 0){              
               foreach($data_order as $key => $value){       
               if(!empty($value)){

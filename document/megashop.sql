@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 25, 2017 lúc 01:34 PM
+-- Thời gian đã tạo: Th10 25, 2017 lúc 07:13 PM
 -- Phiên bản máy phục vụ: 10.1.22-MariaDB
 -- Phiên bản PHP: 7.1.4
 
@@ -1446,7 +1446,8 @@ INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`)
 (175, 1, 'STmoiFXISPPMkYZ46mHVd1FgZleRFPma', '2017-11-24 01:23:33', '2017-11-24 01:23:33'),
 (176, 1, 'DS9Yw83Zm2blL1F2azbyCcQ4v2ktYX5H', '2017-11-24 02:11:20', '2017-11-24 02:11:20'),
 (177, 1, 'e1ZyuWKHR7HQaQSkQEv4J6YMwpFFLXeC', '2017-11-24 06:39:38', '2017-11-24 06:39:38'),
-(178, 1, '6KeLIVlJyL7P6FMEGpgxpNljzsQxI20T', '2017-11-25 05:02:32', '2017-11-25 05:02:32');
+(178, 1, '6KeLIVlJyL7P6FMEGpgxpNljzsQxI20T', '2017-11-25 05:02:32', '2017-11-25 05:02:32'),
+(179, 1, 'tKhufJfgecAKrGEAT2EBaEPLaf517QVS', '2017-11-25 09:08:54', '2017-11-25 09:08:54');
 
 -- --------------------------------------------------------
 
@@ -1739,8 +1740,6 @@ CREATE TABLE `setting_system` (
   `fullname` varchar(255) DEFAULT NULL,
   `alias` varchar(255) DEFAULT NULL,
   `article_perpage` int(11) DEFAULT NULL,
-  `article_width` int(11) DEFAULT NULL,
-  `article_height` int(11) DEFAULT NULL,
   `product_perpage` int(11) DEFAULT NULL,
   `product_width` int(11) DEFAULT NULL,
   `product_height` int(11) DEFAULT NULL,
@@ -1770,10 +1769,6 @@ CREATE TABLE `setting_system` (
   `pinterest_url` varchar(255) DEFAULT NULL,
   `slogan_about` text,
   `map_url` text,
-  `com_category_article` varchar(255) DEFAULT NULL,
-  `com_category_product` varchar(255) DEFAULT NULL,
-  `com_article` varchar(255) DEFAULT NULL,
-  `com_product` varchar(255) DEFAULT NULL,
   `sort_order` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
@@ -1784,8 +1779,8 @@ CREATE TABLE `setting_system` (
 -- Đang đổ dữ liệu cho bảng `setting_system`
 --
 
-INSERT INTO `setting_system` (`id`, `fullname`, `alias`, `article_perpage`, `article_width`, `article_height`, `product_perpage`, `product_width`, `product_height`, `currency_unit`, `smtp_host`, `smtp_port`, `encription`, `authentication`, `smtp_username`, `smtp_password`, `email_from`, `email_to`, `from_name`, `to_name`, `contacted_phone`, `address`, `website`, `telephone`, `opened_time`, `opened_date`, `contacted_name`, `facebook_url`, `twitter_url`, `google_plus`, `youtube_url`, `instagram_url`, `pinterest_url`, `slogan_about`, `map_url`, `com_category_article`, `com_category_product`, `com_article`, `com_product`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'settingsystem', 'setting-system', 12, 360, 230, 16, 400, 400, 'vi_VN', 'smtp.gmail.com', '465', 'ssl', 1, 'dien.toannang@gmail.com', 'lienhoancuoc', 'dienit02@gmail.com', 'tichtacso.com@gmail.com', 'Hệ thống', 'Công Ty TNHH VIDOCO', '096.302.7721', '35/6 Bùi Quang Là - P.12 - Q. Gò Vấp - HCM', 'noithatgialai.net', '096.302.7720', '8h - 20h', '(T2-T7). Chủ Nhật nghỉ', 'Mr. Vinh', 'https://www.facebook.com/nguyenvan.laptrinh', 'https://twitter.com/', 'https://plus.google.com/u/0/?hl=vi', 'https://www.youtube.com/watch?v=kAcV7S3sySU', 'http://flickr.com', 'http://daidung.vn/', 'Mipec cung cấp thực phẩm sạch, an toàn, đảm bảo chất lượng hàng đầu. Xóa đi nỗi lo về an toàn thực phẩm', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3871.605543764119!2d108.07355431421081!3d13.982069195684272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDU4JzU1LjQiTiAxMDjCsDA0JzMyLjciRQ!5e0!3m2!1svi!2s!4v1508913801584', 'chu-de', 'loai-san-pham', 'bai-viet', 'san-pham', 1, 1, '2017-11-10 19:46:32', '2017-11-24 14:40:48');
+INSERT INTO `setting_system` (`id`, `fullname`, `alias`, `article_perpage`, `product_perpage`, `product_width`, `product_height`, `currency_unit`, `smtp_host`, `smtp_port`, `encription`, `authentication`, `smtp_username`, `smtp_password`, `email_from`, `email_to`, `from_name`, `to_name`, `contacted_phone`, `address`, `website`, `telephone`, `opened_time`, `opened_date`, `contacted_name`, `facebook_url`, `twitter_url`, `google_plus`, `youtube_url`, `instagram_url`, `pinterest_url`, `slogan_about`, `map_url`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'settingsystem', 'setting-system', 12, 16, 400, 400, 'vi_VN', 'smtp.gmail.com', '465', 'ssl', 1, 'dien.toannang@gmail.com', 'lienhoancuoc', 'dienit02@gmail.com', 'tichtacso.com@gmail.com', 'Hệ thống', 'Công Ty TNHH VIDOCO', '096.302.7721', '35/6 Bùi Quang Là - P.12 - Q. Gò Vấp - HCM', 'noithatgialai.net', '096.302.7720', '8h - 20h', '(T2-T7). Chủ Nhật nghỉ', 'Mr. Vinh', 'https://www.facebook.com/nguyenvan.laptrinh', 'https://twitter.com/', 'https://plus.google.com/u/0/?hl=vi', 'https://www.youtube.com/watch?v=kAcV7S3sySU', 'http://flickr.com', 'http://daidung.vn/', 'Mipec cung cấp thực phẩm sạch, an toàn, đảm bảo chất lượng hàng đầu. Xóa đi nỗi lo về an toàn thực phẩm', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3871.605543764119!2d108.07355431421081!3d13.982069195684272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDU4JzU1LjQiTiAxMDjCsDA0JzMyLjciRQ!5e0!3m2!1svi!2s!4v1508913801584', 1, 1, '2017-11-10 19:46:32', '2017-11-25 17:28:37');
 
 -- --------------------------------------------------------
 
@@ -2147,7 +2142,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `group_member_id`, `password`, `permissions`, `last_login`, `fullname`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$rpZe6oM3GUJmwL/ZMTKm/OSe24l9TJKFU9lwd8VmohkqH0Oax6rVK', NULL, '2017-11-25 05:02:32', 'Nguyễn Kim Điền', 1, 1, '2017-11-12 07:23:56', '2017-11-25 05:02:32'),
+(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$rpZe6oM3GUJmwL/ZMTKm/OSe24l9TJKFU9lwd8VmohkqH0Oax6rVK', NULL, '2017-11-25 09:08:54', 'Nguyễn Kim Điền', 1, 1, '2017-11-12 07:23:56', '2017-11-25 09:08:54'),
 (6, 'nhatanh', 'nhatanh@gmail.com', 1, '$2y$10$X.wWyaR4gqC8BAvcVtlH0u8FG1DC2a0dXPzPL.Qs96Ds/cJZqxviO', NULL, '2017-11-15 09:46:30', 'Nhật Anh', 3, 1, '2017-11-15 09:45:46', '2017-11-15 09:46:30');
 
 --
@@ -2453,7 +2448,7 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT cho bảng `persistences`
 --
 ALTER TABLE `persistences`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=180;
 --
 -- AUTO_INCREMENT cho bảng `photo`
 --

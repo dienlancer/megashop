@@ -109,12 +109,12 @@ class MenuController extends Controller {
             if(empty($sort_order)){
                  $checked = 0;
                  $error["sort_order"]["type_msg"] 	= "has-error";
-                 $error["sort_order"]["msg"] 		= "Sort order is required";
+                 $error["sort_order"]["msg"] 		= "Thiếu sắp xếp";
             }
             if((int)$status==-1){
                  $checked = 0;
                  $error["status"]["type_msg"] 		= "has-error";
-                 $error["status"]["msg"] 			= "Status is required";
+                 $error["status"]["msg"] 			= "Thiếu trạng thái";
             }
             if ($checked == 1) {    
                 if(empty($id)){
@@ -139,7 +139,7 @@ class MenuController extends Controller {
                 $item->save();  	
                 $info = array(
                   'type_msg' 			=> "has-success",
-                  'msg' 				=> 'Save data successfully',
+                  'msg' 				=> 'Lưu dữ liệu thành công',
                   "checked" 			=> 1,
                   "error" 			=> $error,
                   "id"    			=> $id,
@@ -147,7 +147,7 @@ class MenuController extends Controller {
             } else {
                   $info = array(
                     'type_msg' 			=> "has-error",
-                    'msg' 				=> 'Input data has some warning',
+                    'msg' 				=> 'Dữ liệu nhập có sự cố',
                     "checked" 			=> 0,
                     "error" 			=> $error,
                     "id"				=> "",
@@ -179,7 +179,7 @@ class MenuController extends Controller {
       public function deleteItem($id){
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Delete successfully";        
+            $msg                    =   "Xóa dữ liệu thành công";        
             $menu_type_id           =   0;        
             $data                   =   MenuModel::whereRaw("parent_id = ?",[(int)@$id])->get()->toArray();                    
             $item                   =   MenuModel::find((int)@$id);
@@ -187,7 +187,7 @@ class MenuController extends Controller {
             if(count($data) > 0){
                 $checked     =   0;
                 $type_msg           =   "alert-warning";            
-                $msg                =   "Cannot delete this item";      
+                $msg                =   "Không thể xóa";      
             }          
             if($checked == 1){
                 $item               =   MenuModel::find((int)@$id);
@@ -199,12 +199,12 @@ class MenuController extends Controller {
       public function updateStatus(Request $request,$status,$menu_type_id){        
         $arrID=$request->cid;
          $type_msg               =   "alert-success";
-          $msg                    =   "Update successfully";    
+          $msg                    =   "Cập nhật thành công";    
           $checked                =   1; 
         if(count($arrID)==0){
           $checked                =   0;
                     $type_msg               =   "alert-warning";            
-                    $msg                    =   "Please choose at least one item to update";
+                    $msg                    =   "Vui lòng chọn ít nhất 1 phần tử";
         }
         if($checked==1){
           foreach ($arrID as $key => $value) {
@@ -219,11 +219,11 @@ class MenuController extends Controller {
         $arrID                 =   $request->cid;             
         $checked                =   1;
         $type_msg               =   "alert-success";
-        $msg                    =   "Delete successfully";                      
+        $msg                    =   "Xóa dữ liệu thành công";                      
         if(count($arrID)==0){
           $checked     =   0;
               $type_msg           =   "alert-warning";            
-              $msg                =   "Please choose at least one item to delete";
+              $msg                =   "Vui lòng chọn ít nhất 1 phần tử";
         }else{
           foreach ($arrID as $key => $value) {
             $item=MenuModel::find($value);           
@@ -231,7 +231,7 @@ class MenuController extends Controller {
             if($count > 0){
               $checked     =   0;
               $type_msg           =   "alert-warning";            
-              $msg                =   "Cannot delete this item";
+              $msg                =   "Không thể xóa";
             } 
           }
         }
@@ -247,13 +247,13 @@ class MenuController extends Controller {
       public function sortOrder(Request $request,$menu_type_id=0){
         $checked                =   1;
       $type_msg               =   "alert-success";
-      $msg                    =   "Sort successfully"; 
+      $msg                    =   "Cập nhật thành công"; 
       $arrOrder=array();
       $arrOrder=$request->sort_order;  
       if(count($arrOrder) == 0){
         $checked     =   0;
         $type_msg           =   "alert-warning";            
-        $msg                =   "Please choose at least one item to sort";
+        $msg                =   "Vui lòng chọn ít nhất 1 phần tử";
       }
       if($checked==1){        
         foreach($arrOrder as $id => $value){                    

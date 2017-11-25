@@ -71,17 +71,17 @@ class UserController extends Controller {
           if(empty($fullname)){
                  $checked = 0;
                  $error["fullname"]["type_msg"] = "has-error";
-                 $error["fullname"]["msg"] = "Fullname is required";
+                 $error["fullname"]["msg"] = "Thiếu tên người dùng";
           }
           if(empty($group_member_id)){
                  $checked = 0;
                  $error["group_member_id"]["type_msg"] = "has-error";
-                 $error["group_member_id"]["msg"] = "Group_member_id is required";
+                 $error["group_member_id"]["msg"] = "Thiếu nhóm người dùng";
           }
           if(empty($username)){
                  $checked = 0;
                  $error["username"]["type_msg"] = "has-error";
-                 $error["username"]["msg"] = "Username is required";
+                 $error["username"]["msg"] = "Thiếu username";
           }else{
               $data=array();
               if (empty($id)) {
@@ -92,13 +92,13 @@ class UserController extends Controller {
               if (count($data) > 0) {
                   $checked = 0;
                   $error["username"]["type_msg"] = "has-error";
-                  $error["username"]["msg"] = "Username is existed in system";
+                  $error["username"]["msg"] = "Username đã tồn tại";
               }       
           }
           if(empty($email)){
                  $checked = 0;
                  $error["email"]["type_msg"] = "has-error";
-                 $error["email"]["msg"] = "Email is required";
+                 $error["email"]["msg"] = "Thiếu email";
           }else{
               $data=array();
               if (empty($id)) {
@@ -109,7 +109,7 @@ class UserController extends Controller {
               if (count($data) > 0) {
                   $checked = 0;
                   $error["email"]["type_msg"] = "has-error";
-                  $error["email"]["msg"] = "Email is existed in system";
+                  $error["email"]["msg"] = "Email đã tồn tại";
               }       
           }
           $password         = trim(mb_strtolower($password));
@@ -118,12 +118,12 @@ class UserController extends Controller {
               if(mb_strlen($password) < 6 ){
                   $checked = 0;
                   $error["password"]["type_msg"] = "has-error";
-                  $error["password"]["msg"] = "Password at least six character";
+                  $error["password"]["msg"] = "Mật khẩu tối thiểu phải 6 ít tự";
               }else{
                   if(strcmp($password, $confirm_password) !=0 ){
                     $checked = 0;
                     $error["password"]["type_msg"] = "has-error";
-                    $error["password"]["msg"] = "Password and confirm password do not matched";
+                    $error["password"]["msg"] = "Xác nhận mật khẩu không trùng khớp";
                   }
               }     
           }else{
@@ -131,12 +131,12 @@ class UserController extends Controller {
                   if(mb_strlen($password) < 6 ){
                     $checked = 0;
                     $error["password"]["type_msg"] = "has-error";
-                    $error["password"]["msg"] = "Password at least six character";
+                    $error["password"]["msg"] = "Mật khẩu tối thiểu phải 6 ít tự";
                   }else{
                       if(strcmp($password, $confirm_password) !=0 ){
                         $checked = 0;
                         $error["password"]["type_msg"] = "has-error";
-                        $error["password"]["msg"] = "Password and confirm password do not matched";
+                        $error["password"]["msg"] = "Xác nhận mật khẩu không trùng khớp";
                       }
                   }        
               }     
@@ -144,12 +144,12 @@ class UserController extends Controller {
           if(empty($sort_order)){
              $checked = 0;
              $error["sort_order"]["type_msg"] 	= "has-error";
-             $error["sort_order"]["msg"] 		= "Sort order is required";
+             $error["sort_order"]["msg"] 		= "Thiếu sắp xếp";
           }
           if((int)$status==-1){
              $checked = 0;
              $error["status"]["type_msg"] 		= "has-error";
-             $error["status"]["msg"] 			= "Status is required";
+             $error["status"]["msg"] 			= "Thiếu trạng thái";
           }
           if ($checked == 1) {   
 
@@ -173,7 +173,7 @@ class UserController extends Controller {
                 }                  
                 $info = array(
                   'type_msg' 			=> "has-success",
-                  'msg' 				=> 'Save data successfully',
+                  'msg' 				=> 'Lưu dữ liệu thành công',
                   "checked" 			=> 1,
                   "error" 			=> $error,
                   "id"    			=> $id
@@ -181,7 +181,7 @@ class UserController extends Controller {
             }else {
                     $info = array(
                       'type_msg' 			=> "has-error",
-                      'msg' 				=> 'Input data has some warning',
+                      'msg' 				=> 'Dữ liệu nhập gặp sự cố',
                       "checked" 			=> 0,
                       "error" 			=> $error,
                       "id"				=> ""
@@ -193,7 +193,7 @@ class UserController extends Controller {
                   $id             =       (int)$request->id;     
                   $checked                =   1;
                   $type_msg               =   "alert-success";
-                  $msg                    =   "Update successfully";              
+                  $msg                    =   "Cập nhật thành công";              
                   $status         =       (int)$request->status;
                   $item           =       User::find((int)@$id);        
                   $item->status   =       (int)@$status;
@@ -212,7 +212,7 @@ class UserController extends Controller {
             $id                     =   (int)$request->id;              
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Delete successfully";                    
+            $msg                    =   "Xóa thành công";                    
             if($checked == 1){
                 $item = User::find((int)@$id);
                 $item->delete();            
@@ -234,7 +234,7 @@ class UserController extends Controller {
           $arrID                  =   explode(",", $str_id)  ;
           $checked                =   1;
           $type_msg               =   "alert-success";
-          $msg                    =   "Update successfully";     
+          $msg                    =   "Cập nhật thành công";     
           if(empty($str_id)){
                     $checked                =   0;
                     $type_msg               =   "alert-warning";            
@@ -262,7 +262,7 @@ class UserController extends Controller {
             $str_id                 =   $request->str_id;   
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Delete successfully";      
+            $msg                    =   "Xóa thành công";      
             $arrID                  =   explode(",", $str_id)  ;        
             if(empty($str_id)){
               $checked              =   0;
@@ -291,7 +291,7 @@ class UserController extends Controller {
             $data_order             =   json_decode($sort_json);       
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Update successfully";      
+            $msg                    =   "Cập nhật thành công";      
             if(count($data_order) > 0){              
               foreach($data_order as $key => $value){      
                 if(!empty($value)){

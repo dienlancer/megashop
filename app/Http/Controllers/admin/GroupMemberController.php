@@ -59,7 +59,7 @@ class GroupMemberController extends Controller {
         if(empty($fullname)){
            $checked = 0;
            $error["fullname"]["type_msg"] = "has-error";
-           $error["fullname"]["msg"] = "Fullname is required";
+           $error["fullname"]["msg"] = "Thiếu tên nhóm người dùng";
         }else{
             $data=array();
              if (empty($id)) {
@@ -70,13 +70,13 @@ class GroupMemberController extends Controller {
             if (count($data) > 0) {
               $checked = 0;
               $error["fullname"]["type_msg"] = "has-error";
-              $error["fullname"]["msg"] = "Fullname is existed in system";
+              $error["fullname"]["msg"] = "Tên nhóm người dùng đã tồn tại";
             }      	
         }        
         if(empty($sort_order)){
              $checked = 0;
              $error["sort_order"]["type_msg"] 	= "has-error";
-             $error["sort_order"]["msg"] 		= "Sort order is required";
+             $error["sort_order"]["msg"] 		= "Thiếu sắp xếp";
         }
         
         if ($checked == 1) {    
@@ -118,7 +118,7 @@ class GroupMemberController extends Controller {
         }
         $info = array(
           'type_msg' 			=> "has-success",
-          'msg' 				  => 'Save data successfully',
+          'msg' 				  => 'Lưu dữ liệu thành công',
           "checked" 			=> 1,
           "error" 			  => $error,
           "id"    			  => $id
@@ -126,7 +126,7 @@ class GroupMemberController extends Controller {
       } else {
             $info = array(
               'type_msg' 	=> "has-error",
-              'msg' 			=> 'Input data has some warning',
+              'msg' 			=> 'Nhập dữ liệu có sự cố',
               "checked" 	=> 0,
               "error" 		=> $error,
               "id"				=> ""
@@ -138,12 +138,12 @@ class GroupMemberController extends Controller {
             $id                     =   (int)$request->id;              
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Delete successfully";                        
+            $msg                    =   "Xóa thành công";                        
             $data                   =   User::whereRaw("group_member_id = ?",[(int)@$id])->get()->toArray();    
             if(count($data) > 0){
                 $checked     =   0;
                 $type_msg           =   "alert-warning";            
-                $msg                =   "Cannot delete this item";            
+                $msg                =   "Không thể xóa";            
             }           
             if($checked == 1){
                 $item = GroupMemberModel::find((int)@$id);
@@ -164,12 +164,12 @@ class GroupMemberController extends Controller {
             $str_id                 =   $request->str_id;   
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Delete successfully";      
+            $msg                    =   "Xóa thành công";      
             $arrID                  =   explode(",", $str_id)  ;    
             if(empty($str_id)){
               $checked     =   0;
               $type_msg           =   "alert-warning";            
-              $msg                =   "Please choose at least one item to delete";
+              $msg                =   "Vui lòng chọn ít nhất 1 phần tử";
             }else{
               foreach ($arrID as $key => $value) {
                 if(!empty($value)){
@@ -177,7 +177,7 @@ class GroupMemberController extends Controller {
                   if(count($data) > 0){
                     $checked     =   0;
                     $type_msg           =   "alert-warning";            
-                    $msg                =   "Cannot delete this item";
+                    $msg                =   "Không thể xóa";
                   }                  
                 }                
               }
@@ -204,7 +204,7 @@ class GroupMemberController extends Controller {
           $data_order             =   json_decode($sort_json);       
           $checked                =   1;
           $type_msg               =   "alert-success";
-          $msg                    =   "Update successfully";      
+          $msg                    =   "Cập nhật thành công";      
           if(count($data_order) > 0){              
             foreach($data_order as $key => $value){         
               if(!empty($value)){

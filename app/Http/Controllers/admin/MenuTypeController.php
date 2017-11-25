@@ -52,7 +52,7 @@ class MenuTypeController extends Controller {
         if(empty($fullname)){
             $checked = 0;
             $error["fullname"]["type_msg"] = "has-error";
-            $error["fullname"]["msg"] = "Fullname is required";
+            $error["fullname"]["msg"] = "Thiếu nhóm menu";
         }else{
             $data=array();
             if (empty($id)) {
@@ -63,30 +63,18 @@ class MenuTypeController extends Controller {
             if (count($data) > 0) {
               $checked = 0;
               $error["fullname"]["type_msg"] = "has-error";
-              $error["fullname"]["msg"] = "Fullname is existed in system";
+              $error["fullname"]["msg"] = "Nhóm menu đã tồn tại";
             }      	
         }
         if(empty($theme_location)){
             $checked = 0;
             $error["theme_location"]["type_msg"] = "has-error";
-            $error["theme_location"]["msg"] = "Theme location is required";
-        }else{
-            $data=array();
-            if (empty($id)) {
-                $data=MenuTypeModel::whereRaw("trim(lower(theme_location)) = ?",[trim(mb_strtolower($theme_location,'UTF-8'))])->get()->toArray();            
-            }else{
-              $data=MenuTypeModel::whereRaw("trim(lower(theme_location)) = ? and id != ?",[trim(mb_strtolower($theme_location,'UTF-8')),(int)@$id])->get()->toArray();    
-            }  
-            if (count($data) > 0) {
-              $checked = 0;
-              $error["theme_location"]["type_msg"] = "has-error";
-              $error["theme_location"]["msg"] = "Theme location is existed in system";
-            }       
+            $error["theme_location"]["msg"] = "Thiếu theme location";
         }
         if(empty($sort_order)){
              $checked = 0;
              $error["sort_order"]["type_msg"] 	= "has-error";
-             $error["sort_order"]["msg"] 		= "Sort order is required";
+             $error["sort_order"]["msg"] 		= "Thiếu sắp xếp";
         }
         if($checked == 1) {    
              if(empty($id)){
@@ -105,7 +93,7 @@ class MenuTypeController extends Controller {
               $item->save();  	
               $info = array(
                 'type_msg' 			 => "has-success",
-                'msg' 				   => 'Save data successfully',
+                'msg' 				   => 'Cập nhật dữ liệu thành công',
                 "checked" 			 => 1,
                 "error" 			   => $error,
                 "id"    			   => $id
@@ -113,7 +101,7 @@ class MenuTypeController extends Controller {
         } else {
               $info = array(
                 'type_msg' 			=> "has-error",
-                'msg' 				  => 'Input data has some warning',
+                'msg' 				  => 'Dữ liệu nhập gặp sự cố',
                 "checked" 			=> 0,
                 "error" 			  => $error,
                 "id"				    => ""
@@ -125,7 +113,7 @@ class MenuTypeController extends Controller {
         $id             =       (int)$request->id;     
         $checked                =   1;
         $type_msg               =   "alert-success";
-        $msg                    =   "Update successfully";              
+        $msg                    =   "Cập nhật thành công";              
         $status         =       (int)$request->status;
         $item           =       MenuTypeModel::find((int)@$id);        
         $item->status   =       $status;
@@ -143,12 +131,12 @@ class MenuTypeController extends Controller {
           $id                     =   (int)$request->id;              
           $checked                =   1;
           $type_msg               =   "alert-success";
-          $msg                    =   "Delete successfully";
+          $msg                    =   "Xóa thành công";
           $data                   =   MenuModel::whereRaw("menu_type_id = ?",[(int)@$id])->get()->toArray();                      
           if(count($data) > 0){
             $checked     =   0;
             $type_msg           =   "alert-warning";            
-            $msg                =   "Cannot delete this item";            
+            $msg                =   "Không thể xóa";            
           }  
           if($checked == 1){
             $item               =   MenuTypeModel::find((int)@$id);
@@ -169,7 +157,7 @@ class MenuTypeController extends Controller {
           $arrID                 =   explode(",", $str_id)  ;
           $checked                =   1;
           $type_msg               =   "alert-success";
-          $msg                    =   "Update successfully";     
+          $msg                    =   "Cập nhật thành công";     
           if(empty($str_id)){
                     $checked                =   0;
                     $type_msg               =   "alert-warning";            
@@ -197,7 +185,7 @@ class MenuTypeController extends Controller {
           $str_id                 =   $request->str_id;   
           $checked                =   1;
           $type_msg               =   "alert-success";
-          $msg                    =   "Delete successfully";      
+          $msg                    =   "Xóa thành công";      
           $arrID                  =   explode(",", $str_id)  ;    
           if(empty($str_id)){
             $checked     =   0;
@@ -209,7 +197,7 @@ class MenuTypeController extends Controller {
                   if(count($data) > 0){
                       $checked     =   0;
                       $type_msg           =   "alert-warning";            
-                      $msg                =   "Cannot delete this item";
+                      $msg                =   "Không thể xóa";
                   }
               }    
           }
@@ -233,7 +221,7 @@ class MenuTypeController extends Controller {
           $data_order             =   json_decode($sort_json);       
           $checked                =   1;
           $type_msg               =   "alert-success";
-          $msg                    =   "Update successfully";      
+          $msg                    =   "Cập nhật thành công";      
           if(count($data_order) > 0){              
             foreach($data_order as $key => $value){
               if(!empty($value)){

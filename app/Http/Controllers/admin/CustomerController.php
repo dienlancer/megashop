@@ -57,12 +57,12 @@ class CustomerController extends Controller {
           if(empty($sort_order)){
              $checked = 0;
              $error["sort_order"]["type_msg"] 	= "has-error";
-             $error["sort_order"]["msg"] 		= "Sort order is required";
+             $error["sort_order"]["msg"] 		= "Thiếu sắp xếp";
           }
           if((int)$status==-1){
              $checked = 0;
              $error["status"]["type_msg"] 		= "has-error";
-             $error["status"]["msg"] 			= "Status is required";
+             $error["status"]["msg"] 			= "Thiếu trạng thái";
           }
           $password         = trim(mb_strtolower($password));
           $confirmed_password = trim(mb_strtolower($confirmed_password));
@@ -70,12 +70,12 @@ class CustomerController extends Controller {
               if(mb_strlen($password) < 6 ){
                   $checked = 0;
                   $error["password"]["type_msg"] = "has-error";
-                  $error["password"]["msg"] = "Password at least six character";
+                  $error["password"]["msg"] = "Mật khẩu phải ít nhất 6 ký tự";
               }else{
                   if(strcmp($password, $confirmed_password) !=0 ){
                     $checked = 0;
                     $error["password"]["type_msg"] = "has-error";
-                    $error["password"]["msg"] = "Password and confirm password do not matched";
+                    $error["password"]["msg"] = "Xác nhận mật khẩu không trùng khớp";
                   }
               }     
           }else{
@@ -83,12 +83,12 @@ class CustomerController extends Controller {
                   if(mb_strlen($password) < 6 ){
                     $checked = 0;
                     $error["password"]["type_msg"] = "has-error";
-                    $error["password"]["msg"] = "Password at least six character";
+                    $error["password"]["msg"] = "Mật khẩu phải ít nhất 6 ký tự";
                   }else{
                       if(strcmp($password, $confirmed_password) !=0 ){
                         $checked = 0;
                         $error["password"]["type_msg"] = "has-error";
-                        $error["password"]["msg"] = "Password and confirm password do not matched";
+                        $error["password"]["msg"] = "Xác nhận mật khẩu không trùng khớp";
                       }
                   }        
               }     
@@ -109,7 +109,7 @@ class CustomerController extends Controller {
                 $item->save();  	                
                 $info = array(
                   'type_msg' 			=> "has-success",
-                  'msg' 				=> 'Save data successfully',
+                  'msg' 				=> 'Lưu dữ liệu thành công',
                   "checked" 			=> 1,
                   "error" 			=> $error,
                   "id"    			=> $id
@@ -117,7 +117,7 @@ class CustomerController extends Controller {
             }else {
                     $info = array(
                       'type_msg' 			=> "has-error",
-                      'msg' 				=> 'Input data has some warning',
+                      'msg' 				=> 'Nhập dữ liệu có sự cố',
                       "checked" 			=> 0,
                       "error" 			=> $error,
                       "id"				=> ""
@@ -129,7 +129,7 @@ class CustomerController extends Controller {
                   $id             =       (int)$request->id;     
                   $checked                =   1;
                   $type_msg               =   "alert-success";
-                  $msg                    =   "Update successfully";              
+                  $msg                    =   "Cập nhật thành công";              
                   $status         =       (int)$request->status;
                   $item           =       CustomerModel::find((int)@$id);        
                   $item->status   =       $status;
@@ -147,7 +147,7 @@ class CustomerController extends Controller {
             $id                     =   (int)@$request->id;              
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Delete successfully";                    
+            $msg                    =   "Xóa thành công";                    
             if($checked == 1){
                 $item = CustomerModel::find((int)@$id);
                 $item->delete();                
@@ -167,11 +167,11 @@ class CustomerController extends Controller {
           $arrID                 =   explode(",", $str_id)  ;
           $checked                =   1;
           $type_msg               =   "alert-success";
-          $msg                    =   "Update successfully";     
+          $msg                    =   "Cập nhật thành công";     
           if(empty($str_id)){
                     $checked                =   0;
                     $type_msg               =   "alert-warning";            
-                    $msg                    =   "Please choose at least one item to delete";
+                    $msg                    =   "Vui lòng chọn ít nhất 1 phần tử";
           }
           if($checked==1){
               foreach ($arrID as $key => $value) {
@@ -195,12 +195,12 @@ class CustomerController extends Controller {
             $str_id                 =   $request->str_id;   
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Delete successfully";      
+            $msg                    =   "Xóa thành công";      
             $arrID                  =   explode(",", $str_id)  ;        
             if(empty($str_id)){
               $checked     =   0;
               $type_msg           =   "alert-warning";            
-              $msg                =   "Please choose at least one item to delete";
+              $msg                =   "Vui lòng chọn ít nhất 1 phần tử";
             }
             if($checked == 1){                
                   $strID = implode(',',$arrID);   
@@ -222,7 +222,7 @@ class CustomerController extends Controller {
             $data_order             =   json_decode($sort_json);       
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Update successfully";      
+            $msg                    =   "Cập nhật thành công";      
             if(count($data_order) > 0){              
               foreach($data_order as $key => $value){      
                 if(!empty($value)){

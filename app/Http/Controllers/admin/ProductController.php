@@ -92,7 +92,7 @@ class ProductController extends Controller {
             if(empty($code)){
                  $checked = 0;
                  $error["code"]["type_msg"] = "has-error";
-                 $error["code"]["msg"] = "code is required";
+                 $error["code"]["msg"] = "Thiếu mã sản phẩm";
             }else{
                 $data=array();
                 if (empty($id)) {
@@ -103,13 +103,13 @@ class ProductController extends Controller {
                 if (count($data) > 0) {
                   $checked = 0;
                   $error["code"]["type_msg"] = "has-error";
-                  $error["code"]["msg"] = "code is existed in system";
+                  $error["code"]["msg"] = "Mã sản phẩm đã tồn tại";
                 }       
             }      
             if(empty($fullname)){
                $checked = 0;
                $error["fullname"]["type_msg"] = "has-error";
-               $error["fullname"]["msg"] = "Fullname is required";
+               $error["fullname"]["msg"] = "Thiếu tên sản phẩm";
            }else{
                 $data=array();
                 if (empty($id)) {
@@ -120,13 +120,13 @@ class ProductController extends Controller {
                 if (count($data) > 0) {
                   $checked = 0;
                   $error["fullname"]["type_msg"] = "has-error";
-                  $error["fullname"]["msg"] = "Fullname is existed in system";
+                  $error["fullname"]["msg"] = "Tên sản phẩm đã tồn tại";
                 }      	
             }          
       if(empty($alias)){
             $checked = 0;
             $error["alias"]["type_msg"] = "has-error";
-            $error["alias"]["msg"] = "Alias is required";
+            $error["alias"]["msg"] = "Thiếu alias";
       }else{
             $dataCategoryArticle=array();
               $dataCategoryProduct=array();
@@ -143,22 +143,22 @@ class ProductController extends Controller {
             if (count($dataCategoryArticle) > 0) {
               $checked = 0;
               $error["alias"]["type_msg"]   = "has-error";
-              $error["alias"]["msg"]      = "Alias is existed in system";
+              $error["alias"]["msg"]      = "Alias đã tồn tại";
             }
             if (count($dataCategoryProduct) > 0) {
               $checked = 0;
               $error["alias"]["type_msg"]   = "has-error";
-              $error["alias"]["msg"]      = "Alias is existed in system";
+              $error["alias"]["msg"]      = "Alias đã tồn tại";
             }
             if (count($dataArticle) > 0) {
               $checked = 0;
               $error["alias"]["type_msg"]   = "has-error";
-              $error["alias"]["msg"]      = "Alias is existed in system";
+              $error["alias"]["msg"]      = "Alias đã tồn tại";
             }
             if (count($dataProduct) > 0) {
               $checked = 0;
               $error["alias"]["type_msg"]   = "has-error";
-              $error["alias"]["msg"]      = "Alias is existed in system";
+              $error["alias"]["msg"]      = "Alias đã tồn tại";
             }       
       }
       if(empty($sort_order)){
@@ -272,7 +272,7 @@ class ProductController extends Controller {
                   $id             =       (int)$request->id;     
                   $checked                =   1;
                   $type_msg               =   "alert-success";
-                  $msg                    =   "Update successfully";              
+                  $msg                    =   "Cập nhật thành công";              
                   $status         =       (int)$request->status;
                   $item           =       ProductModel::find((int)@$id);        
                   $item->status   =       $status;
@@ -290,7 +290,7 @@ class ProductController extends Controller {
             $id                     =   (int)$request->id;              
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Delete successfully";                      
+            $msg                    =   "Xóa thành công";                      
             if($checked == 1){
                 $item = ProductModel::find((int)@$id);
                 $item->image     = null;      
@@ -307,7 +307,7 @@ class ProductController extends Controller {
             $id                     =   (int)$request->id;              
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Delete successfully";                    
+            $msg                    =   "Xóa thành công";                    
             if($checked == 1){
               $item = ProductModel::find((int)@$id);
                 $item->delete();
@@ -328,7 +328,7 @@ class ProductController extends Controller {
           $arrID                 =   explode(",", $str_id)  ;
           $checked                =   1;
           $type_msg               =   "alert-success";
-          $msg                    =   "Update successfully";     
+          $msg                    =   "Cập nhật thành công";     
           if(empty($str_id)){
                     $checked                =   0;
                     $type_msg               =   "alert-warning";            
@@ -356,7 +356,7 @@ class ProductController extends Controller {
             $str_id                 =   $request->str_id;   
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Delete successfully";      
+            $msg                    =   "Xóa thành công";      
             $arrID                  =   explode(",", $str_id)  ;        
             if(empty($str_id)){
               $checked     =   0;
@@ -385,7 +385,7 @@ class ProductController extends Controller {
             $data_order             =   json_decode($sort_json);       
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Update successfully";      
+            $msg                    =   "Cập nhật thành công";      
             if(count($data_order) > 0){              
               foreach($data_order as $key => $value){       
                 if(!empty($value)){

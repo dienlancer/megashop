@@ -45,7 +45,7 @@ class MediaController extends Controller {
 	public function trash(){	
 		$checked                =   1;
 	    $type_msg               =   "alert-success";
-	    $msg                    =   "Delete successfully";   								
+	    $msg                    =   "Xóa thành công";   								
 		$arrID=@$_POST["cid"];
 		if(count($arrID) == 0){
 			$checked=0;
@@ -66,7 +66,7 @@ class MediaController extends Controller {
 		$id                     =   $request->id;              
 	    $checked                =   1;
 	    $type_msg               =   "alert-success";
-	    $msg                    =   "Delete successfully";   
+	    $msg                    =   "Xóa thành công";   
 	    $pathFile 				= 	base_path("upload/".$id);	
 	    if(!file_exists($pathFile)){
 			$checked=0;

@@ -57,12 +57,12 @@ class BannerController extends Controller {
           if(empty($sort_order)){
              $checked = 0;
              $error["sort_order"]["type_msg"]   = "has-error";
-             $error["sort_order"]["msg"]    = "Sort order is required";
+             $error["sort_order"]["msg"]    = "Thiếu sắp xếp";
           }
           if((int)$status==-1){
              $checked = 0;
              $error["status"]["type_msg"]     = "has-error";
-             $error["status"]["msg"]      = "Status is required";
+             $error["status"]["msg"]      = "Thiếu trạng thái";
           }                    
           if ($checked == 1) {    
                 if(empty($id)){
@@ -91,7 +91,7 @@ class BannerController extends Controller {
 
                 $info = array(
                   'type_msg'      => "has-success",
-                  'msg'         => 'Save data successfully',
+                  'msg'         => 'Lưu dữ liệu thành công',
                   "checked"       => 1,
                   "error"       => $error,
                   "id"          => $id
@@ -99,7 +99,7 @@ class BannerController extends Controller {
             }else {
                     $info = array(
                       'type_msg'      => "has-error",
-                      'msg'         => 'Input data has some warning',
+                      'msg'         => 'Lưu dữ liệu thất bại',
                       "checked"       => 0,
                       "error"       => $error,
                       "id"        => ""
@@ -111,7 +111,7 @@ class BannerController extends Controller {
                   $id             =       (int)$request->id;     
                   $checked                =   1;
                   $type_msg               =   "alert-success";
-                  $msg                    =   "Update successfully";              
+                  $msg                    =   "Cập nhật thành công";              
                   $status         =       (int)$request->status;
                   $item           =       BannerModel::find((int)@$id);        
                   $item->status   =       $status;
@@ -130,7 +130,7 @@ class BannerController extends Controller {
             $id                     =   (int)@$request->id;              
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Delete successfully";                    
+            $msg                    =   "Xóa thành công";                    
             if($checked == 1){
                 $item = BannerModel::find((int)@$id);
                 $item->delete();                
@@ -150,11 +150,11 @@ class BannerController extends Controller {
           $arrID                 =   explode(",", $str_id)  ;          
           $checked                =   1;
           $type_msg               =   "alert-success";
-          $msg                    =   "Update successfully";     
+          $msg                    =   "Cập nhật thành công";     
           if(empty($str_id)){
                     $checked                =   0;
                     $type_msg               =   "alert-warning";            
-                    $msg                    =   "Please choose at least one item to delete";
+                    $msg                    =   "Vui lòng chọn ít nhất một phần tử để xóa";
           }
           if($checked==1){
               foreach ($arrID as $key => $value) {
@@ -178,12 +178,12 @@ class BannerController extends Controller {
             $str_id                 =   $request->str_id;   
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Delete successfully";      
+            $msg                    =   "Xóa thành công";      
             $arrID                  =   explode(",", $str_id)  ;        
             if(empty($str_id)){
               $checked     =   0;
               $type_msg           =   "alert-warning";            
-              $msg                =   "Please choose at least one item to delete";
+              $msg                =   "Vui lòng chọn ít nhất một phần tử để xóa";
             }
             if($checked == 1){                
                   $strID = implode(',',$arrID);   
@@ -205,7 +205,7 @@ class BannerController extends Controller {
             $data_order             =   json_decode($sort_json);       
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Update successfully";      
+            $msg                    =   "Cập nhật thành công";      
             if(count($data_order) > 0){              
               foreach($data_order as $key => $value){       
               if(!empty($value)){
@@ -228,7 +228,7 @@ class BannerController extends Controller {
             $id                     =   (int)$request->id;              
             $checked                =   1;
             $type_msg               =   "alert-success";
-            $msg                    =   "Delete successfully";                      
+            $msg                    =   "Xóa thành công";                      
             if($checked == 1){
                 $item = BannerModel::find((int)@$id);
                 $item->image     = null;      
