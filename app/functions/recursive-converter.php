@@ -54,7 +54,7 @@ function menuRecursive($data ,$parent=null,$str="--",&$arrRecursiveMenu){
     $id=$val["id"];
     $fullname=$val["fullname"];
     
-    $site_link=$val["site_link"];    
+
     $parent_id=$val["parent_id"];  
     $parent_fullname=$val["parent_fullname"];
     $menu_type_id=$val["menu_type_id"];        
@@ -71,7 +71,7 @@ function menuRecursive($data ,$parent=null,$str="--",&$arrRecursiveMenu){
           $arrRecursiveMenu[$key]["id"]=$id;
           $arrRecursiveMenu[$key]["fullname"]=$str . $fullname;    
          
-          $arrRecursiveMenu[$key]["site_link"]=$site_link;      
+          
           $arrRecursiveMenu[$key]["parent_id"]=$parent_id;
           $arrRecursiveMenu[$key]["parent_fullname"]=$parent_fullname; 
           $arrRecursiveMenu[$key]["menu_type_id"]=$menu_type_id;                            

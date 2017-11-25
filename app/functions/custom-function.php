@@ -53,8 +53,8 @@ function wp_nav_menu($args){
             $menu=array();
             $menu=$data_menu[$i];
             $site_link='';
-            if(!empty( $data_menu[$i]["site_link"] )){
-              $site_link=$data_menu[$i]["site_link"].".html";
+            if(!empty( $data_menu[$i]["alias"] )){
+              $site_link='/'.$data_menu[$i]["alias"].".html";
             }
             $menu["site_link"] =$site_link;            
             $data_child=MenuModel::whereRaw('parent_id = ?',[(int)$data_menu[$i]["id"]])->select('id')->get()->toArray();
@@ -65,7 +65,7 @@ function wp_nav_menu($args){
             }
             $arr_menu[]=$menu;
         }
-    }
+    }    
     $menu_str              =  "";      
     $lanDau                =  0;    
     mooMenuRecursive($arr_menu,0,$menu_str,$lanDau,url('/'),$args['alias'],$args['menu_id'],$args['menu_class'],$args['menu_li_actived'],$args['menu_item_has_children'],$args['link_before'],$args['link_after']);
@@ -93,7 +93,7 @@ function mooMenuRecursive($source,$parent,&$menu_str,&$lanDau,$url,$alias,$menu_
             {                  
                     if((int)$value["parent_id"]==(int)$parent)
                     {
-                          $link=$url.'/'.$value["alias"].'.html';
+                          $link=$url.$value["site_link"];
                           $class_activated=0;                          
                           if( strcmp(trim(mb_strtolower($value["alias"])),trim(mb_strtolower($alias)))   ==  0 ){
                               $class_activated=1;                              

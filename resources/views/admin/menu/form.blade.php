@@ -5,22 +5,20 @@ $linkCancel             =   route('admin.'.$controller.'.getList',[@$menu_type_i
 $linkSave               =   route('admin.'.$controller.'.save');
 $inputFullName          =   '<input type="text" class="form-control" name="fullname"   id="fullname"       value="'.@$fullname.'">'; 
 $inputAlias             =   '';
-$inputSitelink          =   '';
 if(strcmp(@$alias, 'no-alias')==0){
     switch ($task) {
         case 'add':
         $inputAlias             =   '<input type="text" class="form-control" name="alias"      id="alias"       value="'.@$alias.'">';
-        $inputSitelink          =   '<input type="text" class="form-control" name="site_link"   id="site_link"       value="'.@$site_link.'">'; 
+
         break;
         
         case 'edit':
-        $inputAlias             =   '<input type="text" class="form-control" name="alias"      id="alias"       value="'.@$arrRowData['alias'].'">';
-        $inputSitelink          =   '<input type="text" class="form-control" name="site_link"   id="site_link"       value="'.@$arrRowData['site_link'].'">'; 
+        $inputAlias             =   '<input type="text" class="form-control" name="alias"      id="alias"       value="'.@$arrRowData['alias'].'">';        
         break;
     }    
 }else{
     $inputAlias             =   '<input type="text" class="form-control" name="alias"      id="alias"     disabled     value="'.@$alias.'">';
-    $inputSitelink          =   '<input type="text" class="form-control" name="site_link"   id="site_link" disabled      value="'.@$site_link.'">'; 
+    
 }
 $inputSortOrder         =   '<input type="text" class="form-control" name="sort_order" id="sort_order"     value="'.@$arrRowData['sort_order'].'">';
 $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 1 ;
@@ -127,19 +125,19 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
         var id                   =   $("#id");
         var fullname             =   $("#fullname");
         var alias                =   $("#alias");
-        var site_link            =   $("#site_link");
+
         var sort_order           =   $("#sort_order");
         var status               =   $("#status");
         
         $(fullname).closest('.form-group').removeClass("has-error");
         $(alias).closest('.form-group').removeClass("has-error");
-        $(site_link).closest('.form-group').removeClass("has-error");
+        
         $(sort_order).closest('.form-group').removeClass("has-error");
         $(status).closest('.form-group').removeClass("has-error");        
 
         $(fullname).closest('.form-group').find('span').empty().hide();
         $(alias).closest('.form-group').find('span').empty().hide();
-        $(site_link).closest('.form-group').find('span').empty().hide();
+        
         $(sort_order).closest('.form-group').find('span').empty().hide();
         $(status).closest('.form-group').find('span').empty().hide();        
     }
@@ -147,7 +145,7 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
         var id=$("#id").val();        
         var fullname=$("#fullname").val();
         var alias=$("#alias").val();
-        var site_link=$("#site_link").val();
+        
         var parent_id=$("#parent_id").val();        
         var menu_type_id=$("#menu_type_id").val();  
         var sort_order=$("#sort_order").val();
@@ -158,7 +156,7 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
             "id":id,
             "fullname":fullname,
             "alias":alias,
-            "site_link":site_link,
+            
             "parent_id":parent_id,
             "menu_type_id":menu_type_id,
             "sort_order":sort_order,
@@ -185,12 +183,7 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                         $("#alias").closest('.form-group').addClass(data_error.alias.type_msg);
                         $("#alias").closest('.form-group').find('span').text(data_error.alias.msg);
                         $("#alias").closest('.form-group').find('span').show();                       
-                    }
-                    if(typeof data_error.site_link               != "undefined"){
-                        $("#site_link").closest('.form-group').addClass(data_error.site_link.type_msg);
-                        $("#site_link").closest('.form-group').find('span').text(data_error.site_link.msg);
-                        $("#site_link").closest('.form-group').find('span').show();                        
-                    }
+                    }                    
                     if(typeof data_error.sort_order               != "undefined"){
                         $("#sort_order").closest('.form-group').addClass(data_error.sort_order.type_msg);
                         $("#sort_order").closest('.form-group').find('span').text(data_error.sort_order.msg);

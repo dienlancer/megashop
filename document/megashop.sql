@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 25, 2017 lúc 05:22 AM
+-- Thời gian đã tạo: Th10 25, 2017 lúc 11:15 AM
 -- Phiên bản máy phục vụ: 10.1.22-MariaDB
 -- Phiên bản PHP: 7.1.4
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `vitinh`
+-- Cơ sở dữ liệu: `megashop`
 --
 
 DELIMITER $$
@@ -362,7 +362,6 @@ SELECT
 	,n.id
 	,n.fullname
 	
-	,n.site_link
 	,n.parent_id
 	,a.fullname AS parent_fullname
 	,n.menu_type_id
@@ -381,7 +380,6 @@ SELECT
     n.id
 	,n.fullname
 	
-	,n.site_link
 	,n.parent_id
 	,a.fullname 
 	,n.menu_type_id
@@ -398,7 +396,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getMenuLimit` (IN `keyword` VAR
 	0 AS is_checked,
 	n.id
 	,n.fullname
-	,n.site_link
 	,n.parent_id
 	,a.fullname AS parent_fullname
 	,n.menu_type_id
@@ -416,8 +413,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getMenuLimit` (IN `keyword` VAR
     GROUP BY
     n.id
 	,n.fullname
-	
-	,n.site_link
 	,n.parent_id
 	,a.fullname 
 	,n.menu_type_id
@@ -447,33 +442,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getMenuType` (IN `keyword` VARC
     ;
 END$$
 
-DROP PROCEDURE IF EXISTS `pro_getModuleArticle`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getModuleArticle` (IN `keyword` VARCHAR(255))  NO SQL
-SELECT 
-	0 AS  is_checked
-	,n.id
-	,n.fullname
-	,n.article_id
-	,n.position
-	,n.status
-	,n.sort_order
-	,n.created_at
-	,n.updated_at
-	 FROM 
-    `module_article` n
-    WHERE
-    (keyword ='' OR LOWER(n.fullname) LIKE CONCAT('%', LOWER(keyword) ,'%'))    
-    GROUP BY
-	n.id
-    	,n.fullname
-	,n.article_id
-	,n.position
-	,n.status
-	,n.sort_order
-	,n.created_at
-	,n.updated_at
-    ORDER BY n.sort_order ASC$$
-
 DROP PROCEDURE IF EXISTS `pro_getModuleItem`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getModuleItem` (IN `keyword` VARCHAR(255))  BEGIN
 SELECT 
@@ -501,32 +469,6 @@ SELECT
 	,n.updated_at
     ORDER BY n.sort_order ASC;
     END$$
-
-DROP PROCEDURE IF EXISTS `pro_getModuleMenu`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getModuleMenu` (IN `keyword` VARCHAR(255))  SELECT 
-	0 as  is_checked
-	,n.id
-	,n.fullname
-	,n.menu_type_id
-	,n.position
-	,n.status
-	,n.sort_order
-	,n.created_at
-	,n.updated_at
-	 FROM 
-    `module_menu` n
-    WHERE
-    (keyword ='' OR LOWER(n.fullname) LIKE CONCAT('%', LOWER(keyword) ,'%'))    
-    group by
-	n.id
-    	,n.fullname
-	,n.menu_type_id
-	,n.position
-	,n.status
-	,n.sort_order
-	,n.created_at
-	,n.updated_at
-    ORDER BY n.sort_order ASC$$
 
 DROP PROCEDURE IF EXISTS `pro_getPaymentMethod`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getPaymentMethod` (IN `keyword` VARCHAR(255) charset utf8)  BEGIN
@@ -1148,7 +1090,6 @@ CREATE TABLE `menu` (
   `id` bigint(20) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `alias` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `site_link` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL,
   `menu_type_id` int(11) DEFAULT NULL,
   `level` int(11) DEFAULT NULL,
@@ -1162,73 +1103,73 @@ CREATE TABLE `menu` (
 -- Đang đổ dữ liệu cho bảng `menu`
 --
 
-INSERT INTO `menu` (`id`, `fullname`, `alias`, `site_link`, `parent_id`, `menu_type_id`, `level`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Trang chủ', 'trang-chu', '', 0, 1, 0, 1, 1, '2017-11-13 04:31:34', '2017-11-15 04:54:37'),
-(6, 'Giới thiệu', 'gioi-thieu', '/bai-viet/gioi-thieu', 0, 1, 0, 2, 1, '2017-11-13 04:36:20', '2017-11-23 18:15:18'),
-(7, 'Tin tức', 'tin-tuc', '/chu-de/meo-hay-nha-bep', 0, 1, 0, 3, 1, '2017-11-13 04:36:41', '2017-11-15 10:42:16'),
-(8, 'Sản phẩm', 'san-pham', '/loai-san-pham/sofa', 0, 1, 0, 4, 1, '2017-11-13 04:37:00', '2017-11-16 04:45:49'),
-(9, 'Phòng khách', 'phong-khach', '/loai-san-pham/phong-khach', 8, 1, 1, 1, 1, '2017-11-13 04:37:45', '2017-11-13 04:37:45'),
-(10, 'Phòng ngủ', 'phong-phu', '/loai-san-pham/phong-ngu', 8, 1, 1, 2, 1, '2017-11-13 04:38:12', '2017-11-13 04:38:19'),
-(11, 'Sofa', 'sofa', '/loai-san-pham/sofa', 8, 1, 1, 3, 1, '2017-11-13 04:38:44', '2017-11-13 04:38:44'),
-(12, 'Phòng bếp', 'phong-bep', '/loai-san-pham/phong-bep', 8, 1, 1, 4, 1, '2017-11-13 04:39:09', '2017-11-13 04:39:09'),
-(13, 'Phòng trẻ em', 'phong-tre-em', '/loai-san-pham/phong-tre-em', 8, 1, 1, 5, 1, '2017-11-13 04:39:34', '2017-11-13 04:39:34'),
-(14, 'Phòng khách', 'phong-khach', '/loai-san-pham/phong-khach', 0, 2, 0, 1, 1, '2017-11-13 18:18:44', '2017-11-13 18:18:44'),
-(15, 'Phòng ngủ', 'phong-ngu', '/loai-san-pham/phong-ngu', 0, 2, 0, 2, 1, '2017-11-13 18:20:32', '2017-11-13 18:20:32'),
-(16, 'Sofa', 'sofa', '/loai-san-pham/sofa', 0, 2, 0, 3, 1, '2017-11-13 18:20:53', '2017-11-13 18:20:53'),
-(17, 'Phòng bếp', 'phong-bep', '/loai-san-pham/phong-bep', 0, 2, 0, 4, 1, '2017-11-13 18:21:24', '2017-11-13 18:21:24'),
-(18, 'Phòng trẻ em', 'phong-tre-em', '/loai-san-pham/phong-tre-em', 0, 2, 0, 5, 1, '2017-11-13 18:21:54', '2017-11-13 18:21:54'),
-(19, 'Thiết bị bếp', 'thiet-bi-bep', '/loai-san-pham/thiet-bi-bep', 0, 2, 0, 6, 1, '2017-11-13 18:22:23', '2017-11-13 18:22:23'),
-(20, 'Thiết bị vệ sinh', 'thiet-bi-ve-sinh', '/loai-san-pham/thiet-bi-ve-sinh', 0, 2, 0, 7, 1, '2017-11-13 18:22:47', '2017-11-13 18:22:47'),
-(21, 'Đồ trang trí', 'do-trang-tri', '/loai-san-pham/do-trang-tri', 0, 2, 0, 8, 1, '2017-11-13 18:23:13', '2017-11-13 18:23:17'),
-(22, 'Phụ kiện bếp', 'phu-kien-bep', '/loai-san-pham/phu-kien-bep', 0, 2, 0, 9, 1, '2017-11-13 18:23:41', '2017-11-13 18:23:41'),
-(23, 'Nhà thông minh', 'nha-thong-minh', '/loai-san-pham/nha-thong-minh', 0, 2, 0, 10, 1, '2017-11-13 18:24:08', '2017-11-13 18:24:08'),
-(24, 'Bàn ghế gỗ', 'ban-ghe-go', '/loai-san-pham/ban-ghe-go', 14, 2, 1, 1, 1, '2017-11-13 18:24:41', '2017-11-13 18:24:41'),
-(25, 'Sofa phòng khách', 'sofa-phong-khach', '/loai-san-pham/sofa-phong-khach', 14, 2, 1, 2, 1, '2017-11-13 18:25:10', '2017-11-13 18:25:10'),
-(26, 'Tủ để giày', 'tu-de-giay', '/loai-san-pham/tu-de-giay', 14, 2, 1, 3, 1, '2017-11-13 18:25:38', '2017-11-13 18:25:38'),
-(27, 'Tủ rượu', 'tu-ruou', '/loai-san-pham/tu-ruou', 14, 2, 1, 4, 1, '2017-11-13 18:26:00', '2017-11-13 18:26:00'),
-(28, 'Vách ngăn', 'vach-ngan', '/loai-san-pham/vach-ngan', 14, 2, 1, 5, 1, '2017-11-13 18:26:41', '2017-11-13 18:26:41'),
-(29, 'Bàn làm việc', 'ban-lam-viec', '/loai-san-pham/ban-lam-viec', 15, 2, 1, 1, 1, '2017-11-13 18:27:20', '2017-11-13 18:27:20'),
-(30, 'Bàn trang điểm', 'ban-trang-diem', '/loai-san-pham/ban-trang-diem', 15, 2, 1, 2, 1, '2017-11-13 18:27:51', '2017-11-13 18:27:51'),
-(31, 'Giường ngủ', 'giuong-ngu', '/loai-san-pham/giuong-ngu', 15, 2, 1, 3, 1, '2017-11-13 18:28:20', '2017-11-13 18:28:20'),
-(32, 'Kệ tivi', 'ke-tivi', '/loai-san-pham/ke-tivi', 15, 2, 1, 4, 1, '2017-11-13 18:28:51', '2017-11-13 18:28:51'),
-(33, 'Tủ quần áo', 'tu-quan-ao', '/loai-san-pham/quan-ao', 15, 2, 1, 5, 1, '2017-11-13 18:29:25', '2017-11-13 18:29:25'),
-(34, 'Sofa cafe', 'sofa-cafe', '1', 16, 2, 1, 1, 1, '2017-11-13 18:29:52', '2017-11-13 18:29:52'),
-(35, 'Sofa da', 'sofa-da', '/loai-san-pham/sofa-da', 16, 2, 1, 2, 1, '2017-11-13 18:30:11', '2017-11-13 18:30:11'),
-(36, 'Sofa giường', 'sofa-giuong', '/loai-san-pham/sofa-giuong', 16, 2, 1, 2, 1, '2017-11-13 18:30:35', '2017-11-13 18:30:35'),
-(37, 'Sofa nghỉ', 'sofa-nghi', '/loai-san-pham/sofa-nghi', 16, 2, 1, 4, 1, '2017-11-13 18:30:59', '2017-11-13 18:30:59'),
-(38, 'Bàn ghế ăn', 'ban-ghe-an', '/loai-san-pham/ban-ghe-an', 17, 2, 1, 1, 1, '2017-11-13 18:31:34', '2017-11-13 18:31:34'),
-(39, 'Quầy bar', 'quay-bar', '/loai-san-pham/quay-bar', 17, 2, 1, 2, 1, '2017-11-13 18:32:20', '2017-11-13 18:32:30'),
-(40, 'Tủ bếp', 'tu-bep', '/loai-san-pham/tu-bep', 17, 2, 1, 3, 1, '2017-11-13 18:32:55', '2017-11-13 18:32:55'),
-(41, 'Trang chủ', 'trang-chu', '/trang-chu', 0, 3, 0, 1, 1, '2017-11-14 17:49:56', '2017-11-14 17:49:56'),
-(42, 'Giới thiệu', 'gioi-thieu', '/bai-viet/gioi-thieu', 0, 3, 0, 2, 1, '2017-11-14 17:52:28', '2017-11-14 17:52:28'),
-(43, 'Tin tức', 'tin-tuc', '/tin-tuc', 0, 3, 0, 3, 1, '2017-11-14 17:53:18', '2017-11-14 17:53:18'),
-(44, 'Sản phẩm', 'san-pham', '/san-pham', 0, 3, 0, 4, 1, '2017-11-14 17:53:35', '2017-11-14 17:53:35'),
-(45, 'Liên hệ', 'lien-he', '/lien-he', 0, 3, 0, 5, 1, '2017-11-14 17:53:47', '2017-11-14 17:53:47'),
-(46, 'Tìm kiếm', 'tim-kiem', '/tim-kiem', 0, 4, 0, 1, 1, '2017-11-14 18:12:42', '2017-11-14 18:12:42'),
-(47, 'Tư vấn thiết kế', 'tu-van-thiet-ke', '/bai-viet/tu-van-thiet-ke', 0, 4, 0, 4, 1, '2017-11-14 18:13:05', '2017-11-14 18:14:01'),
-(48, 'Chăm sóc khách hàng', 'cham-soc-khach-hang', '/bai-viet/cham-soc-khach-hang', 0, 4, 0, 2, 1, '2017-11-14 18:13:26', '2017-11-14 18:14:01'),
-(49, 'Kiểm tra đơn hàng', 'kiem-tra-don-hang', '/bai-viet/kiem-tra-don-hang', 0, 4, 0, 3, 1, '2017-11-14 18:13:50', '2017-11-14 18:14:01'),
-(50, 'Hướng dẫn mua hàng', 'huong-dan-mua-hang', '/bai-viet/huong-dan-mua-hang', 0, 5, 0, 1, 1, '2017-11-14 18:15:10', '2017-11-14 18:15:10'),
-(51, 'Giao nhận và thanh toán', 'giao-nhan-va-thanh-toan', '/bai-viet/giao-nhan-va-thanh-toan', 0, 5, 0, 4, 1, '2017-11-14 18:15:36', '2017-11-15 04:53:36'),
-(52, 'Đổi trả và bảo hành', 'doi-tra-va-bao-hanh', '/bai-viet/doi-tra-va-bao-hanh', 0, 5, 0, 2, 1, '2017-11-14 18:15:59', '2017-11-14 18:16:31'),
-(53, 'Đăng ký thành viên', 'dang-ky-thanh-vien', '/bai-viet/dang-ky-thanh-vien', 0, 5, 0, 3, 1, '2017-11-14 18:16:20', '2017-11-14 18:16:31'),
-(54, 'Chính sách thanh toán', 'chinh-sach-thanh-toan', '/bai-viet/chinh-sach-thanh-toan', 0, 6, 0, 1, 1, '2017-11-14 18:17:22', '2017-11-14 18:17:22'),
-(55, 'Chính sách vận chuyển', 'chinh-sach-van-chuyen', '/bai-viet/chinh-sach-van-chuyen', 0, 6, 0, 2, 1, '2017-11-14 18:17:46', '2017-11-14 18:21:47'),
-(56, 'Chính sách đổi trả', 'chinh-sach-doi-tra', '/bai-viet/chinh-sach-doi-tra', 0, 6, 0, 3, 1, '2017-11-14 18:18:05', '2017-11-14 18:21:47'),
-(57, 'Chính sách bảo hành', 'chinh-sach-bao-hanh', '/bai-viet/chinh-sach-bao-hanh', 0, 6, 0, 4, 1, '2017-11-14 18:18:26', '2017-11-14 18:21:47'),
-(58, 'Đội ngũ chuyên nghiệp', 'doi-ngu-chuyen-nghiep', '/bai-viet/doi-ngu-chuyen-nghiep', 0, 7, 0, 1, 1, '2017-11-14 18:19:20', '2017-11-14 18:19:20'),
-(59, 'Giá cả hợp lý', 'gia-ca-hop-ly', '/bai-viet/gia-ca-hop-ly', 0, 7, 0, 2, 1, '2017-11-14 18:19:38', '2017-11-14 18:20:42'),
-(60, 'Kinh nghiệm trên 20 năm', 'kinh-nghiem-tren-20-nam', '/bai-viet/kinh-nghiem-tren-20-nam', 0, 7, 0, 3, 1, '2017-11-14 18:20:05', '2017-11-14 18:20:42'),
-(61, 'Đảm bảo tiến độ', 'dam-bao-tien-do', '/bai-viet/dam-bao-tien-do', 0, 7, 0, 4, 1, '2017-11-14 18:20:34', '2017-11-14 18:20:42'),
-(62, 'Mẹo hay nhà bếp', 'meo-hay-nha-bep', '/chu-de/meo-hay-nha-bep', 0, 8, 0, 1, 1, '2017-11-15 04:29:10', '2017-11-15 04:29:10'),
-(63, 'Sống khỏe', 'song-khoe', '/chu-de/song-khoe', 0, 8, 0, 2, 1, '2017-11-15 04:29:53', '2017-11-15 04:29:53'),
-(64, 'Thực phẩm sạch', 'thuc-pham-sach', '/chu-de/thuc-pham-sach', 0, 8, 0, 3, 1, '2017-11-15 04:30:23', '2017-11-15 04:30:23'),
-(65, 'Phòng khách', 'phong-khach', '/loai-san-pham/phong-khach', 0, 9, 0, 1, 1, '2017-11-15 17:56:21', '2017-11-15 17:56:21'),
-(66, 'Phòng ngủ', 'phong-ngu', '/loai-san-pham/phong-ngu', 0, 9, 0, 2, 1, '2017-11-15 17:56:45', '2017-11-15 17:56:45'),
-(67, 'Sofa', 'sofa', '/loai-san-pham/sofa', 0, 9, 0, 3, 1, '2017-11-15 17:57:02', '2017-11-15 17:57:02'),
-(68, 'Phòng bếp', 'phong-bep', '/loai-san-pham/phong-bep', 0, 9, 0, 4, 1, '2017-11-15 17:57:21', '2017-11-15 17:57:21'),
-(69, 'Phòng trẻ em', 'phong-tre-em', '/loai-san-pham/phong-tre-em', 0, 9, 0, 5, 1, '2017-11-15 17:57:44', '2017-11-15 17:57:44'),
-(70, 'Liên hệ', 'lien-he', '/lien-he', 0, 1, 0, 5, 1, '2017-11-24 16:41:32', '2017-11-24 16:42:16');
+INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `level`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Trang chủ', 'trang-chu', 0, 1, 0, 1, 1, '2017-11-13 04:31:34', '2017-11-15 04:54:37'),
+(6, 'Giới thiệu', 'gioi-thieu', 0, 1, 0, 2, 1, '2017-11-13 04:36:20', '2017-11-23 18:15:18'),
+(7, 'Tin tức', 'tin-tuc', 0, 1, 0, 3, 1, '2017-11-13 04:36:41', '2017-11-15 10:42:16'),
+(8, 'Sản phẩm', 'san-pham', 0, 1, 0, 4, 1, '2017-11-13 04:37:00', '2017-11-16 04:45:49'),
+(9, 'Phòng khách', 'phong-khach', 8, 1, 1, 1, 1, '2017-11-13 04:37:45', '2017-11-13 04:37:45'),
+(10, 'Phòng ngủ', 'phong-phu', 8, 1, 1, 2, 1, '2017-11-13 04:38:12', '2017-11-13 04:38:19'),
+(11, 'Sofa', 'sofa', 8, 1, 1, 3, 1, '2017-11-13 04:38:44', '2017-11-13 04:38:44'),
+(12, 'Phòng bếp', 'phong-bep', 8, 1, 1, 4, 1, '2017-11-13 04:39:09', '2017-11-13 04:39:09'),
+(13, 'Phòng trẻ em', 'phong-tre-em', 8, 1, 1, 5, 1, '2017-11-13 04:39:34', '2017-11-13 04:39:34'),
+(14, 'Phòng khách', 'phong-khach', 0, 2, 0, 1, 1, '2017-11-13 18:18:44', '2017-11-13 18:18:44'),
+(15, 'Phòng ngủ', 'phong-ngu', 0, 2, 0, 2, 1, '2017-11-13 18:20:32', '2017-11-13 18:20:32'),
+(16, 'Sofa', 'sofa', 0, 2, 0, 3, 1, '2017-11-13 18:20:53', '2017-11-13 18:20:53'),
+(17, 'Phòng bếp', 'phong-bep', 0, 2, 0, 4, 1, '2017-11-13 18:21:24', '2017-11-13 18:21:24'),
+(18, 'Phòng trẻ em', 'phong-tre-em', 0, 2, 0, 5, 1, '2017-11-13 18:21:54', '2017-11-13 18:21:54'),
+(19, 'Thiết bị bếp', 'thiet-bi-bep', 0, 2, 0, 6, 1, '2017-11-13 18:22:23', '2017-11-13 18:22:23'),
+(20, 'Thiết bị vệ sinh', 'thiet-bi-ve-sinh', 0, 2, 0, 7, 1, '2017-11-13 18:22:47', '2017-11-13 18:22:47'),
+(21, 'Đồ trang trí', 'do-trang-tri', 0, 2, 0, 8, 1, '2017-11-13 18:23:13', '2017-11-13 18:23:17'),
+(22, 'Phụ kiện bếp', 'phu-kien-bep', 0, 2, 0, 9, 1, '2017-11-13 18:23:41', '2017-11-13 18:23:41'),
+(23, 'Nhà thông minh', 'nha-thong-minh', 0, 2, 0, 10, 1, '2017-11-13 18:24:08', '2017-11-13 18:24:08'),
+(24, 'Bàn ghế gỗ', 'ban-ghe-go', 14, 2, 1, 1, 1, '2017-11-13 18:24:41', '2017-11-13 18:24:41'),
+(25, 'Sofa phòng khách', 'sofa-phong-khach', 14, 2, 1, 2, 1, '2017-11-13 18:25:10', '2017-11-13 18:25:10'),
+(26, 'Tủ để giày', 'tu-de-giay', 14, 2, 1, 3, 1, '2017-11-13 18:25:38', '2017-11-13 18:25:38'),
+(27, 'Tủ rượu', 'tu-ruou', 14, 2, 1, 4, 1, '2017-11-13 18:26:00', '2017-11-13 18:26:00'),
+(28, 'Vách ngăn', 'vach-ngan', 14, 2, 1, 5, 1, '2017-11-13 18:26:41', '2017-11-13 18:26:41'),
+(29, 'Bàn làm việc', 'ban-lam-viec', 15, 2, 1, 1, 1, '2017-11-13 18:27:20', '2017-11-13 18:27:20'),
+(30, 'Bàn trang điểm', 'ban-trang-diem', 15, 2, 1, 2, 1, '2017-11-13 18:27:51', '2017-11-13 18:27:51'),
+(31, 'Giường ngủ', 'giuong-ngu', 15, 2, 1, 3, 1, '2017-11-13 18:28:20', '2017-11-13 18:28:20'),
+(32, 'Kệ tivi', 'ke-tivi', 15, 2, 1, 4, 1, '2017-11-13 18:28:51', '2017-11-13 18:28:51'),
+(33, 'Tủ quần áo', 'tu-quan-ao', 15, 2, 1, 5, 1, '2017-11-13 18:29:25', '2017-11-13 18:29:25'),
+(34, 'Sofa cafe', 'sofa-cafe', 16, 2, 1, 1, 1, '2017-11-13 18:29:52', '2017-11-13 18:29:52'),
+(35, 'Sofa da', 'sofa-da', 16, 2, 1, 2, 1, '2017-11-13 18:30:11', '2017-11-13 18:30:11'),
+(36, 'Sofa giường', 'sofa-giuong', 16, 2, 1, 2, 1, '2017-11-13 18:30:35', '2017-11-13 18:30:35'),
+(37, 'Sofa nghỉ', 'sofa-nghi', 16, 2, 1, 4, 1, '2017-11-13 18:30:59', '2017-11-13 18:30:59'),
+(38, 'Bàn ghế ăn', 'ban-ghe-an', 17, 2, 1, 1, 1, '2017-11-13 18:31:34', '2017-11-13 18:31:34'),
+(39, 'Quầy bar', 'quay-bar', 17, 2, 1, 2, 1, '2017-11-13 18:32:20', '2017-11-13 18:32:30'),
+(40, 'Tủ bếp', 'tu-bep', 17, 2, 1, 3, 1, '2017-11-13 18:32:55', '2017-11-13 18:32:55'),
+(41, 'Trang chủ', 'trang-chu', 0, 3, 0, 1, 1, '2017-11-14 17:49:56', '2017-11-14 17:49:56'),
+(42, 'Giới thiệu', 'gioi-thieu', 0, 3, 0, 2, 1, '2017-11-14 17:52:28', '2017-11-14 17:52:28'),
+(43, 'Tin tức', 'tin-tuc', 0, 3, 0, 3, 1, '2017-11-14 17:53:18', '2017-11-14 17:53:18'),
+(44, 'Sản phẩm', 'san-pham', 0, 3, 0, 4, 1, '2017-11-14 17:53:35', '2017-11-14 17:53:35'),
+(45, 'Liên hệ', 'lien-he', 0, 3, 0, 5, 1, '2017-11-14 17:53:47', '2017-11-14 17:53:47'),
+(46, 'Tìm kiếm', 'tim-kiem', 0, 4, 0, 1, 1, '2017-11-14 18:12:42', '2017-11-14 18:12:42'),
+(47, 'Tư vấn thiết kế', 'tu-van-thiet-ke', 0, 4, 0, 4, 1, '2017-11-14 18:13:05', '2017-11-14 18:14:01'),
+(48, 'Chăm sóc khách hàng', 'cham-soc-khach-hang', 0, 4, 0, 2, 1, '2017-11-14 18:13:26', '2017-11-14 18:14:01'),
+(49, 'Kiểm tra đơn hàng', 'kiem-tra-don-hang', 0, 4, 0, 3, 1, '2017-11-14 18:13:50', '2017-11-14 18:14:01'),
+(50, 'Hướng dẫn mua hàng', 'huong-dan-mua-hang', 0, 5, 0, 1, 1, '2017-11-14 18:15:10', '2017-11-14 18:15:10'),
+(51, 'Giao nhận và thanh toán', 'giao-nhan-va-thanh-toan', 0, 5, 0, 4, 1, '2017-11-14 18:15:36', '2017-11-15 04:53:36'),
+(52, 'Đổi trả và bảo hành', 'doi-tra-va-bao-hanh', 0, 5, 0, 2, 1, '2017-11-14 18:15:59', '2017-11-14 18:16:31'),
+(53, 'Đăng ký thành viên', 'dang-ky-thanh-vien', 0, 5, 0, 3, 1, '2017-11-14 18:16:20', '2017-11-14 18:16:31'),
+(54, 'Chính sách thanh toán', 'chinh-sach-thanh-toan', 0, 6, 0, 1, 1, '2017-11-14 18:17:22', '2017-11-14 18:17:22'),
+(55, 'Chính sách vận chuyển', 'chinh-sach-van-chuyen', 0, 6, 0, 2, 1, '2017-11-14 18:17:46', '2017-11-14 18:21:47'),
+(56, 'Chính sách đổi trả', 'chinh-sach-doi-tra', 0, 6, 0, 3, 1, '2017-11-14 18:18:05', '2017-11-14 18:21:47'),
+(57, 'Chính sách bảo hành', 'chinh-sach-bao-hanh', 0, 6, 0, 4, 1, '2017-11-14 18:18:26', '2017-11-14 18:21:47'),
+(58, 'Đội ngũ chuyên nghiệp', 'doi-ngu-chuyen-nghiep', 0, 7, 0, 1, 1, '2017-11-14 18:19:20', '2017-11-14 18:19:20'),
+(59, 'Giá cả hợp lý', 'gia-ca-hop-ly', 0, 7, 0, 2, 1, '2017-11-14 18:19:38', '2017-11-14 18:20:42'),
+(60, 'Kinh nghiệm trên 20 năm', 'kinh-nghiem-tren-20-nam', 0, 7, 0, 3, 1, '2017-11-14 18:20:05', '2017-11-14 18:20:42'),
+(61, 'Đảm bảo tiến độ', 'dam-bao-tien-do', 0, 7, 0, 4, 1, '2017-11-14 18:20:34', '2017-11-14 18:20:42'),
+(62, 'Mẹo hay nhà bếp', 'meo-hay-nha-bep', 0, 8, 0, 1, 1, '2017-11-15 04:29:10', '2017-11-15 04:29:10'),
+(63, 'Sống khỏe', 'song-khoe', 0, 8, 0, 2, 1, '2017-11-15 04:29:53', '2017-11-15 04:29:53'),
+(64, 'Thực phẩm sạch', 'thuc-pham-sach', 0, 8, 0, 3, 1, '2017-11-15 04:30:23', '2017-11-15 04:30:23'),
+(65, 'Phòng khách', 'phong-khach', 0, 9, 0, 1, 1, '2017-11-15 17:56:21', '2017-11-15 17:56:21'),
+(66, 'Phòng ngủ', 'phong-ngu', 0, 9, 0, 2, 1, '2017-11-15 17:56:45', '2017-11-15 17:56:45'),
+(67, 'Sofa', 'sofa', 0, 9, 0, 3, 1, '2017-11-15 17:57:02', '2017-11-15 17:57:02'),
+(68, 'Phòng bếp', 'phong-bep', 0, 9, 0, 4, 1, '2017-11-15 17:57:21', '2017-11-15 17:57:21'),
+(69, 'Phòng trẻ em', 'phong-tre-em', 0, 9, 0, 5, 1, '2017-11-15 17:57:44', '2017-11-15 17:57:44'),
+(70, 'Liên hệ', 'lien-he', 0, 1, 0, 5, 1, '2017-11-24 16:41:32', '2017-11-24 16:42:16');
 
 -- --------------------------------------------------------
 

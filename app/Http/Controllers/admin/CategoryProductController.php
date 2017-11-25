@@ -110,17 +110,38 @@ class CategoryProductController extends Controller {
              $error["alias"]["type_msg"] = "has-error";
              $error["alias"]["msg"] = "Alias is required";
         }else{
-              $data=array();
+             $dataCategoryArticle=array();
+              $dataCategoryProduct=array();
+              $dataArticle=array();
+              $dataProduct=array();
              if (empty($id)) {
-              $data=CategoryProductModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();	        	
+              $dataCategoryArticle=CategoryArticleModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
+              $dataCategoryProduct=CategoryProductModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
+              $dataArticle=ArticleModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
+              $dataProduct=ProductModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
             }else{
-              $data=CategoryProductModel::whereRaw("trim(lower(alias)) = ? and id != ?",[trim(mb_strtolower($alias,'UTF-8')),(int)@$id])->get()->toArray();		
+              $dataCategoryProduct=CategoryProductModel::whereRaw("trim(lower(alias)) = ? and id != ?",[trim(mb_strtolower($alias,'UTF-8')),(int)@$id])->get()->toArray();    
             }  
-            if (count($data) > 0) {
+            if (count($dataCategoryArticle) > 0) {
               $checked = 0;
-              $error["alias"]["type_msg"] 	= "has-error";
-              $error["alias"]["msg"] 			= "Alias is existed in system";
-            }      	
+              $error["alias"]["type_msg"]   = "has-error";
+              $error["alias"]["msg"]      = "Alias is existed in system";
+            }
+            if (count($dataCategoryProduct) > 0) {
+              $checked = 0;
+              $error["alias"]["type_msg"]   = "has-error";
+              $error["alias"]["msg"]      = "Alias is existed in system";
+            }
+            if (count($dataArticle) > 0) {
+              $checked = 0;
+              $error["alias"]["type_msg"]   = "has-error";
+              $error["alias"]["msg"]      = "Alias is existed in system";
+            }
+            if (count($dataProduct) > 0) {
+              $checked = 0;
+              $error["alias"]["type_msg"]   = "has-error";
+              $error["alias"]["msg"]      = "Alias is existed in system";
+            }       
         }
         if(empty($sort_order)){
              $checked = 0;

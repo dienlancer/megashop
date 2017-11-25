@@ -53,7 +53,7 @@ class MenuController extends Controller {
         $data=$data_recursive; 
         return view("admin.".$this->_controller.".list",compact("controller","task","title","icon",'data','pagination','filter_search','menu_type_id')); 
       } 	
-      public function getForm($task,$menu_type_id="",$id="",$component,$alias){   
+      public function getForm($task,$menu_type_id="",$id="",$alias){   
             $controller=$this->_controller;			
             $title="";
             $icon=$this->_icon; 
@@ -68,37 +68,35 @@ class MenuController extends Controller {
                break;
                case 'add':
                   $title=$this->_title . " : Add new";
-                  switch ($component) {
-                    case 'bai-viet':                      
-                      $item=ArticleModel::whereRaw('trim(lower(alias)) = ?',[trim(mb_strtolower($alias,'UTF-8'))])->select('fullname')->get()->toArray();
-                      break;                    
-                    case 'san-pham':            
-                      $item=ProductModel::whereRaw('trim(lower(alias)) = ?',[trim(mb_strtolower($alias,'UTF-8'))])->select('fullname')->get()->toArray(); 
-                      break;
-                    case 'chu-de':                      
-                      $item=CategoryArticleModel::whereRaw('trim(lower(alias)) = ?',[trim(mb_strtolower($alias,'UTF-8'))])->select('fullname')->get()->toArray();
-                      break;  
-                    case 'loai-san-pham':                      
-                      $item=CategoryProductModel::whereRaw('trim(lower(alias)) = ?',[trim(mb_strtolower($alias,'UTF-8'))])->select('fullname')->get()->toArray();
-                      break;    
+                  $itemArticle=ArticleModel::whereRaw('trim(lower(alias)) = ?',[trim(mb_strtolower($alias,'UTF-8'))])->select('fullname')->get()->toArray();
+                  $itemProduct=ProductModel::whereRaw('trim(lower(alias)) = ?',[trim(mb_strtolower($alias,'UTF-8'))])->select('fullname')->get()->toArray(); 
+                  $itemCategoryArticle=CategoryArticleModel::whereRaw('trim(lower(alias)) = ?',[trim(mb_strtolower($alias,'UTF-8'))])->select('fullname')->get()->toArray();
+                  $itemCategoryProduct=CategoryProductModel::whereRaw('trim(lower(alias)) = ?',[trim(mb_strtolower($alias,'UTF-8'))])->select('fullname')->get()->toArray();                  
+                  if(count($itemArticle) > 0){
+                    $fullname=$itemArticle[0]['fullname'];
                   }
-                  if(count($item) > 0){
-                    $fullname=$item[0]['fullname'];
+                  if(count($itemProduct) > 0){
+                    $fullname=$itemProduct[0]['fullname'];
+                  }
+                  if(count($itemCategoryArticle) > 0){
+                    $fullname=$itemCategoryArticle[0]['fullname'];
+                  }
+                  if(count($itemCategoryProduct) > 0){
+                    $fullname=$itemCategoryProduct[0]['fullname'];
                   }
                break;			
            }		
-            $arrMenu=MenuModel::select("id","fullname","site_link","alias","parent_id","menu_type_id","level","sort_order","status","created_at","updated_at")->where("menu_type_id","=",(int)@$menu_type_id)->where("id","!=",(int)$id)->orderBy("sort_order","asc")->get()->toArray();
+            $arrMenu=MenuModel::select("id","fullname","alias","parent_id","menu_type_id","level","sort_order","status","created_at","updated_at")->where("menu_type_id","=",(int)@$menu_type_id)->where("id","!=",(int)$id)->orderBy("sort_order","asc")->get()->toArray();
             $arrMenuRecursive=array();
             menuRecursiveForm($arrMenu ,0,"",$arrMenuRecursive)  ;
             $arrMenuType=MenuTypeModel::select("id","fullname","sort_order","created_at","updated_at")->orderBy("sort_order","asc")->get()->toArray();
-            $site_link='/'.$component.'/'.$alias;      
-            return view("admin.".$this->_controller.".form",compact("arrMenuRecursive","arrMenuType","arrRowData","menu_type_id","controller","task","title","icon","site_link","alias","fullname"));	        
+             
+            return view("admin.".$this->_controller.".form",compact("arrMenuRecursive","arrMenuType","arrRowData","menu_type_id","controller","task","title","icon","alias","fullname"));	        
       }
       public function save(Request $request){
             $id 					       =	  trim($request->id)	;        
             $fullname 				   =	  trim($request->fullname)	;
-            $alias               =    trim($request->alias);
-            $site_link           =    trim($request->site_link);
+            $alias               =    trim($request->alias);          
             $parent_id	         =		trim($request->parent_id);
             $menu_type_id        =    trim($request->menu_type_id);      
             $sort_order 			   =		trim($request->sort_order);
@@ -126,8 +124,7 @@ class MenuController extends Controller {
                     $item				         =	MenuModel::find((int)@$id);                     	  		 
                 }  
                 $item->fullname 		     = $fullname;
-                $item->alias             = $alias;
-                $item->site_link         = $site_link;               
+                $item->alias             = $alias;                             
                 $item->parent_id 		     = (int)$parent_id;
                 $item->menu_type_id      = (int)$menu_type_id;
                 $level                   = 0;              
