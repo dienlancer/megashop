@@ -3,7 +3,9 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\CategoryArticleModel;
+use App\CategoryProductModel;
 use App\ArticleModel;
+use App\ProductModel;
 use App\ArticleCategoryModel;
 use DB;
 class ArticleController extends Controller {

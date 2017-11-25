@@ -36,7 +36,8 @@ class IndexController extends Controller {
     return view("frontend.home",compact("component","meta_keyword","meta_description","alias"));
   }  
 	public function index($alias)
-      {                        
+      {                       
+
             $title="";
             $meta_keyword="";
             $meta_description="";            
@@ -78,8 +79,8 @@ class IndexController extends Controller {
               $category_id=0;
               $arr_category=CategoryArticleModel::whereRaw("trim(lower(alias)) = ? and status = ?",[trim(mb_strtolower($alias,'UTF-8')),1])->get()->toArray();
               if(count($arr_category) > 0){
-              	  $category 		=	$arr_category[0];
-                  $category_id 		=	$category['id'];
+                  $category     = $arr_category[0];
+                  $category_id    = $category['id'];
                   $str_category_id="";
                   $arr_category_id[]=$category_id;
                   getStringCategoryID($category_id,$arr_category_id,'category_article');                  
@@ -119,8 +120,8 @@ class IndexController extends Controller {
               $category_id=0;
               $arr_category=CategoryProductModel::whereRaw("trim(lower(alias)) = ? and status = ?",[trim(mb_strtolower($alias,'UTF-8')),1])->get()->toArray();                            
               if(count($arr_category) > 0){
-                  $category 		=	$arr_category[0];
-                  $category_id 		=	$category['id'];
+                  $category     = $arr_category[0];
+                  $category_id    = $category['id'];
                   $str_category_id="";
                   $arr_category_id[]=$category_id;
                   getStringCategoryID($category_id,$arr_category_id,'category_product');                  
@@ -156,134 +157,8 @@ class IndexController extends Controller {
               if(count($row) > 0){
                 $item=$row[0];
               }         
-              break;  
-              case 'gio-hang':
-              if(isset($_POST["action"])){
-            $action=$_POST["action"];
-            switch ($action) {
-              case "update-cart"     :  $this->updateCart();
-              break;                  
-            }
-        }     
-              break;
-              case 'dang-ky':                      
-           
-        if(isset($_POST["action"])){                          
-          $arrData =$_POST;                    
-          $email=(trim($_POST["email"])) ;
-          $username=(trim($_POST["username"])) ;
-          $password=(trim($_POST["password"])) ;
-          $password_confirm=(trim($_POST["password_confirm"])) ;
-
-          if(mb_strlen($username) < 6){
-            $arrError["username"] = 'Username phải có độ dài lớn hơn hoặc bằng 6 ký tự';
-            $arrData["username"] = ""; 
-            $flag = 0;
-          }else{
-            $arrCustomer=CustomerModel::whereRaw("trim(lower(username)) = ?",[mb_strtolower($username,'UTF-8')])->get()->toArray();
-            if(count($arrCustomer) > 0){
-              $arrError["username"] = 'Username đã tồn tại';
-              $arrData["username"] = ""; 
-              $flag = 0;
-            }  
-          }
-
-          if(mb_strlen($password) < 6){
-            $arrError["password"] = 'Password phải có độ dài lớn hơn hoặc bằng 6 ký tự';
-            $arrData["password"] = "";
-            $arrData["password_confirm"] = ""; 
-            $flag = 0;
-          }else{
-            if(strcmp(mb_strtolower($password,'UTF-8') , mb_strtolower($password_confirm,'UTF-8')) != 0 ){
-              $arrError["password_confirm"] = 'PasswordConfirm does not matched Password';
-              $arrData["password_confirm"] = "";   
-              $flag = 0;
-            }
-          }              
-
-          if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#", mb_strtolower($email,'UTF-8')   )){
-            $arrError["email"] = 'Email is invalid';
-            $arrData["email"] = '';
-            $flag = 0;
-          }else{
-            $arrCustomer=CustomerModel::whereRaw("trim(lower(email)) = ?",[mb_strtolower($email,'UTF-8')])->get()->toArray();
-            if(count($arrCustomer) > 0){
-              $arrError["email"] = 'Email đã tồn tại';
-              $arrData["email"] = ""; 
-              $flag = 0;
-            }
-          }                                      
-          if($flag==1){
-            $item               =   new CustomerModel;
-            $item->username     =   trim($_POST["username"]);
-            $item->password     =   md5(trim($_POST["password"])) ;
-            $item->email        =   trim($_POST["email"]);
-            $item->fullname     =   trim($_POST["fullname"]);
-            $item->address      =   trim($_POST["address"]);
-            $item->phone        =   trim($_POST["phone"]);
-            $item->mobilephone  =   trim($_POST["mobilephone"]);
-            $item->fax          =   trim($_POST["fax"]); 
-            $item->status       =   1;  
-            $item->sort_order   =   1;  
-            $item->created_at   =   date("Y-m-d H:i:s",time());
-            $item->updated_at   =   date("Y-m-d H:i:s",time());
-            $item->save(); 
-            $arrCustomer        =   CustomerModel::whereRaw("trim(lower(username)) = ?",[trim(mb_strtolower($username,'UTF-8'))])->get()->toArray()[0];
-            $arrUser["userInfo"]=array("username" => $arrCustomer["username"],"id"=>$arrCustomer["id"]);                                            
-            Session::put($this->_ssNameUser,$arrUser);    
-            return redirect()->route('frontend.index.viewAccount');                                  
-          }              
-        }
-        
-              break;
-              case 'lien-he':
-              if(isset($_POST['btnSend']))     {
-                $fullname = @$_POST["fullname"];
-                $email    = @$_POST['email'];   
-                $phone    = @$_POST['phone'];
-                $title    = @$_POST['title'];
-                $address  = @$_POST['address'];
-                $content  = @$_POST["content"];
-                /* begin load config contact */
-                $smtp_host      = @$setting['smtp_host'];
-                $smtp_port      = @$setting['smtp_port'];
-                $smtp_auth      = @$setting['smtp_auth'];
-                $encription     = @$setting['encription'];
-                $smtp_username  = @$setting['smtp_username'];
-                $smtp_password  = @$setting['smtp_password'];
-                $email_from     = @$setting['email_from'];
-                $email_to       = @$setting['email_to'];
-                $to_name        = @$setting['to_name'];
-                /* end load config contact */
-                $filePhpMailer=base_path() . DS ."app".DS."scripts".DS."phpmailer".DS."PHPMailerAutoload.php"  ;
-
-                require_once $filePhpMailer;    
-                $strMsg="";
-                $mail = new PHPMailer;        
-                $mail->CharSet = "UTF-8";   
-                $mail->isSMTP();             
-                $mail->SMTPDebug = 2;
-                $mail->Debugoutput = 'html';
-                $mail->Host = @$smtp_host;
-                $mail->Port = @$smtp_port;
-                $mail->SMTPSecure = @$encription;
-                $mail->SMTPAuth = true;
-                $mail->Username = @$smtp_username;
-                $mail->Password = @$smtp_password;
-                $mail->setFrom(@$email_from, $fullname);
-                $mail->addAddress(@$email_to, @$to_name);
-                $mail->Subject = 'Khách hàng '. @$fullname . " - Số điện thoại : " . @$phone ;       
-                $strContent=@$content . "\n\n" . " Điện thoại : " . @$phone; 
-                $mail->Body=$strContent;   
-                if ($mail->send()) {                
-                  echo '<script language="javascript" type="text/javascript">alert("Mail gửi thành công");</script>'; 
-                }
-                else{
-                  echo '<script language="javascript" type="text/javascript">alert("Mail gửi không thành công");</script>'; 
-                }          
-              }
-                 
-              break;      
+              break;                
+             
             }         
             if(count($item) > 0){
                 if(!empty($item['title'])){
@@ -297,7 +172,7 @@ class IndexController extends Controller {
                 }                
             }
             if(count($category) > 0){
-            	if(!empty($category['title'])){
+              if(!empty($category['title'])){
                   $title=$category['title'];
                 }                
                 if(!empty($category['meta_keyword'])){
@@ -312,23 +187,8 @@ class IndexController extends Controller {
               switch ($action) {
                 case "add-cart"     :   $this->addCart();return redirect()->route('frontend.index.viewCart');            break;                  
               }
-            }     
-            switch ($component) {
-              case 'category-article':                                            
-              case 'category-product':                                            
-              case 'article':                      
-              case 'product':                    
-              return view("frontend.index",compact("component","alias","title","meta_keyword","meta_description","item","items","category","str_pagination"));
-              break;
-              case 'gio-hang':
-              return view("frontend.index",compact("component","alias"));
-              case 'dang-ky':
-              return view("frontend.index",compact("component","alias","arrError","arrData"));
-              break;
-              case 'lien-he':
-              return view("frontend.contact",compact("alias"));       
-              break;
-            }                  
+            }                 
+            return view("frontend.index",compact("component","alias","title","meta_keyword","meta_description","item","items","category","str_pagination"));                 
       }
       function addCart(){          
           $product_id=(int)($_POST["product_id"]);
@@ -381,8 +241,7 @@ class IndexController extends Controller {
         }            
         return view("frontend.index",compact("component","alias"));
       }
-      public function contact(){    
-
+      public function contact(){      
         $alias="lien-he"; 
         if(isset($_POST['btnSend']))     {
           $setting=getSettingSystem();    
@@ -451,7 +310,82 @@ class IndexController extends Controller {
           Session::put($this->_ssNameCart,$cart);             
           return redirect()->route('frontend.index.viewCart'); 
       }
-      
+      public function register(){        
+        $component="dang-ky";
+        $alias="dang-nhap";            
+        $action="";
+        $arrError=array();
+        $arrData =array();   
+        $flag = 1;               
+        if(isset($_POST["action"])){                          
+          $arrData =$_POST;                    
+          $email=(trim($_POST["email"])) ;
+          $username=(trim($_POST["username"])) ;
+          $password=(trim($_POST["password"])) ;
+          $password_confirm=(trim($_POST["password_confirm"])) ;
+
+          if(mb_strlen($username) < 6){
+            $arrError["username"] = 'Username phải có độ dài lớn hơn hoặc bằng 6 ký tự';
+            $arrData["username"] = ""; 
+            $flag = 0;
+          }else{
+            $arrCustomer=CustomerModel::whereRaw("trim(lower(username)) = ?",[mb_strtolower($username,'UTF-8')])->get()->toArray();
+            if(count($arrCustomer) > 0){
+              $arrError["username"] = 'Username đã tồn tại';
+              $arrData["username"] = ""; 
+              $flag = 0;
+            }  
+          }
+
+          if(mb_strlen($password) < 6){
+            $arrError["password"] = 'Password phải có độ dài lớn hơn hoặc bằng 6 ký tự';
+            $arrData["password"] = "";
+            $arrData["password_confirm"] = ""; 
+            $flag = 0;
+          }else{
+            if(strcmp(mb_strtolower($password,'UTF-8') , mb_strtolower($password_confirm,'UTF-8')) != 0 ){
+              $arrError["password_confirm"] = 'PasswordConfirm does not matched Password';
+              $arrData["password_confirm"] = "";   
+              $flag = 0;
+            }
+          }              
+
+          if(!preg_match("#^[a-z][a-z0-9_\.]{4,31}@[a-z0-9]{2,}(\.[a-z0-9]{2,4}){1,2}$#", mb_strtolower($email,'UTF-8')   )){
+            $arrError["email"] = 'Email is invalid';
+            $arrData["email"] = '';
+            $flag = 0;
+          }else{
+            $arrCustomer=CustomerModel::whereRaw("trim(lower(email)) = ?",[mb_strtolower($email,'UTF-8')])->get()->toArray();
+            if(count($arrCustomer) > 0){
+              $arrError["email"] = 'Email đã tồn tại';
+              $arrData["email"] = ""; 
+              $flag = 0;
+            }
+          }          
+                            
+          if($flag==1){
+            $item               =   new CustomerModel;
+            $item->username     =   trim($_POST["username"]);
+            $item->password     =   md5(trim($_POST["password"])) ;
+            $item->email        =   trim($_POST["email"]);
+            $item->fullname     =   trim($_POST["fullname"]);
+            $item->address      =   trim($_POST["address"]);
+            $item->phone        =   trim($_POST["phone"]);
+            $item->mobilephone  =   trim($_POST["mobilephone"]);
+            $item->fax          =   trim($_POST["fax"]); 
+            $item->status       =   1;  
+            $item->sort_order   =   1;  
+            $item->created_at   =   date("Y-m-d H:i:s",time());
+            $item->updated_at   =   date("Y-m-d H:i:s",time());
+            $item->save(); 
+            $arrCustomer        =   CustomerModel::whereRaw("trim(lower(username)) = ?",[trim(mb_strtolower($username,'UTF-8'))])->get()->toArray()[0];
+            $arrUser["userInfo"]=array("username" => $arrCustomer["username"],"id"=>$arrCustomer["id"]);                                            
+            Session::put($this->_ssNameUser,$arrUser);    
+            return redirect()->route('frontend.index.viewAccount');                                  
+          }              
+        }
+        return view("frontend.index",compact("component","alias","arrError","arrData"));
+      }
       public function login(){   
         $component="dang-nhap";
         $alias="dang-nhap";           

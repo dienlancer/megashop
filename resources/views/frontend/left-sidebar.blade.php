@@ -1,8 +1,8 @@
 <?php   
 $setting=getSettingSystem();
 switch ($component) {
-    case 'chu-de':
-    case 'bai-viet':
+    case 'category-article':
+    case 'article':
     
         $args = array(                         
             'menu_class'            => 'categoryarticlemenu', 
@@ -50,8 +50,8 @@ switch ($component) {
         </div>                                            
 <?php
         break;
-    case 'loai-'.$setting['com_product'].'':
-    case ''.$setting['com_product'].'':    
+    case 'category-product':
+    case 'product':    
     case 'gio-hang':      
     case 'dang-nhap-thanh-toan':
     case 'dang-ky':
