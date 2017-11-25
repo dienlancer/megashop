@@ -165,7 +165,7 @@ if(count($data_slideshow) > 0){
 				$k=1;									
 					for($i=0;$i<count($data_featured_product);$i++){							
 						$id=$data_featured_product[$i]['id'];			
-						$permalink=url('/'.$setting['com_product'].'/'.$data_featured_product[$i]['alias'].'.html');
+						$permalink=url($data_featured_product[$i]['alias'].'.html');
 						$featureImg=asset('/upload/'.$setting['product_width'].'x'.$setting['product_height'].'-'.$data_featured_product[$i]['image']);
 						$fullname=$data_featured_product[$i]['fullname'];	
 						$price=$data_featured_product[$i]['price'];
@@ -258,7 +258,7 @@ if(count($data_slideshow) > 0){
 			$k=1;							 
 				for($i=0;$i<count($data_toilet_equipment);$i++){
 					$id=$data_toilet_equipment[$i]['id'];			
-					$permalink=url('/'.$setting['com_product'].'/'.$data_toilet_equipment[$i]['alias'].'.html');
+					$permalink=url($data_toilet_equipment[$i]['alias'].'.html');
 					$featureImg=asset('/upload/'.$setting['product_width'].'x'.$setting['product_height'].'-'.$data_toilet_equipment[$i]['image']);
 					$fullname=$data_toilet_equipment[$i]['fullname'];	
 					$price=$data_toilet_equipment[$i]['price'];
@@ -342,7 +342,7 @@ if(count($data_slideshow) > 0){
 			$k=1;				
 				for($i=0;$i<count($data_chicken_equipment);$i++){
 					$id=$data_chicken_equipment[$i]['id'];			
-					$permalink=url('/'.$setting['com_product'].'/'.$data_chicken_equipment[$i]['alias'].'.html');
+					$permalink=url($data_chicken_equipment[$i]['alias'].'.html');
 					$featureImg=asset('/upload/'.$setting['product_width'].'x'.$setting['product_height'].'-'.$data_chicken_equipment[$i]['image']);
 					$fullname=$data_chicken_equipment[$i]['fullname'];	
 					$price=$data_chicken_equipment[$i]['price'];
@@ -451,7 +451,7 @@ if(count($data_clever_house) > 0){
 				$k=1;							 
 					for($i=0;$i<count($data_clever_house);$i++){
 						$id=$data_clever_house[$i]['id'];			
-						$permalink=url('/'.$setting['com_product'].'/'.$data_clever_house[$i]['alias'].'.html');
+						$permalink=url($data_clever_house[$i]['alias'].'.html');
 						$featureImg=asset('/upload/'.$setting['product_width'].'x'.$setting['product_height'].'-'.$data_clever_house[$i]['image']);
 						$fullname=$data_clever_house[$i]['fullname'];	
 						$price=$data_clever_house[$i]['price'];
@@ -534,7 +534,7 @@ if(count($data_customer) > 0){
 			<?php 
 			for($i=0;$i<count($data_customer);$i++){
 					$id=$data_customer[$i]['id'];			
-					$permalink=url('/'.$setting['com_product'].'/'.$data_customer[$i]['alias'].'.html');
+					$permalink=url($data_customer[$i]['alias'].'.html');
 					$featureImg=asset('/upload/'.$data_customer[$i]['image']);
 					$fullname=$data_customer[$i]['fullname'];
 					$intro=$data_customer[$i]['intro'];
@@ -632,7 +632,7 @@ if(count($data_customer) > 0){
 				<?php 
 				for($i=0;$i<count($data_partner);$i++){
 					$id=$data_partner[$i]['id'];			
-					$permalink=url('/'.$setting['com_product'].'/'.$data_partner[$i]['alias'].'.html');
+					$permalink=url($data_partner[$i]['alias'].'.html');
 					$featureImg=asset('/upload/'.$data_partner[$i]['image']);
 					$fullname=$data_partner[$i]['fullname'];
 					$intro=$data_partner[$i]['intro'];

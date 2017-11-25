@@ -217,15 +217,15 @@ Route::match(["get","post"],"admin/login",["as"=>"admin.login","uses"=>"admin\Lo
 Route::post("admin/logout",["as"=>"admin.logout","uses"=>"admin\LoginController@logout"]);
 
 Route::get("/",["as"=>"frontend.index.getHome","uses"=>"frontend\IndexController@getHome"]);
-Route::match(["get","post"],"{component}/{alias}.html",["as"=>"frontend.index.index","uses"=>"frontend\IndexController@index"]);
-Route::match(["get","post"],"gio-hang.html",["as"=>"frontend.index.viewCart","uses"=>"frontend\IndexController@viewCart"]);
+Route::match(["get","post"],"{alias}.html",["as"=>"frontend.index.index","uses"=>"frontend\IndexController@index"]);
+//Route::match(["get","post"],"gio-hang.html",["as"=>"frontend.index.viewCart","uses"=>"frontend\IndexController@viewCart"]);
 Route::match(["get","post"],"xoa-gio-hang",["as"=>"frontend.index.deleteAll","uses"=>"frontend\IndexController@deleteAll"]);
 Route::match(["get","post"],"xoa/{id}",["as"=>"frontend.index.delete","uses"=>"frontend\IndexController@delete"]);
-Route::match(["get","post"],"dang-ky.html",["as"=>"frontend.index.register","uses"=>"frontend\IndexController@register"]);
-Route::match(["get","post"],"tai-khoan.html",["as"=>"frontend.index.viewAccount","uses"=>"frontend\IndexController@viewAccount"]);
-Route::match(["get","post"],"dang-nhap.html",["as"=>"frontend.index.login","uses"=>"frontend\IndexController@login"]);
-Route::match(["get","post"],"bao-mat.html",["as"=>"frontend.index.viewSecurity","uses"=>"frontend\IndexController@viewSecurity"]);
-Route::match(["get","post"],"lien-he.html",["as"=>"frontend.index.contact","uses"=>"frontend\IndexController@contact"]);
+//Route::match(["get","post"],"dang-ky.html",["as"=>"frontend.index.register","uses"=>"frontend\IndexController@register"]);
+//Route::match(["get","post"],"tai-khoan.html",["as"=>"frontend.index.viewAccount","uses"=>"frontend\IndexController@viewAccount"]);
+//Route::match(["get","post"],"dang-nhap.html",["as"=>"frontend.index.login","uses"=>"frontend\IndexController@login"]);
+//Route::match(["get","post"],"bao-mat.html",["as"=>"frontend.index.viewSecurity","uses"=>"frontend\IndexController@viewSecurity"]);
+//Route::match(["get","post"],"lien-he.html",["as"=>"frontend.index.contact","uses"=>"frontend\IndexController@contact"]);
 Route::get("thanh-toan",["as"=>"frontend.index.checkout","uses"=>"frontend\IndexController@checkout"]);
 Route::match(["get","post"],"xac-nhan-thanh-toan.html",["as"=>"frontend.index.confirmCheckout","uses"=>"frontend\IndexController@confirmCheckout"]);
 Route::match(["get","post"],"dang-nhap-thanh-toan.html",["as"=>"frontend.index.loginCheckout","uses"=>"frontend\IndexController@loginCheckout"]);

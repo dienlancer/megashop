@@ -21,12 +21,12 @@ $arrUser=array();
 if(Session::has($ssName)){
   $arrUser=Session::get($ssName)["userInfo"];      
 }         
-$account_link=route("frontend.index.viewAccount");  
+$account_link='tai-khoan.html';  
 $logout_link=route("frontend.index.getLgout"); 
-$security_link=route("frontend.index.viewSecurity"); 
-$invoice_link=route("frontend.index.getInvoice");
-$register_member_link=route("frontend.index.register");
-$cart_link=route('frontend.index.viewCart');
+$security_link='bao-mat.html'; 
+$invoice_link='hoa-don.html';
+$register_member_link='dang-ky.html';
+$cart_link='gio-hang.html';
 
 $ssNameCart='vmart';
 $quantity=0;

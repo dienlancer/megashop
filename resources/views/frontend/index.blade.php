@@ -6,19 +6,19 @@
     <div class="page-right padding-bottom-15">
       <?php
       switch ($component) {      
-        case "chu-de":                                                
+        case "category-article":                                                
         ?>@include("frontend.category-article")<?php
         break;             
-        case "bai-viet":                                                
+        case "article":                                                
         ?>@include("frontend.article")<?php
         break; 
         case "lien-he":                                                
         ?>@include("frontend.contact")<?php
         break; 
-        case "loai-san-pham":                                                
+        case "category-product":                                                
         ?>@include("frontend.category-product")<?php
         break; 
-        case "san-pham":                                                
+        case "product":                                                
         ?>@include("frontend.product")<?php
         break;
         case "gio-hang":                                                

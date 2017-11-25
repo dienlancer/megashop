@@ -93,7 +93,7 @@ function mooMenuRecursive($source,$parent,&$menu_str,&$lanDau,$url,$alias,$menu_
             {                  
                     if((int)$value["parent_id"]==(int)$parent)
                     {
-                          $link=$url.$value["site_link"];
+                          $link=$url.'/'.$value["alias"].'.html';
                           $class_activated=0;                          
                           if( strcmp(trim(mb_strtolower($value["alias"])),trim(mb_strtolower($alias)))   ==  0 ){
                               $class_activated=1;                              
