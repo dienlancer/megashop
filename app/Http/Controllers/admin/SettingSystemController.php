@@ -45,9 +45,7 @@ class SettingSystemController extends Controller {
           $id                   =   trim($request->id);        
           $fullname             =   trim($request->fullname);
           $alias                =   trim($request->alias);
-          $article_perpage      =   trim($request->article_perpage);          
-          $article_width        =   trim($request->article_width);          
-          $article_height       =   trim($request->article_height);          
+          $article_perpage      =   trim($request->article_perpage);                    
           $product_perpage      =   trim($request->product_perpage);          
           $product_width        =   trim($request->product_width);          
           $product_height       =   trim($request->product_height);          
@@ -76,11 +74,7 @@ class SettingSystemController extends Controller {
           $instagram_url        =   trim($request->instagram_url);   
           $pinterest_url        =   trim($request->pinterest_url);   
           $slogan_about         =   trim($request->slogan_about);   
-          $map_url              =   trim($request->map_url);   
-          $com_category_article =   trim($request->com_category_article);
-          $com_category_product =   trim($request->com_category_product);
-          $com_article          =   trim($request->com_article);
-          $com_product          =   trim($request->com_product);     
+          $map_url              =   trim($request->map_url);     
           $status               =   trim($request->status);        
           $sort_order           =   trim($request->sort_order);                  
           $data                 =   array();
@@ -107,9 +101,7 @@ class SettingSystemController extends Controller {
                 }        
                 $item->fullname  =  $fullname;
                 $item->alias = $alias;
-                $item->article_perpage = $article_perpage;                   
-                $item->article_width = $article_width;                   
-                $item->article_height = $article_height;                   
+                $item->article_perpage = $article_perpage;                                   
                 $item->product_perpage = $product_perpage;                   
                 $item->product_width = $product_width;                   
                 $item->product_height = $product_height;                   
@@ -138,11 +130,7 @@ class SettingSystemController extends Controller {
                 $item->instagram_url = $instagram_url;                   
                 $item->pinterest_url = $pinterest_url;                   
                 $item->slogan_about = $slogan_about;                   
-                $item->map_url = $map_url;     
-                $item->com_category_article=$com_category_article;
-                $item->com_category_product=$com_category_product;
-                $item->com_article=$com_article;
-                $item->com_product=$com_product;                                
+                $item->map_url = $map_url;                                   
                 $item->sort_order       = (int)@$sort_order;
                 $item->status           = (int)@$status;    
                 $item->updated_at       = date("Y-m-d H:i:s",time());               

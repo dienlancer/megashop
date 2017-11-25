@@ -8,8 +8,6 @@ $linkSave               =   route('admin.'.$controller.'.save');
 $inputFullName          =   '<input type="text" class="form-control" name="fullname"    id="fullname"        value="'.@$arrRowData['fullname'].'">';  
 $inputAlias             =   '<input type="text" class="form-control" name="alias"      id="alias"        value="'.@$arrRowData['alias'].'">';  
 $inputArticlePerpage          =   '<input type="text" class="form-control" name="article_perpage"    id="article_perpage"        value="'.@$arrRowData['article_perpage'].'">';
-$inputArticleWidth          =   '<input type="text" class="form-control" name="article_width"    id="article_width"        value="'.@$arrRowData['article_width'].'">';  
-$inputArticleHeight          =   '<input type="text" class="form-control" name="article_height"    id="article_height"        value="'.@$arrRowData['article_height'].'">'; 
 $inputProductPerpage          =   '<input type="text" class="form-control" name="product_perpage"    id="product_perpage"        value="'.@$arrRowData['product_perpage'].'">';
 $inputProductWidth          =   '<input type="text" class="form-control" name="product_width"    id="product_width"        value="'.@$arrRowData['product_width'].'">';    
 $inputProductHeight          =   '<input type="text" class="form-control" name="product_height"    id="product_height"        value="'.@$arrRowData['product_height'].'">';   
@@ -43,10 +41,6 @@ $inputInstagramUrl          =   '<input type="text" class="form-control" name="i
 $inputPinterestUrl          =   '<input type="text" class="form-control" name="pinterest_url"    id="pinterest_url"        value="'.@$arrRowData['pinterest_url'].'">'; 
 $inputSloganAbout          =   '<input type="text" class="form-control" name="slogan_about"    id="slogan_about"        value="'.@$arrRowData['slogan_about'].'">';   
 $inputMapUrl           =   '<textarea id="map_url" name="map_url" rows="5" cols="100" class="form-control" >'.@$arrRowData['map_url'].'</textarea>'; 
-$inputComCategoryArticle          =   '<input type="text" class="form-control" name="com_category_article"    id="com_category_article"        value="'.@$arrRowData['com_category_article'].'">';  
-$inputComCategoryProduct          =   '<input type="text" class="form-control" name="com_category_product"    id="com_category_product"        value="'.@$arrRowData['com_category_product'].'">';  
-$inputComArticle          =   '<input type="text" class="form-control" name="com_article"    id="com_article"        value="'.@$arrRowData['com_article'].'">';  
-$inputComProduct          =   '<input type="text" class="form-control" name="com_product"    id="com_product"        value="'.@$arrRowData['com_product'].'">';  
 $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 1 ;
 $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
 $ddlStatus              =   cmsSelectbox("status","status","form-control",$arrStatus,$status,"");
@@ -99,25 +93,7 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                             <span class="help-block"></span>
                         </div>
                     </div>  
-                </div>
-                <div class="row">   
-                    <div class="form-group col-md-12">
-                        <label class="col-md-3 control-label"><b>Độ rộng hình bài viết</b></label>
-                        <div class="col-md-9">
-                            <?php echo $inputArticleWidth; ?>
-                            <span class="help-block"></span>
-                        </div>
-                    </div>     
-                </div>     
-                <div class="row">
-                    <div class="form-group col-md-12">
-                        <label class="col-md-3 control-label"><b>Chiều cao hình bài viết</b></label>
-                        <div class="col-md-9">
-                            <?php echo $inputArticleHeight; ?>
-                            <span class="help-block"></span>
-                        </div>
-                    </div>   
-                </div>
+                </div>                
                 <div class="row">  
                     <div class="form-group col-md-12">
                         <label class="col-md-3 control-label"><b>Số sản phẩm trên 1 trang</b></label>
@@ -397,42 +373,7 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                         </div>
                     </div>     
                 </div>    
-                <div class="row">                    
-                    <div class="form-group col-md-12">
-                        <label class="col-md-3 control-label"><b>Com Category Article</b></label>
-                        <div class="col-md-9">
-                            <?php echo $inputComCategoryArticle; ?>
-                            <span class="help-block"></span>
-                        </div>
-                    </div>   
-                </div>
-                <div class="row">  
-                    <div class="form-group col-md-12">
-                        <label class="col-md-3 control-label"><b>Com Category Product</b></label>
-                        <div class="col-md-9">                            
-                            <?php echo $inputComCategoryProduct; ?>
-                            <span class="help-block"></span>
-                        </div>
-                    </div>     
-                </div>    
-                <div class="row">                    
-                    <div class="form-group col-md-12">
-                        <label class="col-md-3 control-label"><b>Com Article</b></label>
-                        <div class="col-md-9">
-                            <?php echo $inputComArticle; ?>
-                            <span class="help-block"></span>
-                        </div>
-                    </div>   
-                </div>
-                <div class="row">  
-                    <div class="form-group col-md-12">
-                        <label class="col-md-3 control-label"><b>Com Product</b></label>
-                        <div class="col-md-9">                            
-                            <?php echo $inputComProduct; ?>
-                            <span class="help-block"></span>
-                        </div>
-                    </div>     
-                </div>                                                                                   
+                                                                                                
             </div>  
             <div class="form-actions noborder">
                 {{ csrf_field() }}                                  
@@ -464,9 +405,7 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
         var id=$("#id").val();        
         var fullname=$("#fullname").val();
         var alias=$("#alias").val();
-        var article_perpage=$("#article_perpage").val();
-        var article_width=$("#article_width").val();
-        var article_height=$("#article_height").val();
+        var article_perpage=$("#article_perpage").val();        
         var product_perpage=$("#product_perpage").val();
         var product_width=$("#product_width").val();
         var product_height=$("#product_height").val();
@@ -495,11 +434,7 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
         var instagram_url=$("#instagram_url").val();
         var pinterest_url=$("#pinterest_url").val();
         var slogan_about=$("#slogan_about").val();
-        var map_url=$("#map_url").val();       
-        var com_category_article=$('#com_category_article').val();
-        var com_category_product=$('#com_category_product').val();
-        var com_article=$('#com_article').val();
-        var com_product=$('#com_product').val();
+        var map_url=$("#map_url").val();               
         var status=$("#status").val();        
         var sort_order=$("#sort_order").val();        
         var token = $('input[name="_token"]').val();   
@@ -508,9 +443,7 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
             "id":id,
             "fullname":fullname,
             "alias":alias,  
-            "article_perpage":article_perpage,
-            "article_width":article_width,
-            "article_height":article_height,
+            "article_perpage":article_perpage,            
             "product_perpage":product_perpage,
             "product_width":product_width,
             "product_height":product_height,
@@ -539,11 +472,7 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
             "instagram_url":instagram_url,
             "pinterest_url":pinterest_url,
             "slogan_about":slogan_about,
-            "map_url":map_url,   
-            "com_category_article":com_category_article,
-            "com_category_product":com_category_product,     
-            "com_article":com_article,
-            "com_product":com_product,     
+            "map_url":map_url,               
             "status":status,        
             "sort_order":sort_order,            
             "_token": token

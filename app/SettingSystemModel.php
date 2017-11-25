@@ -7,9 +7,7 @@ class SettingSystemModel extends Model {
 	protected $table="setting_system";
 	protected $fillable=["fullname",
 						"alias",
-						"article_perpage",
-						"article_width",
-						"article_height",
+						"article_perpage",						
 						"product_perpage",
 						"product_width",
 						"product_height",
@@ -39,10 +37,7 @@ class SettingSystemModel extends Model {
 						"pinterest_url",
 						"slogan_about",
 						"map_url",	
-						"com_category_article",
-						"com_category_product",
-						"com_article",					
-						"com_product",
+						
 						"sort_order",
 						"status",
 						"created_at",
