@@ -41,13 +41,13 @@ class IndexController extends Controller {
             $title="";
             $meta_keyword="";
             $meta_description="";            
-            $filter_search="";            
-            $str_pagination="";
+            $filter_search="";                       
             $currentPage=1;                                          
             $totalItems=0;
             $totalItemsPerPage=0;
             $pageRange=0;      
-            $currentPage=1;    
+            $currentPage=1;  
+            $pagination ;
             $action="";
             $arrError=array();
             $arrData =array();   
@@ -104,7 +104,7 @@ class IndexController extends Controller {
                     "currentPage"=>$currentPage   
                   );           
                   $pagination=new PaginationModel($arrPagination);
-                  $str_pagination=$pagination->showPagination();
+                  
                   $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;
                   $data=DB::select('call pro_getArticleFrontendLimit(?,?,?,?)',array($filter_search,$str_category_id,$position,$totalItemsPerPage));      
                   $items=convertToArray($data);                  
@@ -146,7 +146,7 @@ class IndexController extends Controller {
                     "currentPage"=>$currentPage   
                   );           
                   $pagination=new PaginationModel($arrPagination);
-                  $str_pagination=$pagination->showPagination();
+                  
                   $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;
                   $data=DB::select('call pro_getProductFrontendLimit(?,?,?,?)',array($filter_search,$str_category_id,$position,$totalItemsPerPage));                        
                   $items=convertToArray($data);                  
@@ -188,7 +188,7 @@ class IndexController extends Controller {
                 case "add-cart"     :   $this->addCart();return redirect()->route('frontend.index.viewCart');            break;                  
               }
             }                 
-            return view("frontend.index",compact("component","alias","title","meta_keyword","meta_description","item","items","category","str_pagination"));                 
+            return view("frontend.index",compact("component","alias","title","meta_keyword","meta_description","item","items","category","pagination"));                 
       }
       function addCart(){          
           $product_id=(int)($_POST["product_id"]);
@@ -310,7 +310,7 @@ class IndexController extends Controller {
           Session::put($this->_ssNameCart,$cart);             
           return redirect()->route('frontend.index.viewCart'); 
       }
-      public function register(){        
+      public function register(){
         $component="dang-ky";
         $alias="dang-nhap";            
         $action="";

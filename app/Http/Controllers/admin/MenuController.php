@@ -48,7 +48,7 @@ class MenuController extends Controller {
         }        
         $data=convertToArray($data);
         $data=menuConverter($data,$this->_controller);   
-        $data_recursive=array();
+        $data_recursive=array();        
         menuRecursive($data,0,null,$data_recursive);          
         $data=$data_recursive; 
         return view("admin.".$this->_controller.".list",compact("controller","task","title","icon",'data','pagination','filter_search','menu_type_id')); 

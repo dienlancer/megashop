@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 25, 2017 lúc 11:15 AM
+-- Thời gian đã tạo: Th10 25, 2017 lúc 01:34 PM
 -- Phiên bản máy phục vụ: 10.1.22-MariaDB
 -- Phiên bản PHP: 7.1.4
 
@@ -361,7 +361,7 @@ SELECT
 0 AS is_checked
 	,n.id
 	,n.fullname
-	
+	,n.alias
 	,n.parent_id
 	,a.fullname AS parent_fullname
 	,n.menu_type_id
@@ -379,7 +379,7 @@ SELECT
     group by
     n.id
 	,n.fullname
-	
+	,n.alias
 	,n.parent_id
 	,a.fullname 
 	,n.menu_type_id
@@ -396,6 +396,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getMenuLimit` (IN `keyword` VAR
 	0 AS is_checked,
 	n.id
 	,n.fullname
+	,n.alias
 	,n.parent_id
 	,a.fullname AS parent_fullname
 	,n.menu_type_id
@@ -413,6 +414,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getMenuLimit` (IN `keyword` VAR
     GROUP BY
     n.id
 	,n.fullname
+	,n.alias
 	,n.parent_id
 	,a.fullname 
 	,n.menu_type_id
@@ -1104,7 +1106,6 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `level`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Trang chủ', 'trang-chu', 0, 1, 0, 1, 1, '2017-11-13 04:31:34', '2017-11-15 04:54:37'),
 (6, 'Giới thiệu', 'gioi-thieu', 0, 1, 0, 2, 1, '2017-11-13 04:36:20', '2017-11-23 18:15:18'),
 (7, 'Tin tức', 'tin-tuc', 0, 1, 0, 3, 1, '2017-11-13 04:36:41', '2017-11-15 10:42:16'),
 (8, 'Sản phẩm', 'san-pham', 0, 1, 0, 4, 1, '2017-11-13 04:37:00', '2017-11-16 04:45:49'),
@@ -1169,7 +1170,8 @@ INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `lev
 (67, 'Sofa', 'sofa', 0, 9, 0, 3, 1, '2017-11-15 17:57:02', '2017-11-15 17:57:02'),
 (68, 'Phòng bếp', 'phong-bep', 0, 9, 0, 4, 1, '2017-11-15 17:57:21', '2017-11-15 17:57:21'),
 (69, 'Phòng trẻ em', 'phong-tre-em', 0, 9, 0, 5, 1, '2017-11-15 17:57:44', '2017-11-15 17:57:44'),
-(70, 'Liên hệ', 'lien-he', 0, 1, 0, 5, 1, '2017-11-24 16:41:32', '2017-11-24 16:42:16');
+(71, 'Liên hệ', 'lien-he', 0, 1, 0, 5, 1, '2017-11-25 12:25:45', '2017-11-25 12:25:59'),
+(73, 'Trang chủ', '', 0, 1, 0, 1, 1, '2017-11-25 12:33:11', '2017-11-25 12:33:11');
 
 -- --------------------------------------------------------
 
@@ -1331,14 +1333,6 @@ CREATE TABLE `mod_menu_type` (
 --
 
 INSERT INTO `mod_menu_type` (`id`, `menu_id`, `module_id`, `module_type`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'module-item', '2017-11-14 08:11:12', '2017-11-14 08:11:12'),
-(4, 1, 4, 'module-item', '2017-11-14 08:52:39', '2017-11-14 08:52:39'),
-(7, 1, 2, 'module-item', '2017-11-14 09:36:06', '2017-11-14 09:36:06'),
-(8, 1, 3, 'module-item', '2017-11-14 09:45:36', '2017-11-14 09:45:36'),
-(9, 1, 5, 'module-item', '2017-11-14 10:25:39', '2017-11-14 10:25:39'),
-(11, 1, 6, 'module-item', '2017-11-14 17:18:54', '2017-11-14 17:18:54'),
-(12, 1, 7, 'module-item', '2017-11-14 17:26:58', '2017-11-14 17:26:58'),
-(13, 1, 8, 'module-item', '2017-11-14 19:26:42', '2017-11-14 19:26:42'),
 (14, 0, 9, 'module-item', '2017-11-15 04:41:06', '2017-11-15 04:41:06');
 
 -- --------------------------------------------------------
@@ -1451,7 +1445,8 @@ INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`)
 (174, 1, 'Awg5gkMADLkjPbiVitjCzS9ad5sCN9eF', '2017-11-23 18:51:55', '2017-11-23 18:51:55'),
 (175, 1, 'STmoiFXISPPMkYZ46mHVd1FgZleRFPma', '2017-11-24 01:23:33', '2017-11-24 01:23:33'),
 (176, 1, 'DS9Yw83Zm2blL1F2azbyCcQ4v2ktYX5H', '2017-11-24 02:11:20', '2017-11-24 02:11:20'),
-(177, 1, 'e1ZyuWKHR7HQaQSkQEv4J6YMwpFFLXeC', '2017-11-24 06:39:38', '2017-11-24 06:39:38');
+(177, 1, 'e1ZyuWKHR7HQaQSkQEv4J6YMwpFFLXeC', '2017-11-24 06:39:38', '2017-11-24 06:39:38'),
+(178, 1, '6KeLIVlJyL7P6FMEGpgxpNljzsQxI20T', '2017-11-25 05:02:32', '2017-11-25 05:02:32');
 
 -- --------------------------------------------------------
 
@@ -2120,7 +2115,10 @@ INSERT INTO `throttle` (`id`, `user_id`, `type`, `ip`, `created_at`, `updated_at
 (305, NULL, 'ip', '127.0.0.1', '2017-11-13 12:12:10', '2017-11-13 12:12:10'),
 (306, 1, 'user', NULL, '2017-11-13 12:12:10', '2017-11-13 12:12:10'),
 (307, NULL, 'global', NULL, '2017-11-15 04:15:14', '2017-11-15 04:15:14'),
-(308, NULL, 'ip', '127.0.0.1', '2017-11-15 04:15:14', '2017-11-15 04:15:14');
+(308, NULL, 'ip', '127.0.0.1', '2017-11-15 04:15:14', '2017-11-15 04:15:14'),
+(309, NULL, 'global', NULL, '2017-11-25 05:02:29', '2017-11-25 05:02:29'),
+(310, NULL, 'ip', '127.0.0.1', '2017-11-25 05:02:29', '2017-11-25 05:02:29'),
+(311, 1, 'user', NULL, '2017-11-25 05:02:29', '2017-11-25 05:02:29');
 
 -- --------------------------------------------------------
 
@@ -2149,7 +2147,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `group_member_id`, `password`, `permissions`, `last_login`, `fullname`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$rpZe6oM3GUJmwL/ZMTKm/OSe24l9TJKFU9lwd8VmohkqH0Oax6rVK', NULL, '2017-11-24 06:39:38', 'Nguyễn Kim Điền', 1, 1, '2017-11-12 07:23:56', '2017-11-24 06:39:38'),
+(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$rpZe6oM3GUJmwL/ZMTKm/OSe24l9TJKFU9lwd8VmohkqH0Oax6rVK', NULL, '2017-11-25 05:02:32', 'Nguyễn Kim Điền', 1, 1, '2017-11-12 07:23:56', '2017-11-25 05:02:32'),
 (6, 'nhatanh', 'nhatanh@gmail.com', 1, '$2y$10$X.wWyaR4gqC8BAvcVtlH0u8FG1DC2a0dXPzPL.Qs96Ds/cJZqxviO', NULL, '2017-11-15 09:46:30', 'Nhật Anh', 3, 1, '2017-11-15 09:45:46', '2017-11-15 09:46:30');
 
 --
@@ -2415,7 +2413,7 @@ ALTER TABLE `invoice_detail`
 -- AUTO_INCREMENT cho bảng `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 --
 -- AUTO_INCREMENT cho bảng `menu_type`
 --
@@ -2455,7 +2453,7 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT cho bảng `persistences`
 --
 ALTER TABLE `persistences`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=178;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=179;
 --
 -- AUTO_INCREMENT cho bảng `photo`
 --
@@ -2495,7 +2493,7 @@ ALTER TABLE `setting_system`
 -- AUTO_INCREMENT cho bảng `throttle`
 --
 ALTER TABLE `throttle`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=309;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=312;
 --
 -- AUTO_INCREMENT cho bảng `users`
 --

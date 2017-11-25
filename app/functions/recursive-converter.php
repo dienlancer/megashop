@@ -53,8 +53,7 @@ function menuRecursive($data ,$parent=null,$str="--",&$arrRecursiveMenu){
     $is_checked=$val["is_checked"];
     $id=$val["id"];
     $fullname=$val["fullname"];
-    
-
+    $alias=$val["alias"];
     $parent_id=$val["parent_id"];  
     $parent_fullname=$val["parent_fullname"];
     $menu_type_id=$val["menu_type_id"];        
@@ -69,9 +68,8 @@ function menuRecursive($data ,$parent=null,$str="--",&$arrRecursiveMenu){
           $arrRecursiveMenu[$key]["checked"]=$checked;
           $arrRecursiveMenu[$key]["is_checked"]=$is_checked;
           $arrRecursiveMenu[$key]["id"]=$id;
-          $arrRecursiveMenu[$key]["fullname"]=$str . $fullname;    
-         
-          
+          $arrRecursiveMenu[$key]["fullname"]=$str . $fullname;             
+          $arrRecursiveMenu[$key]["alias"]=$alias;             
           $arrRecursiveMenu[$key]["parent_id"]=$parent_id;
           $arrRecursiveMenu[$key]["parent_fullname"]=$parent_fullname; 
           $arrRecursiveMenu[$key]["menu_type_id"]=$menu_type_id;                            

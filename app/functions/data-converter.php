@@ -114,10 +114,14 @@ function menuTypeConverter($data=array(),$controller){
 }
 function menuConverter($data=array(),$controller){        
     $result = array();
+
     if( count($data) > 0){
         for($i = 0 ;$i < count($data);$i++){            
-                                
-            $edited='<center><a href="'.route('admin.'.$controller.'.getForm',['edit',$data[$i]['menu_type_id'],$data[$i]['id'],$data[$i]['alias']]).'"><img src="'.asset("/public/admin/images/edit-icon.png").'" /></a></center>';
+            $alias='no-alias';
+            if(!empty($data[$i]['alias'])){
+                $alias=$data[$i]['alias'];
+            }            
+            $edited='<center><a href="'.route('admin.'.$controller.'.getForm',['edit',$data[$i]['menu_type_id'],$data[$i]['id'],$alias]).'"><img src="'.asset("/public/admin/images/edit-icon.png").'" /></a></center>';
             $linkDelete=route('admin.menu.deleteItem',[$data[$i]['id']]);
             $deleted='<center><a onclick="return xacnhanxoa(\'Bạn có chắc chắn muốn xóa ?\');" href="'.$linkDelete.'" ><img src="'.asset("/public/admin/images/delete-icon.png").'" /></a></center>';
             
@@ -136,6 +140,7 @@ function menuConverter($data=array(),$controller){
                 'is_checked'               =>   0,
                 "id"                       =>   $data[$i]["id"],
                 "fullname"                 =>   $data[$i]["fullname"],
+                "alias"                    =>   $data[$i]["alias"],
                 "level"                    =>   $data[$i]["level"],                               
                 "parent_id"                =>   $data[$i]["parent_id"],
                 "parent_fullname"          =>   $data[$i]["parent_fullname"],                
@@ -669,7 +674,7 @@ function categoryArticleComponentConverter($data=array(),$controller,$menu_type_
                 $link_image=url("/upload/".$data[$i]["image"]);            
                 $image = '<center><img src="'.$link_image.'" style="width:100%" /></center>';
             }          
-            $linkMenu=route('admin.menu.getForm',['add',$menu_type_id,0,$setting['com_category_article'],$data[$i]["alias"]]);
+            $linkMenu=route('admin.menu.getForm',['add',$menu_type_id,0,$data[$i]["alias"]]);
             $fullname='<a href="'.$linkMenu.'">'.$data[$i]['fullname'].'</a>';
             $result[$i] = array(
                 'checked'                  =>   '<input type="checkbox"  name="cid[]" value="'.$data[$i]["id"].'" />',
@@ -716,7 +721,7 @@ function categoryProductComponentConverter($data=array(),$controller,$menu_type_
                 $link_image=url("/upload/" . $setting["product_width"] . "x" . $setting["product_height"] . "-".$data[$i]["image"]);            
                 $image = '<center><img src="'.$link_image.'" style="width:100%" /></center>';
             }         
-            $linkMenu=route('admin.menu.getForm',['add',$menu_type_id,0,$setting['com_category_product'],$data[$i]["alias"]]);
+            $linkMenu=route('admin.menu.getForm',['add',$menu_type_id,0,$data[$i]["alias"]]);
             $fullname='<a href="'.$linkMenu.'">'.$data[$i]['fullname'].'</a>';
             $result[$i] = array(
                 'checked'                  =>   '<input type="checkbox"  name="cid[]" value="'.$data[$i]["id"].'" />',
@@ -751,7 +756,7 @@ function articleComponentConverter($data=array(),$controller,$menu_type_id){
                 $image = '<center><img src="'.$link_image.'" style="width:100%" /></center>';
             }       
             $id='<center>'.$data[$i]["id"].'</center>';       
-            $linkMenu=route('admin.menu.getForm',['add',$menu_type_id,0,$setting['com_article'],$data[$i]["alias"]]);
+            $linkMenu=route('admin.menu.getForm',['add',$menu_type_id,0,$data[$i]["alias"]]);
             $fullname='<a href="'.$linkMenu.'">'.$data[$i]['fullname'].'</a>';
             $result[$i] = array(                
                 "id"                       =>   $id,
@@ -776,7 +781,7 @@ function productComponentConverter($data=array(),$controller,$menu_type_id){
                 $image = '<center><img src="'.$link_image.'" style="width:100%" /></center>';
             }           
             $id='<center>'.$data[$i]["id"].'</center>';       
-            $linkMenu=route('admin.menu.getForm',['add',$menu_type_id,0,$setting['com_product'],$data[$i]["alias"]]);
+            $linkMenu=route('admin.menu.getForm',['add',$menu_type_id,0,$data[$i]["alias"]]);
             $fullname='<a href="'.$linkMenu.'">'.$data[$i]['fullname'].'</a>';
             $result[$i] = array(                
                 "id"                       =>   $id,

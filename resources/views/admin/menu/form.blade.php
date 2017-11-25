@@ -66,16 +66,7 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                             <span class="help-block"></span>
                         </div>
                     </div>     
-                </div>    
-                <div class="row">
-                    <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Sitelink</b></label>
-                        <div class="col-md-10">
-                            <?php echo $inputSitelink; ?>
-                            <span class="help-block"></span>
-                        </div>
-                    </div>                       
-                </div>       
+                </div>                    
                 <div class="row">
                     <div class="form-group col-md-12">
                         <label class="col-md-2 control-label"><b>Parent</b></label>

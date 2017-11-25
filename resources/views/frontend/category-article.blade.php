@@ -35,7 +35,7 @@ $setting= getSettingSystem();
 		</div>
 		<?php 
 		if(count($items) > 0){
-			echo $str_pagination;
+			echo $pagination->showPagination();
 		}  
 		?>
 </form>
