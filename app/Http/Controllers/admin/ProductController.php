@@ -10,7 +10,7 @@ use App\ProductCategoryModel;
 use DB;
 class ProductController extends Controller {
   	var $_controller="product";	
-  	var $_title="Product";
+  	var $_title="Sản phẩm";
   	var $_icon="icon-settings font-dark";
   	public function getList(){		
     		$controller=$this->_controller;	

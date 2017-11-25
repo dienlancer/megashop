@@ -21,8 +21,8 @@ $linkDelete			=	route('admin.'.$controller.'.deleteItem');
 				<div class="table-toolbar">
 					<div class="row">
 						<div class="col-md-12">						
-							<a href="<?php echo $linkNew; ?>" class="btn green">Add new <i class="fa fa-plus"></i></a> 			
-							<button onclick="return xacnhanxoa();" type="submit" class="btn red">Trash<i class="fa fa-trash"></i></button>							
+							<a href="<?php echo $linkNew; ?>" class="btn green">Thêm mới <i class="fa fa-plus"></i></a> 			
+							<button onclick="return xacnhanxoa();" type="submit" class="btn red">Xóa<i class="fa fa-trash"></i></button>							
 							{{ csrf_field() }}							  								
 							<input type="hidden" name="json_id" value="" />
 						</div>                                                
@@ -81,7 +81,7 @@ $linkDelete			=	route('admin.'.$controller.'.deleteItem');
 <script type="text/javascript" language="javascript">		
 	function deleteItem(id){		
 		var xac_nhan = 0;
-		var msg="Do you really want to delete this item ?";
+		var msg="Bạn có muốn xóa ?";
 		if(window.confirm(msg)){ 
 			xac_nhan = 1;
 		}
@@ -108,7 +108,7 @@ $linkDelete			=	route('admin.'.$controller.'.deleteItem');
 	}	
 	function xacnhanxoa(){
 		var xac_nhan = false;
-		var msg="Do you really want to delete this item ?";
+		var msg="Bạn có muốn xóa ?";
 		if(window.confirm(msg)){ 
 			xac_nhan = true;
 		}

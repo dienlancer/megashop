@@ -22,9 +22,9 @@ $linkSortOrder		=	route('admin.'.$controller.'.sortOrder');
 				<div class="table-toolbar">
 					<div class="row">
 						<div class="col-md-12">						
-							<a href="<?php echo $linkNew; ?>" class="btn green">Add new <i class="fa fa-plus"></i></a> 
-							<a href="javascript:void(0)" onclick="sort()" class="btn grey-cascade">Sort <i class="fa fa-sort"></i></a> 
-							<a href="javascript:void(0)" onclick="trash()" class="btn red">Trash <i class="fa fa-trash"></i></a> 	
+							<a href="<?php echo $linkNew; ?>" class="btn green">Thêm mới <i class="fa fa-plus"></i></a> 
+							<a href="javascript:void(0)" onclick="sort()" class="btn grey-cascade">Sắp xếp <i class="fa fa-sort"></i></a> 
+							<a href="javascript:void(0)" onclick="trash()" class="btn red">Xóa <i class="fa fa-trash"></i></a> 	
 							{{ csrf_field() }}    		
 							<input type="hidden" name="sort_json" id="sort_json" value="" />	
 						</div>                                                
@@ -37,12 +37,12 @@ $linkSortOrder		=	route('admin.'.$controller.'.sortOrder');
 				<thead>
 					<tr>
 						<th width="1%"><input type="checkbox" onclick="checkAllAgent(this)"  name="checkall-toggle"></th>                
-						<th>Fullname</th>
+						<th>Nhóm quyền</th>
 						<th>Controller</th>
 						<th>Action</th>						
-						<th width="1%">Sort</th>						
-						<th width="1%">Edit</th>  
-						<th width="1%">Delete</th>                
+						<th width="10%">Sắp xếp</th>									
+						<th width="1%">Sửa</th>  
+						<th width="1%">Xóa</th>                    
 					</tr>
 				</thead>
 				<tbody>                                                
@@ -88,7 +88,7 @@ $linkSortOrder		=	route('admin.'.$controller.'.sortOrder');
 	
 	function deleteItem(id){		
 		var xac_nhan = 0;
-		var msg="Do you really want to delete this item ?";
+		var msg="Bạn có muốn xóa ?";
 		if(window.confirm(msg)){ 
 			xac_nhan = 1;
 		}
@@ -119,7 +119,7 @@ $linkSortOrder		=	route('admin.'.$controller.'.sortOrder');
 	
 	function trash(){	
 		var xac_nhan = 0;
-		var msg="Do you really want to delete this item ?";
+		var msg="Bạn có muốn xóa ?";
 		if(window.confirm(msg)){ 
 			xac_nhan = 1;
 		}

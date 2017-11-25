@@ -7,7 +7,7 @@ use App\MenuModel;
 use DB;
 class MenuTypeController extends Controller {
   	var $_controller="menu-type";	
-  	var $_title="Menu Type";
+  	var $_title="Loại menu";
   	var $_icon="icon-settings font-dark";
   	public function getList(){		
     		$controller=$this->_controller;	

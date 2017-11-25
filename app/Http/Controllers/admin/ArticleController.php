@@ -10,7 +10,7 @@ use App\ArticleCategoryModel;
 use DB;
 class ArticleController extends Controller {
   	var $_controller="article";	
-  	var $_title="Article";
+  	var $_title="Bài viết";
   	var $_icon="icon-settings font-dark";
   	public function getList(){		
     		$controller=$this->_controller;	

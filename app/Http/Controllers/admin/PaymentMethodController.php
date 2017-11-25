@@ -6,7 +6,7 @@ use App\PaymentMethodModel;
 use DB;
 class PaymentMethodController extends Controller {
   	var $_controller="payment-method";	
-  	var $_title="Payment Method";
+  	var $_title="Phương thức thanh toán";
   	var $_icon="icon-settings font-dark";
   	public function getList(){		
     		$controller=$this->_controller;	

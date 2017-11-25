@@ -21,17 +21,17 @@ $inputMenuTypeId 		=	'<input type="hidden" class="form-control" id="menu_type_id
 		</div>
 		<div class="row">
                 <div class="col-md-4">
-                    <div><b>CATEGORY ARTICLE</b>  </div>
+                    <div><b>Chủ đề</b>  </div>
                     <div><?php echo $ddlCategoryArticle ; ?></div>
                 </div>            
                 <div class="col-md-4">
-                    <div><b>ARTICLE NAME</b>  </div>
+                    <div><b>Bài viết</b>  </div>
                     <div><?php echo $inputFilterSearch; ?></div>
                 </div>            
                 <div class="col-md-4">
                     <div>&nbsp;</div>
                     <div>
-                        <button type="button" class="btn dark btn-outline sbold uppercase btn-product" onclick="getListArticle();">Search</button>                                         
+                        <button type="button" class="btn dark btn-outline sbold uppercase btn-product" onclick="getListArticle();">Tìm kiếm</button>                                         
                     </div>                
                 </div>                
         </div>   
@@ -40,9 +40,9 @@ $inputMenuTypeId 		=	'<input type="hidden" class="form-control" id="menu_type_id
 				<thead>
 					<tr>						
 						<th width="1%">ID</th>
-						<th>Fullname</th>						
-						<th width="1%">Image</th>
-						<th width="1%">Sort</th>              
+						<th>Chủ đề</th>						
+						<th width="1%">Hình</th>
+						<th width="1%">Sắp xếp</th>              
 					</tr>
 				</thead>
 				<tbody>                                                

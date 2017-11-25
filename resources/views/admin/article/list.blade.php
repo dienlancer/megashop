@@ -28,11 +28,11 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 				<div class="table-toolbar">
 					<div class="row">
 						<div class="col-md-12">						
-							<a href="<?php echo $linkNew; ?>" class="btn green">Add new <i class="fa fa-plus"></i></a> 
-							<a href="javascript:void(0)" onclick="updateStatus(1)" class="btn blue">Show <i class="fa fa-eye"></i></a> 
-							<a href="javascript:void(0)" onclick="updateStatus(0)" class="btn yellow">Hide <i class="fa fa-eye-slash"></i></a> 
-							<a href="javascript:void(0)" onclick="sort()" class="btn grey-cascade">Sort <i class="fa fa-sort"></i></a> 
-							<a href="javascript:void(0)" onclick="trash()" class="btn red">Trash <i class="fa fa-trash"></i></a> 	
+							<a href="<?php echo $linkNew; ?>" class="btn green">Thêm mới <i class="fa fa-plus"></i></a> 
+							<a href="javascript:void(0)" onclick="updateStatus(1)" class="btn blue">Hiển thị <i class="fa fa-eye"></i></a> 
+							<a href="javascript:void(0)" onclick="updateStatus(0)" class="btn yellow">Ẩn <i class="fa fa-eye-slash"></i></a> 
+							<a href="javascript:void(0)" onclick="sort()" class="btn grey-cascade">Sắp xếp <i class="fa fa-sort"></i></a> 
+							<a href="javascript:void(0)" onclick="trash()" class="btn red">Xóa <i class="fa fa-trash"></i></a> 	
 							
 						</div>                                                
 					</div>
@@ -41,17 +41,17 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 		</div>
 		<div class="row">
                 <div class="col-md-4">
-                    <div><b>CATEGORY ARTICLE</b>  </div>
+                    <div><b>Chủ đề bài viết</b>  </div>
                     <div><?php echo $ddlCategoryArticle ; ?></div>
                 </div>            
                 <div class="col-md-4">
-                    <div><b>ARTICLE NAME</b>  </div>
+                    <div><b>Bài viết</b>  </div>
                     <div><?php echo $inputFilterSearch; ?></div>
                 </div>            
                 <div class="col-md-4">
                     <div>&nbsp;</div>
                     <div>
-                        <button type="button" class="btn dark btn-outline sbold uppercase btn-product" onclick="getList();">Search</button>                                         
+                        <button type="button" class="btn dark btn-outline sbold uppercase btn-product" onclick="getList();">Tìm kiếm</button>                                         
                     </div>                
                 </div>                
         </div>   
@@ -61,13 +61,13 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 					<tr>
 						<th width="1%"><input type="checkbox" onclick="checkAllAgentArticle(this)"  name="checkall-toggle"></th>                
 						<th width="1%">ID</th>
-						<th>Fullname</th>
+						<th>Bài viết</th>
 						<th>Alias</th>
-						<th width="1%">Image</th>
-						<th width="1%">Sort</th>
-						<th width="1%">Status</th>						
-						<th width="1%">Edit</th>  
-						<th width="1%">Delete</th>                
+						<th width="1%">Hình</th>
+						<th width="10%">Sắp xếp</th>
+						<th width="10%">Trạng thái</th>							
+						<th width="1%">Sửa</th>  
+						<th width="1%">Xóa</th>                    
 					</tr>
 				</thead>
 				<tbody>                                                
@@ -140,7 +140,7 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 	
 	function deleteItem(id){		
 		var xac_nhan = 0;
-		var msg="Do you really want to delete this item ?";
+		var msg="Bạn có muốn xóa ?";
 		if(window.confirm(msg)){ 
 			xac_nhan = 1;
 		}
@@ -204,7 +204,7 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 	}
 	function trash(){	
 		var xac_nhan = 0;
-		var msg="Do you really want to delete this item ?";
+		var msg="Bạn có muốn xóa ?";
 		if(window.confirm(msg)){ 
 			xac_nhan = 1;
 		}

@@ -6,7 +6,7 @@ use App\SettingSystemModel;
 use DB;
 class SettingSystemController extends Controller {
   	var $_controller="setting-system";	
-  	var $_title="Setting system";
+  	var $_title="Cấu hình";
   	var $_icon="icon-settings font-dark";
   	public function getList(){		
     		$controller=$this->_controller;	

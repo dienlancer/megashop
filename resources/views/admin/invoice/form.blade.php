@@ -64,14 +64,14 @@ $product_height = $setting['product_height'];
                 </div>      
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>Fullname</b></label>
+                        <label class="col-md-3 control-label"><b>Tên khách hàng</b></label>
                         <div class="col-md-9">
                             <?php echo $inputFullName; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>   
                     <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>Address</b></label>
+                        <label class="col-md-3 control-label"><b>Địa chỉ</b></label>
                         <div class="col-md-9">
                             <?php echo $inputAddress; ?>
                             <span class="help-block"></span>
@@ -103,7 +103,7 @@ $product_height = $setting['product_height'];
                         </div>
                     </div>   
                     <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>Status</b></label>
+                        <label class="col-md-3 control-label"><b>Trạng thái giao hàng</b></label>
                         <div class="col-md-9">                            
                             <?php echo $ddlStatus; ?>
                             <span class="help-block"></span>
@@ -112,7 +112,7 @@ $product_height = $setting['product_height'];
                 </div>       
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>Sort</b></label>
+                        <label class="col-md-3 control-label"><b>Sắp xếp</b></label>
                         <div class="col-md-9">
                             <?php echo $ddlPaymentMethod; ?>
                             <span class="help-block"></span>
@@ -121,7 +121,7 @@ $product_height = $setting['product_height'];
                         
                     </div>   
                     <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>Code</b></label>
+                        <label class="col-md-3 control-label"><b>Mã đơn hàng</b></label>
                         <div class="col-md-9">
                             <?php echo $inputCode; ?>
                             <span class="help-block"></span>
@@ -130,7 +130,7 @@ $product_height = $setting['product_height'];
                 </div>  
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>Sort</b></label>
+                        <label class="col-md-3 control-label"><b>Sắp xếp</b></label>
                         <div class="col-md-9">
                             <?php echo $inputSortOrder; ?>
                             <span class="help-block"></span>
@@ -148,12 +148,12 @@ $product_height = $setting['product_height'];
         <table width="100%" id="com_product16" class="com_product16">
             <thead>
                 <tr>
-                    <th align="center"><center>Code</center></th>
-                    <th align="center"><center>Name</center></th>
-                    <th align="center"><center>Image</center></th>
-                    <th align="center"><center>Price</center></th>
-                    <th align="center"><center>Quantity</center></th>
-                    <th align="center"><center>Total price</center></th>
+                    <th align="center"><center>Mã sản phẩm</center></th>
+                    <th align="center"><center>Tên sản phẩm</center></th>
+                    <th align="center"><center>Hình</center></th>
+                    <th align="center"><center>Giá</center></th>
+                    <th align="center"><center>Số lượng</center></th>
+                    <th align="center"><center>Thành tiền</center></th>
                 </tr>
             </thead>
             <tbody>

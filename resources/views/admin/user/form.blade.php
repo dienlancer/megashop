@@ -30,8 +30,8 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
            <div class="table-toolbar">
             <div class="row">
                 <div class="col-md-12">
-                    <button onclick="save()" class="btn purple">Save new <i class="fa fa-floppy-o"></i></button> 
-                    <a href="<?php echo $linkCancel; ?>" class="btn green">Cancel <i class="fa fa-ban"></i></a>                    </div>                                                
+                    <button onclick="save()" class="btn purple">Lưu <i class="fa fa-floppy-o"></i></button> 
+                    <a href="<?php echo $linkCancel; ?>" class="btn green">Thoát <i class="fa fa-ban"></i></a>                    </div>                                                
                 </div>
             </div>    
         </div>
@@ -64,7 +64,7 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                         </div>
                     </div>   
                     <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>Password confirm</b></label>
+                        <label class="col-md-3 control-label"><b>Xác nhận mật khẩu</b></label>
                         <div class="col-md-9">
                             <?php echo $inputConfirmPassword; ?>
                             <span class="help-block"></span>
@@ -73,14 +73,14 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                 </div>       
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>Name</b></label>
+                        <label class="col-md-3 control-label"><b>Tên người dùng</b></label>
                         <div class="col-md-9">
                             <?php echo $inputFullName; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>   
                     <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>Group</b></label>
+                        <label class="col-md-3 control-label"><b>Nhóm người dùng</b></label>
                         <div class="col-md-9">                            
                             <?php echo $ddlGroupMember; ?>
                             <span class="help-block"></span>
@@ -89,14 +89,14 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                 </div> 
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>Sort order</b></label>
+                        <label class="col-md-3 control-label"><b>Sắp xếp</b></label>
                         <div class="col-md-9">
                             <?php echo $inputSortOrder; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>   
                     <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>status</b></label>
+                        <label class="col-md-3 control-label"><b>Trạng thái</b></label>
                         <div class="col-md-9">
                             <?php echo $ddlStatus; ?>
                             <span class="help-block"></span>

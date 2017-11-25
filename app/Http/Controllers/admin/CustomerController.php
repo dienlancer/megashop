@@ -7,7 +7,7 @@ use DB;
 use Hash;
 class CustomerController extends Controller {
   	var $_controller="customer";	
-  	var $_title="Customer";
+  	var $_title="Khách hàng";
   	var $_icon="icon-settings font-dark";
   	public function getList(){		
     		$controller=$this->_controller;	

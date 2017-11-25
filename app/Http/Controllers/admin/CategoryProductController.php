@@ -11,7 +11,7 @@ use App\PaginationModel;
 use DB;
 class CategoryProductController extends Controller {
     	var $_controller="category-product"; 
-      var $_title="Category Product";
+      var $_title="Loại sản phẩm";
       var $_icon="icon-settings font-dark";
       var $_totalItemsPerPage=9999;    
       var $_pageRange=10;

@@ -12,7 +12,7 @@ use App\ProductModel;
 use DB;
 class ModuleItemController extends Controller {
   	var $_controller="module-item";	
-  	var $_title="Module Item";
+  	var $_title="Module";
   	var $_icon="icon-settings font-dark";
   	public function getList(){		
     		$controller=$this->_controller;	

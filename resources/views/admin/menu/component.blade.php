@@ -27,23 +27,23 @@ $linkGetForm                            =   route('admin.'.$controller.'.getForm
             <div class="form-body">
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <center><a class="btn dark btn-outline sbold uppercase btn-component" href="<?php echo $linkCategoryArticleComponent; ?>">CATEGORY ARTICLE</a></center>
+                        <center><a class="btn dark btn-outline sbold uppercase btn-component" href="<?php echo $linkCategoryArticleComponent; ?>">CHỦ ĐỀ</a></center>
                     </div>   
                     <div class="form-group col-md-6">
-                        <center><a class="btn dark btn-outline sbold uppercase btn-component" href="<?php echo $linkCategoryProductComponent; ?>">CATEGORY PRODUCT</a></center>
+                        <center><a class="btn dark btn-outline sbold uppercase btn-component" href="<?php echo $linkCategoryProductComponent; ?>">LOẠI SẢN PHẨM</a></center>
                     </div>   
                 </div> 
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <center><a class="btn dark btn-outline sbold uppercase btn-component" href="<?php echo $linkArticleComponent; ?>">ARTICLE</a></center> 
+                        <center><a class="btn dark btn-outline sbold uppercase btn-component" href="<?php echo $linkArticleComponent; ?>">BÀI VIẾT</a></center> 
                     </div>   
                     <div class="form-group col-md-6">
-                        <center><a class="btn dark btn-outline sbold uppercase btn-component" href="<?php echo $linkProductComponent; ?>">PRODUCT</a></center> 
+                        <center><a class="btn dark btn-outline sbold uppercase btn-component" href="<?php echo $linkProductComponent; ?>">SẢN PHẨM</a></center> 
                     </div>   
                 </div>  
                 <div class="row">
                     <div class="form-group col-md-6">
-                        <center><a class="btn dark btn-outline sbold uppercase btn-component" href="<?php echo $linkGetForm; ?>">CUSTOM LINK</a></center> 
+                        <center><a class="btn dark btn-outline sbold uppercase btn-component" href="<?php echo $linkGetForm; ?>">LINK TÙY BIẾN</a></center> 
                     </div>   
                     <div class="form-group col-md-6">
                         

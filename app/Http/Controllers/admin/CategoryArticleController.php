@@ -11,7 +11,7 @@ use App\PaginationModel;
 use DB;
 class CategoryArticleController extends Controller {
     	var $_controller="category-article";	
-    	var $_title="Category Article";
+    	var $_title="Chủ đề";
     	var $_icon="icon-settings font-dark";
       var $_totalItemsPerPage=9999;    
       var $_pageRange=10;

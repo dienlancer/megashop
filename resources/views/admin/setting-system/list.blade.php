@@ -24,11 +24,11 @@ $linkSortOrder		=	route('admin.'.$controller.'.sortOrder');
 				<div class="table-toolbar">
 					<div class="row">
 						<div class="col-md-12">						
-							<a href="<?php echo $linkNew; ?>" class="btn green">Add new <i class="fa fa-plus"></i></a> 
-							<a href="javascript:void(0)" onclick="updateStatus(1)" class="btn blue">Show <i class="fa fa-eye"></i></a> 
-							<a href="javascript:void(0)" onclick="updateStatus(0)" class="btn yellow">Hide <i class="fa fa-eye-slash"></i></a> 
-							<a href="javascript:void(0)" onclick="sort()" class="btn grey-cascade">Sort <i class="fa fa-sort"></i></a> 
-							<a href="javascript:void(0)" onclick="trash()" class="btn red">Trash <i class="fa fa-trash"></i></a> 	
+							<a href="<?php echo $linkNew; ?>" class="btn green">Thêm mới <i class="fa fa-plus"></i></a> 
+							<a href="javascript:void(0)" onclick="updateStatus(1)" class="btn blue">Hiện <i class="fa fa-eye"></i></a> 
+							<a href="javascript:void(0)" onclick="updateStatus(0)" class="btn yellow">Ẩn <i class="fa fa-eye-slash"></i></a> 
+							<a href="javascript:void(0)" onclick="sort()" class="btn grey-cascade">Sắp xếp <i class="fa fa-sort"></i></a> 
+							<a href="javascript:void(0)" onclick="trash()" class="btn red">Xóa <i class="fa fa-trash"></i></a> 	
 							{{ csrf_field() }}    		
 							<input type="hidden" name="sort_json" id="sort_json" value="" />	
 						</div>                                                
@@ -41,12 +41,12 @@ $linkSortOrder		=	route('admin.'.$controller.'.sortOrder');
 				<thead>
 					<tr>
 						<th width="1%"><input type="checkbox" onclick="checkAllAgent(this)"  name="checkall-toggle"></th>                
-						<th>Fullname</th>
+						<th>Hệ thống</th>
 						<th>Alias</th>						
-						<th width="1%">Sort</th>
-						<th width="1%">Status</th>						
-						<th width="1%">Edit</th>  
-						<th width="1%">Delete</th>                
+						<th width="10%">Sắp xếp</th>
+						<th width="10%">Trạng thái</th>							
+						<th width="1%">Sửa</th>  
+						<th width="1%">Xóa</th>                       
 					</tr>
 				</thead>
 				<tbody>                                                
@@ -113,7 +113,7 @@ $linkSortOrder		=	route('admin.'.$controller.'.sortOrder');
 	
 	function deleteItem(id){		
 		var xac_nhan = 0;
-		var msg="Do you really want to delete this item ?";
+		var msg="Bạn có muốn xóa ?";
 		if(window.confirm(msg)){ 
 			xac_nhan = 1;
 		}
@@ -175,7 +175,7 @@ $linkSortOrder		=	route('admin.'.$controller.'.sortOrder');
 	}
 	function trash(){	
 		var xac_nhan = 0;
-		var msg="Do you really want to delete this item ?";
+		var msg="Bạn có muốn xóa ?";
 		if(window.confirm(msg)){ 
 			xac_nhan = 1;
 		}

@@ -7,7 +7,7 @@ use App\GroupPrivilegeModel;
 use DB;
 class PrivilegeController extends Controller {
   	var $_controller="privilege";	
-  	var $_title="Privilege";
+  	var $_title="Nhóm quyền";
   	var $_icon="icon-settings font-dark";
   	public function getList(){		
     		$controller=$this->_controller;	

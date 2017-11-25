@@ -8,7 +8,7 @@ use App\PaymentMethodModel;
 use DB;
 class InvoiceController extends Controller {
     	var $_controller="invoice";	
-    	var $_title="Invoice";
+    	var $_title="Đơn đặt hàng";
     	var $_icon="icon-settings font-dark";
     	public function getList(){		
     		$controller=$this->_controller;	

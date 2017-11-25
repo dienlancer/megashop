@@ -7,20 +7,20 @@
     <li class="nav-item  ">
         <a href="javascript:;" class="nav-link nav-toggle">
             <i class="fa fa-folder-open-o" ></i>
-            <span class="title">Content</span>
+            <span class="title">Quản lý nội dung</span>
             <span class="arrow"></span>
         </a>
         <ul class="sub-menu">                                    
             <li class="nav-item  ">
                 <a href="{!! route('admin.category-article.getList') !!}" class="nav-link nav-toggle">
                     <i class="icon-notebook"></i>
-                    <span class="title">Category article</span>                                            
+                    <span class="title">Chủ đề bài viết</span>                                            
                 </a>                                                                      
             </li>            
             <li class="nav-item  ">
                 <a href="{!! route('admin.article.getList') !!}" class="nav-link nav-toggle">
                     <i class="icon-notebook"></i>
-                    <span class="title">Article</span>                                            
+                    <span class="title">Bài viết</span>                                            
                 </a>                                                                      
             </li>           
         </ul>
@@ -28,38 +28,38 @@
     <li class="nav-item  ">
         <a href="javascript:;" class="nav-link nav-toggle">
             <i class="fa fa-folder-open-o" ></i>
-            <span class="title">Product</span>
+            <span class="title">Sản phẩm</span>
             <span class="arrow"></span>
         </a>
         <ul class="sub-menu">                                    
             <li class="nav-item  ">
                 <a href="{!! route('admin.category-product.getList') !!}" class="nav-link nav-toggle">
                     <i class="icon-notebook"></i>
-                    <span class="title">Category product</span>                                            
+                    <span class="title">Loại sản phẩm</span>                                            
                 </a>                                                                      
             </li>
             <li class="nav-item  ">
                 <a href="{!! route('admin.product.getList') !!}" class="nav-link nav-toggle">
                     <i class="icon-notebook"></i>
-                    <span class="title">Product</span>                                            
+                    <span class="title">Sản phẩm</span>                                            
                 </a>                                                                      
             </li>
             <li class="nav-item  ">
                 <a href="{!! route('admin.customer.getList') !!}" class="nav-link nav-toggle">
                     <i class="icon-notebook"></i>
-                    <span class="title">Customer</span>                                            
+                    <span class="title">Khách hàng</span>                                            
                 </a>                                                                      
             </li>
             <li class="nav-item  ">
                 <a href="{!! route('admin.payment-method.getList') !!}" class="nav-link nav-toggle">
                     <i class="icon-notebook"></i>
-                    <span class="title">Payment method</span>                                            
+                    <span class="title">Phương thức thanh toán</span>                                            
                 </a>                                                                      
             </li>
             <li class="nav-item  ">
                 <a href="{!! route('admin.invoice.getList') !!}" class="nav-link nav-toggle">
                     <i class="icon-notebook"></i>
-                    <span class="title">Invoice</span>                                            
+                    <span class="title">Đơn hàng</span>                                            
                 </a>                                                                      
             </li>
         </ul>
@@ -85,32 +85,32 @@
     <li class="nav-item  ">
                 <a href="{!! route('admin.setting-system.getList') !!}" class="nav-link nav-toggle">
                     <i class="icon-notebook"></i>
-                    <span class="title">Setting system</span>                                            
+                    <span class="title">Cấu hình</span>                                            
                 </a>                                                                      
     </li>       
     <li class="nav-item  ">
         <a href="javascript:;" class="nav-link nav-toggle">
             <i class="fa fa-folder-open-o" ></i>
-            <span class="title">User</span>
+            <span class="title">Quản lý người dùng</span>
             <span class="arrow"></span>
         </a>
         <ul class="sub-menu">                                    
             <li class="nav-item  ">
                 <a href="{!! route('admin.group-member.getList') !!}" class="nav-link nav-toggle">
                     <i class="icon-notebook"></i>
-                    <span class="title">Group member</span>                                            
+                    <span class="title">Nhóm người dùng</span>                                            
                 </a>                                                                      
             </li>
             <li class="nav-item  ">
                 <a href="{!! route('admin.user.getList') !!}" class="nav-link nav-toggle">
                     <i class="icon-notebook"></i>
-                    <span class="title">User</span>                                            
+                    <span class="title">Người dùng</span>                                            
                 </a>                                                                      
             </li>
             <li class="nav-item  ">
                 <a href="{!! route('admin.privilege.getList') !!}" class="nav-link nav-toggle">
                     <i class="icon-notebook"></i>
-                    <span class="title">Privilege</span>                                            
+                    <span class="title">Nhóm quyền</span>                                            
                 </a>                                                                      
             </li>
         </ul>

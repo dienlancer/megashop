@@ -31,11 +31,11 @@ $linkSortOrder			=	route('admin.'.$controller.'.sortOrder');
 				<div class="table-toolbar">
 					<div class="row">
 						<div class="col-md-12">						
-							<a href="<?php echo $linkNew; ?>" class="btn green">Add new <i class="fa fa-plus"></i></a> 
-							<a href="javascript:void(0)" onclick="javascript:submitForm('<?php echo $linkUpdateStatusToShow; ?>')" class="btn blue">Show <i class="fa fa-eye"></i></a> 
-							<a href="javascript:void(0)" onclick="javascript:submitForm('<?php echo $linkUpdateStatusToHide; ?>')" class="btn yellow">Hide <i class="fa fa-eye-slash"></i></a> 
-							<a href="javascript:void(0)" onclick="javascript:submitForm('<?php echo $linkSortOrder; ?>')" class="btn grey-cascade">Sort <i class="fa fa-sort"></i></a> 
-							<a href="javascript:void(0)" onclick="javascript:trashForm('<?php echo $linkTrash; ?>')" class="btn red">Trash <i class="fa fa-trash"></i></a> 															
+							<a href="<?php echo $linkNew; ?>" class="btn green">Thêm mới <i class="fa fa-plus"></i></a> 
+							<a href="javascript:void(0)" onclick="javascript:submitForm('<?php echo $linkUpdateStatusToShow; ?>')" class="btn blue">Hiển thị <i class="fa fa-eye"></i></a> 
+							<a href="javascript:void(0)" onclick="javascript:submitForm('<?php echo $linkUpdateStatusToHide; ?>')" class="btn yellow">Ẩn <i class="fa fa-eye-slash"></i></a> 
+							<a href="javascript:void(0)" onclick="javascript:submitForm('<?php echo $linkSortOrder; ?>')" class="btn grey-cascade">Sắp xếp <i class="fa fa-sort"></i></a> 
+							<a href="javascript:void(0)" onclick="javascript:trashForm('<?php echo $linkTrash; ?>')" class="btn red">Xóa <i class="fa fa-trash"></i></a> 															
 						</div>                                                
 					</div>
 				</div>    
@@ -46,14 +46,14 @@ $linkSortOrder			=	route('admin.'.$controller.'.sortOrder');
 				<thead>
 					<tr>
 						<th width="1%"><input type="checkbox" name="checkall-toggle"></th>           
-						<th>Fullname</th>
+						<th>Loại sản phẩm</th>
 						<th>Alias</th>		
-						<th width="1%">Parent</th>				
-						<th width="1%">Image</th>
-						<th width="1%">Sort</th>
-						<th width="1%">Status</th>							
-						<th width="1%">Edit</th>  
-						<th width="1%">Delete</th>              
+						<th width="20%">Loại sản phẩm cha</th>				
+						<th width="5%">Hình</th>
+						<th width="10%">Sắp xếp</th>
+						<th width="10%">Trạng thái</th>							
+						<th width="1%">Sửa</th>  
+						<th width="1%">Xóa</th>                       
 					</tr>
 				</thead>
 				<tbody> 

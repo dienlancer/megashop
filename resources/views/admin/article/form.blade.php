@@ -42,8 +42,8 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
            <div class="table-toolbar">
             <div class="row">
                 <div class="col-md-12">
-                    <button onclick="save()" class="btn purple">Save new <i class="fa fa-floppy-o"></i></button> 
-                    <a href="<?php echo $linkCancel; ?>" class="btn green">Cancel <i class="fa fa-ban"></i></a>                    </div>                                                
+                    <button onclick="save()" class="btn purple">Lưu <i class="fa fa-floppy-o"></i></button> 
+                    <a href="<?php echo $linkCancel; ?>" class="btn green">Thoát <i class="fa fa-ban"></i></a>                    </div>                                                
                 </div>
             </div>    
         </div>
@@ -53,7 +53,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
             <div class="form-body">
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Name</b></label>
+                        <label class="col-md-2 control-label"><b>Bài viết</b></label>
                         <div class="col-md-10">
                             <?php echo $inputFullName; ?>
                             <span class="help-block"></span>
@@ -72,7 +72,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
                 </div>     
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Parent</b></label>
+                        <label class="col-md-2 control-label"><b>Chủ đề</b></label>
                         <div class="col-md-10">
                             <?php echo $ddlCategoryArticle; ?>
                             <span class="help-block"></span>
@@ -82,7 +82,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
                 </div>   
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Image</b></label>
+                        <label class="col-md-2 control-label"><b>Hình</b></label>
                         <div class="col-md-10">
                             <input type="file" id="image" name="image"  />   
                             <div id="picture-area"><?php echo $picture; ?>                      </div>
@@ -100,7 +100,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
                 </div> 
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Intro</b></label>
+                        <label class="col-md-2 control-label"><b>Giới thiệu</b></label>
                         <div class="col-md-10">                            
                             <?php echo $inputIntro; ?>
                             <span class="help-block"></span>
@@ -109,7 +109,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
                 </div>     
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Description</b></label>
+                        <label class="col-md-2 control-label"><b>Chú thích</b></label>
                         <div class="col-md-10">                            
                             <?php echo $inputDescription; ?>
                             <span class="help-block"></span>
@@ -118,7 +118,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
                 </div>                 
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Title</b></label>
+                        <label class="col-md-2 control-label"><b>Tiêu đề</b></label>
                         <div class="col-md-10">
                             <?php echo $inputTitle; ?>
                             <span class="help-block"></span>
@@ -145,7 +145,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
                 </div>                                  
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Sort</b></label>
+                        <label class="col-md-2 control-label"><b>Sắp xếp</b></label>
                         <div class="col-md-10">
                             <?php echo $inputSortOrder; ?>
                             <span class="help-block"></span>
@@ -154,7 +154,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
                 </div>
                 <div class="row"> 
                     <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Status</b></label>
+                        <label class="col-md-2 control-label"><b>Trạng thái</b></label>
                         <div class="col-md-10">                            
                             <?php echo $ddlStatus; ?>
                             <span class="help-block"></span>
@@ -163,7 +163,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
                 </div> 
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Content</b></label>
+                        <label class="col-md-2 control-label"><b>Nội dung</b></label>
                         <div class="col-md-10">                            
                             <?php echo $inputContent; ?>
                             <span class="help-block"></span>
@@ -223,7 +223,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
     }
     function deleteImage(){
         var xac_nhan = 0;
-        var msg="Do you really want to delete image ?";
+        var msg="Bạn có muốn xóa ?";
         if(window.confirm(msg)){ 
             xac_nhan = 1;
         }

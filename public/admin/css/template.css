@@ -115,3 +115,6 @@ a.visit-site{
 a.visit-site:hover,a.visit-site:focus{
     background: transparent !important;
 }
+table.table-bordered th{
+    text-align: center;
+}

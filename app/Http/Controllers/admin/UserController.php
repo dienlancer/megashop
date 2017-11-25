@@ -10,7 +10,7 @@ use Hash;
 use Sentinel;
 class UserController extends Controller {
   	var $_controller="user";	
-  	var $_title="User";
+  	var $_title="Người dùng";
   	var $_icon="icon-settings font-dark";
   	public function getList(){		
     		$controller=$this->_controller;	

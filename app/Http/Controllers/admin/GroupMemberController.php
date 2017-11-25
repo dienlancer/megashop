@@ -10,7 +10,7 @@ use App\UserGroupModel;
 use DB;
 class GroupMemberController extends Controller {
     	var $_controller="group-member";	
-    	var $_title="Group member";
+    	var $_title="Nhóm người dùng";
     	var $_icon="icon-settings font-dark";
     	public function getList(){		
     		$controller=$this->_controller;	

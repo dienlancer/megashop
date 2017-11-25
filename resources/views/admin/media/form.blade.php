@@ -15,8 +15,8 @@ $linkSave               =   route('admin.'.$controller.'.save');
            <div class="table-toolbar">
             <div class="row">
                 <div class="col-md-12">
-                    <button type="submit" class="btn purple">Save new <i class="fa fa-floppy-o"></i></button> 
-                    <a href="<?php echo $linkCancel; ?>" class="btn green">Cancel <i class="fa fa-ban"></i></a>                    </div>                                                
+                    <button type="submit" class="btn purple">Lưu <i class="fa fa-floppy-o"></i></button> 
+                    <a href="<?php echo $linkCancel; ?>" class="btn green">Thoát <i class="fa fa-ban"></i></a>                    </div>                                                
                 </div>
             </div>    
         </div>

@@ -35,8 +35,8 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
            <div class="table-toolbar">
             <div class="row">
                 <div class="col-md-12">
-                    <button onclick="save()" class="btn purple">Save new <i class="fa fa-floppy-o"></i></button> 
-                    <a href="<?php echo $linkCancel; ?>" class="btn green">Cancel <i class="fa fa-ban"></i></a>                    </div>                                                
+                    <button onclick="save()" class="btn purple">Lưu <i class="fa fa-floppy-o"></i></button> 
+                    <a href="<?php echo $linkCancel; ?>" class="btn green">Thoát <i class="fa fa-ban"></i></a>                    </div>                                                
                 </div>
             </div>    
         </div>
@@ -50,7 +50,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
             <div class="form-body">
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Name</b></label>
+                        <label class="col-md-2 control-label"><b>Tên module</b></label>
                         <div class="col-md-10">
                             <?php echo $inputFullName; ?>
                             <span class="help-block"></span>
@@ -59,7 +59,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
                 </div>
                 <div class="row">   
                     <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Position</b></label>
+                        <label class="col-md-2 control-label"><b>Vị trí trong theme</b></label>
                         <div class="col-md-10">
                             <?php echo $inputPosition; ?>
                             <span class="help-block"></span>
@@ -68,7 +68,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
                 </div>      
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Import data from</b></label>
+                        <label class="col-md-2 control-label"><b>Lấy dữ liệu từ</b></label>
                         <div class="col-md-10">
                             <button type="button" class="btn dark btn-outline sbold uppercase btn-article" data-toggle="modal" data-target="#modal-article">ARTICLE</button>
                             <button type="button" class="btn dark btn-outline sbold uppercase btn-product" data-toggle="modal" data-target="#modal-product">PRODUCT</button>
@@ -84,10 +84,10 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
                                 <thead>
                                     <tr>
                                         <th width="1%"><input type="checkbox" onclick="checkAllAgent(this)"  name="checkall-toggle"></th>                                        
-                                        <th>Fullname</th>   
-                                        <th width="1%">Image</th>                                                
-                                        <th width="1%">Sort</th>                                                                                
-                                        <th width="1%">Delete</th>                
+                                        <th>Bài viết - Sản phẩm</th>   
+                                        <th width="1%">Hình</th>                                                
+                                        <th width="1%">Sắp xếp</th>                                                                                
+                                        <th width="1%">Xóa</th>                
                                     </tr>
                                 </thead>
                                 <tbody>                                                
@@ -98,7 +98,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
                 </div>
                 <div class="row">  
                     <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Sort</b></label>
+                        <label class="col-md-2 control-label"><b>Sắp xếp</b></label>
                         <div class="col-md-10">
                             <?php echo $inputSortOrder; ?>
                             <span class="help-block"></span>
@@ -107,7 +107,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
                 </div>       
                 <div class="row">
                     <div class="form-group col-md-12">
-                        <label class="col-md-2 control-label"><b>Status</b></label>
+                        <label class="col-md-2 control-label"><b>Trạng thái</b></label>
                         <div class="col-md-10">                            
                             <?php echo $ddlStatus; ?>
                             <span class="help-block"></span>
@@ -122,7 +122,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">  
-          <b>ARTICLE LIST      </b>
+          <b>BÀI VIẾT      </b>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>        
       </div>
       <div class="modal-body">
@@ -130,19 +130,19 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-md-4">
-                    <div><b>CATEGORY ARTICLE</b>  </div>
+                    <div><b>CHỦ ĐỀ</b>  </div>
                     <div><?php echo $ddlCategoryArticle ; ?></div>
                 </div>            
                 <div class="col-md-4">
-                    <div><b>ARTICLE NAME</b>  </div>
+                    <div><b>TÊN BÀI VIẾT</b>  </div>
                     <div><input type="text" class="form-control" name="filter_search"          value=""></div>
                 </div>            
                 <div class="col-md-4">
                     <div>&nbsp;</div>
                     <div>
-                        <button type="button" class="btn dark btn-outline sbold uppercase btn-product" onclick="getListArticle();">Search</button>
+                        <button type="button" class="btn dark btn-outline sbold uppercase btn-product" onclick="getListArticle();">Tìm kiếm</button>
                         &nbsp;  
-                        <button type="button" class="btn dark btn-outline sbold uppercase btn-product" onclick="insertArticle();">Insert</button>                      
+                        <button type="button" class="btn dark btn-outline sbold uppercase btn-product" onclick="insertArticle();">Thêm</button>                      
                     </div>                
                 </div>                
             </div>   
@@ -153,9 +153,9 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
                             <tr>
                                 <th width="1%"><input type="checkbox" onclick="checkAllAgentArticle(this)"  name="checkall-toggle"></th>                
                                 <th width="1%">ID</th>
-                                <th>Fullname</th>
+                                <th>Bài viết</th>
                                 <th>Alias</th>
-                                <th width="1%">Image</th>                                
+                                <th width="1%">Hình</th>                                
                             </tr>
                         </thead>
                         <tbody>                                                
@@ -172,7 +172,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">  
-          <b>PRODUCT LIST      </b>
+          <b>SẢN PHẨM      </b>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>        
       </div>
       <div class="modal-body">
@@ -180,19 +180,19 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
             {{ csrf_field() }}
             <div class="row">
                 <div class="col-md-4">
-                    <div><b>CATEGORY PRODUCT</b>  </div>
+                    <div><b>LOẠI SẢN PHẨM</b>  </div>
                     <div><?php echo $ddlCategoryProduct ; ?></div>
                 </div>            
                 <div class="col-md-4">
-                    <div><b>PRODUCT NAME</b>  </div>
+                    <div><b>SẢN PHẨM</b>  </div>
                     <div><input type="text" class="form-control" name="filter_search"          value=""></div>
                 </div>            
                 <div class="col-md-4">
                     <div>&nbsp;</div>
                     <div>
-                        <button type="button" class="btn dark btn-outline sbold uppercase btn-product" onclick="getListProduct();">Search</button>
+                        <button type="button" class="btn dark btn-outline sbold uppercase btn-product" onclick="getListProduct();">Tìm kiếm</button>
                         &nbsp;  
-                        <button type="button" class="btn dark btn-outline sbold uppercase btn-article" onclick="insertProduct();">Insert</button>
+                        <button type="button" class="btn dark btn-outline sbold uppercase btn-article" onclick="insertProduct();">Thêm</button>
                     </div>                
                 </div>
             </div>   
@@ -203,9 +203,9 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
                             <tr>
                                 <th width="1%"><input type="checkbox" onclick="checkAllAgentProduct(this)"  name="checkall-toggle"></th>                
                                 <th width="1%">ID</th>
-                                <th>Fullname</th>
+                                <th>Sản phẩm</th>
                                 <th>Alias</th>
-                                <th width="1%">Image</th>                                
+                                <th width="1%">Hình</th>                                
                                 
                             </tr>
                         </thead>
@@ -313,7 +313,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
         }
         
         if(str_id == ''){
-            alert('Please choose at least one item');    
+            alert('Vui lòng chọn ít nhất một phần tử');    
         }else{
             var token = $('form[name="frm-article"] > input[name="_token"]').val(); 
             var dataItem ={   
@@ -365,7 +365,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
             }
         }        
         if(str_id == ''){
-            alert('Please choose at least one item');    
+            alert('Vui lòng chọn ít nhất một phần tử');    
         }else{
             var token = $('form[name="frm-product"] > input[name="_token"]').val(); 
             var dataItem ={   
@@ -487,7 +487,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
         var rows=tbody[0].rows;
         var classname= $(rows[0].cells[0]).attr('class');        
         if(classname == 'dataTables_empty'){
-            alert('Please choose at least one item');
+            alert('Vui lòng chọn ít nhất một phần tử');
             return false;
         }
         var data=new Array(rows.length);
@@ -538,7 +538,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
     }
     function trash(){
         var xac_nhan = 0;
-        var msg="Do you really want to delete these items ?";
+        var msg="Bạn có muốn xóa ?";
         if(window.confirm(msg)){ 
             xac_nhan = 1;
         }
@@ -549,7 +549,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
         var rows=tbody[0].rows;
         var classname= $(rows[0].cells[0]).attr('class');        
         if(classname == 'dataTables_empty'){
-            alert('Please choose at least one item');
+            alert('Vui lòng chọn ít nhất một phần tử');
             return false;
         }
         for(var i=0;i<rows.length;i++){
@@ -563,7 +563,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
     }    
     function deleteItem(ctrl){
         var xac_nhan = 0;
-        var msg="Do you really want to delete these items ?";
+        var msg="Bạn có muốn xóa ?";
         if(window.confirm(msg)){ 
             xac_nhan = 1;
         }

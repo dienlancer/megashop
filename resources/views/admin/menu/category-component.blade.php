@@ -23,10 +23,10 @@
 			<table class="table table-bordered table-recursive">
 				<thead>
 					<tr>						         
-						<th>Fullname</th>						
-						<th width="30%">Parent</th>				
+						<th>Chủ đề - Loại sản phẩm</th>						
+						<th width="30%">Bậc cha</th>				
 						<th width="1%">Image</th>
-						<th width="1%">Sort</th>												
+						<th width="1%">Sắp xếp</th>												
 					</tr>
 				</thead>
 				<tbody> 
