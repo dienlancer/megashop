@@ -17,7 +17,7 @@ class CustomerController extends Controller {
         $arrPrivilege=getArrPrivilege();
         $requestControllerAction=$this->_controller."-list";         
         if(in_array($requestControllerAction,$arrPrivilege)){
-          return view("admin.".$this->_controller.".list",compact("controller","task","title","icon")); 
+          return view("admin.".$this->_controller.".list",compact("controller","task","title","icon"));
         }
         else{
           return view("admin.no-access");
