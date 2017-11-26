@@ -12,6 +12,7 @@ class ArticleController extends Controller {
   	var $_controller="article";	
   	var $_title="Bài viết";
   	var $_icon="icon-settings font-dark";
+    var $_pageAccessDenied="no-access";
   	public function getList(){		
     		$controller=$this->_controller;	
     		$task="list";
@@ -20,7 +21,17 @@ class ArticleController extends Controller {
         $arrCategoryArticle=CategoryArticleModel::select("id","fullname","parent_id")->orderBy("sort_order","asc")->get()->toArray();
         $arrCategoryArticleRecursive=array();              
         categoryArticleRecursiveForm($arrCategoryArticle ,0,"",$arrCategoryArticleRecursive)  ;          
-    		return view("admin.".$this->_controller.".list",compact("controller","task","title","icon","arrCategoryArticleRecursive"));	
+    		
+
+        $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-list";      
+        /* end phân quyền */      
+        if(in_array($requestControllerAction,$arrPrivilege)){
+          return view("admin.".$this->_controller.".list",compact("controller","task","title","icon","arrCategoryArticleRecursive")); 
+        }
+        else{
+          return view("admin.".$this->_pageAccessDenied);
+        }
   	}	    
   	public function loadData(Request $request){
     		$filter_search="";    

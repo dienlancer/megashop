@@ -199,5 +199,30 @@ function randomString($length = 5){
     $result   = substr($arrCharacter, 0, $length);
     return $result;
 }
-
+function getArrPrivilege(){
+  /* begin quyền truy cập */
+    $user_id=Sentinel::getUser()->id;      
+    $stdPrivilegeID=DB::table("users")
+                ->join("group_member","users.group_member_id","=","group_member.id")
+                ->join("group_privilege","group_member.id","=","group_privilege.group_member_id")
+                ->where("users.id","=",(int)@$user_id)                
+                ->select("group_privilege.privilege_id")
+                ->get();
+                ;     
+    $arrID=array();    
+    foreach ($stdPrivilegeID as $key => $value) {
+      $arrID[]=$value->privilege_id;
+    }
+    $strID=implode(",",$arrID);
+    $sql="select concat(`controller`,'-',`action`) as controller_action
+        from `privilege`
+        where `id` in(".$strID.")";
+    $stdPrivilege=DB::select(@$sql);
+    $arrPrivilege=array();
+    foreach ($stdPrivilege as $key => $value) {
+      $arrPrivilege[]=$value->controller_action;
+    }     
+    /* end quyền truy cập */  
+    return $arrPrivilege;
+}
 ?>

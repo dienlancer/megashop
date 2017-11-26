@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 26, 2017 lúc 05:58 AM
+-- Thời gian đã tạo: Th10 26, 2017 lúc 01:41 PM
 -- Phiên bản máy phục vụ: 10.1.22-MariaDB
 -- Phiên bản PHP: 7.1.4
 
@@ -27,7 +27,7 @@ DELIMITER $$
 -- Thủ tục
 --
 DROP PROCEDURE IF EXISTS `pro_getArticle`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getArticle` (IN `keyword` VARCHAR(255), IN `strCategoryArticleID` VARCHAR(255))  begin
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getArticle` (IN `keyword` VARCHAR(255), IN `strCategoryArticleID` VARCHAR(255))  begin
 SELECT
     0 AS is_checked
     ,n.id
@@ -70,7 +70,7 @@ SELECT
 end$$
 
 DROP PROCEDURE IF EXISTS `pro_getArticleFrontend`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getArticleFrontend` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255))  SELECT
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getArticleFrontend` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255))  SELECT
     0 AS is_checked
     ,n.id
     ,n.fullname
@@ -87,7 +87,7 @@ CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getArticleFrontend` (IN `keyw
     ORDER BY n.sort_order ASC$$
 
 DROP PROCEDURE IF EXISTS `pro_getArticleFrontendLimit`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getArticleFrontendLimit` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getArticleFrontendLimit` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT
     0 AS is_checked
     ,n.id
     ,n.fullname
@@ -130,7 +130,7 @@ CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getArticleFrontendLimit` (IN 
     LIMIT `position` , `totalItemsPerPage`$$
 
 DROP PROCEDURE IF EXISTS `pro_getBanner`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getBanner` (IN `keyword` VARCHAR(255) charset utf8)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getBanner` (IN `keyword` VARCHAR(255) charset utf8)  BEGIN
 SELECT 
 	0 AS  is_checked
 	,n.id
@@ -156,7 +156,7 @@ SELECT
     END$$
 
 DROP PROCEDURE IF EXISTS `pro_getCategoryArticle`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCategoryArticle` (IN `keyword` VARCHAR(255))  BEGIN	
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getCategoryArticle` (IN `keyword` VARCHAR(255))  BEGIN	
     SELECT
     0 AS is_checked,
 	n.id,
@@ -190,7 +190,7 @@ CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCategoryArticle` (IN `keyw
 END$$
 
 DROP PROCEDURE IF EXISTS `pro_getCategoryArticleLimit`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCategoryArticleLimit` (IN `keyword` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getCategoryArticleLimit` (IN `keyword` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT 
 	0 AS is_checked,
 	n.id,
 	n.fullname,
@@ -222,7 +222,7 @@ CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCategoryArticleLimit` (IN 
     LIMIT `position` , totalItemsPerPage$$
 
 DROP PROCEDURE IF EXISTS `pro_getCategoryProduct`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCategoryProduct` (IN `keyword` VARCHAR(255) CHARSET utf8)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getCategoryProduct` (IN `keyword` VARCHAR(255) CHARSET utf8)  BEGIN
 SELECT
     0 AS is_checked,
 	n.id,
@@ -255,7 +255,7 @@ SELECT
 END$$
 
 DROP PROCEDURE IF EXISTS `pro_getCategoryProductLimit`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCategoryProductLimit` (IN `keyword` VARCHAR(255) CHARSET utf8, IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getCategoryProductLimit` (IN `keyword` VARCHAR(255) CHARSET utf8, IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT 
 	0 AS is_checked,
 	n.id,
 	n.fullname,
@@ -287,7 +287,7 @@ CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCategoryProductLimit` (IN 
     LIMIT `position` , totalItemsPerPage$$
 
 DROP PROCEDURE IF EXISTS `pro_getCustomer`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCustomer` (IN `keyword` VARCHAR(255) CHARSET utf8)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getCustomer` (IN `keyword` VARCHAR(255) CHARSET utf8)  NO SQL
 SELECT
     0 AS is_checked,
 	n.id,
@@ -310,7 +310,7 @@ SELECT
     ORDER BY n.sort_order ASC$$
 
 DROP PROCEDURE IF EXISTS `pro_getGroupMember`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getGroupMember` (IN `keyword` VARCHAR(255))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getGroupMember` (IN `keyword` VARCHAR(255))  NO SQL
 SELECT
 	0 as is_checked
 	,n.id
@@ -331,7 +331,7 @@ SELECT
     ORDER BY n.sort_order ASC$$
 
 DROP PROCEDURE IF EXISTS `pro_getInvoice`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getInvoice` (IN `keyword` VARCHAR(255) CHARSET utf8)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getInvoice` (IN `keyword` VARCHAR(255) CHARSET utf8)  NO SQL
 SELECT
     0 AS is_checked,
 	n.id,
@@ -356,7 +356,7 @@ SELECT
     ORDER BY n.sort_order ASC$$
 
 DROP PROCEDURE IF EXISTS `pro_getMenu`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getMenu` (IN `keyword` VARCHAR(255), IN `menu_type_id` INT(11))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getMenu` (IN `keyword` VARCHAR(255), IN `menu_type_id` INT(11))  BEGIN
 SELECT 
 0 AS is_checked
 	,n.id
@@ -392,7 +392,7 @@ SELECT
     END$$
 
 DROP PROCEDURE IF EXISTS `pro_getMenuLimit`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getMenuLimit` (IN `keyword` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11), IN `menu_type_id` INT(11))  SELECT 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getMenuLimit` (IN `keyword` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11), IN `menu_type_id` INT(11))  SELECT 
 	0 AS is_checked,
 	n.id
 	,n.fullname
@@ -427,7 +427,7 @@ CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getMenuLimit` (IN `keyword` V
     LIMIT `position` , totalItemsPerPage$$
 
 DROP PROCEDURE IF EXISTS `pro_getMenuType`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getMenuType` (IN `keyword` VARCHAR(255))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getMenuType` (IN `keyword` VARCHAR(255))  BEGIN
 	SELECT 
 	0 AS is_checked
 	,n.id
@@ -445,7 +445,7 @@ CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getMenuType` (IN `keyword` VA
 END$$
 
 DROP PROCEDURE IF EXISTS `pro_getModuleItem`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getModuleItem` (IN `keyword` VARCHAR(255))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getModuleItem` (IN `keyword` VARCHAR(255))  BEGIN
 SELECT 
 	0 AS  is_checked
 	,n.id
@@ -473,7 +473,7 @@ SELECT
     END$$
 
 DROP PROCEDURE IF EXISTS `pro_getPaymentMethod`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getPaymentMethod` (IN `keyword` VARCHAR(255) charset utf8)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getPaymentMethod` (IN `keyword` VARCHAR(255) charset utf8)  BEGIN
 SELECT 
 	0 AS  is_checked
 	,n.id
@@ -499,7 +499,7 @@ SELECT
     END$$
 
 DROP PROCEDURE IF EXISTS `pro_getPrivilege`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getPrivilege` (IN `keyword` VARCHAR(255) CHARSET utf8)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getPrivilege` (IN `keyword` VARCHAR(255) CHARSET utf8)  NO SQL
 SELECT
     0 AS is_checked,
 	n.id,
@@ -517,7 +517,7 @@ SELECT
     ORDER BY n.controller ASC , n.sort_order ASC$$
 
 DROP PROCEDURE IF EXISTS `pro_getProduct`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getProduct` (IN `keyword` VARCHAR(255), IN `strCategoryProductID` VARCHAR(255))  begin
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getProduct` (IN `keyword` VARCHAR(255), IN `strCategoryProductID` VARCHAR(255))  begin
 SELECT
     0 AS is_checked
     ,n.id
@@ -556,7 +556,7 @@ SELECT
 end$$
 
 DROP PROCEDURE IF EXISTS `pro_getProductFrontend`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getProductFrontend` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255))  SELECT
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getProductFrontend` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255))  SELECT
     0 AS is_checked
     ,n.id
     ,n.fullname
@@ -573,7 +573,7 @@ CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getProductFrontend` (IN `keyw
     ORDER BY n.sort_order ASC$$
 
 DROP PROCEDURE IF EXISTS `pro_getProductFrontendLimit`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getProductFrontendLimit` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getProductFrontendLimit` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT
     0 AS is_checked
     ,n.id
     ,n.code
@@ -614,7 +614,7 @@ CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getProductFrontendLimit` (IN 
     LIMIT `position` , `totalItemsPerPage`$$
 
 DROP PROCEDURE IF EXISTS `pro_getSettingSystem`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getSettingSystem` (IN `keyword` VARCHAR(255) charset utf8)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getSettingSystem` (IN `keyword` VARCHAR(255) charset utf8)  BEGIN
 SELECT 
 	0 AS  is_checked
 	,n.id
@@ -640,7 +640,7 @@ SELECT
     END$$
 
 DROP PROCEDURE IF EXISTS `pro_getUser`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getUser` (IN `keyword` VARCHAR(255), IN `group_member_id` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getUser` (IN `keyword` VARCHAR(255), IN `group_member_id` INT)  NO SQL
 SELECT 
     0 as is_checked
     ,n.id
@@ -1042,11 +1042,203 @@ INSERT INTO `group_member` (`id`, `fullname`, `sort_order`, `created_at`, `updat
 DROP TABLE IF EXISTS `group_privilege`;
 CREATE TABLE `group_privilege` (
   `id` int(11) NOT NULL,
-  `group_member_id` int(11) DEFAULT NULL,
-  `privilege_id` int(11) DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL
+  `group_member_id` int(11) NOT NULL,
+  `privilege_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL,
+  `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `group_privilege`
+--
+
+INSERT INTO `group_privilege` (`id`, `group_member_id`, `privilege_id`, `created_at`, `updated_at`) VALUES
+(509, 1, 1, '2017-05-19 18:25:43', '2017-05-19 18:25:43'),
+(510, 1, 2, '2017-05-19 18:25:43', '2017-05-19 18:25:43'),
+(511, 1, 3, '2017-05-19 18:25:43', '2017-05-19 18:25:43'),
+(512, 1, 4, '2017-05-19 18:25:43', '2017-05-19 18:25:43'),
+(513, 1, 5, '2017-05-19 18:25:43', '2017-05-19 18:25:43'),
+(514, 1, 6, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(515, 1, 7, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(516, 1, 8, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(517, 1, 9, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(518, 1, 10, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(519, 1, 11, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(520, 1, 12, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(521, 1, 13, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(522, 1, 14, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(523, 1, 15, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(524, 1, 16, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(525, 1, 17, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(526, 1, 18, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(527, 1, 19, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(528, 1, 20, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(529, 1, 21, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(530, 1, 22, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(531, 1, 23, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(532, 1, 24, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(533, 1, 25, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(534, 1, 26, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(535, 1, 27, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(536, 1, 28, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(537, 1, 29, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(538, 1, 30, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(539, 1, 31, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(540, 1, 32, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(541, 1, 33, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(542, 1, 34, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(543, 1, 35, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(544, 1, 36, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(545, 1, 37, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(546, 1, 38, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(547, 1, 39, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(548, 1, 40, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(549, 1, 41, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(550, 1, 42, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(551, 1, 43, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(552, 1, 44, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(553, 1, 45, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(554, 1, 46, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(555, 1, 47, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(556, 1, 48, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(557, 1, 49, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(558, 1, 50, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(559, 1, 51, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(560, 1, 52, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(561, 1, 53, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(562, 1, 54, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(563, 1, 55, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(564, 1, 56, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(565, 1, 57, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(566, 1, 58, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(567, 1, 59, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(568, 1, 60, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(569, 1, 61, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(570, 1, 62, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(571, 1, 63, '2017-05-19 18:25:44', '2017-05-19 18:25:44'),
+(572, 1, 64, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(573, 1, 65, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(574, 1, 66, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(575, 1, 67, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(576, 1, 68, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(577, 1, 69, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(578, 1, 70, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(579, 1, 71, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(580, 1, 72, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(581, 1, 73, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(582, 1, 74, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(583, 1, 75, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(584, 1, 76, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(585, 1, 77, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(586, 1, 78, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(587, 1, 79, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(588, 1, 80, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(589, 1, 81, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(590, 1, 82, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(591, 1, 83, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(592, 1, 84, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(593, 1, 85, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(594, 1, 86, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(595, 1, 87, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(596, 1, 88, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(597, 1, 89, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(598, 1, 90, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(599, 1, 91, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(600, 1, 92, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(601, 1, 93, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(602, 1, 94, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(603, 1, 95, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(604, 1, 96, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(605, 1, 97, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(606, 1, 98, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(607, 1, 99, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(608, 1, 100, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(609, 1, 101, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(610, 1, 102, '2017-05-19 18:25:45', '2017-05-19 18:25:45'),
+(719, 2, 1, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(720, 2, 2, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(721, 2, 3, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(722, 2, 4, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(723, 2, 5, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(724, 2, 6, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(725, 2, 16, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(726, 2, 17, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(727, 2, 30, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(728, 2, 31, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(729, 2, 32, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(730, 2, 33, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(731, 2, 61, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(732, 2, 62, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(733, 2, 63, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(734, 2, 64, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(735, 2, 65, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(736, 2, 66, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(737, 2, 67, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(738, 2, 68, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(739, 2, 69, '2017-05-19 18:34:33', '2017-05-19 18:34:33'),
+(740, 2, 70, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(741, 2, 71, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(742, 2, 72, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(743, 2, 73, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(744, 2, 74, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(745, 2, 75, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(746, 2, 76, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(747, 2, 77, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(748, 2, 78, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(749, 2, 79, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(750, 2, 80, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(751, 2, 81, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(752, 2, 82, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(753, 2, 83, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(754, 2, 84, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(755, 2, 85, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(756, 2, 86, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(757, 2, 87, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(758, 2, 88, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(759, 2, 89, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(760, 2, 90, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(761, 2, 91, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(762, 2, 92, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(763, 2, 93, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(764, 2, 94, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(765, 2, 95, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(766, 2, 96, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(767, 2, 97, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(768, 2, 98, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(769, 2, 99, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(770, 2, 100, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(771, 2, 101, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(772, 2, 102, '2017-05-19 18:34:34', '2017-05-19 18:34:34'),
+(863, 4, 7, '2017-05-19 18:38:17', '2017-05-19 18:38:17'),
+(864, 4, 8, '2017-05-19 18:38:17', '2017-05-19 18:38:17'),
+(865, 4, 9, '2017-05-19 18:38:17', '2017-05-19 18:38:17'),
+(866, 4, 10, '2017-05-19 18:38:17', '2017-05-19 18:38:17'),
+(867, 4, 11, '2017-05-19 18:38:17', '2017-05-19 18:38:17'),
+(868, 4, 12, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(869, 4, 13, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(870, 4, 14, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(871, 4, 15, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(872, 4, 34, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(873, 4, 35, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(874, 4, 36, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(875, 4, 37, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(876, 4, 38, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(877, 4, 39, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(878, 4, 40, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(879, 4, 41, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(880, 4, 42, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(881, 4, 49, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(882, 4, 50, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(883, 4, 51, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(884, 4, 52, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(885, 4, 53, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(886, 4, 54, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(887, 4, 55, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(888, 4, 56, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(889, 4, 57, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(890, 4, 58, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(891, 4, 59, '2017-05-19 18:38:18', '2017-05-19 18:38:18'),
+(892, 4, 60, '2017-05-19 18:38:18', '2017-05-19 18:38:18');
 
 -- --------------------------------------------------------
 
@@ -1478,7 +1670,8 @@ INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`)
 (179, 1, 'tKhufJfgecAKrGEAT2EBaEPLaf517QVS', '2017-11-25 09:08:54', '2017-11-25 09:08:54'),
 (180, 1, 't3XDlldaLWhVaxrPuwM6dT02mMflr87j', '2017-11-25 19:53:59', '2017-11-25 19:53:59'),
 (182, 1, 'fM0W9o41fDgCiycVxhvQeJ02Opj3tULU', '2017-11-25 21:10:55', '2017-11-25 21:10:55'),
-(184, 1, 'EMmXbaWTDFtG4QX9UfVNcK7eUBsy7nmJ', '2017-11-25 21:32:34', '2017-11-25 21:32:34');
+(184, 1, 'EMmXbaWTDFtG4QX9UfVNcK7eUBsy7nmJ', '2017-11-25 21:32:34', '2017-11-25 21:32:34'),
+(185, 1, 'r6cxynGaM90IU8uZA7aJFjox941jTivP', '2017-11-26 05:12:26', '2017-11-26 05:12:26');
 
 -- --------------------------------------------------------
 
@@ -1518,10 +1711,10 @@ INSERT INTO `photo` (`id`, `fullname`, `alias`, `album_id`, `image`, `status`, `
 DROP TABLE IF EXISTS `privilege`;
 CREATE TABLE `privilege` (
   `id` int(11) NOT NULL,
-  `fullname` text NOT NULL,
+  `name` text NOT NULL,
   `controller` varchar(45) NOT NULL,
   `action` varchar(45) NOT NULL,
-  `sort_order` int(11) NOT NULL,
+  `privilege_order` int(11) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1530,7 +1723,7 @@ CREATE TABLE `privilege` (
 -- Đang đổ dữ liệu cho bảng `privilege`
 --
 
-INSERT INTO `privilege` (`id`, `fullname`, `controller`, `action`, `sort_order`, `created_at`, `updated_at`) VALUES
+INSERT INTO `privilege` (`id`, `name`, `controller`, `action`, `privilege_order`, `created_at`, `updated_at`) VALUES
 (1, 'category-article-list', 'category-article', 'list', 1, '2017-05-18 06:49:30', '2017-05-19 17:26:33'),
 (2, 'category-article-form', 'category-article', 'form', 1, '2017-05-18 06:50:32', '2017-05-19 17:26:44'),
 (3, 'category-article-trash', 'category-article', 'trash', 1, '2017-05-18 06:51:27', '2017-05-19 17:26:54'),
@@ -1622,7 +1815,7 @@ INSERT INTO `privilege` (`id`, `fullname`, `controller`, `action`, `sort_order`,
 (89, 'customer-status', 'customer', 'status', 15, '2017-05-19 18:17:38', '2017-05-19 18:17:38'),
 (90, 'customer-ordering', 'customer', 'ordering', 15, '2017-05-19 18:17:51', '2017-05-19 18:17:51'),
 (91, 'album-list', 'album', 'list', 16, '2017-05-19 18:19:21', '2017-05-19 18:19:21'),
-(92, 'album-form', 'album', 'form', 16, '2017-05-19 18:19:54', '2017-10-08 16:46:24'),
+(92, 'album-form', 'album', 'form', 16, '2017-05-19 18:19:54', '2017-05-19 18:19:54'),
 (93, 'album-trash', 'album', 'trash', 16, '2017-05-19 18:20:10', '2017-05-19 18:20:10'),
 (94, 'album-delete', 'album', 'delete', 16, '2017-05-19 18:20:34', '2017-05-19 18:20:34'),
 (95, 'album-status', 'album', 'status', 16, '2017-05-19 18:21:08', '2017-05-19 18:21:08'),
@@ -1667,7 +1860,7 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`id`, `code`, `fullname`, `title`, `meta_keyword`, `meta_description`, `alias`, `image`, `status`, `child_image`, `price`, `sale_price`, `intro`, `detail`, `sort_order`, `created_at`, `updated_at`) VALUES
 (7, '123456789', 'Sofa 1', NULL, NULL, NULL, 'sofa-1', 'sofa-1.png', 1, '[\"sofa-2.png\",\"sofa-3.png\",\"sofa-4.png\",\"sofa-5.png\",\"sofa-6.png\"]', '5000000.00', '4000000.00', 'Trung vệ của Chelsea gây khó hiểu khi khựng người lại, để El Shaarawy thoát xuống và ghi bàn ở Champions League tối 31/10.', '<p style=\"text-align:justify\">&ldquo;B&agrave;n thua thứ hai thật thiếu may mắn với ch&uacute;ng t&ocirc;i&rdquo;, Thibaut Courtois giải th&iacute;ch sau thất bại 0-3 ở lượt trận thứ tư. &ldquo;Đ&oacute; l&agrave; t&igrave;nh huống b&oacute;ng d&agrave;i. T&ocirc;i thấy El Shaarawy ở đằng sau Antonio Rudiger n&ecirc;n h&eacute;t l&ecirc;n: &lsquo;Away&rsquo;. C&oacute; thể anh ấy đ&atilde; hiểu theo nghĩa kh&aacute;c. Kh&ocirc;ng kh&iacute; tr&ecirc;n s&acirc;n l&uacute;c đ&oacute; rất ồn. Anh ấy để b&oacute;ng nảy qua trước mặt. El Shaarawy th&igrave; nhanh nhẹn đ&oacute;n b&oacute;ng v&agrave; ghi b&agrave;n&rdquo;.<br />\nTheo ng&ocirc;n ngữ thủ m&ocirc;n, &ldquo;away&rdquo; được d&ugrave;ng để cảnh b&aacute;o hậu vệ rằng thủ m&ocirc;n kh&ocirc;ng lao ra đ&oacute;n b&oacute;ng v&agrave; hậu vệ phải t&igrave;m c&aacute;ch ph&aacute;. T&acirc;n binh của Chelsea c&oacute; vẻ như đ&atilde; kh&ocirc;ng ch&uacute; &yacute; tới El Shaarawy từ đường chuyền d&agrave;i của Radja Nainggolan, v&agrave; nghĩ đồng đội bảo &quot;Tr&aacute;nh ra&quot;. Anh v&igrave; vậy khựng người lại, t&iacute;nh thả b&oacute;ng tr&ocirc;i qua cho Courtois. Nhưng từ ph&iacute;a sau, El Shaarawy đ&atilde; chớp thời cơ, ch&iacute;ch b&oacute;ng v&agrave;o lưới đ&aacute;nh dấu c&uacute; đ&uacute;p của anh trận n&agrave;y.</p>\n\n<p style=\"text-align:justify\">Trước đ&oacute;, ngay ph&uacute;t đầu ti&ecirc;n, El Shaarawy đ&atilde; chọc thủng lưới Chelsea. Sang hiệp hai đội kh&aacute;ch c&oacute; nhiều điều chỉnh về nh&acirc;n sự nhưng cũng kh&ocirc;ng thể cải thiện được t&igrave;nh h&igrave;nh. Ph&uacute;t 63 họ nhận b&agrave;n thua thứ ba, từ Diego Perotti. &ldquo;T&ocirc;i kh&ocirc;ng biết v&igrave; sao ch&uacute;ng t&ocirc;i đ&aacute;nh mất tinh thần chiến đấu trong hiệp hai&rdquo;, Courtois n&oacute;i. &ldquo;Điều đ&oacute; kh&ocirc;ng thể xảy ra khi ch&uacute;ng t&ocirc;i c&oacute; trận quan trọng v&agrave;o Chủ nhật tới. Ch&uacute;ng t&ocirc;i phải chứng minh cho người h&acirc;m mộ rằng đ&acirc;y chỉ l&agrave; tai nạn&rdquo;.</p>\n\n<p style=\"text-align:justify\">Thua trận nhưng Chelsea vẫn c&oacute; quyền tự quyết tại Champions League. Họ chỉ cần đoạt th&ecirc;m ba điểm để gi&agrave;nh v&eacute; v&agrave;o v&ograve;ng 1/8, trong đ&oacute; c&oacute; trận đấu được xem l&agrave; dễ thở gặp Qarabag, đại diện của Azerbaijan. V&agrave;o cuối tuần, nh&agrave; đương v&ocirc; địch Ngoại hạng Anh đ&oacute;n tiếp Man Utd trong trận cầu được v&iacute; như &quot;Super Sunday&quot;.</p>\n\n<p style=\"text-align:justify\">&ldquo;Ch&uacute;ng t&ocirc;i phải chơi hăng m&aacute;u hơn khi gặp Man Utd. M&ugrave;a trước, c&oacute; trận t&ocirc;i kh&ocirc;ng phải hoạt động, nhưng cũng c&oacute; trận l&agrave;m việc vất vả. H&ocirc;m nay Chelsea để lại h&igrave;nh ảnh tồi tệ, v&agrave; ch&uacute;ng t&ocirc;i phải nhanh ch&oacute;ng gượng dậy&rdquo;, thủ m&ocirc;n 25 tuổi nhấn mạnh.</p>', 1, '2017-11-13 18:51:54', '2017-11-16 07:45:10'),
-(8, '123456781', 'Sofa 2', NULL, NULL, NULL, 'sofa-2', 'sofa-2.png', 1, NULL, '5000000.00', '4000000.00', 'đang cập nhật...', '<p>đang cập nhật...</p>', 2, '2017-11-14 07:41:35', '2017-11-22 08:10:39'),
+(8, '123456781', 'Sofa 2', '', '', '', 'sofa-2', 'category-product-6.png', 1, '[\"category-product-1.png\",\"category-product-2.png\",\"category-product-3.png\"]', '5000000.00', '4000000.00', 'đang cập nhật...', '<p>đang cập nhật...</p>', 2, '2017-11-14 07:41:35', '2017-11-26 12:16:28'),
 (9, '123456782', 'Sofa 3', NULL, NULL, NULL, 'sofa-3', 'sofa-3.png', 1, NULL, '5000000.00', '4000000.00', 'đang cập nhật...', '<p>đang cập nhật...</p>', 3, '2017-11-14 07:42:26', '2017-11-14 07:42:26'),
 (10, '1234567894', 'Sofa 4', NULL, NULL, NULL, 'sofa-4', 'sofa-4.png', 1, NULL, '5000000.00', '4000000.00', 'đang cập nhật', '<p>đang cập nhật...</p>', 4, '2017-11-14 07:43:14', '2017-11-22 08:10:39'),
 (11, '123456785', 'Sofa 5', NULL, NULL, NULL, 'sofa-5', 'sofa-5.png', 1, NULL, '5000000.00', '4000000.00', 'đang cập nhật', '<p>đang cập nhật</p>', 5, '2017-11-14 07:46:55', '2017-11-14 07:46:55'),
@@ -2180,7 +2373,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `group_member_id`, `password`, `permissions`, `last_login`, `fullname`, `image`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$rpZe6oM3GUJmwL/ZMTKm/OSe24l9TJKFU9lwd8VmohkqH0Oax6rVK', NULL, '2017-11-25 21:57:28', 'Nguyễn Kim Điền', 'diennk.png', 1, 1, '2017-11-12 07:23:56', '2017-11-25 21:57:28'),
+(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$rpZe6oM3GUJmwL/ZMTKm/OSe24l9TJKFU9lwd8VmohkqH0Oax6rVK', NULL, '2017-11-26 05:12:26', 'Nguyễn Kim Điền', 'diennk.png', 1, 1, '2017-11-12 07:23:56', '2017-11-26 05:12:26'),
 (6, 'nhatanh', 'nhatanh@gmail.com', 1, '$2y$10$Q2CEar0988JeBIZYolojj..YQ/gno8rDlcneMyZqmlEFWCPx/ffbS', NULL, '2017-11-25 21:58:19', 'Nhật Anh', NULL, 2, 1, '2017-11-15 09:45:46', '2017-11-25 21:58:19');
 
 --
@@ -2386,7 +2579,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `activations`
 --
 ALTER TABLE `activations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT cho bảng `album`
 --
@@ -2431,7 +2624,7 @@ ALTER TABLE `group_member`
 -- AUTO_INCREMENT cho bảng `group_privilege`
 --
 ALTER TABLE `group_privilege`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=893;
 --
 -- AUTO_INCREMENT cho bảng `invoice`
 --
@@ -2486,7 +2679,7 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT cho bảng `persistences`
 --
 ALTER TABLE `persistences`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=190;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
 --
 -- AUTO_INCREMENT cho bảng `photo`
 --
@@ -2531,7 +2724,7 @@ ALTER TABLE `throttle`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;COMMIT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
