@@ -90,7 +90,15 @@ function menuTypeConverter($data=array(),$controller){
     if( count($data) > 0){
         for($i = 0 ;$i < count($data);$i++){
             $edited='<center><a href="'.route('admin.'.$controller.'.getForm',['edit',$data[$i]['id']]).'"><img src="'.asset("/public/admin/images/edit-icon.png").'" /></a></center>';
-            $deleted='<center><a href="javascript:void(0)" onclick="deleteItem('.$data[$i]["id"].')"><img src="'.asset("/public/admin/images/delete-icon.png").'" /></a></center>';            
+            $deleted='<center><a href="javascript:void(0)" onclick="deleteItem('.$data[$i]["id"].')"><img src="'.asset("/public/admin/images/delete-icon.png").'" /></a></center>'; 
+            $kicked=0;
+            if((int)$data[$i]["status"]==1){
+                $kicked=0;
+            }
+            else{
+                $kicked=1;
+            }
+            $status     = '<center>'.cmsStatus((int)$data[$i]["id"],(int)$data[$i]["status"],$kicked).'</center>';           
             $entranced='<center><a href="'.route('admin.menu.getList',[$data[$i]['id']]).'"><img src="'.asset("/public/admin/images/entrance.png").'" /></a></center>';
             $sort_order = '<center><input name="sort_order" id="sort-order-'.$data[$i]["id"].'" sort_order_id="'.$data[$i]["id"].'" onkeyup="setSortOrder(this)" value="'.$data[$i]["sort_order"].'" size="3" style="text-align:center" /></center>';        
             $fullname =$data[$i]["fullname"];
@@ -101,10 +109,11 @@ function menuTypeConverter($data=array(),$controller){
                 "id"                       =>   $data[$i]["id"],
                 "fullname"                 =>   $fullname,
                 "theme_location"                 =>   $data[$i]["theme_location"],                                
-                "sort_order"               =>   $sort_order,                
+                "sort_order"               =>   $sort_order,                               
                 "created_at"               =>   datetimeConverterVn($data[$i]["created_at"]),
                 "updated_at"               =>   datetimeConverterVn($data[$i]["updated_at"]),
                 "entranced"                =>   $entranced,
+                "status"                   =>   $status,
                 "edited"                   =>   $edited,
                 "deleted"                  =>   $deleted                
             );

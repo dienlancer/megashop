@@ -7,8 +7,11 @@ $linkLoadData		=	route('admin.'.$controller.'.loadData');
 $linkDelete			=	route('admin.'.$controller.'.deleteItem');
 $linkTrash			=	route('admin.'.$controller.'.trash');
 $linkSortOrder		=	route('admin.'.$controller.'.sortOrder');
+$linkChangeStatus	=	route('admin.'.$controller.'.changeStatus');
+$linkUpdateStatus	=	route('admin.'.$controller.'.updateStatus');
 ?>
-<form class="form-horizontal" role="form">	
+<form class="form-horizontal" role="form" name="frm">	
+	{{ csrf_field() }}
 	<div class="portlet light bordered">
 		<div class="portlet-title">
 			<div class="alert alert-success" id="alert" style="display: none">
@@ -22,12 +25,13 @@ $linkSortOrder		=	route('admin.'.$controller.'.sortOrder');
 				<div class="table-toolbar">
 					<div class="row">
 						<div class="col-md-12">						
-							<a href="<?php echo $linkNew; ?>" class="btn green">Thêm mới <i class="fa fa-plus"></i></a> 							
+							<a href="<?php echo $linkNew; ?>" class="btn green">Thêm mới <i class="fa fa-plus"></i></a> 
+							<a href="javascript:void(0)" onclick="updateStatus(1)" class="btn blue">Hiển thị <i class="fa fa-eye"></i></a> 
+							<a href="javascript:void(0)" onclick="updateStatus(0)" class="btn yellow">Ẩn <i class="fa fa-eye-slash"></i></a> 
 							<a href="javascript:void(0)" onclick="sort()" class="btn grey-cascade">Sắp xếp <i class="fa fa-sort"></i></a> 
-							<a href="javascript:void(0)" onclick="trash()" class="btn red">Trash <i class="fa fa-trash"></i></a> 	
-							{{ csrf_field() }}    		
-							<input type="hidden" name="sort_json" id="sort_json" value="" />	
-						</div>                                                
+							<a href="javascript:void(0)" onclick="trash()" class="btn red">Xóa <i class="fa fa-trash"></i></a> 	
+							
+						</div>                                               
 					</div>
 				</div>    
 			</div>                                 
@@ -38,11 +42,12 @@ $linkSortOrder		=	route('admin.'.$controller.'.sortOrder');
 					<tr>
 						<th width="1%"><input type="checkbox" onclick="checkAllAgent(this)"  name="checkall-toggle"></th>                
 						<th>Loại menu</th>	
-						<th>Vị trí trong theme</th>					
+						<th>Vị trí trong theme</th>										
 						<th width="10%">Sắp xếp</th>
-						<th width="1%">Menu</th>							
+						<th width="1%">Menu</th>
+						<th width="10%">Trạng thái</th>							
 						<th width="1%">Sửa</th>  
-						<th width="1%">Xóa</th>                       
+						<th width="1%">Xóa</th>                     
 					</tr>
 				</thead>
 				<tbody>                                                
@@ -85,8 +90,61 @@ $linkSortOrder		=	route('admin.'.$controller.'.sortOrder');
 		}
 		vMenuTypeTable.row( $(this_checkbox).closest('tr') ).data(dr);
 	}	
-	
-	
+	function updateStatus(status){		
+		var token 	= 	$('input[name="_token"]').val();   
+		var dt 		= 	vMenuTypeTable.data();
+		var str_id	=	"";		
+		for(var i=0;i<dt.length;i++){
+			var dr=dt[i];
+			if(dr.is_checked==1){
+				str_id +=dr.id+",";	            
+			}
+		}
+		var dataItem ={   
+			'str_id':str_id,
+			'status':status,			
+			'_token': token
+		};
+		$.ajax({
+			url: '<?php echo $linkUpdateStatus; ?>',
+			type: 'POST', 
+			             
+			data: dataItem,
+			success: function (data, status, jqXHR) {   							                              				
+				showMsg('alert',data.msg,data.type_msg);               		
+				vMenuTypeTable.clear().draw();
+				vMenuTypeTable.rows.add(data.data).draw();
+				spinner.hide();
+			},
+			beforeSend  : function(jqXHR,setting){
+				spinner.show();
+			},
+		});
+		$("input[name='checkall-toggle']").prop("checked",false);		
+	}
+	function changeStatus(id,status){		
+		var token = $('input[name="_token"]').val();   
+		var dataItem={   
+			'id':id,
+			'status':status,         
+			'_token': token
+		};
+		$.ajax({
+			url: '<?php echo $linkChangeStatus; ?>',
+			type: 'POST',     
+			data: dataItem,
+			success: function (data, status, jqXHR) {   							                              				
+				showMsg('alert',data.msg,data.type_msg);               		
+				vMenuTypeTable.clear().draw();
+				vMenuTypeTable.rows.add(data.data).draw();
+				spinner.hide();
+			},
+			beforeSend  : function(jqXHR,setting){
+				spinner.show();
+			},
+		});		
+		$("input[name='checkall-toggle']").prop("checked",false);
+	}
 	function deleteItem(id){		
 		var xac_nhan = 0;
 		var msg="Bạn có muốn xóa ?";

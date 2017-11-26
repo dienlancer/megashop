@@ -5,6 +5,9 @@ $linkCancel             =   route('admin.'.$controller.'.getList');
 $linkSave               =   route('admin.'.$controller.'.save');
 $inputFullName          =   '<input type="text" class="form-control" name="fullname"   id="fullname"       value="'.@$arrRowData['fullname'].'">'; 
 $inputThemeLocation          =   '<input type="text" class="form-control" name="theme_location"   id="theme_location"       value="'.@$arrRowData['theme_location'].'">'; 
+$status                 =   (count($arrRowData) > 0) ? (int)@$arrRowData['status'] : 1 ;
+$arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
+$ddlStatus              =   cmsSelectbox("status","status","form-control",$arrStatus,$status,"");
 $inputSortOrder         =   '<input type="text" class="form-control" name="sort_order" id="sort_order"     value="'.@$arrRowData['sort_order'].'">';
 $id                     =   (count($arrRowData) > 0) ? @$arrRowData['id'] : "" ;
 $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$id.'" />'; 
@@ -52,7 +55,13 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                             <span class="help-block"></span>
                         </div>
                     </div>   
-                    <div class="form-group col-md-6"></div>
+                    <div class="form-group col-md-6">
+                        <label class="col-md-3 control-label"><b>Trạng thái</b></label>
+                        <div class="col-md-9">
+                            <?php echo $ddlStatus; ?>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
                 </div>                                                                     
             </div>  
             <div class="form-actions noborder">
@@ -80,14 +89,16 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
     function save(){
         var id=$("#id").val();        
         var fullname=$("#fullname").val(); 
-        var theme_location=$("#theme_location").val();                
+        var theme_location=$("#theme_location").val();  
+        var status=$("#status").val();                   
         var sort_order=$("#sort_order").val();        
         var token = $('input[name="_token"]').val();   
         resetErrorStatus();
         var dataItem={
             "id":id,
             "fullname":fullname,   
-            "theme_location":theme_location,         
+            "theme_location":theme_location,    
+            "status":status,     
             "sort_order":sort_order,            
             "_token": token
         };

@@ -45,12 +45,15 @@ function getStringCategoryID($category_id,&$arrCategoryID,$model){
 }
 function wp_nav_menu($args){
   $theme_location=$args['theme_location'];
-  $data_menu_type=MenuTypeModel::whereRaw("trim(lower(theme_location)) = ?",[trim(mb_strtolower($theme_location))])->select('id','fullname')->get()->toArray()[0];
-  $data_menu=MenuModel::whereRaw('menu_type_id = ?',[(int)@$data_menu_type['id']])->orderBy('sort_order','asc')->get()->toArray();    
+  $data_menu_type=MenuTypeModel::whereRaw("trim(lower(theme_location)) = ? and status = 1",[trim(mb_strtolower($theme_location))])->select('id','fullname')->get()->toArray();
   $arr_menu=array();  
   $menu_str              =  "";      
   $lanDau                =  0;  
   $wrapper='';  
+  if(count($data_menu_type) > 0){
+    $data_menu_type=@$data_menu_type[0];
+    $data_menu=MenuModel::whereRaw('menu_type_id = ? and status = 1',[(int)@$data_menu_type['id']])->orderBy('sort_order','asc')->get()->toArray();    
+  
   if(count($data_menu) > 0){
     for ($i=0;$i<count($data_menu);$i++) {
       $menu=array();
@@ -96,6 +99,7 @@ function wp_nav_menu($args){
       $wrapper=$menu_str;
     }
   }    
+  }  
   echo $wrapper;
 }
 function mooMenuRecursive($source,$parent,&$menu_str,&$lanDau,$url,$alias,$menu_id,$menu_class,$menu_li_actived,$menu_item_has_children,$link_before,$link_after){

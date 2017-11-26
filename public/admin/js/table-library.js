@@ -112,6 +112,7 @@ var basicTable = function () {
                 { data: "theme_location"      },               
                 { data: "sort_order"    },                                                
                 { data: "entranced"    },
+                { data: "status"    }, 
                 { data: "edited"    },         
                 { data: "deleted"    },                
             ]

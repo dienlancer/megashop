@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 26, 2017 lúc 05:57 PM
+-- Thời gian đã tạo: Th10 26, 2017 lúc 06:33 PM
 -- Phiên bản máy phục vụ: 10.1.22-MariaDB
 -- Phiên bản PHP: 7.1.4
 
@@ -463,6 +463,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getMenuType` (IN `keyword` VARC
 	,n.id
 	,n.fullname
 	,n.theme_location
+	,n.status
 	,n.sort_order
 	,n.created_at
 	,n.updated_at
@@ -474,6 +475,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getMenuType` (IN `keyword` VARC
     n.id
 	,n.fullname
 	,n.theme_location
+	,n.status
 	,n.sort_order
 	,n.created_at
 	,n.updated_at
@@ -1280,7 +1282,7 @@ INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `lev
 (6, 'Giới thiệu', 'gioi-thieu', 0, 1, 0, 2, 1, '2017-11-13 04:36:20', '2017-11-26 02:56:17'),
 (9, 'Phòng khách', 'phong-khach', 75, 1, 1, 1, 1, '2017-11-13 04:37:45', '2017-11-26 02:57:38'),
 (10, 'Phòng ngủ', 'phong-phu', 75, 1, 1, 2, 1, '2017-11-13 04:38:12', '2017-11-26 02:57:45'),
-(11, 'Sofa', 'sofa', 75, 1, 1, 3, 1, '2017-11-13 04:38:44', '2017-11-26 02:57:50'),
+(11, 'Sofa', 'sofa', 75, 1, 1, 3, 1, '2017-11-13 04:38:44', '2017-11-26 17:05:53'),
 (12, 'Phòng bếp', 'phong-bep', 75, 1, 1, 4, 1, '2017-11-13 04:39:09', '2017-11-26 02:57:56'),
 (13, 'Phòng trẻ em', 'phong-tre-em', 75, 1, 1, 5, 1, '2017-11-13 04:39:34', '2017-11-26 02:58:01'),
 (14, 'Phòng khách', 'phong-khach', 0, 2, 0, 1, 1, '2017-11-13 18:18:44', '2017-11-13 18:18:44'),
@@ -1352,6 +1354,7 @@ CREATE TABLE `menu_type` (
   `id` int(11) NOT NULL,
   `fullname` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `theme_location` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
   `sort_order` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL
@@ -1361,16 +1364,16 @@ CREATE TABLE `menu_type` (
 -- Đang đổ dữ liệu cho bảng `menu_type`
 --
 
-INSERT INTO `menu_type` (`id`, `fullname`, `theme_location`, `sort_order`, `created_at`, `updated_at`) VALUES
-(1, 'MainMenu', 'main-menu', 1, '2017-11-13 04:27:56', '2017-11-13 04:55:08'),
-(2, 'CategoryProductHome', 'category-product-home', 2, '2017-11-13 18:14:33', '2017-11-14 18:21:19'),
-(3, 'MenuBottomContent', 'menu-bottom-content', 3, '2017-11-14 17:48:19', '2017-11-14 18:21:19'),
-(4, 'Hỗ trợ', 'support', 4, '2017-11-14 18:12:18', '2017-11-14 18:21:19'),
-(5, 'Hướng dẫn mua hàng', 'direction', 5, '2017-11-14 18:14:44', '2017-11-14 18:21:19'),
-(6, 'Chính sách thanh toán', 'policy', 6, '2017-11-14 18:16:57', '2017-11-14 18:21:19'),
-(7, 'Tại sao chọn chúng tôi', 'about-us', 7, '2017-11-14 18:18:49', '2017-11-14 18:21:19'),
-(8, 'Danh mục bài viết', 'category-article', 8, '2017-11-15 04:13:57', '2017-11-15 04:28:27'),
-(9, 'Danh mục sản phẩm', 'category-product', 9, '2017-11-15 17:55:23', '2017-11-15 18:16:43');
+INSERT INTO `menu_type` (`id`, `fullname`, `theme_location`, `status`, `sort_order`, `created_at`, `updated_at`) VALUES
+(1, 'MainMenu', 'main-menu', 1, 1, '2017-11-13 04:27:56', '2017-11-13 04:55:08'),
+(2, 'CategoryProductHome', 'category-product-home', 1, 2, '2017-11-13 18:14:33', '2017-11-26 17:32:35'),
+(3, 'MenuBottomContent', 'menu-bottom-content', 1, 3, '2017-11-14 17:48:19', '2017-11-26 17:23:07'),
+(4, 'Hỗ trợ', 'support', 1, 4, '2017-11-14 18:12:18', '2017-11-26 17:26:59'),
+(5, 'Hướng dẫn mua hàng', 'direction', 1, 5, '2017-11-14 18:14:44', '2017-11-26 17:32:35'),
+(6, 'Chính sách thanh toán', 'policy', 1, 6, '2017-11-14 18:16:57', '2017-11-26 17:32:56'),
+(7, 'Tại sao chọn chúng tôi', 'about-us', 1, 7, '2017-11-14 18:18:49', '2017-11-14 18:21:19'),
+(8, 'Danh mục bài viết', 'category-article', 1, 8, '2017-11-15 04:13:57', '2017-11-26 17:32:57'),
+(9, 'Danh mục sản phẩm', 'category-product', 1, 9, '2017-11-15 17:55:23', '2017-11-15 18:16:43');
 
 -- --------------------------------------------------------
 
@@ -2534,7 +2537,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT cho bảng `menu_type`
 --
 ALTER TABLE `menu_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT cho bảng `migrations`
 --

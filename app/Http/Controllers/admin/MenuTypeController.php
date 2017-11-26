@@ -58,6 +58,7 @@ class MenuTypeController extends Controller {
         $id 					       =	trim($request->id)	;        
         $fullname 				   =	trim($request->fullname)	;  
         $theme_location            =  trim($request->theme_location)  ;  
+        $status                  =  trim($request->status);
         $sort_order 			   =	trim($request->sort_order);
         $data 		= array();
         $info 		= array();
@@ -103,6 +104,7 @@ class MenuTypeController extends Controller {
               }  
               $item->fullname 		  =	$fullname;
               $item->theme_location       = $theme_location;
+              $item->status       = (int)$status;   
               $item->sort_order 		=	(int)$sort_order;  
               $item->updated_at 		=	date("Y-m-d H:i:s",time());    	        	
               $item->save();  	
