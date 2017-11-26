@@ -44,33 +44,32 @@ function getStringCategoryID($category_id,&$arrCategoryID,$model){
     }          
 }
 function wp_nav_menu($args){
-    $theme_location=$args['theme_location'];
-    $data_menu_type=MenuTypeModel::whereRaw("trim(lower(theme_location)) = ?",[trim(mb_strtolower($theme_location))])->select('id','fullname')->get()->toArray()[0];
-    $data_menu=MenuModel::whereRaw('menu_type_id = ?',[(int)@$data_menu_type['id']])->orderBy('sort_order','asc')->get()->toArray();    
-    $arr_menu=array();  
-    if(count($data_menu) > 0){
-        for ($i=0;$i<count($data_menu);$i++) {
-            $menu=array();
-            $menu=$data_menu[$i];
-            $site_link='';
-            if(!empty( $data_menu[$i]["alias"] )){
-              $site_link='/'.$data_menu[$i]["alias"].".html";
-            }
-            $menu["site_link"] =$site_link;            
-            $data_child=MenuModel::whereRaw('parent_id = ?',[(int)$data_menu[$i]["id"]])->select('id')->get()->toArray();
-            if(count($data_child) > 0){
-              $menu["havechild"]=1;
-            }else{
-              $menu["havechild"]=0;
-            }
-            $arr_menu[]=$menu;
-        }
-    }    
-    $menu_str              =  "";      
-    $lanDau                =  0;    
+  $theme_location=$args['theme_location'];
+  $data_menu_type=MenuTypeModel::whereRaw("trim(lower(theme_location)) = ?",[trim(mb_strtolower($theme_location))])->select('id','fullname')->get()->toArray()[0];
+  $data_menu=MenuModel::whereRaw('menu_type_id = ?',[(int)@$data_menu_type['id']])->orderBy('sort_order','asc')->get()->toArray();    
+  $arr_menu=array();  
+  $menu_str              =  "";      
+  $lanDau                =  0;  
+  $wrapper='';  
+  if(count($data_menu) > 0){
+    for ($i=0;$i<count($data_menu);$i++) {
+      $menu=array();
+      $menu=$data_menu[$i];
+      $site_link='';
+      if(!empty( $data_menu[$i]["alias"] )){
+        $site_link='/'.$data_menu[$i]["alias"].".html";
+      }
+      $menu["site_link"] =$site_link;            
+      $data_child=MenuModel::whereRaw('parent_id = ?',[(int)$data_menu[$i]["id"]])->select('id')->get()->toArray();
+      if(count($data_child) > 0){
+        $menu["havechild"]=1;
+      }else{
+        $menu["havechild"]=0;
+      }
+      $arr_menu[]=$menu;
+    }
     mooMenuRecursive($arr_menu,0,$menu_str,$lanDau,url('/'),$args['alias'],$args['menu_id'],$args['menu_class'],$args['menu_li_actived'],$args['menu_item_has_children'],$args['link_before'],$args['link_after']);
-    $menu_str = str_replace('<ul></ul>', '', $menu_str);
-    $wrapper='';
+    $menu_str = str_replace('<ul></ul>', '', $menu_str);    
     if(!empty($args['before_wrapper'])){
       if(!empty($args['before_title'])){
         $wrapper=$args['before_wrapper'].$args['before_title'].$data_menu_type['fullname'].$args['after_title'].$args['before_wrapper_ul'].$menu_str.$args['after_wrapper_ul'].$args['after_wrapper'];
@@ -81,7 +80,8 @@ function wp_nav_menu($args){
     else{
       $wrapper=$menu_str;
     }
-    echo $wrapper;
+  }    
+  echo $wrapper;
 }
 function mooMenuRecursive($source,$parent,&$menu_str,&$lanDau,$url,$alias,$menu_id,$menu_class,$menu_li_actived,$menu_item_has_children,$link_before,$link_after){
     if(count($source) > 0){          
