@@ -362,7 +362,7 @@ class ArticleController extends Controller {
             return $info;
       }
       public function uploadFile(Request $request){           
-          $uploadDir = base_path() . DS ."resources".DS."upload";                 
+          $uploadDir = base_path() . DS ."upload";        
           $fileObj=$_FILES["image"];          
           $fileName="";
           if($fileObj['tmp_name'] != null){                

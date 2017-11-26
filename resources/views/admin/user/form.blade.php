@@ -3,6 +3,7 @@
 <?php 
 $linkCancel             =   route('admin.'.$controller.'.getList');
 $linkSave               =   route('admin.'.$controller.'.save');
+$linkUploadFile         =   route('admin.'.$controller.'.uploadFile');
 $str_disabled           =   "";
 if($task == "edit"){
     $str_disabled       =   "disabled";
@@ -19,6 +20,15 @@ $ddlGroupMember         =   cmsSelectboxCategory('group_member_id','group_member
 $inputSortOrder         =   '<input type="text" class="form-control" name="sort_order" id="sort_order"     value="'.@$arrRowData['sort_order'].'">';
 $id                     =   (count($arrRowData) > 0) ? @$arrRowData['id'] : "" ;
 $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$id.'" />'; 
+$picture                =   "";
+$strImage               =   "";
+if(count($arrRowData > 0)){
+    if(!empty(@$arrRowData["image"])){
+        $picture        =   '<div class="col-sm-6"><center>&nbsp;<img src="'.url("/upload/".@$arrRowData["image"]).'" style="width:100%" />&nbsp;</center></div><div class="col-sm-6"><a href="javascript:void(0);" onclick="deleteImage();"><img src="'.url('public/admin/images/delete-icon.png').'"/></a></div>';                        
+        $strImage       =   @$arrRowData["image"];
+    }        
+}   
+$inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_hidden" value="'.@$strImage.'" />';
 ?>
 <div class="portlet light bordered">
     <div class="portlet-title">
@@ -40,64 +50,81 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
         <form class="form-horizontal" role="form" enctype="multipart/form-data">
             <div class="form-body">
                 <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>Username</b></label>
-                        <div class="col-md-9">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-label"><b>Username</b></label>
+                        <div class="col-md-10">
                             <?php echo $inputUsername; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>   
-                    <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>Email</b></label>
-                        <div class="col-md-9">
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-label"><b>Email</b></label>
+                        <div class="col-md-10">
                             <?php echo $inputEmail; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>     
                 </div>      
                 <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>Password</b></label>
-                        <div class="col-md-9">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-label"><b>Password</b></label>
+                        <div class="col-md-10">
                             <?php echo $inputPassword; ?>
                             <span class="help-block"></span>
                         </div>
-                    </div>   
-                    <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>Xác nhận mật khẩu</b></label>
-                        <div class="col-md-9">
+                    </div>  
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-label"><b>Xác nhận mật khẩu</b></label>
+                        <div class="col-md-10">
                             <?php echo $inputConfirmPassword; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>     
                 </div>       
                 <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>Tên người dùng</b></label>
-                        <div class="col-md-9">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-label"><b>Tên người dùng</b></label>
+                        <div class="col-md-10">
                             <?php echo $inputFullName; ?>
                             <span class="help-block"></span>
                         </div>
-                    </div>   
-                    <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>Nhóm người dùng</b></label>
-                        <div class="col-md-9">                            
+                    </div> 
+                </div>
+                <div class="row">  
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-label"><b>Nhóm người dùng</b></label>
+                        <div class="col-md-10">                            
                             <?php echo $ddlGroupMember; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>     
                 </div> 
                 <div class="row">
-                    <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>Sắp xếp</b></label>
-                        <div class="col-md-9">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-label"><b>Hình</b></label>
+                        <div class="col-md-10">
+                            <input type="file" id="image" name="image"  />   
+                            <div id="picture-area"><?php echo $picture; ?>                      </div>
+                        </div>
+                    </div>     
+                </div>   
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-label"><b>Sắp xếp</b></label>
+                        <div class="col-md-10">
                             <?php echo $inputSortOrder; ?>
                             <span class="help-block"></span>
                         </div>
                     </div>   
-                    <div class="form-group col-md-6">
-                        <label class="col-md-3 control-label"><b>Trạng thái</b></label>
-                        <div class="col-md-9">
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="col-md-2 control-label"><b>Trạng thái</b></label>
+                        <div class="col-md-10">
                             <?php echo $ddlStatus; ?>
                             <span class="help-block"></span>
                         </div>                        
@@ -106,7 +133,6 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
             </div>  
             <div class="form-actions noborder">
                 {{ csrf_field() }}          
-               
                 <?php echo  $inputID; ?>                      
             </div>                  
         </form>
@@ -138,7 +164,32 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
         $(status).closest('.form-group').find('span').empty().hide();        
         $(sort_order).closest('.form-group').find('span').empty().hide();        
     }
-
+    function uploadFileImport(){    
+        var token = $('input[name="_token"]').val();       
+        var image=$("#image");        
+        var file_upload=$(image).get(0);
+        var files = file_upload.files;
+        var file  = files[0];    
+        var formdata = new FormData();
+        formdata.append("image", file);
+        formdata.append("_token", token);
+        var ajax = new XMLHttpRequest();        
+        ajax.addEventListener("load",  false);        
+        ajax.open("POST", "<?php echo $linkUploadFile; ?>");
+        ajax.send(formdata);    
+    }
+    function deleteImage(){
+        var xac_nhan = 0;
+        var msg="Bạn có muốn xóa ?";
+        if(window.confirm(msg)){ 
+            xac_nhan = 1;
+        }
+        if(xac_nhan  == 0){
+            return 0;
+        }
+        $("#picture-area").empty();
+        $("input[name='image_hidden']").val("");        
+    }
     function save(){
         var id=$("#id").val();        
         var username=$("#username").val();
@@ -147,6 +198,11 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
         var confirm_password=$("#confirm_password").val();
         var status=$("#status").val();
         var fullname=$("#fullname").val();
+        var image = $("#image").val();
+        if (image != ''){
+            image = image.substr(image.lastIndexOf('\\') + 1);       
+        }
+        var image_hidden=$("#image_hidden").val(); 
         var group_member_id=$("#group_member_id").val();        
         var sort_order=$("#sort_order").val();        
         var token = $('input[name="_token"]').val();   
@@ -159,6 +215,7 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
             "confirm_password":confirm_password,
             "status":status,            
             "fullname":fullname,
+            "image":image,
             "group_member_id":group_member_id,                        
             "sort_order":sort_order,            
             "_token": token
@@ -170,6 +227,7 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
             async: false,
             success: function (data) {
                 if(data.checked==true){
+                    uploadFileImport();
                     window.location.href = "<?php echo $linkCancel; ?>";
                 }else{
                     var data_error=data.error;

@@ -61,6 +61,8 @@ class UserController extends Controller {
           $confirm_password     =   trim(@$request->confirm_password);
           $status               =   trim(@$request->status);          
           $fullname 					  = 	trim(@$request->fullname);    
+          $image                =   trim(@$request->image);
+          $image_hidden         =   trim(@$request->image_hidden);
           $group_member_id      =   trim(@$request->group_member_id);                      
           $sort_order           =   trim(@$request->sort_order);                          
           $data 		            =   array();
@@ -163,7 +165,15 @@ class UserController extends Controller {
                       $item->password         = Hash::make(trim($password));
                     }                                
                     $item->status            = (int)$status;
-                    $item->fullname         = $fullname;                
+                    $item->fullname         = $fullname;   
+                    $file_image=null;                       
+                    if(!empty($image_hidden)){
+                      $file_image =$image_hidden;          
+                    }
+                    if(!empty($image))  {
+                      $file_image=$image;                                                
+                    }
+                    $item->image = $file_image ;                
                     if(!empty($group_member_id)){
                         $item->group_member_id            = (int)@$group_member_id;
                     }              
@@ -310,5 +320,14 @@ class UserController extends Controller {
             );
             return $info;
       }     
+      public function uploadFile(Request $request){           
+          $uploadDir = base_path() . DS ."upload";                 
+          $fileObj=$_FILES["image"];          
+          $fileName="";
+          if($fileObj['tmp_name'] != null){                
+            $fileName   = $fileObj['name'];
+            @copy($fileObj['tmp_name'], $uploadDir . DS . $fileName);                   
+          }   
+        }
 }
 ?>

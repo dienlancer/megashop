@@ -108,6 +108,7 @@ Route::group(["prefix"=>"admin","middleware"=>"TestLogin"],function(){
 		Route::post("update-status",["as"=>"admin.user.updateStatus","uses"=>"admin\UserController@updateStatus"]);
 		Route::post("change-status",["as"=>"admin.user.changeStatus","uses"=>"admin\UserController@changeStatus"]);
 		Route::post("trash",["as"=>"admin.user.trash","uses"=>"admin\UserController@trash"]);		
+		Route::post("upload-file",["as"=>"admin.user.uploadFile","uses"=>"admin\UserController@uploadFile"]);
 	});
 	Route::group(["prefix"=>"category-article"],function(){		
 		Route::match(["get","post"],"list",["as"=>"admin.category-article.getList","uses"=>"admin\CategoryArticleController@getList"]);	

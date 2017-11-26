@@ -335,7 +335,7 @@ class CategoryArticleController extends Controller {
       return redirect()->route("admin.".$this->_controller.".getList")->with(["message"=>array("type_msg"=>$type_msg,"msg"=>$msg)]); 
     }
     public function uploadFile(Request $request){           
-          $uploadDir = base_path() . DS ."resources".DS."upload";                 
+          $uploadDir = base_path() . DS ."upload";              
           $fileObj=$_FILES["image"];          
           $fileName="";
           if($fileObj['tmp_name'] != null){                

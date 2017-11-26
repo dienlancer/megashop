@@ -155,8 +155,16 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </a>                                
                             </li>
                             <li class="dropdown dropdown-user">
+                                <?php 
+                                $image='';
+                                if(!empty(Sentinel::getUser()->image)){
+                                    $image=asset('upload/'.Sentinel::getUser()->image);                                
+                                }else{
+                                    $image=asset('upload/avatar.png');                                
+                                }
+                                ?>
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img alt="" class="img-circle" src="{{asset('public/admin/assets/layouts/layout/img/avatar.png')}}" />
+                                    <img alt="" class="img-circle" src="<?php echo $image; ?>" />
                                     <span class="username username-hide-on-mobile">                                         
                                         <?php echo Sentinel::getUser()->username; ?>
                                     </span>
