@@ -28,9 +28,9 @@
         "files":[
                 "app/functions/data-converter.php",
                 "app/functions/datetime-converter.php",
-                "app/functions/cms-function.php",
-                "app/functions/custom-function.php",
+                "app/functions/cms-function.php",                
                 "app/functions/define-function.php",
+                "app/functions/common-function.php",
                 "app/functions/recursive-converter.php"
         ]
     },
