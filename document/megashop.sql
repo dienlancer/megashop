@@ -27,7 +27,7 @@ DELIMITER $$
 -- Thủ tục
 --
 DROP PROCEDURE IF EXISTS `pro_getArticle`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getArticle` (IN `keyword` VARCHAR(255), IN `strCategoryArticleID` VARCHAR(255))  begin
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getArticle` (IN `keyword` VARCHAR(255), IN `strCategoryArticleID` VARCHAR(255))  begin
 SELECT
     0 AS is_checked
     ,n.id
@@ -70,7 +70,7 @@ SELECT
 end$$
 
 DROP PROCEDURE IF EXISTS `pro_getArticleFrontend`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getArticleFrontend` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255))  SELECT
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getArticleFrontend` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255))  SELECT
     0 AS is_checked
     ,n.id
     ,n.fullname
@@ -87,7 +87,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getArticleFrontend` (IN `keywor
     ORDER BY n.sort_order ASC$$
 
 DROP PROCEDURE IF EXISTS `pro_getArticleFrontendLimit`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getArticleFrontendLimit` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getArticleFrontendLimit` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT
     0 AS is_checked
     ,n.id
     ,n.fullname
@@ -130,7 +130,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getArticleFrontendLimit` (IN `k
     LIMIT `position` , `totalItemsPerPage`$$
 
 DROP PROCEDURE IF EXISTS `pro_getBanner`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getBanner` (IN `keyword` VARCHAR(255) charset utf8)  BEGIN
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getBanner` (IN `keyword` VARCHAR(255) charset utf8)  BEGIN
 SELECT 
 	0 AS  is_checked
 	,n.id
@@ -156,7 +156,7 @@ SELECT
     END$$
 
 DROP PROCEDURE IF EXISTS `pro_getCategoryArticle`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getCategoryArticle` (IN `keyword` VARCHAR(255))  BEGIN	
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCategoryArticle` (IN `keyword` VARCHAR(255))  BEGIN	
     SELECT
     0 AS is_checked,
 	n.id,
@@ -190,7 +190,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getCategoryArticle` (IN `keywor
 END$$
 
 DROP PROCEDURE IF EXISTS `pro_getCategoryArticleLimit`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getCategoryArticleLimit` (IN `keyword` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT 
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCategoryArticleLimit` (IN `keyword` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT 
 	0 AS is_checked,
 	n.id,
 	n.fullname,
@@ -222,7 +222,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getCategoryArticleLimit` (IN `k
     LIMIT `position` , totalItemsPerPage$$
 
 DROP PROCEDURE IF EXISTS `pro_getCategoryProduct`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getCategoryProduct` (IN `keyword` VARCHAR(255) CHARSET utf8)  BEGIN
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCategoryProduct` (IN `keyword` VARCHAR(255) CHARSET utf8)  BEGIN
 SELECT
     0 AS is_checked,
 	n.id,
@@ -255,7 +255,7 @@ SELECT
 END$$
 
 DROP PROCEDURE IF EXISTS `pro_getCategoryProductLimit`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getCategoryProductLimit` (IN `keyword` VARCHAR(255) CHARSET utf8, IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT 
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCategoryProductLimit` (IN `keyword` VARCHAR(255) CHARSET utf8, IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT 
 	0 AS is_checked,
 	n.id,
 	n.fullname,
@@ -287,7 +287,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getCategoryProductLimit` (IN `k
     LIMIT `position` , totalItemsPerPage$$
 
 DROP PROCEDURE IF EXISTS `pro_getCustomer`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getCustomer` (IN `keyword` VARCHAR(255) CHARSET utf8)  NO SQL
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCustomer` (IN `keyword` VARCHAR(255) CHARSET utf8)  NO SQL
 SELECT
     0 AS is_checked,
 	n.id,
@@ -310,7 +310,7 @@ SELECT
     ORDER BY n.sort_order ASC$$
 
 DROP PROCEDURE IF EXISTS `pro_getGroupMember`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getGroupMember` (IN `keyword` VARCHAR(255))  NO SQL
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getGroupMember` (IN `keyword` VARCHAR(255))  NO SQL
 SELECT
 	0 as is_checked
 	,n.id
@@ -331,7 +331,7 @@ SELECT
     ORDER BY n.sort_order ASC$$
 
 DROP PROCEDURE IF EXISTS `pro_getInvoice`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getInvoice` (IN `keyword` VARCHAR(255) CHARSET utf8)  NO SQL
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getInvoice` (IN `keyword` VARCHAR(255) CHARSET utf8)  NO SQL
 SELECT
     0 AS is_checked,
 	n.id,
@@ -356,7 +356,7 @@ SELECT
     ORDER BY n.sort_order ASC$$
 
 DROP PROCEDURE IF EXISTS `pro_getMenu`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getMenu` (IN `keyword` VARCHAR(255), IN `menu_type_id` INT(11))  BEGIN
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getMenu` (IN `keyword` VARCHAR(255), IN `menu_type_id` INT(11))  BEGIN
 SELECT 
 0 AS is_checked
 	,n.id
@@ -392,7 +392,7 @@ SELECT
     END$$
 
 DROP PROCEDURE IF EXISTS `pro_getMenuLimit`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getMenuLimit` (IN `keyword` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11), IN `menu_type_id` INT(11))  SELECT 
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getMenuLimit` (IN `keyword` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11), IN `menu_type_id` INT(11))  SELECT 
 	0 AS is_checked,
 	n.id
 	,n.fullname
@@ -427,7 +427,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getMenuLimit` (IN `keyword` VAR
     LIMIT `position` , totalItemsPerPage$$
 
 DROP PROCEDURE IF EXISTS `pro_getMenuType`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getMenuType` (IN `keyword` VARCHAR(255))  BEGIN
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getMenuType` (IN `keyword` VARCHAR(255))  BEGIN
 	SELECT 
 	0 AS is_checked
 	,n.id
@@ -445,7 +445,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getMenuType` (IN `keyword` VARC
 END$$
 
 DROP PROCEDURE IF EXISTS `pro_getModuleItem`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getModuleItem` (IN `keyword` VARCHAR(255))  BEGIN
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getModuleItem` (IN `keyword` VARCHAR(255))  BEGIN
 SELECT 
 	0 AS  is_checked
 	,n.id
@@ -473,7 +473,7 @@ SELECT
     END$$
 
 DROP PROCEDURE IF EXISTS `pro_getPaymentMethod`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getPaymentMethod` (IN `keyword` VARCHAR(255) charset utf8)  BEGIN
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getPaymentMethod` (IN `keyword` VARCHAR(255) charset utf8)  BEGIN
 SELECT 
 	0 AS  is_checked
 	,n.id
@@ -499,7 +499,7 @@ SELECT
     END$$
 
 DROP PROCEDURE IF EXISTS `pro_getPrivilege`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getPrivilege` (IN `keyword` VARCHAR(255) CHARSET utf8)  NO SQL
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getPrivilege` (IN `keyword` VARCHAR(255) CHARSET utf8)  NO SQL
 SELECT
     0 AS is_checked,
 	n.id,
@@ -517,7 +517,7 @@ SELECT
     ORDER BY n.controller ASC , n.sort_order ASC$$
 
 DROP PROCEDURE IF EXISTS `pro_getProduct`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getProduct` (IN `keyword` VARCHAR(255), IN `strCategoryProductID` VARCHAR(255))  begin
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getProduct` (IN `keyword` VARCHAR(255), IN `strCategoryProductID` VARCHAR(255))  begin
 SELECT
     0 AS is_checked
     ,n.id
@@ -556,7 +556,7 @@ SELECT
 end$$
 
 DROP PROCEDURE IF EXISTS `pro_getProductFrontend`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getProductFrontend` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255))  SELECT
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getProductFrontend` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255))  SELECT
     0 AS is_checked
     ,n.id
     ,n.fullname
@@ -573,7 +573,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getProductFrontend` (IN `keywor
     ORDER BY n.sort_order ASC$$
 
 DROP PROCEDURE IF EXISTS `pro_getProductFrontendLimit`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getProductFrontendLimit` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getProductFrontendLimit` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT
     0 AS is_checked
     ,n.id
     ,n.code
@@ -614,7 +614,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getProductFrontendLimit` (IN `k
     LIMIT `position` , `totalItemsPerPage`$$
 
 DROP PROCEDURE IF EXISTS `pro_getSettingSystem`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getSettingSystem` (IN `keyword` VARCHAR(255) charset utf8)  BEGIN
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getSettingSystem` (IN `keyword` VARCHAR(255) charset utf8)  BEGIN
 SELECT 
 	0 AS  is_checked
 	,n.id
@@ -640,7 +640,7 @@ SELECT
     END$$
 
 DROP PROCEDURE IF EXISTS `pro_getUser`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getUser` (IN `keyword` VARCHAR(255), IN `group_member_id` INT)  NO SQL
+CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getUser` (IN `keyword` VARCHAR(255), IN `group_member_id` INT)  NO SQL
 SELECT 
     0 as is_checked
     ,n.id

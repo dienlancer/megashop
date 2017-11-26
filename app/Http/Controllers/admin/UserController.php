@@ -321,7 +321,7 @@ class UserController extends Controller {
             return $info;
       }     
       public function uploadFile(Request $request){           
-          $uploadDir = base_path() . DS ."upload";                 
+          $uploadDir = base_path("upload");                 
           $fileObj=$_FILES["image"];          
           $fileName="";
           if($fileObj['tmp_name'] != null){                

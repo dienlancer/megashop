@@ -8,8 +8,8 @@ use App\ArticleModel;
 use App\CategoryProductModel;
 use App\CategoryArticleModel;
 function uploadImage($fileObj,$width,$height){        
-  require_once base_path() . DS ."app".DS."scripts".DS."PhpThumb".DS."ThumbLib.inc.php";    
-  $uploadDir = base_path() . DS ."resources".DS."upload";                    
+  require_once base_path("app".DS."scripts".DS."PhpThumb".DS."ThumbLib.inc.php") ;    
+  $uploadDir = base_path("upload")  ;                    
   $fileName="";
   if($fileObj['tmp_name'] != null){                
     $fileName   = $fileObj['name'];

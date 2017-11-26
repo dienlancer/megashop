@@ -8,7 +8,7 @@ class MediaController extends Controller {
   	var $_title="Media";
   	var $_icon="icon-settings font-dark";
 	public function getList(){			
-		$strDirUpload=base_path()."/upload";
+		$strDirUpload=base_path("upload");
 		$arrData = scandir($strDirUpload);		
 		$controller=$this->_controller;	
 		$task="list";
