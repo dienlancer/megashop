@@ -12,12 +12,20 @@ class GroupMemberController extends Controller {
     	var $_controller="group-member";	
     	var $_title="Nhóm người dùng";
     	var $_icon="icon-settings font-dark";
+      var $_pageAccessDenied="no-access";
     	public function getList(){		
     		$controller=$this->_controller;	
     		$task="list";
     		$title=$this->_title;
     		$icon=$this->_icon;		
-    		return view("admin.".$this->_controller.".list",compact("controller","task","title","icon"));	
+    		$arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-list";         
+        if(in_array($requestControllerAction,$arrPrivilege)){
+          return view("admin.".$this->_controller.".list",compact("controller","task","title","icon")); 
+        }
+        else{
+          return view("admin.".$this->_pageAccessDenied);
+        }
     	}	
     	public function loadData(Request $request){
       		$filter_search="";

@@ -8,7 +8,7 @@ $linkDelete			=	route('admin.'.$controller.'.deleteItem');
 $linkTrash			=	route('admin.'.$controller.'.trash');
 $linkSortOrder		=	route('admin.'.$controller.'.sortOrder');
 ?>
-<form class="form-horizontal" role="form">	
+<form class="form-horizontal" role="form" name="frm">	
 	<div class="portlet light bordered">
 		<div class="portlet-title">
 			<div class="alert alert-success" id="alert" style="display: none">

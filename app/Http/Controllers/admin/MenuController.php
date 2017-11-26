@@ -51,7 +51,15 @@ class MenuController extends Controller {
         $data_recursive=array();        
         menuRecursive($data,0,null,$data_recursive);          
         $data=$data_recursive; 
-        return view("admin.".$this->_controller.".list",compact("controller","task","title","icon",'data','pagination','filter_search','menu_type_id')); 
+        
+        $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-list";         
+        if(in_array($requestControllerAction,$arrPrivilege)){
+          return view("admin.".$this->_controller.".list",compact("controller","task","title","icon",'data','pagination','filter_search','menu_type_id')); 
+        }
+        else{
+          return view("admin.no-access");
+        }
       } 	
       public function getForm($task,$menu_type_id="",$id="",$alias){   
             $controller=$this->_controller;			

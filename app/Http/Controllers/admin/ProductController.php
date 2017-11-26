@@ -20,7 +20,15 @@ class ProductController extends Controller {
         $arrCategoryProduct=CategoryProductModel::select("id","fullname","parent_id")->orderBy("sort_order","asc")->get()->toArray();
         $arrCategoryProductRecursive=array();              
         categoryProductRecursiveForm($arrCategoryProduct ,0,"",$arrCategoryProductRecursive)  ;      
-    		return view("admin.".$this->_controller.".list",compact("controller","task","title","icon","arrCategoryProductRecursive"));	
+    		
+        $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-list";         
+        if(in_array($requestControllerAction,$arrPrivilege)){
+          return view("admin.".$this->_controller.".list",compact("controller","task","title","icon","arrCategoryProductRecursive")); 
+        }
+        else{
+          return view("admin.no-access");
+        }
   	}	
   	public function loadData(Request $request){
     		$filter_search="";    

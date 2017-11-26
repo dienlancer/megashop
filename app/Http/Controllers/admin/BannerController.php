@@ -12,8 +12,15 @@ class BannerController extends Controller {
     		$controller=$this->_controller;	
     		$task="list";
     		$title=$this->_title;
-    		$icon=$this->_icon;		
-    		return view("admin.".$this->_controller.".list",compact("controller","task","title","icon"));	
+    		$icon=$this->_icon;		    		
+        $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-list";         
+        if(in_array($requestControllerAction,$arrPrivilege)){
+          return view("admin.".$this->_controller.".list",compact("controller","task","title","icon")); 
+        }
+        else{
+          return view("admin.no-access");
+        }
   	}	    
   	public function loadData(Request $request){
     		$filter_search="";            

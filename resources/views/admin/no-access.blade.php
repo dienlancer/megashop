@@ -1,18 +1,13 @@
 @extends("admin.master")
-
 @section("content")
-<div class="alert alert-danger" >
 
-
-        <?php 
-
-                                $strMessage = cmsMessage(array("class"=>"error","content"=>"Không có quyền truy cập"));
-
-                                echo $strMessage;  
-
-                            ?>    
-
-
-    </div>
-
+<form class="form-horizontal" role="form" name="frm">	
+	<div class="portlet light bordered">
+		<div class="portlet-title">
+			<div class="alert alert-warning"  >
+				<strong>Không được quyền truy cập</strong> 
+			</div>
+		</div>
+	</div>	
+</form>
 @endsection()         

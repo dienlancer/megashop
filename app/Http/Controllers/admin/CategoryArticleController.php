@@ -48,8 +48,15 @@ class CategoryArticleController extends Controller {
         $data=categoryArticleConverter($data,$this->_controller);   
         $data_recursive=array();
         categoryArticleRecursive($data,0,null,$data_recursive);          
-        $data=$data_recursive; 
-    		return view("admin.".$this->_controller.".list",compact("controller","task","title","icon",'data','pagination','filter_search'));	
+        $data=$data_recursive;     		
+        $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-list";         
+        if(in_array($requestControllerAction,$arrPrivilege)){
+          return view("admin.".$this->_controller.".list",compact("controller","task","title","icon",'data','pagination','filter_search')); 
+        }
+        else{
+          return view("admin.no-access");
+        }
     	}	
     	
       public function getForm($task,$id=""){		 
