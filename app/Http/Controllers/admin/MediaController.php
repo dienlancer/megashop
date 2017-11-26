@@ -28,8 +28,14 @@ class MediaController extends Controller {
 	public function getForm($task){		 
 		$controller=$this->_controller;	
 		$title=$this->_title . " : Add new";
-		$icon=$this->_icon; 				
-		return view("admin.".$this->_controller.".form",compact("controller","task","title","icon"));
+		$icon=$this->_icon; 			
+		$arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-form";  
+        if(in_array($requestControllerAction, $arrPrivilege)){
+        	return view("admin.".$this->_controller.".form",compact("controller","task","title","icon"));
+        }else{
+        	return view("admin.no-access");
+        }		
 	}
 
 	public function save(){		

@@ -47,9 +47,11 @@ class UserController extends Controller {
         $title="";
         $icon=$this->_icon; 
         $arrRowData=array();
-
-    $arrUserGroup=array();
-        switch ($task) {
+        $arrUserGroup=array();
+        $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-form";  
+        if(in_array($requestControllerAction, $arrPrivilege)){
+          switch ($task) {
            case 'edit':
               $title=$this->_title . " : Update";
               $arrRowData=User::find((int)@$id)->toArray();  
@@ -60,6 +62,9 @@ class UserController extends Controller {
         }    
         $arrGroupMember=GroupMemberModel::select("id","fullname","created_at","updated_at")->get()->toArray();      
         return view("admin.".$this->_controller.".form",compact("arrRowData","arrGroupMember","controller","task","title","icon"));
+        }else{
+          return view("admin.no-access");
+        }      
     }
      public function save(Request $request){
           $id 					        =		trim(@$request->id); 

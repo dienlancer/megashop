@@ -68,10 +68,13 @@ class MenuController extends Controller {
             $arrRowData=array();
             $fullname='';
             $item=array();
+            $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-form";  
+        if(in_array($requestControllerAction, $arrPrivilege)){
             switch ($task) {
                case 'edit':
                   $title=$this->_title . " : Update";
-                  $arrRowData=MenuModel::find((int)@$id)->toArray();			 
+                  $arrRowData=MenuModel::find((int)@$id)->toArray();       
                   $fullname=$arrRowData['fullname'];
                break;
                case 'add':
@@ -92,14 +95,18 @@ class MenuController extends Controller {
                   if(count($itemCategoryProduct) > 0){
                     $fullname=$itemCategoryProduct[0]['fullname'];
                   }
-               break;			
-           }		
+               break;     
+           }    
             $arrMenu=MenuModel::select("id","fullname","alias","parent_id","menu_type_id","level","sort_order","status","created_at","updated_at")->where("menu_type_id","=",(int)@$menu_type_id)->where("id","!=",(int)$id)->orderBy("sort_order","asc")->get()->toArray();
             $arrMenuRecursive=array();
             menuRecursiveForm($arrMenu ,0,"",$arrMenuRecursive)  ;
             $arrMenuType=MenuTypeModel::select("id","fullname","sort_order","created_at","updated_at")->orderBy("sort_order","asc")->get()->toArray();
              
-            return view("admin.".$this->_controller.".form",compact("arrMenuRecursive","arrMenuType","arrRowData","menu_type_id","controller","task","title","icon","alias","fullname"));	        
+            return view("admin.".$this->_controller.".form",compact("arrMenuRecursive","arrMenuType","arrRowData","menu_type_id","controller","task","title","icon","alias","fullname"));      
+        }else{
+          return view("admin.no-access");
+        }
+               
       }
       public function save(Request $request){
             $id 					       =	  trim($request->id)	;        

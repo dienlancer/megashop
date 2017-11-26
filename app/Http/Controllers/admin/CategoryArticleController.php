@@ -63,20 +63,26 @@ class CategoryArticleController extends Controller {
           $controller=$this->_controller;			
           $title="";
           $icon=$this->_icon; 
-          $arrRowData=array();                     
-          switch ($task) {
+          $arrRowData=array();   
+          $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-form";    
+        if(in_array($requestControllerAction, $arrPrivilege)){
+            switch ($task) {
             case 'edit':
                 $title=$this->_title . " : Update";
-                $arrRowData=CategoryArticleModel::find((int)@$id)->toArray();			 
+                $arrRowData=CategoryArticleModel::find((int)@$id)->toArray();      
             break;
             case 'add':
                 $title=$this->_title . " : Add new";
-            break;			
-         }		         
+            break;      
+         }             
          $arrCategoryArticle=CategoryArticleModel::select("id","fullname","parent_id")->where("id","!=",(int)$id)->orderBy("sort_order","asc")->get()->toArray();
-         $arrCategoryArticleRecursive=array();			
-         categoryArticleRecursiveForm($arrCategoryArticle ,0,"",$arrCategoryArticleRecursive)	 ;			
-         return view("admin.".$this->_controller.".form",compact("arrCategoryArticleRecursive","arrRowData","controller","task","title","icon"));	
+         $arrCategoryArticleRecursive=array();      
+         categoryArticleRecursiveForm($arrCategoryArticle ,0,"",$arrCategoryArticleRecursive)  ;      
+         return view("admin.".$this->_controller.".form",compact("arrCategoryArticleRecursive","arrRowData","controller","task","title","icon")); 
+        } else{
+          return view("admin.no-access");
+        }                           
      }
     public function save(Request $request){
         $id 					           =	trim($request->id)	;        

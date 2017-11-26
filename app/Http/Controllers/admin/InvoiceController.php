@@ -38,6 +38,9 @@ class InvoiceController extends Controller {
           $arrRowData=array();    
           $arrInvoiceDetail=array();  
           $dataPaymentMethod=array();
+          $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-form";  
+        if(in_array($requestControllerAction, $arrPrivilege)){
           switch ($task) {
             case 'edit':
                 $title=$this->_title . " : Update";
@@ -47,9 +50,13 @@ class InvoiceController extends Controller {
             break;
             case 'add':
                 $title=$this->_title . " : Add new";
-            break;			
-         }		         
+            break;      
+         }             
          return view("admin.".$this->_controller.".form",compact("arrRowData","arrInvoiceDetail","controller","task","title","icon","dataPaymentMethod"));
+        }else{
+          return view("admin.no-access");
+        }
+          
      }
     public function save(Request $request){
         $id 					           =	trim($request->id)	;        

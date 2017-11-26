@@ -36,16 +36,23 @@ class MenuTypeController extends Controller {
         $title="";
         $icon=$this->_icon; 
         $arrRowData=array();
-        switch ($task) {
+        $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-form";  
+        if(in_array($requestControllerAction, $arrPrivilege)){
+            switch ($task) {
             case 'edit':
                 $title=$this->_title . " : Update";
-                $arrRowData=MenuTypeModel::find((int)@$id)->toArray();			 
+                $arrRowData=MenuTypeModel::find((int)@$id)->toArray();       
               break;
             case 'add':
                 $title=$this->_title . " : Add new";
-              break;			
-       }		   
+              break;      
+       }       
        return view("admin.".$this->_controller.".form",compact("arrRowData","controller","task","title","icon"));
+        }else{
+          return view("admin.no-access");
+        }
+        
     }
     public function save(Request $request){
         $id 					       =	trim($request->id)	;        

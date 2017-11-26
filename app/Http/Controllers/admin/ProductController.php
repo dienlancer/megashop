@@ -58,7 +58,10 @@ class ProductController extends Controller {
         $icon=$this->_icon; 
         $arrRowData=array();
         $arrProductCategory=array();
-        switch ($task) {
+        $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-form";  
+        if(in_array($requestControllerAction, $arrPrivilege)){
+          switch ($task) {
            case 'edit':
               $title=$this->_title . " : Update";
               $arrRowData=ProductModel::find((int)@$id)->toArray();       
@@ -72,6 +75,10 @@ class ProductController extends Controller {
         $arrCategoryProductRecursive=array();
         categoryProductRecursiveForm($arrCategoryProduct ,0,"",$arrCategoryProductRecursive)   ;      
         return view("admin.".$this->_controller.".form",compact("arrCategoryProductRecursive","arrRowData","arrProductCategory","controller","task","title","icon"));
+        }else{
+            return view("admin.no-access");
+        }
+        
     }
         public function save(Request $request){
             $id 					        =		trim($request->id);      

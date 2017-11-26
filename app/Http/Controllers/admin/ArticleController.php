@@ -57,7 +57,10 @@ class ArticleController extends Controller {
         $icon=$this->_icon; 
         $arrRowData=array();
         $arrArticleCategory=array();
-        switch ($task) {
+        $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-form";  
+        if(in_array($requestControllerAction, $arrPrivilege)){
+          switch ($task) {
            case 'edit':
               $title=$this->_title . " : Update";
               $arrRowData=ArticleModel::find((int)@$id)->toArray();       
@@ -71,6 +74,9 @@ class ArticleController extends Controller {
         $arrCategoryArticleRecursive=array();
         categoryArticleRecursiveForm($arrCategoryArticle ,0,"",$arrCategoryArticleRecursive)   ;      
         return view("admin.".$this->_controller.".form",compact("arrCategoryArticleRecursive","arrRowData","arrArticleCategory","controller","task","title","icon"));
+        }else{
+          return view("admin.no-access");
+        }        
     }
      public function save(Request $request){
           $id 					        =		trim($request->id);        

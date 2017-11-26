@@ -37,8 +37,11 @@ class PaymentMethodController extends Controller {
         $controller=$this->_controller;     
         $title="";
         $icon=$this->_icon; 
-        $arrRowData=array();        
-        switch ($task) {
+        $arrRowData=array();  
+        $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-form";  
+        if(in_array($requestControllerAction, $arrPrivilege)){
+switch ($task) {
            case 'edit':
               $title=$this->_title . " : Update";
               $arrRowData=PaymentMethodModel::find((int)@$id)->toArray();                     
@@ -48,6 +51,10 @@ class PaymentMethodController extends Controller {
            break;     
         }    
         return view("admin.".$this->_controller.".form",compact("arrRowData","controller","task","title","icon"));
+        } else{
+          return view("admin.no-access");
+        }     
+        
     }
      public function save(Request $request){
           $id                   =   trim($request->id);        

@@ -42,8 +42,11 @@ class ModuleItemController extends Controller {
       $controller=$this->_controller;     
       $title="";
       $icon=$this->_icon; 
-      $arrRowData=array();      
-      switch ($task) {
+      $arrRowData=array();    
+      $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-form";  
+        if(in_array($requestControllerAction, $arrPrivilege)){
+          switch ($task) {
        case 'edit':
        $title=$this->_title . " : Update";
        $arrRowData=ModuleItemModel::find(@$id)->toArray();  
@@ -59,6 +62,10 @@ class ModuleItemController extends Controller {
      categoryArticleRecursiveForm($arrCategoryArticle ,0,"",$arrCategoryArticleRecursive)  ;    
      categoryProductRecursiveForm($arrCategoryProduct ,0,"",$arrCategoryProductRecursive)  ;         
      return view("admin.".$this->_controller.".form",compact("arrRowData","controller","task","title","icon","arrCategoryArticleRecursive","arrCategoryProductRecursive"));
+        } else{
+          return view("admin.no-access");
+        } 
+      
    }
      public function save(Request $request){
           $id 					        =		trim($request->id);        

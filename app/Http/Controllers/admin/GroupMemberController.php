@@ -40,7 +40,10 @@ class GroupMemberController extends Controller {
           $icon=$this->_icon; 
           $arrRowData=array();
           $arrGroupPrivilege=array();
-          switch ($task) {
+          $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-form";  
+        if(in_array($requestControllerAction, $arrPrivilege)){
+            switch ($task) {
             case 'edit':
                 $title=$this->_title . " : Update";
                 $arrRowData=GroupMemberModel::find((int)@$id)->toArray();      
@@ -48,10 +51,14 @@ class GroupMemberController extends Controller {
             break;
             case 'add':
                 $title=$this->_title . " : Add new";
-            break;			
-         }		         
+            break;      
+         }             
          $arrPrivilege=PrivilegeModel::select("id","fullname","controller","action","sort_order","created_at","updated_at")->orderBy("controller","asc")->orderBy("sort_order","asc")->get()->toArray();  
           return view("admin.".$this->_controller.".form",compact("arrRowData","arrPrivilege","arrGroupPrivilege","controller","task","title","icon"));
+        }else{
+          return view("admin.no-access");
+        }
+          
      }
     public function save(Request $request){
         $id 					           =	trim($request->id)	;        
