@@ -57,7 +57,22 @@ function wp_nav_menu($args){
       $menu=$data_menu[$i];
       $site_link='';
       if(!empty( $data_menu[$i]["alias"] )){
-        $site_link='/'.$data_menu[$i]["alias"].".html";
+        switch ($data_menu[$i]["alias"]) {
+          case 'gio-hang':
+          case 'dang-ky':
+          case 'tai-khoan':
+          case 'dang-nhap':
+          case 'bao-mat':
+          case 'lien-he':
+          case 'xac-nhan-thanh-toan':
+          case 'dang-nhap-thanh-toan':
+          case 'hoa-don':          
+          $site_link='/'.$data_menu[$i]["alias"];
+            break;          
+          default:     
+          $site_link='/'.$data_menu[$i]["alias"].".html";       
+            break;
+        }        
       }
       $menu["site_link"] =$site_link;            
       $data_child=MenuModel::whereRaw('parent_id = ?',[(int)$data_menu[$i]["id"]])->select('id')->get()->toArray();

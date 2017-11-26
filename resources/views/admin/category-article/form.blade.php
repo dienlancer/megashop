@@ -180,8 +180,9 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
         if(window.confirm(msg)){ 
             xac_nhan = 1;
         }
-        if(xac_nhan  == 0)
+        if(xac_nhan  == 0){
             return 0;
+        }
         $("#picture-area").empty();
         $("input[name='image_hidden']").val("");        
     }

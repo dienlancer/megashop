@@ -37,7 +37,6 @@ class IndexController extends Controller {
   }  
 	public function index($alias)
       {                       
-
             $title="";
             $meta_keyword="";
             $meta_description="";            
