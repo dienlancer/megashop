@@ -232,121 +232,127 @@ class CategoryArticleController extends Controller {
                         'link'    => 'javascript:changeStatus('.$id.','.$trangThai.');'
                     );
             return $result;   
-      }
-      public function deleteImage(Request $request){
-          $id                     =   (int)$request->id;              
-          $checked                =   1;
-          $type_msg               =   "alert-success";
-          $msg                    =   "Xóa thành công";            
-        
+      }      
+      public function deleteItem($id){                 
+        $checked                =   1;
+        $type_msg               =   "alert-success";
+        $msg                    =   "Xóa thành công";    
+        $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-delete";      
+        if(in_array($requestControllerAction,$arrPrivilege)){
+          $data                   =   CategoryArticleModel::whereRaw("parent_id = ?",[(int)@$id])->get()->toArray();  
+          if(count($data) > 0){
+            $checked     =   0;
+            $type_msg           =   "alert-warning";            
+            $msg                =   "Không thể xóa";            
+          }
+          $data                   =   ArticleCategoryModel::whereRaw("category_article_id = ?",[(int)@$id])->get()->toArray();              
+          if(count($data) > 0){
+            $checked     =   0;
+            $type_msg           =   "alert-warning";            
+            $msg                =   "Không thể xóa";            
+          }
           if($checked == 1){
-              $item = CategoryArticleModel::find((int)@$id);
-              $item->image     = null;      
-              $item->save();  
-          }          
-          $info = array(
-            'checked'           => $checked,
-            'type_msg'          => $type_msg,                
-            'msg'               => $msg,                    
-          );
-          return $info;
-      }
-      public function deleteItem($id){           
-            $checked                =   1;
-            $type_msg               =   "alert-success";
-            $msg                    =   "Xóa thành công";                        
-            $data                   =   CategoryArticleModel::whereRaw("parent_id = ?",[(int)@$id])->get()->toArray();  
-            if(count($data) > 0){
-                $checked     =   0;
-                $type_msg           =   "alert-warning";            
-                $msg                =   "Không thể xóa";            
-            }
-            $data                   =   ArticleCategoryModel::whereRaw("category_article_id = ?",[(int)@$id])->get()->toArray();              
-            if(count($data) > 0){
-                $checked     =   0;
-                $type_msg           =   "alert-warning";            
-                $msg                =   "Không thể xóa";            
-            }
-            if($checked == 1){
-                $item               =   CategoryArticleModel::find((int)@$id);
-                $item->delete();            
-            }        
-             return redirect()->route("admin.".$this->_controller.".getList")->with(["message"=>array("type_msg"=>$type_msg,"msg"=>$msg)]); 
+            $item               =   CategoryArticleModel::find((int)@$id);
+            $item->delete();            
+          }        
+          return redirect()->route("admin.".$this->_controller.".getList")->with(["message"=>array("type_msg"=>$type_msg,"msg"=>$msg)]); 
+        }else{
+          return view("admin.no-access");
+        }                               
       }
       public function updateStatus(Request $request,$status){        
         $arrID=$request->cid;
-         $type_msg               =   "alert-success";
-          $msg                    =   "Cập nhật thành công";    
-          $checked                =   1; 
-        if(count($arrID)==0){
-          $checked                =   0;
-                    $type_msg               =   "alert-warning";            
-                    $msg                    =   "Vui lòng chọn ít nhất một phần tử";
-        }
-        if($checked==1){
-          foreach ($arrID as $key => $value) {
-          $item=CategoryArticleModel::find($value);
-          $item->status=$status;
-          $item->save();    
-        }
+        $type_msg               =   "alert-success";
+        $msg                    =   "Cập nhật thành công";    
+        $checked                =   1; 
+        $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-status";  
+        if(in_array($requestControllerAction,$arrPrivilege)){
+          if(count($arrID)==0){
+            $checked                =   0;
+            $type_msg               =   "alert-warning";            
+            $msg                    =   "Vui lòng chọn ít nhất một phần tử";
+          }
+          if($checked==1){
+            foreach ($arrID as $key => $value) {
+              $item=CategoryArticleModel::find($value);
+              $item->status=$status;
+              $item->save();    
+            }
+          }        
+          return redirect()->route("admin.".$this->_controller.".getList")->with(["message"=>array("type_msg"=>$type_msg,"msg"=>$msg)]); 
+        }else{
+          return view("admin.no-access");
         }        
-        return redirect()->route("admin.".$this->_controller.".getList")->with(["message"=>array("type_msg"=>$type_msg,"msg"=>$msg)]); 
       }
       public function trash(Request $request){            
-          $arrID                 =   $request->cid;             
-            $checked                =   1;
-            $type_msg               =   "alert-success";
-            $msg                    =   "Xóa thành công";      
-            $arrID                 =   $request->cid;   
-            if(count($arrID)==0){
-              $checked     =   0;
-              $type_msg           =   "alert-warning";            
-              $msg                =   "Vui lòng chọn ít nhất một phần tử";
-            }else{
-              foreach ($arrID as $key => $value) {
-                if(!empty($value)){
-                  $data                   =   CategoryArticleModel::whereRaw("parent_id = ?",[(int)@$value])->get()->toArray();                    
-                  if(count($data) > 0){
-                    $checked     =   0;
-                    $type_msg           =   "alert-warning";            
-                    $msg                =   "Không thể xóa";
-                  }
-                  $data                   =   ArticleCategoryModel::whereRaw("category_article_id = ?",[(int)@$value])->get()->toArray();                     
-                  if(count($data) > 0){
-                    $checked     =   0;
-                    $type_msg           =   "alert-warning";            
-                    $msg                =   "Không thể xóa"; 
-                  }
-                }                
-              }
+        $arrID                 =   $request->cid;             
+        $checked                =   1;
+        $type_msg               =   "alert-success";
+        $msg                    =   "Xóa thành công";      
+        $arrID                 =   $request->cid;   
+        $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-trash";   
+        if(in_array($requestControllerAction,$arrPrivilege)){
+          if(count($arrID)==0){
+            $checked     =   0;
+            $type_msg           =   "alert-warning";            
+            $msg                =   "Vui lòng chọn ít nhất một phần tử";
+          }else{
+            foreach ($arrID as $key => $value) {
+              if(!empty($value)){
+                $data                   =   CategoryArticleModel::whereRaw("parent_id = ?",[(int)@$value])->get()->toArray();                    
+                if(count($data) > 0){
+                  $checked     =   0;
+                  $type_msg           =   "alert-warning";            
+                  $msg                =   "Không thể xóa";
+                }
+                $data                   =   ArticleCategoryModel::whereRaw("category_article_id = ?",[(int)@$value])->get()->toArray();                     
+                if(count($data) > 0){
+                  $checked     =   0;
+                  $type_msg           =   "alert-warning";            
+                  $msg                =   "Không thể xóa"; 
+                }
+              }                
             }
-            if($checked == 1){                
-              $strID = implode(',',$arrID);                     
-              $sql = "DELETE FROM `category_article` WHERE `id` IN (".$strID.")";                 
-              DB::statement($sql);    
-            }
-            return redirect()->route("admin.".$this->_controller.".getList")->with(["message"=>array("type_msg"=>$type_msg,"msg"=>$msg)]); 
-    }
-    public function sortOrder(Request $request){
-      $checked                =   1;
-      $type_msg               =   "alert-success";
-      $msg                    =   "Lưu dữ liệu thành công"; 
-      $arrOrder=array();
-      $arrOrder=$request->sort_order;  
-      if(count($arrOrder) == 0){
-        $checked     =   0;
-        $type_msg           =   "alert-warning";            
-        $msg                =   "Vui lòng chọn ít nhất một phần tử";
+          }
+          if($checked == 1){                
+            $strID = implode(',',$arrID);                     
+            $sql = "DELETE FROM `category_article` WHERE `id` IN (".$strID.")";                 
+            DB::statement($sql);    
+          }
+          return redirect()->route("admin.".$this->_controller.".getList")->with(["message"=>array("type_msg"=>$type_msg,"msg"=>$msg)]); 
+        }else{
+          return view("admin.no-access");
+        }        
       }
-      if($checked==1){        
-        foreach($arrOrder as $id => $value){                    
-          $item=CategoryArticleModel::find($id);
-          $item->sort_order=(int)$value;            
-          $item->save();            
-        }     
-      }    
-      return redirect()->route("admin.".$this->_controller.".getList")->with(["message"=>array("type_msg"=>$type_msg,"msg"=>$msg)]); 
-    }
+      public function sortOrder(Request $request){
+        $checked                =   1;
+        $type_msg               =   "alert-success";
+        $msg                    =   "Lưu dữ liệu thành công"; 
+        $arrOrder=array();
+        $arrOrder=$request->sort_order;  
+        $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-ordering";    
+        if(in_array($requestControllerAction,$arrPrivilege)){
+          if(count($arrOrder) == 0){
+            $checked     =   0;
+            $type_msg           =   "alert-warning";            
+            $msg                =   "Vui lòng chọn ít nhất một phần tử";
+          }
+          if($checked==1){        
+            foreach($arrOrder as $id => $value){                    
+              $item=CategoryArticleModel::find($id);
+              $item->sort_order=(int)$value;            
+              $item->save();            
+            }     
+          }    
+          return redirect()->route("admin.".$this->_controller.".getList")->with(["message"=>array("type_msg"=>$type_msg,"msg"=>$msg)]); 
+        }else{
+          return view("admin.no-access");
+        }        
+      }
     public function uploadFile(Request $request){           
           $uploadDir = base_path("upload");              
           $fileObj=$_FILES["image"];          

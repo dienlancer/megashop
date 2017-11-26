@@ -238,23 +238,7 @@ class BannerController extends Controller {
             );
             return $info;
       }
-      public function deleteImage(Request $request){
-            $id                     =   (int)$request->id;              
-            $checked                =   1;
-            $type_msg               =   "alert-success";
-            $msg                    =   "Xóa thành công";                      
-            if($checked == 1){
-                $item = BannerModel::find((int)@$id);
-                $item->image     = null;      
-                $item->save();  
-            }          
-            $info = array(
-              'checked'           => $checked,
-              'type_msg'          => $type_msg,                
-              'msg'               => $msg,                    
-            );
-            return $info;
-        }
+     
         public function uploadFile(Request $request){           
           $uploadDir = base_path("upload");                
           $fileObj=$_FILES["image"];          

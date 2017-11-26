@@ -192,92 +192,116 @@ class MenuController extends Controller {
             return $result;   
       }
       public function deleteItem($id){
-            $checked                =   1;
-            $type_msg               =   "alert-success";
-            $msg                    =   "Xóa dữ liệu thành công";        
-            $menu_type_id           =   0;        
-            $data                   =   MenuModel::whereRaw("parent_id = ?",[(int)@$id])->get()->toArray();                    
-            $item                   =   MenuModel::find((int)@$id);
-            $menu_type_id           =   $item->toArray()["menu_type_id"];
-            if(count($data) > 0){
-                $checked     =   0;
-                $type_msg           =   "alert-warning";            
-                $msg                =   "Không thể xóa";      
-            }          
-            if($checked == 1){
-                $item               =   MenuModel::find((int)@$id);
-                $item->delete();            
-                ModMenuTypeModel::whereRaw("menu_id = ?",[(int)@$id])->delete();
-            }        
-            return redirect()->route("admin.".$this->_controller.".getList",[(int)@$menu_type_id])->with(["message"=>array("type_msg"=>$type_msg,"msg"=>$msg)]); 
+        $checked                =   1;
+        $type_msg               =   "alert-success";
+        $msg                    =   "Xóa dữ liệu thành công";     
+        $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-delete";      
+        if(in_array($requestControllerAction,$arrPrivilege)){
+          $menu_type_id           =   0;        
+          $data                   =   MenuModel::whereRaw("parent_id = ?",[(int)@$id])->get()->toArray();                    
+          $item                   =   MenuModel::find((int)@$id);
+          $menu_type_id           =   $item->toArray()["menu_type_id"];
+          if(count($data) > 0){
+            $checked     =   0;
+            $type_msg           =   "alert-warning";            
+            $msg                =   "Không thể xóa";      
+          }          
+          if($checked == 1){
+            $item               =   MenuModel::find((int)@$id);
+            $item->delete();            
+            ModMenuTypeModel::whereRaw("menu_id = ?",[(int)@$id])->delete();
+          }        
+          return redirect()->route("admin.".$this->_controller.".getList",[(int)@$menu_type_id])->with(["message"=>array("type_msg"=>$type_msg,"msg"=>$msg)]); 
+        }else{
+          return view("admin.no-access");
+        }               
       }
       public function updateStatus(Request $request,$status,$menu_type_id){        
         $arrID=$request->cid;
-         $type_msg               =   "alert-success";
-          $msg                    =   "Cập nhật thành công";    
-          $checked                =   1; 
-        if(count($arrID)==0){
-          $checked                =   0;
-                    $type_msg               =   "alert-warning";            
-                    $msg                    =   "Vui lòng chọn ít nhất 1 phần tử";
-        }
-        if($checked==1){
-          foreach ($arrID as $key => $value) {
-          $item=MenuModel::find($value);
-          $item->status=$status;
-          $item->save();    
-        }
+        $type_msg               =   "alert-success";
+        $msg                    =   "Cập nhật thành công";    
+        $checked                =   1; 
+        $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-status";  
+        if(in_array($requestControllerAction,$arrPrivilege)){
+          if(count($arrID)==0){
+            $checked                =   0;
+            $type_msg               =   "alert-warning";            
+            $msg                    =   "Vui lòng chọn ít nhất 1 phần tử";
+          }
+          if($checked==1){
+            foreach ($arrID as $key => $value) {
+              $item=MenuModel::find($value);
+              $item->status=$status;
+              $item->save();    
+            }
+          }        
+          return redirect()->route("admin.".$this->_controller.".getList",[(int)@$menu_type_id])->with(["message"=>array("type_msg"=>$type_msg,"msg"=>$msg)]); 
+        }else{
+          return view("admin.no-access");
         }        
-        return redirect()->route("admin.".$this->_controller.".getList",[(int)@$menu_type_id])->with(["message"=>array("type_msg"=>$type_msg,"msg"=>$msg)]); 
       }
       public function trash(Request $request,$menu_type_id){        
         $arrID                 =   $request->cid;             
         $checked                =   1;
         $type_msg               =   "alert-success";
-        $msg                    =   "Xóa dữ liệu thành công";                      
-        if(count($arrID)==0){
-          $checked     =   0;
-              $type_msg           =   "alert-warning";            
-              $msg                =   "Vui lòng chọn ít nhất 1 phần tử";
-        }else{
-          foreach ($arrID as $key => $value) {
-            $item=MenuModel::find($value);           
-            $count = MenuModel::where("parent_id",$value)->count();
-            if($count > 0){
-              $checked     =   0;
-              $type_msg           =   "alert-warning";            
-              $msg                =   "Không thể xóa";
-            } 
+        $msg                    =   "Xóa dữ liệu thành công"; 
+        $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-trash";   
+        if(in_array($requestControllerAction,$arrPrivilege)){
+          if(count($arrID)==0){
+            $checked     =   0;
+            $type_msg           =   "alert-warning";            
+            $msg                =   "Vui lòng chọn ít nhất 1 phần tử";
+          }else{
+            foreach ($arrID as $key => $value) {
+              $item=MenuModel::find($value);           
+              $count = MenuModel::where("parent_id",$value)->count();
+              if($count > 0){
+                $checked     =   0;
+                $type_msg           =   "alert-warning";            
+                $msg                =   "Không thể xóa";
+              } 
+            }
           }
-        }
-        
-        if($checked == 1){        
-          $strID = implode(',',$arrID);   
-          $sqlDeleteMenu = 'DELETE FROM `menu` WHERE `id` IN ('.$strID.') ';                 
-          DB::statement($sqlDeleteMenu);          
-              
-        }
-        return redirect()->route("admin.".$this->_controller.".getList",[(int)@$menu_type_id])->with(["message"=>array("type_msg"=>$type_msg,"msg"=>$msg)]); 
+          
+          if($checked == 1){        
+            $strID = implode(',',$arrID);   
+            $sqlDeleteMenu = 'DELETE FROM `menu` WHERE `id` IN ('.$strID.') ';                 
+            DB::statement($sqlDeleteMenu);          
+            
+          }
+          return redirect()->route("admin.".$this->_controller.".getList",[(int)@$menu_type_id])->with(["message"=>array("type_msg"=>$type_msg,"msg"=>$msg)]); 
+        } else{
+          return view("admin.no-access");
+        }                           
       }
       public function sortOrder(Request $request,$menu_type_id=0){
         $checked                =   1;
-      $type_msg               =   "alert-success";
-      $msg                    =   "Cập nhật thành công"; 
-      $arrOrder=array();
-      $arrOrder=$request->sort_order;  
-      if(count($arrOrder) == 0){
-        $checked     =   0;
-        $type_msg           =   "alert-warning";            
-        $msg                =   "Vui lòng chọn ít nhất 1 phần tử";
-      }
-      if($checked==1){        
-        foreach($arrOrder as $id => $value){                    
-          $item=MenuModel::find($id);
-          $item->sort_order=(int)$value;            
-          $item->save();            
-        }     
-      }    
-        return redirect()->route("admin.".$this->_controller.".getList",[(int)@$menu_type_id])->with(["message"=>array("type_msg"=>$type_msg,"msg"=>$msg)]); 
+        $type_msg               =   "alert-success";
+        $msg                    =   "Cập nhật thành công"; 
+        $arrPrivilege=getArrPrivilege();
+        $requestControllerAction=$this->_controller."-ordering";    
+        if(in_array($requestControllerAction,$arrPrivilege)){
+          $arrOrder=array();
+          $arrOrder=$request->sort_order;  
+          if(count($arrOrder) == 0){
+            $checked     =   0;
+            $type_msg           =   "alert-warning";            
+            $msg                =   "Vui lòng chọn ít nhất 1 phần tử";
+          }
+          if($checked==1){        
+            foreach($arrOrder as $id => $value){                    
+              $item=MenuModel::find($id);
+              $item->sort_order=(int)$value;            
+              $item->save();            
+            }     
+          }    
+          return redirect()->route("admin.".$this->_controller.".getList",[(int)@$menu_type_id])->with(["message"=>array("type_msg"=>$type_msg,"msg"=>$msg)]); 
+        }else{
+          return view("admin.no-access");
+        }        
       }
       public function getComponentForm($menu_type_id = 0){  
         $controller=$this->_controller;     

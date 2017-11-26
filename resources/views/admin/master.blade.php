@@ -162,6 +162,8 @@ License: You must have a valid license purchased only from themeforest(the above
                                 }else{
                                     $image=asset('upload/avatar.png');                                
                                 }
+                                $user_id=Sentinel::getUser()->id;
+                                $linkUserProfile=route('admin.user.getForm',['edit',$user_id]);
                                 ?>
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                     <img alt="" class="img-circle" src="<?php echo $image; ?>" />
@@ -172,7 +174,7 @@ License: You must have a valid license purchased only from themeforest(the above
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-default">
                                     <li>
-                                        <a href="page_user_profile_1.html">
+                                        <a href="<?php echo $linkUserProfile; ?>">
                                             <i class="icon-user"></i> My Profile </a>
                                     </li>                                 
                                     <li>

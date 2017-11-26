@@ -301,23 +301,7 @@ class ProductController extends Controller {
                   );
                   return $info;
           }
-        public function deleteImage(Request $request){
-            $id                     =   (int)$request->id;              
-            $checked                =   1;
-            $type_msg               =   "alert-success";
-            $msg                    =   "Xóa thành công";                      
-            if($checked == 1){
-                $item = ProductModel::find((int)@$id);
-                $item->image     = null;      
-                $item->save();  
-            }          
-            $info = array(
-              'checked'           => $checked,
-              'type_msg'          => $type_msg,                
-              'msg'               => $msg,                    
-            );
-            return $info;
-        }
+        
       public function deleteItem(Request $request){
             $id                     =   (int)$request->id;              
             $checked                =   1;
