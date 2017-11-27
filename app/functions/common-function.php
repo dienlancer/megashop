@@ -52,8 +52,7 @@ function wp_nav_menu($args){
   $wrapper='';  
   if(count($data_menu_type) > 0){
     $data_menu_type=@$data_menu_type[0];
-    $data_menu=MenuModel::whereRaw('menu_type_id = ? and status = 1',[(int)@$data_menu_type['id']])->orderBy('sort_order','asc')->get()->toArray();    
-    
+    $data_menu=MenuModel::whereRaw('menu_type_id = ? and status = 1',[(int)@$data_menu_type['id']])->orderBy('sort_order','asc')->get()->toArray();        
     if(count($data_menu) > 0){
       for ($i=0;$i<count($data_menu);$i++) {
         $menu=array();
