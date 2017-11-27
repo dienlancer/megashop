@@ -115,6 +115,7 @@ License: You must have a valid license purchased only from themeforest(the above
 
         <!-- BEGIN CUSTOM LIBRARY -->
         <script language="javascript" type="text/javascript" src="{{asset('public/admin/ckeditor/ckeditor.js')}}"                 ></script>
+        <script language="javascript" type="text/javascript" src="{{asset('public/admin/ckfinder/ckfinder.js')}}"                 ></script>
         <script language="javascript" type="text/javascript" src="{{asset('public/admin/js/table-library.js')}}"                 ></script>
         <script language="javascript" type="text/javascript" src="{{asset('public/admin/js/spinner.js')}}"                 ></script>
         <script language="javascript" type="text/javascript" src="{{asset('public/admin/js/custom.js')}}"                 ></script>        
