@@ -12,6 +12,7 @@ $linkUpdateStatus	=	route('admin.'.$controller.'.updateStatus');
 ?>
 <form class="form-horizontal" role="form" name="frm">	
 	{{ csrf_field() }}
+	<input type="hidden" name="sort_json" id="sort_json" value="" />
 	<div class="portlet light bordered">
 		<div class="portlet-title">
 			<div class="alert alert-success" id="alert" style="display: none">

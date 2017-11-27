@@ -53,52 +53,52 @@ function wp_nav_menu($args){
   if(count($data_menu_type) > 0){
     $data_menu_type=@$data_menu_type[0];
     $data_menu=MenuModel::whereRaw('menu_type_id = ? and status = 1',[(int)@$data_menu_type['id']])->orderBy('sort_order','asc')->get()->toArray();    
-  
-  if(count($data_menu) > 0){
-    for ($i=0;$i<count($data_menu);$i++) {
-      $menu=array();
-      $menu=$data_menu[$i];
-      $site_link='';
-      if(!empty( $data_menu[$i]["alias"] )){
-        switch ($data_menu[$i]["alias"]) {
-          case 'gio-hang':
-          case 'dang-ky':
-          case 'tai-khoan':
-          case 'dang-nhap':
-          case 'bao-mat':
-          case 'lien-he':
-          case 'xac-nhan-thanh-toan':
-          case 'dang-nhap-thanh-toan':
-          case 'hoa-don':          
-          $site_link='/'.$data_menu[$i]["alias"];
+    
+    if(count($data_menu) > 0){
+      for ($i=0;$i<count($data_menu);$i++) {
+        $menu=array();
+        $menu=$data_menu[$i];
+        $site_link='';
+        if(!empty( $data_menu[$i]["alias"] )){
+          switch ($data_menu[$i]["alias"]) {
+            case 'gio-hang':
+            case 'dang-ky':
+            case 'tai-khoan':
+            case 'dang-nhap':
+            case 'bao-mat':
+            case 'lien-he':
+            case 'xac-nhan-thanh-toan':
+            case 'dang-nhap-thanh-toan':
+            case 'hoa-don':          
+            $site_link='/'.$data_menu[$i]["alias"];
             break;          
-          default:     
-          $site_link='/'.$data_menu[$i]["alias"].".html";       
+            default:     
+            $site_link='/'.$data_menu[$i]["alias"].".html";       
             break;
-        }        
+          }        
+        }
+        $menu["site_link"] =$site_link;            
+        $data_child=MenuModel::whereRaw('parent_id = ?',[(int)$data_menu[$i]["id"]])->select('id')->get()->toArray();
+        if(count($data_child) > 0){
+          $menu["havechild"]=1;
+        }else{
+          $menu["havechild"]=0;
+        }
+        $arr_menu[]=$menu;
       }
-      $menu["site_link"] =$site_link;            
-      $data_child=MenuModel::whereRaw('parent_id = ?',[(int)$data_menu[$i]["id"]])->select('id')->get()->toArray();
-      if(count($data_child) > 0){
-        $menu["havechild"]=1;
-      }else{
-        $menu["havechild"]=0;
-      }
-      $arr_menu[]=$menu;
-    }
-    mooMenuRecursive($arr_menu,0,$menu_str,$lanDau,url('/'),$args['alias'],$args['menu_id'],$args['menu_class'],$args['menu_li_actived'],$args['menu_item_has_children'],$args['link_before'],$args['link_after']);
-    $menu_str = str_replace('<ul></ul>', '', $menu_str);    
-    if(!empty($args['before_wrapper'])){
-      if(!empty($args['before_title'])){
-        $wrapper=$args['before_wrapper'].$args['before_title'].$data_menu_type['fullname'].$args['after_title'].$args['before_wrapper_ul'].$menu_str.$args['after_wrapper_ul'].$args['after_wrapper'];
-      }else{
-        $wrapper=$args['before_wrapper'].$args['before_wrapper_ul'].$menu_str.$args['after_wrapper_ul'].$args['after_wrapper'];
+      mooMenuRecursive($arr_menu,0,$menu_str,$lanDau,url('/'),$args['alias'],$args['menu_id'],$args['menu_class'],$args['menu_li_actived'],$args['menu_item_has_children'],$args['link_before'],$args['link_after']);
+      $menu_str = str_replace('<ul></ul>', '', $menu_str);    
+      if(!empty($args['before_wrapper'])){
+        if(!empty($args['before_title'])){
+          $wrapper=$args['before_wrapper'].$args['before_title'].$data_menu_type['fullname'].$args['after_title'].$args['before_wrapper_ul'].$menu_str.$args['after_wrapper_ul'].$args['after_wrapper'];
+        }else{
+          $wrapper=$args['before_wrapper'].$args['before_wrapper_ul'].$menu_str.$args['after_wrapper_ul'].$args['after_wrapper'];
+        }
+      }    
+      else{
+        $wrapper=$menu_str;
       }
     }    
-    else{
-      $wrapper=$menu_str;
-    }
-  }    
   }  
   echo $wrapper;
 }
@@ -153,80 +153,80 @@ function mooMenuRecursive($source,$parent,&$menu_str,&$lanDau,$url,$alias,$menu_
     }
 }
 function fnPrice($value){
-    $data = getSettingSystem();
-    $language = $data["currency_unit"] ;
-    $strCurrency="";
-    switch ($language) {
-      case "vi_VN":
-        $strCurrency= number_format($value,0,",",".");
-        break;
-      case "en_US":
-        $strCurrency= number_format($value,0,".",",");
-        break;
-    }
-    return $strCurrency;
+  $data = getSettingSystem();
+  $language = $data["currency_unit"] ;
+  $strCurrency="";
+  switch ($language) {
+    case "vi_VN":
+    $strCurrency= number_format($value,0,",",".");
+    break;
+    case "en_US":
+    $strCurrency= number_format($value,0,".",",");
+    break;
   }
-  function getModuleByPosition($position){
-    $data=array();
-    $status=1;
-    $module=ModuleItemModel::whereRaw('trim(lower(position)) = ? and status = ?',[mb_strtolower(trim(@$position)),(int)$status])->select('item_id','component','status')->get()->toArray();    
-    if(count($module) > 0){
-      $module=$module[0];
-      $item_id=$module['item_id'];
-      $component=$module['component'];
-      $list=json_decode($item_id);            
-      if(count($list) > 0){
-        $list=convertToArray($list);
-        foreach($list as $key => $value){
-          $id=@$value['id'];
-          $item=array();
-          switch ($component) {
-            case 'article':
-              $item=ArticleModel::whereRaw('id = ? and status = ?',[(int)@$id,$status])->get()->toArray();
-            break;          
-            case 'product':            
-              $item=ProductModel::whereRaw('id = ? and status = ?',[(int)@$id,$status])->get()->toArray();
-            break;
-          }            
-          if(count($item) > 0){
-            $data[]=$item[0];
-          }                    
-        }
+  return $strCurrency;
+}
+function getModuleByPosition($position){
+  $data=array();
+  $status=1;
+  $module=ModuleItemModel::whereRaw('trim(lower(position)) = ? and status = ?',[mb_strtolower(trim(@$position)),(int)$status])->select('item_id','component','status')->get()->toArray();    
+  if(count($module) > 0){
+    $module=$module[0];
+    $item_id=$module['item_id'];
+    $component=$module['component'];
+    $list=json_decode($item_id);            
+    if(count($list) > 0){
+      $list=convertToArray($list);
+      foreach($list as $key => $value){
+        $id=@$value['id'];
+        $item=array();
+        switch ($component) {
+          case 'article':
+          $item=ArticleModel::whereRaw('id = ? and status = ?',[(int)@$id,$status])->get()->toArray();
+          break;          
+          case 'product':            
+          $item=ProductModel::whereRaw('id = ? and status = ?',[(int)@$id,$status])->get()->toArray();
+          break;
+        }            
+        if(count($item) > 0){
+          $data[]=$item[0];
+        }                    
       }
-    }            
-    return $data;
-  }
+    }
+  }            
+  return $data;
+}
 function randomString($length = 5){
-    $arrCharacter = array_merge(range('a','z'), range(0,9));
-    $arrCharacter = implode($arrCharacter, '');
-    $arrCharacter = str_shuffle($arrCharacter);
-    $result   = substr($arrCharacter, 0, $length);
-    return $result;
+  $arrCharacter = array_merge(range('a','z'), range(0,9));
+  $arrCharacter = implode($arrCharacter, '');
+  $arrCharacter = str_shuffle($arrCharacter);
+  $result   = substr($arrCharacter, 0, $length);
+  return $result;
 }
 function getArrPrivilege(){
   /* begin quyền truy cập */
-    $user_id=Sentinel::getUser()->id;      
-    $stdPrivilegeID=DB::table("users")
-                ->join("group_member","users.group_member_id","=","group_member.id")
-                ->join("group_privilege","group_member.id","=","group_privilege.group_member_id")
-                ->where("users.id","=",(int)@$user_id)                
-                ->select("group_privilege.privilege_id")
-                ->get();
-                ;     
-    $arrID=array();    
-    foreach ($stdPrivilegeID as $key => $value) {
-      $arrID[]=$value->privilege_id;
-    }
-    $strID=implode(",",$arrID);
-    $sql="select concat(`controller`,'-',`action`) as controller_action
-        from `privilege`
-        where `id` in(".$strID.")";
-    $stdPrivilege=DB::select(@$sql);
-    $arrPrivilege=array();
-    foreach ($stdPrivilege as $key => $value) {
-      $arrPrivilege[]=$value->controller_action;
-    }     
-    /* end quyền truy cập */  
-    return $arrPrivilege;
+  $user_id=Sentinel::getUser()->id;      
+  $stdPrivilegeID=DB::table("users")
+  ->join("group_member","users.group_member_id","=","group_member.id")
+  ->join("group_privilege","group_member.id","=","group_privilege.group_member_id")
+  ->where("users.id","=",(int)@$user_id)                
+  ->select("group_privilege.privilege_id")
+  ->get();
+  ;     
+  $arrID=array();    
+  foreach ($stdPrivilegeID as $key => $value) {
+    $arrID[]=$value->privilege_id;
+  }
+  $strID=implode(",",$arrID);
+  $sql="select concat(`controller`,'-',`action`) as controller_action
+  from `privilege`
+  where `id` in(".$strID.")";
+  $stdPrivilege=DB::select(@$sql);
+  $arrPrivilege=array();
+  foreach ($stdPrivilege as $key => $value) {
+    $arrPrivilege[]=$value->controller_action;
+  }     
+  /* end quyền truy cập */  
+  return $arrPrivilege;
 }
 ?>

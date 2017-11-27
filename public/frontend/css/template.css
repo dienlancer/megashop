@@ -1,16 +1,5 @@
 /* begin standard */
 *{margin:0;padding:0;}
-
-
-
-
-
-
-
-
-
-
-
 @font-face{font-family:"notoserif";src:url("../fonts/noto-serif.ttf");}
 @font-face{font-family:"robotocondensed";src:url("../fonts/RobotoCondensed-Regular.woff");}
 @font-face{font-family:"baomoi";src:url("../fonts/baomoi_gdi.ttf");}
@@ -129,14 +118,14 @@ div.mobile-search{
     }
 }
 .navbar-default {    
-    background: #3AB54A;
+    background: #05715f;
     border: 0;
 }
 .navbar-default .navbar-toggle{
     border: 1px solid #ffffff
 }
 .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus{
-     background:#3AB54A;
+     background:#05715f;
 }
 .navbar-default .navbar-toggle .icon-bar {
     background-color: #fff;
@@ -159,7 +148,7 @@ ul.navbar-nav > li:first-child > a{
     border: 0
 }
 .navbar-default .navbar-nav > li > a{
-   border-top: 1px solid #47cb58;
+   border-top: solid 1px #288575;
 }
 .navbar-default .navbar-nav > li  a:hover{
     color: #D41010;    
