@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 27, 2017 lúc 12:50 PM
+-- Thời gian đã tạo: Th10 27, 2017 lúc 06:14 PM
 -- Phiên bản máy phục vụ: 10.1.22-MariaDB
 -- Phiên bản PHP: 7.1.4
 
@@ -27,7 +27,7 @@ DELIMITER $$
 -- Thủ tục
 --
 DROP PROCEDURE IF EXISTS `pro_getArticle`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getArticle` (IN `keyword` VARCHAR(255), IN `strCategoryArticleID` VARCHAR(255))  begin
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getArticle` (IN `keyword` VARCHAR(255), IN `strCategoryArticleID` VARCHAR(255))  begin
 SELECT
     0 AS is_checked
     ,n.id
@@ -70,7 +70,7 @@ SELECT
 end$$
 
 DROP PROCEDURE IF EXISTS `pro_getArticleFrontend`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getArticleFrontend` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255))  SELECT
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getArticleFrontend` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255))  SELECT
     0 AS is_checked
     ,n.id
     ,n.fullname
@@ -87,7 +87,7 @@ CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getArticleFrontend` (IN `keyw
     ORDER BY n.sort_order ASC$$
 
 DROP PROCEDURE IF EXISTS `pro_getArticleFrontendLimit`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getArticleFrontendLimit` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getArticleFrontendLimit` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT
     0 AS is_checked
     ,n.id
     ,n.fullname
@@ -130,7 +130,7 @@ CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getArticleFrontendLimit` (IN 
     LIMIT `position` , `totalItemsPerPage`$$
 
 DROP PROCEDURE IF EXISTS `pro_getBanner`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getBanner` (IN `keyword` VARCHAR(255) charset utf8)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getBanner` (IN `keyword` VARCHAR(255) charset utf8)  BEGIN
 SELECT 
 	0 AS  is_checked
 	,n.id
@@ -156,7 +156,7 @@ SELECT
     END$$
 
 DROP PROCEDURE IF EXISTS `pro_getCategoryArticle`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCategoryArticle` (IN `keyword` VARCHAR(255))  BEGIN	
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getCategoryArticle` (IN `keyword` VARCHAR(255))  BEGIN	
     SELECT
     0 AS is_checked,
 	n.id,
@@ -190,7 +190,7 @@ CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCategoryArticle` (IN `keyw
 END$$
 
 DROP PROCEDURE IF EXISTS `pro_getCategoryArticleLimit`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCategoryArticleLimit` (IN `keyword` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getCategoryArticleLimit` (IN `keyword` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT 
 	0 AS is_checked,
 	n.id,
 	n.fullname,
@@ -222,7 +222,7 @@ CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCategoryArticleLimit` (IN 
     LIMIT `position` , totalItemsPerPage$$
 
 DROP PROCEDURE IF EXISTS `pro_getCategoryProduct`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCategoryProduct` (IN `keyword` VARCHAR(255) CHARSET utf8)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getCategoryProduct` (IN `keyword` VARCHAR(255) CHARSET utf8)  BEGIN
 SELECT
     0 AS is_checked,
 	n.id,
@@ -255,7 +255,7 @@ SELECT
 END$$
 
 DROP PROCEDURE IF EXISTS `pro_getCategoryProductLimit`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCategoryProductLimit` (IN `keyword` VARCHAR(255) CHARSET utf8, IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getCategoryProductLimit` (IN `keyword` VARCHAR(255) CHARSET utf8, IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT 
 	0 AS is_checked,
 	n.id,
 	n.fullname,
@@ -287,7 +287,7 @@ CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCategoryProductLimit` (IN 
     LIMIT `position` , totalItemsPerPage$$
 
 DROP PROCEDURE IF EXISTS `pro_getCustomer`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getCustomer` (IN `keyword` VARCHAR(255) CHARSET utf8)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getCustomer` (IN `keyword` VARCHAR(255) CHARSET utf8)  NO SQL
 SELECT
     0 AS is_checked,
 	n.id,
@@ -324,7 +324,7 @@ SELECT
     ORDER BY n.sort_order ASC$$
 
 DROP PROCEDURE IF EXISTS `pro_getGroupMember`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getGroupMember` (IN `keyword` VARCHAR(255))  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getGroupMember` (IN `keyword` VARCHAR(255))  NO SQL
 SELECT
 	0 as is_checked
 	,n.id
@@ -345,7 +345,7 @@ SELECT
     ORDER BY n.sort_order ASC$$
 
 DROP PROCEDURE IF EXISTS `pro_getInvoice`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getInvoice` (IN `keyword` VARCHAR(255) CHARSET utf8)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getInvoice` (IN `keyword` VARCHAR(255) CHARSET utf8)  NO SQL
 SELECT
     0 AS is_checked,
 	n.id,
@@ -386,7 +386,7 @@ SELECT
     ORDER BY n.sort_order ASC$$
 
 DROP PROCEDURE IF EXISTS `pro_getMenu`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getMenu` (IN `keyword` VARCHAR(255), IN `menu_type_id` INT(11))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getMenu` (IN `keyword` VARCHAR(255), IN `menu_type_id` INT(11))  BEGIN
 SELECT 
 0 AS is_checked
 	,n.id
@@ -422,7 +422,7 @@ SELECT
     END$$
 
 DROP PROCEDURE IF EXISTS `pro_getMenuLimit`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getMenuLimit` (IN `keyword` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11), IN `menu_type_id` INT(11))  SELECT 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getMenuLimit` (IN `keyword` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11), IN `menu_type_id` INT(11))  SELECT 
 	0 AS is_checked,
 	n.id
 	,n.fullname
@@ -457,7 +457,7 @@ CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getMenuLimit` (IN `keyword` V
     LIMIT `position` , totalItemsPerPage$$
 
 DROP PROCEDURE IF EXISTS `pro_getMenuType`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getMenuType` (IN `keyword` VARCHAR(255))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getMenuType` (IN `keyword` VARCHAR(255))  BEGIN
 	SELECT 
 	0 AS is_checked
 	,n.id
@@ -484,7 +484,7 @@ CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getMenuType` (IN `keyword` VA
 END$$
 
 DROP PROCEDURE IF EXISTS `pro_getModuleItem`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getModuleItem` (IN `keyword` VARCHAR(255))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getModuleItem` (IN `keyword` VARCHAR(255))  BEGIN
 SELECT 
 	0 AS  is_checked
 	,n.id
@@ -512,7 +512,7 @@ SELECT
     END$$
 
 DROP PROCEDURE IF EXISTS `pro_getPaymentMethod`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getPaymentMethod` (IN `keyword` VARCHAR(255) charset utf8)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getPaymentMethod` (IN `keyword` VARCHAR(255) charset utf8)  BEGIN
 SELECT 
 	0 AS  is_checked
 	,n.id
@@ -538,7 +538,7 @@ SELECT
     END$$
 
 DROP PROCEDURE IF EXISTS `pro_getPrivilege`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getPrivilege` (IN `keyword` VARCHAR(255) CHARSET utf8)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getPrivilege` (IN `keyword` VARCHAR(255) CHARSET utf8)  NO SQL
 SELECT
     0 AS is_checked,
 	n.id,
@@ -564,7 +564,7 @@ SELECT
     ORDER BY n.controller ASC , n.sort_order ASC$$
 
 DROP PROCEDURE IF EXISTS `pro_getProduct`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getProduct` (IN `keyword` VARCHAR(255), IN `strCategoryProductID` VARCHAR(255))  begin
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getProduct` (IN `keyword` VARCHAR(255), IN `strCategoryProductID` VARCHAR(255))  begin
 SELECT
     0 AS is_checked
     ,n.id
@@ -603,7 +603,7 @@ SELECT
 end$$
 
 DROP PROCEDURE IF EXISTS `pro_getProductFrontend`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getProductFrontend` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255))  SELECT
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getProductFrontend` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255))  SELECT
     0 AS is_checked
     ,n.id
     ,n.fullname
@@ -620,7 +620,7 @@ CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getProductFrontend` (IN `keyw
     ORDER BY n.sort_order ASC$$
 
 DROP PROCEDURE IF EXISTS `pro_getProductFrontendLimit`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getProductFrontendLimit` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getProductFrontendLimit` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255), IN `position` INT(11), IN `totalItemsPerPage` INT(11))  SELECT
     0 AS is_checked
     ,n.id
     ,n.code
@@ -661,7 +661,7 @@ CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getProductFrontendLimit` (IN 
     LIMIT `position` , `totalItemsPerPage`$$
 
 DROP PROCEDURE IF EXISTS `pro_getSettingSystem`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getSettingSystem` (IN `keyword` VARCHAR(255) charset utf8)  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getSettingSystem` (IN `keyword` VARCHAR(255) charset utf8)  BEGIN
 SELECT 
 	0 AS  is_checked
 	,n.id
@@ -687,7 +687,7 @@ SELECT
     END$$
 
 DROP PROCEDURE IF EXISTS `pro_getUser`$$
-CREATE DEFINER=`depnua`@`localhost` PROCEDURE `pro_getUser` (IN `keyword` VARCHAR(255), IN `group_member_id` INT)  NO SQL
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getUser` (IN `keyword` VARCHAR(255), IN `group_member_id` INT)  NO SQL
 SELECT 
     0 as is_checked
     ,n.id
@@ -815,7 +815,7 @@ INSERT INTO `article` (`id`, `fullname`, `title`, `alias`, `image`, `intro`, `co
 (4, 'Nguyễn Văn Nguyễn', 'tiêu đề nguyễn văn nguyễn', 'nguyen-van-nguyen', 'khach-hang-2.png', 'Căn hộ tập thể Giảng Võ', '<p style=\"text-align:center\">Khi chuyển đến căn hộ n&agrave;y t&ocirc;i c&oacute; nhu cầu thiết kế, chuyển đổi một số nội thất, t&ocirc;i đ&atilde; nhờ tới Megashop nhờ vậy t&ocirc;i c&oacute; một căn hộ xinh xắn những đầy ắp tiện nghị.</p>', NULL, 'mô tả nguyễn văn nguyễn', 'metakeyword nguyễn văn nguyễn', 'metadescription nguyễn văn nguyễn', 11, 1, '2017-11-14 10:19:25', '2017-11-21 14:20:00'),
 (5, 'Hoàng Thái Hậu', '', 'hoang-thai-hau', 'khach-hang-3.png', 'Nhà liên cư Cổ Nhuế', '<p style=\"text-align:center\">Việc bố tr&iacute; từ tầng 1 l&ecirc;n tầng 5 nh&agrave; t&ocirc;i mới mua như thế n&agrave;o cho hợp l&yacute; khiến t&ocirc;i thật sự lung t&uacute;ng. Megashop qu&aacute; chuy&ecirc;n nghiệp từ khi t&ocirc;i gặp gỡ v&agrave; triển khai ho&agrave;n thiện, cảm ơn !</p>', NULL, '', '', '', 9, 1, '2017-11-14 10:21:05', '2017-11-21 14:20:00'),
 (6, 'Nguyễn Trọng Hiếu', '', 'nguyen-trong-hieu', 'khach-hang-1.png', 'Chung cư Timecy', '<p style=\"text-align:center\">Khi mua căn hộ mới, t&ocirc;i đ&atilde; li&ecirc;n hệ v&agrave; t&igrave;m đơn vị thi c&ocirc;ng c&ugrave;ng cung cấp nội thất hỗ trợ. Thật may khi t&igrave;m được Megashop, c&aacute;c bạn l&agrave;m việc nhiệt t&igrave;nh, sản phẩm cung cấp t&ocirc;i rất ưng.</p>', NULL, '', '', '', 10, 1, '2017-11-14 10:21:57', '2017-11-21 14:20:00'),
-(7, 'Siêu dự bị tỏa sáng Man Utd thắng sít sao Tottenham', '', 'sieu-du-bi-toa-sang-man-utd-thang-sit-sao-tottenham', 'sang-trong-1.png', 'Martial chỉ mất hơn 10 phút để ghi bàn duy nhất, giúp đội chủ sân Old Trafford có chiến thắng 1-0 trước đối thủ cạnh tranh ngôi vô địch.', '<p style=\"text-align:justify\">Anthony Martial chứng tỏ c&aacute;i duy&ecirc;n của một si&ecirc;u dự bị. Ch&acirc;n s&uacute;t người Ph&aacute;p khiến nhiều CĐV Man Utd nhớ đến huyền thoại Ole Gunnar Solskjaer dưới thời Alex Ferguson. Cựu cầu thủ AS Monaco c&oacute; bốn b&agrave;n tại Ngoại hạng Anh từ đầu m&ugrave;a, v&agrave; tất cả đều đến sau khi anh v&agrave;o s&acirc;n thay người.</p>\n\n<p style=\"text-align:justify\">Trong cuộc tiếp đ&oacute;n Tottenham, Martial chỉ cần hơn 10 ph&uacute;t để khai hỏa. Anh dứt điểm ho&agrave;n hảo, sau pha tấn c&ocirc;ng chớp nho&aacute;ng chỉ bằng hai đường chuyền từ phần s&acirc;n nh&agrave;.</p>\n\n<p style=\"text-align:justify\"><img alt=\"\" src=\"/megashop/upload/380x220-sanpham-5.png\" style=\"float:left; height:220px; margin:15px; width:380px\" /></p>\n\n<p style=\"text-align:justify\">Sự ổn định của Martial gi&uacute;p Jose Mourinho c&oacute; th&ecirc;m lựa chọn chiến thuật, sau khi ch&acirc;n s&uacute;t chủ lực Romelu Lukaku c&oacute; dấu hiệu đi xuống về phong độ, v&agrave; chưa cải thiện được hiệu suất ghi b&agrave;n mỗi khi đối đầu với c&aacute;c đối thủ trong nh&oacute;m đội mạnh, gồm Arsenal, Chelsea, Liverpool, Man City, Tottenham.</p>\n\n<p style=\"text-align:justify\">Ba điểm trước &quot;G&agrave; trống&quot; cũng đập tan suy luận, rằng thầy tr&ograve; Mourinho chỉ chơi hay trước c&aacute;c đội b&oacute;ng yếu hơn. Đ&acirc;y cũng l&agrave; năm thứ tư li&ecirc;n tiếp, Man Utd vượt qua đội b&oacute;ng th&agrave;nh London tr&ecirc;n s&acirc;n nh&agrave; Old Trafford, trong khu&ocirc;n khổ Ngoại hạng Anh.</p>\n\n<p style=\"text-align:justify\">Quan trọng hơn, trận thắng Tottenham gi&uacute;p Man Utd tiếp tục cuộc đua song m&atilde; với Man City, v&agrave; tạm thời r&uacute;t ngắn khoảng c&aacute;ch xuống c&ograve;n hai điểm.<br />\nDuy tr&igrave; mạch thắng trước Tottenham, nhưng ba điểm đến kh&ocirc;ng dễ d&agrave;ng với Man Utd. Với t&acirc;m l&yacute; cẩn trọng của cả hai đội, 45 ph&uacute;t đầu ti&ecirc;n diễn ra kh&aacute; tẻ nhạt. Đội chủ nh&agrave; chơi tốt hơn trong khoảng 10 ph&uacute;t đầu khi thực hiện pressing tầm cao kh&aacute; tốt, v&agrave; c&oacute; một v&agrave;i t&igrave;nh huống x&acirc;m nhập v&ograve;ng cấm của Hugo Lloris.</p>\n\n<p style=\"text-align:justify\">Tottenham ngược lại, nhỉnh hơn trong khoảng 15 ph&uacute;t cuối. Sự cơ động của Eric Dier, dấu ấn chiến thuật của Mauricio Pochettino trong trận n&agrave;y, thường xuy&ecirc;n tổ chức ph&aacute;t động tấn c&ocirc;ng từ s&acirc;n nh&agrave;, hoặc đột ngột x&acirc;m nhập v&ograve;ng cấm đội b&oacute;ng &aacute;o đỏ.</p>\n\n<p style=\"text-align:justify\">Cơ hội nguy hiểm nhất trong hiệp một đến từ pha phối hợp thiếu ăn &yacute; của David De Gea v&agrave; Phil Jones. Thủ th&agrave;nh người T&acirc;y Ban Nha bắt b&oacute;ng c&oacute; phần chủ quan, để b&oacute;ng bật ra. Moussa Sissoko c&oacute; cơ hội ra ch&acirc;n ngay r&igrave;a v&ograve;ng cấm, nhưng anh dứt điểm qu&aacute; thiếu ch&iacute;nh x&aacute;c.<br />\nMan Utd bất ngờ tăng tốc đầu hiệp hai, bởi nếu h&ograve;a, đội chủ s&acirc;n Old Trafford c&oacute; khả năng k&eacute;m đối thủ c&ugrave;ng th&agrave;nh phố bảy điểm sau v&ograve;ng n&agrave;y. Những t&igrave;nh huống nguy hiểm bắt đầu xuất hiện. Đ&aacute;ng kể nhất l&agrave; pha x&acirc;m nhập của Marcus Rashford ở ph&uacute;t 54, sau nỗ lực đi b&oacute;ng của Henrik Mkhitaryan, nhưng ch&acirc;n s&uacute;t người Anh chậm hơn Ben Davies một nhịp.</p>\n\n<p style=\"text-align:justify\"><img alt=\"\" src=\"/megashop/upload/benzema.jpg\" style=\"float:left; height:301px; width:500px\" /></p>\n\n<p style=\"text-align:justify\">Ph&uacute;t 65, Antonio Valencia thiếu ch&uacute;t nữa t&aacute;i hiện pha ghi b&agrave;n đẹp mắt, giống như anh từng l&agrave;m v&agrave;o lưới Everton khi s&uacute;t b&oacute;ng nửa nẩy r&igrave;a v&ograve;ng cấm. T&aacute;m ph&uacute;t sau, tới lượt Romelu Lukaku l&ecirc;n tiếng với một pha ra ch&acirc;n căng từ g&oacute;c hẹp, buộc Hugo Lloris bay người hết cỡ.</p>\n\n<p style=\"text-align:justify\">Sự cởi mở của đội chủ nh&agrave; gi&uacute;p Tottenham đến gần hơn khung th&agrave;nh của De Gea. Ph&uacute;t 77, Christian Eriksen chọc khe bổng cho Dele Alli băng v&agrave;o v&ograve;ng 5m50. Đ&aacute;ng tiếc cho đội kh&aacute;ch, từ khoảng c&aacute;ch chưa đầy 5 met, tiền vệ người Anh lại ch&iacute;ch b&oacute;ng ra ngo&agrave;i.<br />\nTottenham lộ điểm yếu thể lực trong hơn 10 ph&uacute;t cuối trận, v&agrave; đ&acirc;y cũng l&agrave; khoảng thời gian Man Utd li&ecirc;n tiếp tạo ra những t&igrave;nh huống s&oacute;ng gi&oacute;. Ph&uacute;t 79, thiếu ch&uacute;t nữa Lukaku đ&atilde; ghi t&ecirc;n l&ecirc;n bảng điện tử khi đ&aacute;nh đầu hiểm h&oacute;c, đưa b&oacute;ng chạm cột dọc, sau đường treo b&oacute;ng bổng của Valencia.</p>\n\n<p style=\"text-align:justify\">Nhưng kh&aacute;n giả tại Old Trafford cũng kh&ocirc;ng phải nuối tiếc qu&aacute; l&acirc;u, bởi chỉ hai ph&uacute;t sau, Martial đ&atilde; lập c&ocirc;ng. Bắt nguồn từ pha ph&aacute;t b&oacute;ng b&ecirc;n phần s&acirc;n nh&agrave; của De Gea, Lukaku bật cao đ&aacute;nh đầu chuyền b&oacute;ng cho ch&acirc;n s&uacute;t người Ph&aacute;p d&ugrave;ng tốc độ tho&aacute;t xuống. Cựu cầu thủ AS Monaco dứt điểm tinh tế trong pha đối mặt, l&agrave;m tung lưới Lloris.</p>\n\n<p style=\"text-align:justify\">Man Utd lẽ ra đ&atilde; thắng đậm hơn, nếu một cầu thủ dự bị kh&aacute;c l&agrave; Jesse Lingard c&oacute; th&ecirc;m tốc độ để thoải m&aacute;i hơn trong pha dứt điểm ở ph&uacute;t 90, khi một m&igrave;nh một b&oacute;ng tho&aacute;t xuống. D&ugrave; vậy, chiến thắng 1-0 l&agrave; qu&aacute; đủ để &quot;Quỷ đỏ&quot; giữ vững vị tr&iacute; thứ hai tr&ecirc;n bảng điểm.</p>\n\n<p style=\"text-align:justify\">Đội h&igrave;nh thi đấu</p>\n\n<p style=\"text-align:justify\">Man Utd: De Gea, Valencia, Smalling, Jones, Bailly, Young (Darmian 90&#39;+2), Matic, Mkhitaryan (Lingard 65&#39;), Herrera, Lukaku, Rashford (Martial 70&#39;)</p>\n\n<p style=\"text-align:justify\">Dự bị kh&ocirc;ng sử dụng: Romero, Blind, Mata, McTominay</p>\n\n<p style=\"text-align:justify\">Tottenham: Lloris, Vertonghen, Alderweireld, Aurier, Davies, Sissoko (Dembele 62&#39;), Eriksen, Alli, Dier, Winks, Heung-Min (Llorente 62&#39;)</p>\n\n<p style=\"text-align:justify\">Dự bị kh&ocirc;ng sử dụng: Vorm, Sanchez, Nkoudou, Trippier, Rose</p>', '', '', '', '', 1, 1, '2017-11-14 10:54:19', '2017-11-27 11:43:21'),
+(7, 'Siêu dự bị tỏa sáng Man Utd thắng sít sao Tottenham', '', 'sieu-du-bi-toa-sang-man-utd-thang-sit-sao-tottenham', 'sang-trong-1.png', 'Martial chỉ mất hơn 10 phút để ghi bàn duy nhất, giúp đội chủ sân Old Trafford có chiến thắng 1-0 trước đối thủ cạnh tranh ngôi vô địch.', '<p style=\"text-align:justify\">Anthony Martial chứng tỏ c&aacute;i duy&ecirc;n của một si&ecirc;u dự bị. Ch&acirc;n s&uacute;t người Ph&aacute;p khiến nhiều CĐV Man Utd nhớ đến huyền thoại Ole Gunnar Solskjaer dưới thời Alex Ferguson. Cựu cầu thủ AS Monaco c&oacute; bốn b&agrave;n tại Ngoại hạng Anh từ đầu m&ugrave;a, v&agrave; tất cả đều đến sau khi anh v&agrave;o s&acirc;n thay người.</p>\n\n<p style=\"text-align:justify\">Trong cuộc tiếp đ&oacute;n Tottenham, Martial chỉ cần hơn 10 ph&uacute;t để khai hỏa. Anh dứt điểm ho&agrave;n hảo, sau pha tấn c&ocirc;ng chớp nho&aacute;ng chỉ bằng hai đường chuyền từ phần s&acirc;n nh&agrave;.</p>\n\n<p style=\"text-align:justify\"><img alt=\"\" src=\"/megashop/upload/380x220-sanpham-5.png\" style=\"float:left; height:220px; margin:10px; width:380px\" /></p>\n\n<p style=\"text-align:justify\">Sự ổn định của Martial gi&uacute;p Jose Mourinho c&oacute; th&ecirc;m lựa chọn chiến thuật, sau khi ch&acirc;n s&uacute;t chủ lực Romelu Lukaku c&oacute; dấu hiệu đi xuống về phong độ, v&agrave; chưa cải thiện được hiệu suất ghi b&agrave;n mỗi khi đối đầu với c&aacute;c đối thủ trong nh&oacute;m đội mạnh, gồm Arsenal, Chelsea, Liverpool, Man City, Tottenham.</p>\n\n<p style=\"text-align:justify\">Ba điểm trước &quot;G&agrave; trống&quot; cũng đập tan suy luận, rằng thầy tr&ograve; Mourinho chỉ chơi hay trước c&aacute;c đội b&oacute;ng yếu hơn. Đ&acirc;y cũng l&agrave; năm thứ tư li&ecirc;n tiếp, Man Utd vượt qua đội b&oacute;ng th&agrave;nh London tr&ecirc;n s&acirc;n nh&agrave; Old Trafford, trong khu&ocirc;n khổ Ngoại hạng Anh.</p>\n\n<p style=\"text-align:justify\">Quan trọng hơn, trận thắng Tottenham gi&uacute;p Man Utd tiếp tục cuộc đua song m&atilde; với Man City, v&agrave; tạm thời r&uacute;t ngắn khoảng c&aacute;ch xuống c&ograve;n hai điểm.<br />\nDuy tr&igrave; mạch thắng trước Tottenham, nhưng ba điểm đến kh&ocirc;ng dễ d&agrave;ng với Man Utd. Với t&acirc;m l&yacute; cẩn trọng của cả hai đội, 45 ph&uacute;t đầu ti&ecirc;n diễn ra kh&aacute; tẻ nhạt. Đội chủ nh&agrave; chơi tốt hơn trong khoảng 10 ph&uacute;t đầu khi thực hiện pressing tầm cao kh&aacute; tốt, v&agrave; c&oacute; một v&agrave;i t&igrave;nh huống x&acirc;m nhập v&ograve;ng cấm của Hugo Lloris.</p>\n\n<p style=\"text-align:justify\">Tottenham ngược lại, nhỉnh hơn trong khoảng 15 ph&uacute;t cuối. Sự cơ động của Eric Dier, dấu ấn chiến thuật của Mauricio Pochettino trong trận n&agrave;y, thường xuy&ecirc;n tổ chức ph&aacute;t động tấn c&ocirc;ng từ s&acirc;n nh&agrave;, hoặc đột ngột x&acirc;m nhập v&ograve;ng cấm đội b&oacute;ng &aacute;o đỏ.</p>\n\n<p style=\"text-align:justify\">Cơ hội nguy hiểm nhất trong hiệp một đến từ pha phối hợp thiếu ăn &yacute; của David De Gea v&agrave; Phil Jones. Thủ th&agrave;nh người T&acirc;y Ban Nha bắt b&oacute;ng c&oacute; phần chủ quan, để b&oacute;ng bật ra. Moussa Sissoko c&oacute; cơ hội ra ch&acirc;n ngay r&igrave;a v&ograve;ng cấm, nhưng anh dứt điểm qu&aacute; thiếu ch&iacute;nh x&aacute;c.<br />\nMan Utd bất ngờ tăng tốc đầu hiệp hai, bởi nếu h&ograve;a, đội chủ s&acirc;n Old Trafford c&oacute; khả năng k&eacute;m đối thủ c&ugrave;ng th&agrave;nh phố bảy điểm sau v&ograve;ng n&agrave;y. Những t&igrave;nh huống nguy hiểm bắt đầu xuất hiện. Đ&aacute;ng kể nhất l&agrave; pha x&acirc;m nhập của Marcus Rashford ở ph&uacute;t 54, sau nỗ lực đi b&oacute;ng của Henrik Mkhitaryan, nhưng ch&acirc;n s&uacute;t người Anh chậm hơn Ben Davies một nhịp.</p>\n\n<p style=\"text-align:justify\"><img alt=\"\" src=\"/megashop/upload/benzema.jpg\" style=\"float:left; height:301px; margin:10px; width:500px\" /></p>\n\n<p style=\"text-align:justify\">Ph&uacute;t 65, Antonio Valencia thiếu ch&uacute;t nữa t&aacute;i hiện pha ghi b&agrave;n đẹp mắt, giống như anh từng l&agrave;m v&agrave;o lưới Everton khi s&uacute;t b&oacute;ng nửa nẩy r&igrave;a v&ograve;ng cấm. T&aacute;m ph&uacute;t sau, tới lượt Romelu Lukaku l&ecirc;n tiếng với một pha ra ch&acirc;n căng từ g&oacute;c hẹp, buộc Hugo Lloris bay người hết cỡ.</p>\n\n<p style=\"text-align:justify\">Sự cởi mở của đội chủ nh&agrave; gi&uacute;p Tottenham đến gần hơn khung th&agrave;nh của De Gea. Ph&uacute;t 77, Christian Eriksen chọc khe bổng cho Dele Alli băng v&agrave;o v&ograve;ng 5m50. Đ&aacute;ng tiếc cho đội kh&aacute;ch, từ khoảng c&aacute;ch chưa đầy 5 met, tiền vệ người Anh lại ch&iacute;ch b&oacute;ng ra ngo&agrave;i.<br />\nTottenham lộ điểm yếu thể lực trong hơn 10 ph&uacute;t cuối trận, v&agrave; đ&acirc;y cũng l&agrave; khoảng thời gian Man Utd li&ecirc;n tiếp tạo ra những t&igrave;nh huống s&oacute;ng gi&oacute;. Ph&uacute;t 79, thiếu ch&uacute;t nữa Lukaku đ&atilde; ghi t&ecirc;n l&ecirc;n bảng điện tử khi đ&aacute;nh đầu hiểm h&oacute;c, đưa b&oacute;ng chạm cột dọc, sau đường treo b&oacute;ng bổng của Valencia.</p>\n\n<p style=\"text-align:justify\">Nhưng kh&aacute;n giả tại Old Trafford cũng kh&ocirc;ng phải nuối tiếc qu&aacute; l&acirc;u, bởi chỉ hai ph&uacute;t sau, Martial đ&atilde; lập c&ocirc;ng. Bắt nguồn từ pha ph&aacute;t b&oacute;ng b&ecirc;n phần s&acirc;n nh&agrave; của De Gea, Lukaku bật cao đ&aacute;nh đầu chuyền b&oacute;ng cho ch&acirc;n s&uacute;t người Ph&aacute;p d&ugrave;ng tốc độ tho&aacute;t xuống. Cựu cầu thủ AS Monaco dứt điểm tinh tế trong pha đối mặt, l&agrave;m tung lưới Lloris.</p>\n\n<p style=\"text-align:justify\">Man Utd lẽ ra đ&atilde; thắng đậm hơn, nếu một cầu thủ dự bị kh&aacute;c l&agrave; Jesse Lingard c&oacute; th&ecirc;m tốc độ để thoải m&aacute;i hơn trong pha dứt điểm ở ph&uacute;t 90, khi một m&igrave;nh một b&oacute;ng tho&aacute;t xuống. D&ugrave; vậy, chiến thắng 1-0 l&agrave; qu&aacute; đủ để &quot;Quỷ đỏ&quot; giữ vững vị tr&iacute; thứ hai tr&ecirc;n bảng điểm.</p>\n\n<p style=\"text-align:justify\">Đội h&igrave;nh thi đấu</p>\n\n<p style=\"text-align:justify\">Man Utd: De Gea, Valencia, Smalling, Jones, Bailly, Young (Darmian 90&#39;+2), Matic, Mkhitaryan (Lingard 65&#39;), Herrera, Lukaku, Rashford (Martial 70&#39;)</p>\n\n<p style=\"text-align:justify\">Dự bị kh&ocirc;ng sử dụng: Romero, Blind, Mata, McTominay</p>\n\n<p style=\"text-align:justify\">Tottenham: Lloris, Vertonghen, Alderweireld, Aurier, Davies, Sissoko (Dembele 62&#39;), Eriksen, Alli, Dier, Winks, Heung-Min (Llorente 62&#39;)</p>\n\n<p style=\"text-align:justify\">Dự bị kh&ocirc;ng sử dụng: Vorm, Sanchez, Nkoudou, Trippier, Rose</p>', '', '', '', '', 1, 1, '2017-11-14 10:54:19', '2017-11-27 15:37:36'),
 (8, 'PSG đi tiếp trong ngày hậu vệ trái lập hattrick', '', 'psg-di-tiep-trong-ngay-hau-ve-trai-lap-hattrick', 'sang-trong-2.png', 'Đội chủ sân Parc des Princes tiếp tục toàn thắng và không thủng lưới tại vòng bảng Champions League, sau khi hạ Anderlecht 5-0.', '<p style=\"text-align:justify\">PSG tạo cảm gi&aacute;c họ kết liễu đối thủ m&agrave; chẳng cần b&oacute;p c&ograve;. Kylian Mbappe v&agrave; Edinson Cavani kh&ocirc;ng đạt phong độ tốt nhất, nhưng b&agrave;n thắng hiếm hoi của Verratti v&agrave; hat-trick đến từ hậu vệ tr&aacute;i Layvin Kurzawa gi&uacute;p chủ nh&agrave; duy tr&igrave; th&agrave;nh t&iacute;ch cao tại Champions League. Qua bốn lượt trận v&ograve;ng bảng, PSG đang sở hữu h&agrave;ng c&ocirc;ng mạnh nhất với 17 b&agrave;n, cũng l&agrave; đội duy nhất chưa thủng lưới.</p>\n\n<p style=\"text-align:justify\">Tỷ số c&oacute; phần quen thuộc với PSG tr&ecirc;n s&acirc;n nh&agrave;, nhưng trận đấu th&igrave; diễn tiến lạ kỳ. Verratti chỉ ghi t&aacute;m b&agrave;n trong sự nghiệp, lại mở điểm cho chủ nh&agrave;. Ph&uacute;t 30, anh được Mbappe dọn cỗ trong v&ograve;ng cấm. Được biến đến với độ lười dứt điểm, nhưng trong t&igrave;nh thế thuận lợi hơn đồng đội, tiền vệ người Italy khống chế kh&eacute;o l&eacute;o v&agrave; s&uacute;t về g&oacute;c xa. Thủ m&ocirc;n Frank Boeckx như chết lặng v&agrave; Verratti cũng ngỡ ng&agrave;ng kh&ocirc;ng k&eacute;m. Tiền vệ 24 tuổi kh&ocirc;ng l&agrave;m g&igrave; sau b&agrave;n thắng, chờ đồng đội đến chia vui.</p>\n\n<p style=\"text-align:justify\">Sức mạnh của PSG &aacute;t v&iacute;a to&agrave;n diện so với đối thủ, Anderlecht kh&ocirc;ng d&aacute;m đẩy cao đội h&igrave;nh, t&igrave;m b&agrave;n gỡ. Trước đối thủ chỉ nằm im chịu trận, c&aacute;c học tr&ograve; của HLV Unai Emery thay nhau bắn ph&aacute; cầu m&ocirc;n. Trước khi hiệp một kết th&uacute;c, Neymar dẫn b&oacute;ng cắt ngang khung th&agrave;nh v&agrave; s&uacute;t xa nh&acirc;n đ&ocirc;i c&aacute;ch biệt.</p>\n\n<p style=\"text-align:justify\">Hiệp hai l&agrave; s&acirc;n khấu cho Kurzawa tỏa s&aacute;ng, với hat-trick trong 25 ph&uacute;t. Cả ba b&agrave;n đều đến từ những pha dứt điểm trong v&ograve;ng cấm, khi hậu vệ tr&aacute;i n&agrave;y d&acirc;ng cao ở t&igrave;nh huống b&oacute;ng sống. Đầu ti&ecirc;n l&agrave; c&uacute; đ&aacute; bồi ở ph&uacute;t 53, sau khi Neymar s&uacute;t phạt tr&uacute;ng cột dọc. Sau đ&oacute;, tuyển thủ Ph&aacute;p bay người đ&aacute;nh đầu ở cự ly chưa đến năm m&eacute;t, trong thế kh&ocirc;ng bị ai k&egrave;m. Ph&uacute;t 78, anh ấn định thắng lợi 5-0 với c&uacute; s&uacute;t ch&igrave;m về g&oacute;c xa.</p>\n\n<p style=\"text-align:justify\">&quot;Hat-trick đầu ti&ecirc;n trong sự nghiệp gi&uacute;p t&ocirc;i vui sướng tột độ. PSG chơi thăng hoa suốt trận đấu, khiến kh&aacute;n giả vui mừng l&acirc;y. T&ocirc;i đ&atilde; ghi b&agrave;n trước đ&oacute;, nhưng ba b&agrave;n l&agrave; qu&aacute; nhiều với hậu vệ như t&ocirc;i. C&ocirc;ng sức thuộc về c&aacute;c đồng đội v&igrave; nếu họ kh&ocirc;ng ở đ&oacute;, t&ocirc;i đ&atilde; kh&ocirc;ng lập c&ocirc;ng nhiều đến vậy&quot;, Kurzawa chia sẻ cảm x&uacute;c sau trận.</p>\n\n<p style=\"text-align:justify\">PSG gi&agrave;nh quyền v&agrave;o v&ograve;ng 1/8 do Celtic thua Bayern Munich tr&ecirc;n s&acirc;n nh&agrave; trong trận đấu c&ugrave;ng giờ. &ldquo;H&ugrave;m x&aacute;m&rdquo; xứ Bavaria cũng c&oacute; v&eacute; theo ch&acirc;n PSG đi tiếp, d&ugrave; bảng B vẫn c&ograve;n hai lượt trận chưa đấu.</p>\n\n<p style=\"text-align:justify\">Đội h&igrave;nh thi đấu:</p>\n\n<p style=\"text-align:justify\">PSG (4-3-3): Areola; Dani Alves, Marquinhos, Thiago Silva, Kurzawa; Verratti (Lo Celso 65), Rabiot (Pastore 75), Draxler; Mbappe (Di Maria 65), Cavani, Neymar</p>\n\n<p style=\"text-align:justify\">Anderlecht (4-3-3): Boeckx; Appiah, Mbodji, Spajic (Josue 46), Obradovic; Kums, Dendoncker, Trebel; Gerkens, Onyekuru (Stanciu 79), Hanni (Teodorczyk 60)</p>', NULL, '', '', '', 9, 1, '2017-11-14 10:56:23', '2017-11-22 15:42:24'),
 (9, 'Cựu HLV thể lực Man Utd hé lộ những bài tập kì lạ của Ronaldo', '', 'cuu-hlv-the-luc-man-utd-he-lo-nhung-bai-tap-ki-la-cua-ronaldo', 'sang-trong-3.png', 'Nhiều cầu thủ muốn trở thành Cristiano Ronaldo, nhưng rất ít người biết anh đã nỗ lực như thế nào để có thành công như hôm nay.', '<p style=\"text-align:justify\">T&aacute;c giả Paulo Condo vừa ra mắt cuốn s&aacute;ch &quot;Duellists&quot; (Kỳ ph&ugrave;ng địch thủ), trong đ&oacute; c&oacute; những trang n&oacute;i về Ronaldo. Condo dẫn lại c&acirc;u chuyện về những b&agrave;i tập ngo&agrave;i giờ của CR7 khi anh c&ograve;n l&agrave; cầu thủ Man Utd, qua lời kể của Walter Di Salvio - cựu HLV thể lực Man Utd. Di Salvio l&agrave;m việc rất ăn &yacute; với Ronaldo, n&ecirc;n về sau, khi sang Real Madrid, hai người vẫn tiếp tục hợp t&aacute;c.</p>\n\n<p style=\"text-align:justify\">&quot;Walter một lần kể với t&ocirc;i về những b&agrave;i tập th&ecirc;m của Ronaldo, đ&oacute; kh&ocirc;ng phải những buổi r&egrave;n cơ bắp trong ph&ograve;ng gym, m&agrave; l&agrave; b&agrave;i tập ri&ecirc;ng sau mỗi buổi tập ở khu huấn luyện Carrington&quot;, s&aacute;ch của Condo c&oacute; đoạn.</p>\n\n<p style=\"text-align:justify\">&quot;Trong khi c&aacute;c cầu thủ Man Utd kh&aacute;c đ&atilde; đi tắm, Ronaldo quay trở lại khu huấn luyện, ở khu vực c&oacute; nhiều c&acirc;y xanh để luyện kỹ năng kiểm so&aacute;t b&oacute;ng&quot;, Condo kể tiếp. &quot;Khu vực n&agrave;y c&oacute; bề mặt mấp m&ocirc;, đầy những rễ c&acirc;y nh&ocirc; l&ecirc;n mặt đất. Ronaldo s&uacute;t b&oacute;ng thật mạnh v&agrave;o v&ugrave;ng n&agrave;y rồi chạy theo b&oacute;ng. Cậu ấy muốn luyện phản xạ kiểm so&aacute;t b&oacute;ng, dưới những t&aacute;c động kh&ocirc;ng thể đo&aacute;n trước&quot;.<br />\nT&aacute;c giả Condo kh&acirc;m phục &yacute; ch&iacute; vươn l&ecirc;n của Ronaldo, để trở th&agrave;nh kỳ ph&ugrave;ng địch thủ với một cầu thủ t&agrave;i năng xuất ch&uacute;ng như Lionel Messi. &quot;Nếu Messi l&agrave; Mozart, Ronaldo kh&ocirc;ng phải l&agrave; Salieri (nh&agrave; soạn nhạc cổ điển lừng danh người Italy ở thế kỷ 19)&quot;. Anh ấy c&oacute; nhiều hơn như thế&quot;, t&aacute;c giả cuốn s&aacute;ch viết.</p>\n\n<p style=\"text-align:justify\">Condo sau đ&oacute; ph&acirc;n t&iacute;ch s&acirc;u hơn về nh&acirc;n vật: &quot;Sự vĩ đại thật sự của Ronaldo l&agrave; th&aacute;i độ kh&ocirc;ng bao giờ đầu h&agrave;ng khi đối diện với những trở ngại tưởng chừng kh&ocirc;ng thể lay động. Ronaldo c&oacute; thừa quyết t&acirc;m để nỗ lực tiến bộ mỗi ng&agrave;y, v&agrave; đ&oacute; ch&iacute;nh x&aacute;c l&agrave; điều biến anh trở th&agrave;nh nh&agrave; v&ocirc; địch vĩ đại&quot;.</p>\n\n<p style=\"text-align:justify\">&quot;Kh&ocirc;ng ai m&ocirc; tả sự kh&aacute;c biệt giữa Ronaldo v&agrave; phần c&ograve;n lại tốt hơn c&aacute;ch Gianluca Vialli từng n&oacute;i: Mọi người n&oacute;i với bạn rằng họ c&oacute; &yacute; ch&iacute; mạnh mẽ để chiến thắng, v&agrave; sự thật l&agrave; như thế. Nhưng những người c&oacute; &yacute; ch&iacute; luyện tập để gi&agrave;nh chiến thắng mới l&agrave; người tạo n&ecirc;n sự kh&aacute;c biệt&quot;, t&aacute;c giả Condo kết luận.<br />\nNăm 2012, Messi l&ecirc;n đỉnh thế giới khi gi&agrave;nh Quả B&oacute;ng V&agrave;ng thứ tư. L&uacute;c ấy, &nbsp;Ronaldo chỉ mới một lần nhận vinh quang n&agrave;y. Nhưng đến năm 2016, Ronaldo bứt ph&aacute; đoạt bốn Quả B&oacute;ng V&agrave;ng, chỉ c&ograve;n k&eacute;m một so với ng&ocirc;i sao Argentina. Nhiều khả năng trong &iacute;t tuần tới, Ronaldo sẽ c&acirc;n bằng th&agrave;nh t&iacute;ch gi&agrave;nh Quả B&oacute;ng V&agrave;ng với Messi, khi c&oacute; kết quả bầu chọn giải thưởng n&agrave;y năm 2017.</p>', NULL, '', '', '', 3, 1, '2017-11-14 10:57:45', '2017-11-22 07:38:40'),
 (10, 'Cố vấn của Neymar dự đoán Barca sắp tới hồi suy tàn', '', 'co-van-cua-neymar-du-doan-barca-sap-toi-hoi-suy-tan', 'sang-trong-1.png', 'Ông Wagner Ribeiro cho rằng quyết định độc lập của xứ Catalonia sẽ đẩy Barca vào con đường diệt vong trên bản đồ bóng đá đỉnh cao.', '<p style=\"text-align:justify\">Xứ Catalonia đang g&acirc;y sức &eacute;p l&ecirc;n ch&iacute;nh quyền Madrid để đ&ograve;i độc lập v&agrave; tiến th&ecirc;m một bước d&agrave;i trong tuần n&agrave;y. Nghị viện khu vực Catalonia vừa th&ocirc;ng qua nghị quyết tuy&ecirc;n bố độc lập khỏi T&acirc;y Ban Nha v&agrave; trở th&agrave;nh một nước cộng h&ograve;a.</p>\n\n<p style=\"text-align:justify\">Điều n&agrave;y khiến tương lai của Barca trở n&ecirc;n bất định. Ban tổ chức La Liga từng tuy&ecirc;n bố loại mọi đội b&oacute;ng của xứ Catalonia ra khỏi giải, nếu v&ugrave;ng l&atilde;nh thổ n&agrave;y &nbsp;trở th&agrave;nh nước độc lập.<br />\n&quot;Xứ Catalonia rồi sẽ như Luxembourg. Sau đ&oacute;, tới lượt Barca sẽ chết&quot;, cố vấn của Neymar l&agrave; Wagner Ribeiro viết tr&ecirc;n Twitter v&agrave; đăng k&egrave;m bức ảnh một cậu b&eacute; cổ động vi&ecirc;n của Barca bật kh&oacute;c.</p>\n\n<p style=\"text-align:justify\">Ribeiro được xem l&agrave; một trong những đạo diễn ch&iacute;nh đưa Neymar rời Barca v&agrave;o m&ugrave;a h&egrave; vừa qua. Nh&agrave; m&ocirc;i giới người Brazil c&oacute; quan hệ th&acirc;n thiết với Chủ tịch Real Florentino Perez, v&agrave; từng định đưa Neymar tới s&acirc;n Bernabeu khi ng&ocirc;i sao n&agrave;y c&ograve;n chơi cho Santos.</p>\n\n<p style=\"text-align:justify\">Luxembourg l&agrave; một quốc gia nhỏ ở ch&acirc;u &Acirc;u vốn rất gi&agrave;u c&oacute; nhờ ng&agrave;nh t&agrave;i ch&iacute;nh, nhưng nền b&oacute;ng đ&aacute; nước n&agrave;y kh&ocirc;ng mấy tự h&agrave;o. Đội tuyển quốc gia Luxembourg gồm nhiều cầu thủ nghiệp dư v&agrave; thường xuy&ecirc;n l&oacute;t đường tại s&acirc;n chơi ch&acirc;u &Acirc;u.</p>', NULL, '', '', '', 2, 1, '2017-11-14 10:58:58', '2017-11-26 18:29:36'),
@@ -1343,7 +1343,17 @@ INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `lev
 (88, 'Đội ngũ chuyên nghiệp', 'doi-ngu-chuyen-nghiep', 0, 7, 0, 1, 1, '2017-11-26 03:58:10', '2017-11-26 03:58:10'),
 (89, 'Giá cả hợp lý', 'gia-ca-hop-ly', 0, 7, 0, 2, 1, '2017-11-26 03:58:26', '2017-11-26 03:58:26'),
 (90, 'Kinh nghiệm trên 20 năm', 'kinh-nghiem-tren-20-nam', 0, 7, 0, 3, 1, '2017-11-26 03:58:43', '2017-11-26 03:58:43'),
-(91, 'Đảm bảo tiến độ', 'dam-bao-tien-do', 0, 7, 0, 4, 1, '2017-11-26 03:59:00', '2017-11-26 03:59:00');
+(91, 'Đảm bảo tiến độ', 'dam-bao-tien-do', 0, 7, 0, 4, 1, '2017-11-26 03:59:00', '2017-11-26 03:59:00'),
+(92, 'Trang chủ', '', 0, 10, 0, 1, 1, '2017-11-27 15:00:12', '2017-11-27 15:00:12'),
+(93, 'Giới thiệu', 'gioi-thieu', 0, 10, 0, 2, 1, '2017-11-27 15:00:30', '2017-11-27 15:00:30'),
+(94, 'Tin tức', 'meo-hay-nha-bep', 0, 10, 0, 3, 1, '2017-11-27 15:01:01', '2017-11-27 15:01:01'),
+(95, 'Sản phẩm', 'sofa-da', 0, 10, 0, 4, 1, '2017-11-27 15:01:22', '2017-11-27 15:01:22'),
+(96, 'Phòng khách', 'phong-khach', 95, 10, 1, 1, 1, '2017-11-27 15:01:44', '2017-11-27 15:01:44'),
+(97, 'Phòng ngủ', 'phong-ngu', 95, 10, 1, 3, 1, '2017-11-27 15:02:02', '2017-11-27 15:16:39'),
+(99, 'Phòng bếp', 'phong-bep', 95, 10, 1, 4, 1, '2017-11-27 15:02:37', '2017-11-27 15:16:39'),
+(100, 'Phòng trẻ em', 'phong-tre-em', 95, 10, 1, 5, 1, '2017-11-27 15:03:06', '2017-11-27 15:16:39'),
+(101, 'Liên hệ', 'lien-he', 0, 10, 0, 5, 1, '2017-11-27 15:03:44', '2017-11-27 15:03:44'),
+(102, 'Sofa', 'sofa', 95, 10, 1, 2, 1, '2017-11-27 15:16:25', '2017-11-27 15:16:39');
 
 -- --------------------------------------------------------
 
@@ -1371,11 +1381,12 @@ INSERT INTO `menu_type` (`id`, `fullname`, `theme_location`, `status`, `sort_ord
 (2, 'CategoryProductHome', 'category-product-home', 1, 2, '2017-11-13 18:14:33', '2017-11-26 17:32:35'),
 (3, 'MenuBottomContent', 'menu-bottom-content', 1, 3, '2017-11-14 17:48:19', '2017-11-26 17:23:07'),
 (4, 'Hỗ trợ', 'support', 1, 4, '2017-11-14 18:12:18', '2017-11-26 17:26:59'),
-(5, 'Hướng dẫn mua hàng', 'direction', 1, 5, '2017-11-14 18:14:44', '2017-11-26 17:32:35'),
+(5, 'Hướng dẫn mua hàng', 'direction', 1, 5, '2017-11-14 18:14:44', '2017-11-27 15:23:38'),
 (6, 'Chính sách thanh toán', 'policy', 1, 6, '2017-11-14 18:16:57', '2017-11-26 17:32:56'),
 (7, 'Tại sao chọn chúng tôi', 'about-us', 1, 7, '2017-11-14 18:18:49', '2017-11-14 18:21:19'),
 (8, 'Danh mục bài viết', 'category-article', 1, 8, '2017-11-15 04:13:57', '2017-11-26 17:32:57'),
-(9, 'Danh mục sản phẩm', 'category-product', 1, 9, '2017-11-15 17:55:23', '2017-11-15 18:16:43');
+(9, 'Danh mục sản phẩm', 'category-product', 1, 9, '2017-11-15 17:55:23', '2017-11-27 14:59:08'),
+(10, 'MoileMenu', 'mobile-menu', 1, 10, '2017-11-27 14:58:25', '2017-11-27 14:59:08');
 
 -- --------------------------------------------------------
 
@@ -1447,7 +1458,7 @@ CREATE TABLE `module_item` (
 --
 
 INSERT INTO `module_item` (`id`, `fullname`, `item_id`, `position`, `component`, `status`, `sort_order`, `created_at`, `updated_at`) VALUES
-(1, 'Featured product', '[{\"id\":7,\"sort_order\":\"1\"},{\"id\":8,\"sort_order\":\"2\"},{\"id\":9,\"sort_order\":\"3\"},{\"id\":10,\"sort_order\":\"4\"},{\"id\":11,\"sort_order\":\"5\"},{\"id\":12,\"sort_order\":\"6\"},{\"id\":13,\"sort_order\":\"7\"},{\"id\":14,\"sort_order\":\"8\"}]', 'featured-product', 'product', 1, 1, '2017-11-10 11:24:02', '2017-11-27 06:07:11'),
+(1, 'Featured product', '[{\"id\":7,\"sort_order\":\"1\"},{\"id\":8,\"sort_order\":\"2\"},{\"id\":9,\"sort_order\":\"3\"},{\"id\":10,\"sort_order\":\"4\"},{\"id\":11,\"sort_order\":\"5\"},{\"id\":12,\"sort_order\":\"6\"},{\"id\":13,\"sort_order\":\"7\"},{\"id\":14,\"sort_order\":\"8\"}]', 'featured-product', 'product', 1, 1, '2017-11-10 11:24:02', '2017-11-27 15:22:56'),
 (2, 'Toilet equipment', '[{\"id\":7,\"sort_order\":\"1\"},{\"id\":8,\"sort_order\":\"2\"},{\"id\":9,\"sort_order\":\"3\"},{\"id\":10,\"sort_order\":\"4\"},{\"id\":11,\"sort_order\":\"5\"},{\"id\":12,\"sort_order\":\"6\"},{\"id\":13,\"sort_order\":\"7\"},{\"id\":14,\"sort_order\":\"8\"}]', 'toilet-equipment', 'product', 1, 11, '2017-11-14 08:51:21', '2017-11-27 06:06:55'),
 (3, 'Chicken equipment', '[{\"id\":7,\"sort_order\":\"1\"},{\"id\":8,\"sort_order\":\"2\"},{\"id\":9,\"sort_order\":\"3\"},{\"id\":10,\"sort_order\":\"4\"},{\"id\":11,\"sort_order\":\"5\"},{\"id\":12,\"sort_order\":\"6\"},{\"id\":13,\"sort_order\":\"7\"},{\"id\":14,\"sort_order\":\"8\"}]', 'chicken-equipment', 'product', 1, 12, '2017-11-14 08:51:53', '2017-11-27 06:06:55'),
 (4, 'Clever house', '[{\"id\":7,\"sort_order\":\"1\"},{\"id\":8,\"sort_order\":\"2\"},{\"id\":9,\"sort_order\":\"3\"},{\"id\":10,\"sort_order\":\"4\"},{\"id\":11,\"sort_order\":\"5\"},{\"id\":12,\"sort_order\":\"6\"},{\"id\":13,\"sort_order\":\"7\"},{\"id\":14,\"sort_order\":\"8\"}]', 'clever-house', 'product', 1, 4, '2017-11-14 08:52:39', '2017-11-27 06:06:55'),
@@ -1630,7 +1641,8 @@ INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`)
 (202, 1, 'qCWvTU0oJSjAyobzeHt21656Rl1eWuvq', '2017-11-26 20:07:36', '2017-11-26 20:07:36'),
 (203, 1, 'I0m5QArlodAFsFQj0cfoSiIaJ2ZGgbyg', '2017-11-26 23:06:11', '2017-11-26 23:06:11'),
 (204, 1, '6tDVgt6sfCGnbfPYISYbMzCQKpXm8QKc', '2017-11-27 00:00:05', '2017-11-27 00:00:05'),
-(205, 1, 'R0MhkpKtLCI5fIe1wwCeicZa0ftDQPwx', '2017-11-27 02:16:57', '2017-11-27 02:16:57');
+(205, 1, 'R0MhkpKtLCI5fIe1wwCeicZa0ftDQPwx', '2017-11-27 02:16:57', '2017-11-27 02:16:57'),
+(206, 1, 'E69AlB0p8xLhxxNVrs46xwrP0a5wm3KX', '2017-11-27 07:58:05', '2017-11-27 07:58:05');
 
 -- --------------------------------------------------------
 
@@ -2282,8 +2294,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `group_member_id`, `password`, `permissions`, `last_login`, `fullname`, `image`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$rpZe6oM3GUJmwL/ZMTKm/OSe24l9TJKFU9lwd8VmohkqH0Oax6rVK', NULL, '2017-11-27 02:16:57', 'Nguyễn Kim Điền', 'nguyen-kim-dien.png', 1, 1, '2017-11-12 07:23:56', '2017-11-27 02:16:57'),
-(7, 'nguoidung', 'nguoidung@dienkim.com', 2, '$2y$10$R.xGkwS/zOIrow//.jNmbO6tNBP.C4SAzzjaVMKZ75bwTpsU2RAny', NULL, '2017-11-26 20:07:13', 'Người dùng', 'nguyen-kim-dien.png', 2, 1, '2017-11-26 20:07:01', '2017-11-26 20:07:13');
+(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$rpZe6oM3GUJmwL/ZMTKm/OSe24l9TJKFU9lwd8VmohkqH0Oax6rVK', NULL, '2017-11-27 07:58:05', 'Nguyễn Kim Điền', 'nguyen-kim-dien.png', 1, 1, '2017-11-12 07:23:56', '2017-11-27 07:58:05'),
+(7, 'nguoidung', 'nguoidung@dienkim.com', 2, '$2y$10$SgMd6D2EzSe5t5Hj.gwRN.vdUBTlmFAAZyoduDTlwAq5U0jgIWdwu', NULL, '2017-11-26 20:07:13', 'Người dùng', NULL, 2, 1, '2017-11-26 20:07:01', '2017-11-27 04:57:19');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -2548,12 +2560,12 @@ ALTER TABLE `invoice_detail`
 -- AUTO_INCREMENT cho bảng `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 --
 -- AUTO_INCREMENT cho bảng `menu_type`
 --
 ALTER TABLE `menu_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT cho bảng `migrations`
 --
@@ -2588,7 +2600,7 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT cho bảng `persistences`
 --
 ALTER TABLE `persistences`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=207;
 --
 -- AUTO_INCREMENT cho bảng `photo`
 --
