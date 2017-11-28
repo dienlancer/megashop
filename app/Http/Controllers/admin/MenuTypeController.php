@@ -148,14 +148,9 @@ class MenuTypeController extends Controller {
           $id                     =   (int)$request->id;              
           $checked                =   1;
           $type_msg               =   "alert-success";
-          $msg                    =   "Xóa thành công";
-          $data                   =   MenuModel::whereRaw("menu_type_id = ?",[(int)@$id])->get()->toArray();                      
-          if(count($data) > 0){
-            $checked     =   0;
-            $type_msg           =   "alert-warning";            
-            $msg                =   "Không thể xóa";            
-          }  
-          if($checked == 1){
+          $msg                    =   "Xóa thành công";          
+          if($checked == 1){            
+            MenuModel::whereRaw("menu_type_id = ?",[(int)@$id])->delete();
             $item               =   MenuTypeModel::find((int)@$id);
             $item->delete();            
           }        
@@ -208,21 +203,14 @@ class MenuTypeController extends Controller {
             $checked     =   0;
             $type_msg           =   "alert-warning";            
             $msg                =   "Please choose at least one item to delete";
-          }else{
-            foreach ($arrID as $key => $value) {    
-                  $data                   =   MenuModel::whereRaw("menu_type_id = ?",[(int)@$value])->get()->toArray();                             
-                  if(count($data) > 0){
-                      $checked     =   0;
-                      $type_msg           =   "alert-warning";            
-                      $msg                =   "Không thể xóa";
-                  }
-              }    
           }
           if($checked == 1){                
               $strID = implode(',',$arrID);       
               $strID = substr($strID, 0,strlen($strID) - 1);            
-              $sql = "DELETE FROM `menu_type` WHERE `id` IN (".$strID.")";                                 
-              DB::statement($sql);    
+              $sqlDeleteMenu = "DELETE FROM `menu` WHERE `menu_type_id` IN (".$strID.")";                                 
+              $sqlDeleteMenuType = "DELETE FROM `menu_type` WHERE `id` IN (".$strID.")";                    
+              DB::statement($sqlDeleteMenu);    
+              DB::statement($sqlDeleteMenuType);    
           }
           $data                   =   $this->loadData($request);
           $info = array(

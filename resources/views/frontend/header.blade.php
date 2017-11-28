@@ -144,48 +144,48 @@ $arrCart=array();
       </div>
     </div>
     <div class="bg-header">
-    <div class="container">        
+      <div class="container">        
         <div class="menu">
-            <div class="col-lg-3 no-padding">                
-                <center><a href="<?php echo url('/'); ?>">                
-                    <img src="<?php echo asset('upload/logo-megashop.png');?>" />
-                </a></center>
+          <div class="col-lg-3 no-padding">                
+            <center><a href="<?php echo url('/'); ?>">                
+              <img src="<?php echo asset('upload/logo-megashop.png');?>" />
+            </a></center>
+          </div>
+          <div class="col-lg-6 no-padding">                                                
+           <?php     
+           $args = array(                         
+            'menu_class'            => 'mainmenu', 
+            'menu_id'               => 'main-menu',                         
+            'before_wrapper'        => '<div id="smoothmainmenu" class="ddsmoothmenu">',
+            'before_title'          => '',
+            'after_title'           => '',
+            'before_wrapper_ul'     =>  '',
+            'after_wrapper_ul'      =>  '',
+            'after_wrapper'         => '</div>'     ,
+            'link_before'           => '', 
+            'link_after'            => '',                                                                    
+            'theme_location'        => 'main-menu' ,
+            'menu_li_actived'       => 'current-menu-item',
+            'menu_item_has_children'=> 'menu-item-has-children',
+            'alias'                 => $alias
+          );                    
+           wp_nav_menu($args);
+           ?>                                      
+         </div>
+         <div class="col-lg-3 no-padding">
+          <div class="desktop-box-search">                    
+            <div class="box-search">
+              <form action="#" method="get">
+                <input type="text" name="q" autocomplete="off" placeholder="Tìm kiếm sản phẩm" value="">
+                <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+              </form>
+              <div class="clr"></div>
             </div>
-            <div class="col-lg-6 no-padding">                                                
-                     <?php     
-                    $args = array(                         
-                        'menu_class'            => 'mainmenu', 
-                        'menu_id'               => 'main-menu',                         
-                        'before_wrapper'        => '<div id="smoothmainmenu" class="ddsmoothmenu">',
-                        'before_title'          => '',
-                        'after_title'           => '',
-                        'before_wrapper_ul'     =>  '',
-                        'after_wrapper_ul'      =>  '',
-                        'after_wrapper'         => '</div>'     ,
-                        'link_before'           => '', 
-                        'link_after'            => '',                                                                    
-                        'theme_location'        => 'main-menu' ,
-                        'menu_li_actived'       => 'current-menu-item',
-                        'menu_item_has_children'=> 'menu-item-has-children',
-                        'alias'                 => $alias
-                    );                    
-                    wp_nav_menu($args);
-                    ?>                                      
-            </div>
-            <div class="col-lg-3 no-padding">
-                <div class="desktop-box-search">                    
-                    <div class="box-search">
-                        <form action="#" method="get">
-                            <input type="text" name="q" autocomplete="off" placeholder="Tìm kiếm sản phẩm" value="">
-                            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                        </form>
-                        <div class="clr"></div>
-                    </div>
-                    <div class="clr"></div>
-                </div>       
-            </div>      
-            <div class="clr"></div>      
+            <div class="clr"></div>
+          </div>       
         </div>      
+        <div class="clr"></div>      
+      </div>      
     </div>    
 </div>   
 <div class="mobilemenu">
