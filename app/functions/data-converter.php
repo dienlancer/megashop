@@ -66,7 +66,7 @@ function articleConverter($data=array(),$controller){
                 $link_image=url("/upload/".$data[$i]["image"]);            
                 $image = '<center><img src="'.$link_image.'" style="width:100%" /></center>';
             }       
-            $id='<center>'.$data[$i]["id"].'</center>';       
+            $id=$data[$i]["id"];       
             $result[$i] = array(
                 'checked'                  =>   '<input type="checkbox" onclick="checkWithListArticle(this)" name="cid" value="'.$data[$i]["is_checked"].'" />',
                 'is_checked'               =>   0,
@@ -233,7 +233,7 @@ function productConverter($data=array(),$controller){
                 $link_image=url("/upload/" . $setting["product_width"] . "x" . $setting["product_height"] . "-".$data[$i]["image"]);            
                 $image = '<center><img src="'.$link_image.'" style="width:100%" /></center>';
             }          
-            $id='<center>'.$data[$i]["id"].'</center>';  
+            $id=$data[$i]["id"];  
             $result[$i] = array(
                 'checked'                  =>   '<input type="checkbox" onclick="checkWithListProduct(this)" name="cid" value="'.$data[$i]["is_checked"].'" />',
                 'is_checked'               =>   0,
@@ -764,7 +764,7 @@ function articleComponentConverter($data=array(),$controller,$menu_type_id){
                 $link_image=url("/upload/".$data[$i]["image"]);            
                 $image = '<center><img src="'.$link_image.'" style="width:100%" /></center>';
             }       
-            $id='<center>'.$data[$i]["id"].'</center>';       
+            $id=$data[$i]["id"];       
             $linkMenu=route('admin.menu.getForm',['add',$menu_type_id,0,$data[$i]["alias"]]);
             $fullname='<a href="'.$linkMenu.'">'.$data[$i]['fullname'].'</a>';
             $result[$i] = array(                
@@ -789,7 +789,7 @@ function productComponentConverter($data=array(),$controller,$menu_type_id){
                 $link_image=url("/upload/" . $setting["product_width"] . "x" . $setting["product_height"] . "-".$data[$i]["image"]);            
                 $image = '<center><img src="'.$link_image.'" style="width:100%" /></center>';
             }           
-            $id='<center>'.$data[$i]["id"].'</center>';       
+            $id=$data[$i]["id"];       
             $linkMenu=route('admin.menu.getForm',['add',$menu_type_id,0,$data[$i]["alias"]]);
             $fullname='<a href="'.$linkMenu.'">'.$data[$i]['fullname'].'</a>';
             $result[$i] = array(                

@@ -410,7 +410,7 @@ class MenuController extends Controller {
         /* end lấy chuỗi ID */        
         $data=DB::select('call pro_getArticle(?,?)',array(mb_strtolower($filter_search,'UTF-8'),$strCategoryArticleID));        
         $data=convertToArray($data);    
-        $data=articleComponentConverter($data,$this->_controller,$menu_type_id);            
+        $data=articleComponentConverter($data,$this->_controller,$menu_type_id);           
         return $data;
     } 
     public function getProductComponent($menu_type_id = 0){

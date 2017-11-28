@@ -38,8 +38,7 @@ $inputMenuTypeId 		=	'<input type="hidden" class="form-control" id="menu_type_id
 		<div class="portlet-body">		
 			<table class="table table-striped table-bordered table-hover table-checkable order-column" id="tbl-product-component">
 				<thead>
-					<tr>						
-						<th width="1%">ID</th>
+					<tr>												
 						<th>Sản phẩm</th>						
 						<th width="1%">Hình</th>
 						<th width="1%">Sắp xếp</th>              

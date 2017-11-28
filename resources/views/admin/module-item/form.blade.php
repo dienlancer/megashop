@@ -152,7 +152,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
                         <thead>
                             <tr>
                                 <th width="1%"><input type="checkbox" onclick="checkAllAgentArticle(this)"  name="checkall-toggle"></th>                
-                                <th width="1%">ID</th>
+                                
                                 <th>Bài viết</th>
                                 <th>Alias</th>
                                 <th width="1%">Hình</th>                                
@@ -201,8 +201,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
                     <table class="table table-striped table-bordered table-hover table-checkable order-column" id="tbl-product-module-item">
                         <thead>
                             <tr>
-                                <th width="1%"><input type="checkbox" onclick="checkAllAgentProduct(this)"  name="checkall-toggle"></th>                
-                                <th width="1%">ID</th>
+                                <th width="1%"><input type="checkbox" onclick="checkAllAgentProduct(this)"  name="checkall-toggle"></th>                                                
                                 <th>Sản phẩm</th>
                                 <th>Alias</th>
                                 <th width="1%">Hình</th>                                
@@ -306,9 +305,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
         for(var i=0;i<dt.length;i++){
             var dr=dt[i];
             if(dr.is_checked==1){
-                var id=(dr.id).replace('<center>','');
-                id=id.replace('</center>','');
-                str_id +=id+",";      
+                str_id +=dr.id+",";	    
             }
         }
         
@@ -359,9 +356,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
         for(var i=0;i<dt.length;i++){
             var dr=dt[i];
             if(dr.is_checked==1){
-                var id=(dr.id).replace('<center>','');
-                id=id.replace('</center>','');
-                str_id +=id+",";      
+                str_id +=dr.id+",";	
             }
         }        
         if(str_id == ''){

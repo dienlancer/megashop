@@ -59,8 +59,7 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 			<table class="table table-striped table-bordered table-hover table-checkable order-column" id="tbl-article">
 				<thead>
 					<tr>
-						<th width="1%"><input type="checkbox" onclick="checkAllAgentArticle(this)"  name="checkall-toggle"></th>                
-						<th width="1%">ID</th>
+						<th width="1%"><input type="checkbox" onclick="checkAllAgentArticle(this)"  name="checkall-toggle"></th>                						
 						<th>Bài viết</th>
 						<th>Alias</th>
 						<th width="1%">Hình</th>
@@ -176,9 +175,7 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 		for(var i=0;i<dt.length;i++){
 			var dr=dt[i];
 			if(dr.is_checked==1){
-				var id=(dr.id).replace('<center>','');
-				id=id.replace('</center>','');
-				str_id +=id+",";      
+				str_id +=dr.id+",";	          
 			}
 		}
 		var dataItem ={   
@@ -217,9 +214,7 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 		for(var i=0;i<dt.length;i++){
 			var dr=dt[i];
 			if(dr.is_checked==1){
-				var id=(dr.id).replace('<center>','');
-				id=id.replace('</center>','');
-				str_id +=id+",";
+				str_id +=dr.id+",";	            
 			}
 		}
 		var dataItem ={   
@@ -290,10 +285,8 @@ $inputFilterSearch 		=	'<input type="text" class="form-control" name="filter_sea
 					data_sort = new Array(data.length);
 					for(var i=0;i<data_sort.length;i++){							
 						var sort_order_input=	$(data[i]["sort_order"]).find("input[name='sort_order']");
-						var sort_order=parseInt($(sort_order_input).val());				
-						id=(data[i]["id"]).replace('<center>','');
-						id=id.replace('</center>','');								
-						var obj={"id":parseInt(id),"sort_order":sort_order};						
+						var sort_order=parseInt($(sort_order_input).val());												
+						var obj={"id":parseInt(data[i]["id"]),"sort_order":sort_order};						
 						data_sort[i]=obj;
 					}					
 				},

@@ -49,8 +49,7 @@ var basicTable = function () {
     };
     var initArticleComponentTable = function () {
         vArticleComponentTable = $('#tbl-article-component').DataTable({
-            columns: [                
-                { data: "id"            },                
+            columns: [                                
                 { data: "fullname"      },    
                 { data: "image"      },               
                 { data: "sort_order"    },                               
@@ -59,8 +58,7 @@ var basicTable = function () {
     };
     var initProductComponentTable = function () {
         vProductComponentTable = $('#tbl-product-component').DataTable({
-            columns: [                
-                { data: "id"            },                
+            columns: [                            
                 { data: "fullname"      },    
                 { data: "image"      },               
                 { data: "sort_order"    },                               
@@ -70,8 +68,7 @@ var basicTable = function () {
     var initArticleTable = function () {
         vArticleTable = $('#tbl-article').DataTable({
             columns: [                
-                { data: "checked"            },
-                { data: "id"      },
+                { data: "checked"            },                
                 { data: "fullname"      },
                 { data: "alias"      },
                 { data: "image"         },
@@ -85,8 +82,7 @@ var basicTable = function () {
     var initArticleModuleItemTable = function () {
         vArticleModuleItemTable = $('#tbl-article-module-item').DataTable({
             columns: [                
-                { data: "checked"            },
-                { data: "id"      },
+                { data: "checked"            },                
                 { data: "fullname"      },
                 { data: "alias"      },
                 { data: "image"         },                                            
@@ -96,8 +92,7 @@ var basicTable = function () {
     var initProductModuleItemTable = function () {
         vProductModuleItemTable = $('#tbl-product-module-item').DataTable({
             columns: [                
-                { data: "checked"            },
-                { data: "id"      },
+                { data: "checked"            },               
                 { data: "fullname"      },
                 { data: "alias"      },
                 { data: "image"         },                                            
@@ -149,8 +144,7 @@ var basicTable = function () {
     var initProductTable = function () {
         vProductTable = $('#tbl-product').DataTable({
             columns: [                
-                { data: "checked"       },
-                { data: "id"      },
+                { data: "checked"       },                
                 { data: "fullname"      },
                 { data: "alias"         },
                 { data: "image"         },
