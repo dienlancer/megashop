@@ -44,7 +44,9 @@ $product_height = $setting['product_height'];
         </div>
     </div>
     <div class="portlet-body form">
-        <form class="form-horizontal" role="form" enctype="multipart/form-data">
+        <form class="form-horizontal" role="form" enctype="multipart/form-data" name="frm">
+            {{ csrf_field() }}                                  
+                <?php echo  $inputID; ?>   
             <div class="form-body">
                 <div class="row">
                     <div class="form-group col-md-6">
@@ -139,11 +141,7 @@ $product_height = $setting['product_height'];
                     <div class="form-group col-md-6">                        
                     </div>       
                 </div>                                                                      
-            </div>  
-            <div class="form-actions noborder">
-                {{ csrf_field() }}                                  
-                <?php echo  $inputID; ?>                      
-            </div>                  
+            </div>                         
         </form>
         <table width="100%" id="com_product16" class="com_product16">
             <thead>

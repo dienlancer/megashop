@@ -42,7 +42,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
         </div>
     </div>
     <div class="portlet-body form">
-        <form class="form-horizontal" role="form" name='frm' enctype="multipart/form-data">
+        <form class="form-horizontal" role="form" name="frm" enctype="multipart/form-data" >
             {{ csrf_field() }}         
             <?php echo $inputSortJson; ?>
             <?php echo $inputComponent; ?>                           

@@ -40,7 +40,10 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
         </div>
     </div>
     <div class="portlet-body form">
-        <form class="form-horizontal" role="form" enctype="multipart/form-data">
+        <form class="form-horizontal" role="form" name="frm" enctype="multipart/form-data">
+            {{ csrf_field() }}                                  
+                <?php echo  $inputID; ?>
+                <?php echo $inputPictureHidden; ?>    
             <div class="form-body">
                 <div class="row">
                     <div class="form-group col-md-6">
@@ -81,12 +84,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
                         <div id="picture-area"><?php echo $picture; ?></div>              
                     </div>                   
                 </div>                                                                                   
-            </div>  
-            <div class="form-actions noborder">
-                {{ csrf_field() }}                                  
-                <?php echo  $inputID; ?>
-                <?php echo $inputPictureHidden; ?>                      
-            </div>                  
+            </div>                          
         </form>
     </div>
 </div>

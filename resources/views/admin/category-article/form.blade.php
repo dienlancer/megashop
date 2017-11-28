@@ -4,7 +4,7 @@
 $linkCancel             =   route('admin.'.$controller.'.getList');
 $linkSave               =   route('admin.'.$controller.'.save');
 $linkUploadFile         =   route('admin.'.$controller.'.uploadFile');
-$inputFullName          =   '<input type="text" class="form-control" name="fullname"   id="fullname"       value="'.@$arrRowData['fullname'].'">'; 
+$inputFullName          =   '<input type="text" class="form-control" name="fullname"   id="fullname"  onblur="createAlias(this)"     value="'.@$arrRowData['fullname'].'">'; 
 $inputAlias             =   '<input type="text" class="form-control" name="alias"      id="alias"          value="'.@$arrRowData['alias'].'">';
 $inputTitle             =   '<textarea id="title" name="title" rows="2" cols="100" class="form-control" >'.@$arrRowData['title'].'</textarea>'; 
 $inputMetakeyword             =   '<textarea id="meta_keyword" name="meta_keyword" rows="2" cols="100" class="form-control" >'.@$arrRowData['meta_keyword'].'</textarea>'; 
@@ -45,7 +45,10 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
         </div>
     </div>
     <div class="portlet-body form">
-        <form class="form-horizontal" role="form" enctype="multipart/form-data">
+        <form class="form-horizontal" role="form" name="frm" enctype="multipart/form-data">
+            {{ csrf_field() }}          
+                <?php echo $inputPictureHidden; ?>                
+                <?php echo  $inputID; ?>         
             <div class="form-body">
                 <div class="row">
                     <div class="form-group col-md-12">
@@ -129,12 +132,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
                         </div>
                     </div>   
                 </div>                                                                 
-            </div>  
-            <div class="form-actions noborder">
-                {{ csrf_field() }}          
-                <?php echo $inputPictureHidden; ?>                
-                <?php echo  $inputID; ?>                      
-            </div>                  
+            </div>                          
         </form>
     </div>
 </div>
@@ -259,6 +257,11 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
                 spinner.show();
             },
         });
+    }
+    function createAlias(ctrl){
+        var fullname=$($(ctrl).val());
+        var token = $('form[name="frm"] > input[name="_token"]').val(); 
+        
     }
 </script>
 @endsection()            

@@ -28,7 +28,9 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
         </div>
     </div>
     <div class="portlet-body form">
-        <form class="form-horizontal" role="form" enctype="multipart/form-data">
+        <form class="form-horizontal" name="frm" role="form" enctype="multipart/form-data">
+            {{ csrf_field() }}                              
+                <?php echo  $inputID; ?>          
             <div class="form-body">
                 <div class="row">
                     <div class="form-group col-md-6">
@@ -62,10 +64,6 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                         </div>
                     </div>    
                 </div>                                                                       
-            </div>  
-            <div class="form-actions noborder">
-                {{ csrf_field() }}                              
-                <?php echo  $inputID; ?>                      
             </div>                  
         </form>
     </div>
