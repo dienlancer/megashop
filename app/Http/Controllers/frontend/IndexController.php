@@ -241,7 +241,8 @@ class IndexController extends Controller {
         return view("frontend.index",compact("component","alias"));
       }
       public function contact(){      
-        $alias="lien-he"; 
+        $component="lien-he"; 
+        $alias='lien-he';
         if(isset($_POST['btnSend']))     {
           $setting=getSettingSystem();    
           $fullname = @$_POST["fullname"];
@@ -288,7 +289,7 @@ class IndexController extends Controller {
             echo '<script language="javascript" type="text/javascript">alert("Mail gửi không thành công");</script>'; 
           }          
         }
-        return view("frontend.contact",compact("alias"));          
+        return view("frontend.contact",compact("component","alias"));          
       }
       
       public function deleteAll(){          
