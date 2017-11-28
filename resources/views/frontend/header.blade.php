@@ -92,11 +92,21 @@ $arrCart=array();
       orientation: "h", 
       classname: "ddsmoothmenu",
       contentsource: "markup" 
-    });       
+    });    
+    $(document).ready(function(){        
+      $(window).bind("scroll", function() {                        
+        if ($(window).scrollTop() > 104) {
+         $("div.bg-header").addClass("fixed");
+       }
+       else {
+         $("div.bg-header").removeClass("fixed");
+       }
+     });
+    });
   </script>
 </head>
 <body>
-  <header>
+  <header class="relative header">
     <div class="top-header">
       <div class="container">
         <div class="col-lg-2 no-padding"><font color="#ffffff">Tư vấn 24/7:</font>&nbsp;<font color="#bbb"><?php echo $contacted_phone; ?></font></div>
@@ -216,5 +226,5 @@ $arrCart=array();
                 </nav>
             </div>
         </div>
-    </div>
+    </div>    
   </header>

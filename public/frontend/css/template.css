@@ -177,7 +177,10 @@ div.owl-nav{
 .relative{
     position: relative;
 }
-
+.fixed {
+    position: fixed !important; 
+    top: 0 !important; 
+}
 /* end standard */
 
 .logo {
@@ -198,7 +201,12 @@ div.topbar{
 }
 div.bg-header{
     background:#F6F6F6;    
-    padding: 10px 0px
+    padding: 10px 0px;
+    position: absolute;
+    top: 38px;
+    left: 0;
+    width: 100%;
+    z-index: 999999;
 }
 .box-search input {
     height: 40px;
@@ -1050,6 +1058,13 @@ div.warasocial{
 ul.categoryarticlemenu > li.current-menu-item > a{
     color:#3AB54A;
 }
+div.menu-scroll{
+    background: #3AB54A
+}
+header.header{
+    padding: 0px 0px 66px 0px;
+}
+
 @media (max-width: 1199px){
     div.phone-number > div{
         display: none;
