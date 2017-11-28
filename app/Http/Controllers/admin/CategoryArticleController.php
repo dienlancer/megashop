@@ -362,5 +362,48 @@ class CategoryArticleController extends Controller {
             @copy($fileObj['tmp_name'], $uploadDir . DS . $fileName);                   
           }   
         }
+        public function createAlias(Request $request){
+          $fullname                =  trim($request->fullname)  ;        
+          $data                    =  array();
+          $info                    =  array();
+          $error                   =  array();
+          $item                    =  null;
+          $checked  = 1;              
+          if(empty($fullname)){
+           $checked = 0;
+           $error["fullname"]["type_msg"] = "has-error";
+           $error["fullname"]["msg"] = "Thiếu chủ đề bài viết";
+         }else{
+          $data=array();
+          if (empty($id)) {
+            $data=CategoryArticleModel::whereRaw("trim(lower(fullname)) = ?",[trim(mb_strtolower($fullname,'UTF-8'))])->get()->toArray();           
+          }else{
+            $data=CategoryArticleModel::whereRaw("trim(lower(fullname)) = ? and id != ?",[trim(mb_strtolower($fullname,'UTF-8')),(int)@$id])->get()->toArray();   
+          }  
+          if (count($data) > 0) {
+            $checked = 0;
+            $error["fullname"]["type_msg"] = "has-error";
+            $error["fullname"]["msg"] = "Chủ đề bài viết đã tồn tại";
+          }       
+        }
+        if ($checked == 1){
+          $info = array(
+            'type_msg'      => "has-success",
+            'msg'         => 'Lưu dữ liệu thành công',
+            "checked"       => 1,
+            "error"       => $error,
+            "id"          => $id
+          );
+        }else {
+          $info = array(
+            'type_msg'      => "has-error",
+            'msg'         => 'Nhập dữ liệu có sự cố',
+            "checked"       => 0,
+            "error"       => $error,
+            "id"        => ""
+          );
+        }    
+        return __METHOD__;
+      }
 }
 ?>

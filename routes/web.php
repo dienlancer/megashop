@@ -120,6 +120,7 @@ Route::group(["prefix"=>"admin","middleware"=>"TestLogin"],function(){
 		Route::post("change-status",["as"=>"admin.category-article.changeStatus","uses"=>"admin\CategoryArticleController@changeStatus"]);
 		Route::post("trash",["as"=>"admin.category-article.trash","uses"=>"admin\CategoryArticleController@trash"]);
 		Route::post("upload-file",["as"=>"admin.category-article.uploadFile","uses"=>"admin\CategoryArticleController@uploadFile"]);
+		Route::post("create-alias",["as"=>"admin.category-article.createAlias","uses"=>"admin\CategoryArticleController@createAlias"]);
 	});	
 	Route::group(["prefix"=>"photo"],function(){		
 		Route::match(["get","post"],"list",["as"=>"admin.photo.getList","uses"=>"admin\PhotoController@getList"]);
