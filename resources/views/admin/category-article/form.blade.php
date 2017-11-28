@@ -280,7 +280,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
                         $("#alias").closest('.form-group').find('span').show();                       
                     }                                
                 }*/
-                console.log(data);
+                //console.log(data);
                 spinner.hide();
             },
             error : function (data){

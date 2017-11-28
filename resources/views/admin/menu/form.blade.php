@@ -8,7 +8,7 @@ $inputAlias             =   '';
 if(strcmp(@$alias, 'no-alias')==0){
     switch ($task) {
         case 'add':
-        $inputAlias             =   '<input type="text" class="form-control" name="alias"      id="alias"       value="'.@$alias.'">';
+        $inputAlias             =   '<input type="text" class="form-control" name="alias"      id="alias"       value="">';
 
         break;
         
@@ -17,7 +17,7 @@ if(strcmp(@$alias, 'no-alias')==0){
         break;
     }    
 }else{
-    $inputAlias             =   '<input type="text" class="form-control" name="alias"      id="alias"     disabled     value="'.@$alias.'">';
+    $inputAlias             =   '<input type="text" class="form-control" name="alias"      id="alias"        value="'.@$alias.'">';
     
 }
 $inputSortOrder         =   '<input type="text" class="form-control" name="sort_order" id="sort_order"     value="'.@$arrRowData['sort_order'].'">';
