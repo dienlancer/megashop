@@ -43,13 +43,14 @@ var basicTable = function () {
                 { data: "fullname"      },    
                 { data: "image"      },               
                 { data: "sort_order"    },               
-                { data: "deleted"    },                
+                { data: "deleted"    },                     
             ]
         });        
     };
     var initArticleComponentTable = function () {
         vArticleComponentTable = $('#tbl-article-component').DataTable({
-            columns: [                                
+            columns: [            
+                { data: "checked"            },                          
                 { data: "fullname"      },    
                 { data: "image"      },               
                 { data: "sort_order"    },                               
@@ -58,7 +59,8 @@ var basicTable = function () {
     };
     var initProductComponentTable = function () {
         vProductComponentTable = $('#tbl-product-component').DataTable({
-            columns: [                            
+            columns: [            
+                { data: "checked"            },                      
                 { data: "fullname"      },    
                 { data: "image"      },               
                 { data: "sort_order"    },                               
@@ -102,14 +104,14 @@ var basicTable = function () {
     var initMenuTypeTable = function () {
         vMenuTypeTable = $('#tbl-menu-type').DataTable({
             columns: [                
-                { data: "checked"            },
-                { data: "fullname"      },   
-                { data: "theme_location"      },               
-                { data: "sort_order"    },                                                
-                { data: "entranced"    },
-                { data: "status"    }, 
-                { data: "edited"    },         
-                { data: "deleted"    },                
+                { data: "checked"               },
+                { data: "fullname"              },   
+                { data: "theme_location"        },               
+                { data: "sort_order"            },                                                
+                { data: "entranced"             },
+                { data: "status"                }, 
+                { data: "edited"                },         
+                { data: "deleted"               },                
             ]
         });        
     };

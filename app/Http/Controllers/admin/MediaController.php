@@ -8,8 +8,7 @@ class MediaController extends Controller {
   	var $_title="Media";
   	var $_icon="icon-settings font-dark";
   	public function getList(){			
-  		$strDirUpload=base_path("upload");
-  		$arrData = scandir($strDirUpload);		
+	
   		$controller=$this->_controller;	
   		$task="list";
   		$title=$this->_title;
@@ -18,7 +17,7 @@ class MediaController extends Controller {
   		$arrPrivilege=getArrPrivilege();
   		$requestControllerAction=$this->_controller."-list";         
   		if(in_array($requestControllerAction,$arrPrivilege)){
-  			return view("admin.".$this->_controller.".list",compact("arrData","controller","task","title","icon"));
+  			return view("admin.".$this->_controller.".list",compact("controller","task","title","icon"));
   		}
   		else{
   			return view("admin.no-access");

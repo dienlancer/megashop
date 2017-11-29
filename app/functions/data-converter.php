@@ -767,7 +767,9 @@ function articleComponentConverter($data=array(),$controller,$menu_type_id){
             $id=$data[$i]["id"];       
             $linkMenu=route('admin.menu.getForm',['add',$menu_type_id,0,$data[$i]["alias"]]);
             $fullname='<a href="'.$linkMenu.'">'.$data[$i]['fullname'].'</a>';
-            $result[$i] = array(                
+            $result[$i] = array(   
+                'checked'                  =>   '<input type="checkbox"  name="cid[]" value="'.$data[$i]["id"].'" />',
+                'is_checked'               =>   0,             
                 "id"                       =>   $id,
                 "fullname"                 =>   $fullname,                                
                 "image"                    =>   $image,
@@ -792,7 +794,9 @@ function productComponentConverter($data=array(),$controller,$menu_type_id){
             $id=$data[$i]["id"];       
             $linkMenu=route('admin.menu.getForm',['add',$menu_type_id,0,$data[$i]["alias"]]);
             $fullname='<a href="'.$linkMenu.'">'.$data[$i]['fullname'].'</a>';
-            $result[$i] = array(                
+            $result[$i] = array(      
+                'checked'                  =>   '<input type="checkbox"  name="cid[]" value="'.$data[$i]["id"].'" />',
+                'is_checked'               =>   0,          
                 "id"                       =>   $id,
                 "fullname"                 =>   $fullname,                                
                 "image"                    =>   $image,

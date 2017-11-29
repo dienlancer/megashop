@@ -387,7 +387,7 @@ class MenuController extends Controller {
         $icon=$this->_icon;   
         $arrCategoryArticle=CategoryArticleModel::select("id","fullname","parent_id")->orderBy("sort_order","asc")->get()->toArray();
         $arrCategoryArticleRecursive=array();              
-        categoryArticleRecursiveForm($arrCategoryArticle ,0,"",$arrCategoryArticleRecursive)  ;            
+        categoryArticleRecursiveForm($arrCategoryArticle ,0,"",$arrCategoryArticleRecursive)  ;                    
         return view("admin.".$this->_controller.".article-component",compact("controller","title","icon","arrCategoryArticleRecursive","menu_type_id")); 
       }
       public function getArticleList(Request $request){

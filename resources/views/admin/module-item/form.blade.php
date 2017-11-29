@@ -70,8 +70,8 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
                     <div class="form-group col-md-12">
                         <label class="col-md-2 control-label"><b>Lấy dữ liệu từ</b></label>
                         <div class="col-md-10">
-                            <button type="button" class="btn dark btn-outline sbold uppercase btn-article" data-toggle="modal" data-target="#modal-article">ARTICLE</button>
-                            <button type="button" class="btn dark btn-outline sbold uppercase btn-product" data-toggle="modal" data-target="#modal-product">PRODUCT</button>
+                            <button type="button" class="btn dark btn-outline sbold uppercase btn-article" data-toggle="modal" data-target="#modal-article">BÀI VIẾT</button>
+                            <button type="button" class="btn dark btn-outline sbold uppercase btn-product" data-toggle="modal" data-target="#modal-product">SẢN PHẨM</button>
                             <span class="help-block"></span>
                         </div>
                     </div>   
@@ -83,7 +83,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
                             <table class="table table-striped table-bordered table-hover table-checkable order-column" id="tbl-item">
                                 <thead>
                                     <tr>
-                                        <th width="1%"><input type="checkbox" onclick="checkAllAgent(this)"  name="checkall-toggle"></th>                                        
+                                        <th width="1%"><input type="checkbox" onclick="checkAllAgent(this)"  name="checkall-toggle"></th>                             
                                         <th>Bài viết - Sản phẩm</th>   
                                         <th width="1%">Hình</th>                                                
                                         <th width="1%">Sắp xếp</th>                                                                                
@@ -321,7 +321,17 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
                 url: '<?php echo $linkInsertArticle; ?>',
                 type: 'POST',                        
                 data: dataItem,
-                success: function (data, status, jqXHR) {   
+                success: function (data, status, jqXHR) {  
+                    var list=new Array(data.length);
+                    for(var k=0;k<data.length;k++){
+                        var sort_order=parseInt($(data[k].sort_order).find('input[name="sort_order"]').val());
+                        var doituong={
+                            id:data[k].id,
+                            sort_order:sort_order
+                        };
+                        list[k]=doituong;
+                    }
+                    $('#sort_json').val(JSON.stringify(list));
                     var dataItemTable=vItemTable.data();
                     if(dataItemTable.length > 0){
                         var result=1;   
@@ -335,7 +345,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
                         if(result==1){                                
                             vItemTable.rows.add(data).draw();
                         }else{
-                            alert('Item is existed');
+                            alert('Danh mục đã tồn tại');
                         }
                     }else{
                         vItemTable.rows.add(data).draw();
@@ -372,6 +382,16 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
                 type: 'POST',                        
                 data: dataItem,
                 success: function (data, status, jqXHR) { 
+                    var list=new Array(data.length);
+                    for(var k=0;k<data.length;k++){
+                        var sort_order=parseInt($(data[k].sort_order).find('input[name="sort_order"]').val());
+                        var doituong={
+                            id:data[k].id,
+                            sort_order:sort_order
+                        };
+                        list[k]=doituong;
+                    }
+                    $('#sort_json').val(JSON.stringify(list));
                     var dataItemTable=vItemTable.data();
                     if(dataItemTable.length > 0){
                         var result=1;   
@@ -385,7 +405,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
                         if(result==1){                                
                             vItemTable.rows.add(data).draw();
                         }else{
-                            alert('Item is existed');
+                            alert('Danh mục đã tồn tại');
                         }
                     }else{
                         vItemTable.rows.add(data).draw();
@@ -519,7 +539,7 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
             url: '<?php echo $linkSortItems; ?>',
             type: 'POST',                        
             data: dataItem,
-            success: function (data, status, jqXHR) {                   
+            success: function (data, status, jqXHR) {           
                 vItemTable.clear().draw();
                 vItemTable.rows.add(data.data_2).draw();                
                 $('form[name="frm"] > input[name="sort_json"]').empty();
@@ -530,31 +550,6 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
                 spinner.show();
             },
         });  
-    }
-    function trash(){
-        var xac_nhan = 0;
-        var msg="Bạn có muốn xóa ?";
-        if(window.confirm(msg)){ 
-            xac_nhan = 1;
-        }
-        if(xac_nhan  == 0){
-            return false;   
-        }        
-        var tbody=$('div.list > div.dataTables_wrapper > div.table-scrollable > table > tbody');        
-        var rows=tbody[0].rows;
-        var classname= $(rows[0].cells[0]).attr('class');        
-        if(classname == 'dataTables_empty'){
-            alert('Vui lòng chọn ít nhất một phần tử');
-            return false;
-        }
-        for(var i=0;i<rows.length;i++){
-            var row=rows[i];
-            var input_checkbox=$(row.cells[0]).find('input[type="checkbox"][name="cid"]');
-            if($(input_checkbox).is(':checked')){                
-                vItemTable.row(row).remove().draw();        
-            }                        
-        }       
-        $("form[name='frm'] > input[name='checkall-toggle']").prop("checked",false);
     }    
     function deleteItem(ctrl){
         var xac_nhan = 0;
@@ -566,6 +561,17 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
             return false;   
         }
         var tr=$(ctrl).closest('tr');
+        var sort_order_input=$(tr[0].cells[3]).find('input[name="sort_order"]');
+        var sort_order_id=$(sort_order_input).attr('sort_order_id');
+        var data = $.parseJSON($('#sort_json').val());        
+        var index=0;
+        for(var i=0;i<data.length;i++){
+            if( parseInt(data[i].id) == parseInt(sort_order_id) ){
+                index=i;
+            }
+        }
+        data.splice(index,1);
+        $('#sort_json').val(JSON.stringify(data));
         vItemTable.row(tr).remove().draw();        
     }
     function getItems(){
@@ -593,10 +599,8 @@ $inputSortJson          =   '<input type="hidden" name="sort_json" id="sort_json
     }
     $(document).ready(function(){
         vItemTable.clear().draw();
-        var sort_button='<div class="sort-button"><a href="javascript:void(0)" onclick="sort();" class="btn dark btn-outline sbold uppercase">Sort <i class="fa fa-sort"></i></a></div>';
-        var trash_button='<div class="sort-button"><a href="javascript:void(0)" onclick="trash();" class="btn dark btn-outline sbold uppercase">Trash <i class="fa fa-trash"></i></a></div>';
-        $('div.list > div.dataTables_wrapper > div:first-child > div:nth-child(2)').append(sort_button);
-        $('div.list > div.dataTables_wrapper > div:first-child > div:nth-child(2)').append(trash_button);
+        var sort_button='<div class="sort-button"><a href="javascript:void(0)" onclick="sort();" class="btn dark btn-outline sbold uppercase">Sort <i class="fa fa-sort"></i></a></div>';        
+        $('div.list > div.dataTables_wrapper > div:first-child > div:nth-child(2)').append(sort_button);        
         getListArticle();
         getListProduct();
         getItems();

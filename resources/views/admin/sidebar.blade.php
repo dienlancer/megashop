@@ -19,6 +19,7 @@ $li_phan_quyen='';
 $li_group_member='';
 $li_user='';
 $li_privilege='';
+$li_media='';
 switch ($controller) {
     case 'category-article':  
         $li_category_article='active open';
@@ -56,6 +57,9 @@ switch ($controller) {
         break;
     case 'setting-system':
         $li_setting_system='active open';
+        break; 
+    case 'media':
+        $li_media='active open';
         break; 
     case 'group-member':
         $li_group_member='active open';
@@ -136,6 +140,12 @@ switch ($controller) {
                 </a>                                                                      
             </li>
         </ul>
+    </li>
+    <li class="nav-item  <?php echo $li_media; ?>">
+                <a href="{!! route('admin.media.getList') !!}" target="_blank" class="nav-link nav-toggle">
+                    <i class="icon-notebook"></i>
+                    <span class="title">Thư viện</span>                                            
+                </a>                                                                      
     </li>
     <li class="nav-item  <?php echo $li_menu_type; ?>">
                 <a href="{!! route('admin.menu-type.getList') !!}" class="nav-link nav-toggle">
