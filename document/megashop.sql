@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 28, 2017 lúc 12:44 PM
+-- Thời gian đã tạo: Th10 30, 2017 lúc 03:03 PM
 -- Phiên bản máy phục vụ: 10.1.22-MariaDB
 -- Phiên bản PHP: 7.1.4
 
@@ -2537,7 +2537,7 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT cho bảng `category_article`
 --
 ALTER TABLE `category_article`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT cho bảng `category_product`
 --
