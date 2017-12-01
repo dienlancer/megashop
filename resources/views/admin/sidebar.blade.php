@@ -142,7 +142,7 @@ switch ($controller) {
         </ul>
     </li>
     <li class="nav-item  <?php echo $li_media; ?>">
-                <a href="{!! route('admin.media.getList') !!}" target="_blank" class="nav-link nav-toggle">
+                <a href="{!! route('admin.media.getList') !!}" class="nav-link nav-toggle">
                     <i class="icon-notebook"></i>
                     <span class="title">Thư viện</span>                                            
                 </a>                                                                      

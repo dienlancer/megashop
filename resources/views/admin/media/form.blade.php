@@ -4,9 +4,7 @@
 $linkCancel             =   route('admin.'.$controller.'.getList');
 $linkSave               =   route('admin.'.$controller.'.save');
 ?>
-<form class="form-horizontal" method="post" action="{!! $linkSave !!}" name="frm" role="form" enctype="multipart/form-data">
-    {{ csrf_field() }}                                  
-                
+<form class="form-horizontal" method="post" action="{!! $linkSave !!}" role="form" enctype="multipart/form-data">
 <div class="portlet light bordered">
     <div class="portlet-title">
         <div class="caption">
@@ -17,8 +15,8 @@ $linkSave               =   route('admin.'.$controller.'.save');
            <div class="table-toolbar">
             <div class="row">
                 <div class="col-md-12">
-                    <button type="submit" class="btn purple">Lưu <i class="fa fa-floppy-o"></i></button> 
-                    <a href="<?php echo $linkCancel; ?>" class="btn green">Thoát <i class="fa fa-ban"></i></a>                    </div>                                                
+                    <button type="submit" class="btn purple">Save new <i class="fa fa-floppy-o"></i></button> 
+                    <a href="<?php echo $linkCancel; ?>" class="btn green">Cancel <i class="fa fa-ban"></i></a>                    </div>                                                
                 </div>
             </div>    
         </div>
@@ -41,7 +39,9 @@ $linkSave               =   route('admin.'.$controller.'.save');
                             </tbody>
                         </table>    
                     <div class="clr"></div>
-
+                    <div>
+                        <input type="hidden" name="_token" value="{!!   csrf_token()  !!}"                                                                              
+                    </div>
                 </fieldset>        
     </div>
 </div>
