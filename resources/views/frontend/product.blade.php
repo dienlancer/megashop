@@ -1,8 +1,8 @@
 <?php 
 $setting=getSettingSystem();
-$contacted_phone=$setting['contacted_phone'];
-$product_width=$setting['product_width'];
-$product_height=$setting['product_height'];
+$telephone=$setting['telephone']['field_value'];
+$product_width = $setting['product_width']['field_value'];
+$product_height = $setting['product_height']['field_value'];
 if(count($item) > 0){
     $id=$item['id'];           
     $permalink=url($item['alias'].'.html');
@@ -79,7 +79,7 @@ if(count($item) > 0){
                                 <div class="product-regular-price"><b>Giá gốc:&nbsp;</b><span><font color="#F00"><?php echo $price; ?></font></span></div>
                                 <div class="product-sale-price"><span class="sale-title">Giá khuyến mãi:&nbsp;</span><span class="sale-price"><?php echo $sale_price; ?></span></div>
                                 <div class="product-view"><span class="sale-title">Lượt xem:&nbsp;</span><span class="sale-price">31</span></div>
-                                <div class="product-hotline">Hotline: <?php echo $contacted_phone; ?></div>
+                                <div class="product-hotline">Hotline: <?php echo $telephone; ?></div>
                                 <div class="product-detail-small"><?php echo $intro; ?></div>
                                 <div>
                                     <div class="orderproduct">

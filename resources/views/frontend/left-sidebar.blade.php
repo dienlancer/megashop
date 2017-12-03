@@ -1,5 +1,7 @@
 <?php   
 $setting=getSettingSystem();
+$product_width = $setting['product_width']['field_value'];
+$product_height = $setting['product_height']['field_value'];
 switch ($component) {
     case 'category-article':
     case 'article':
@@ -86,7 +88,7 @@ switch ($component) {
             for($i=0;$i<count($data_featured_product);$i++){
                 $id=$data_featured_product[$i]['id'];           
                         $permalink=url($data_featured_product[$i]['alias'].'.html');
-                        $featureImg=asset('/upload/'.$setting['product_width'].'x'.$setting['product_height'].'-'.$data_featured_product[$i]['image']);
+                        $featureImg=asset('/upload/'.$product_width.'x'.$product_height.'-'.$data_featured_product[$i]['image']);
                         $fullname=$data_featured_product[$i]['fullname'];   
                         $price=$data_featured_product[$i]['price'];
                         $sale_price=$data_featured_product[$i]['sale_price'];

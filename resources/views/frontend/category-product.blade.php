@@ -1,4 +1,8 @@
-<?php $setting=getSettingSystem();     ?>
+<?php 
+$setting=getSettingSystem();     
+$product_width = $setting['product_width']['field_value'];
+$product_height = $setting['product_height']['field_value'];
+?>
 <form method="post" class="frm" name="frm">
 	<input type="hidden" name="filter_page" value="1">         
     {{ csrf_field() }}
@@ -10,7 +14,7 @@
 					for($i=0;$i<count($items);$i++){							
 						$id=$items[$i]['id'];			
 						$permalink=url($items[$i]['alias'].'.html');
-						$featureImg=asset('/upload/'.$setting['product_width'].'x'.$setting['product_height'].'-'.$items[$i]['image']);
+						$featureImg=asset('/upload/'.$product_width.'x'.$product_height.'-'.$items[$i]['image']);
 						$fullname=$items[$i]['fullname'];	
 						$price=$items[$i]['price'];
 						$sale_price=$items[$i]['sale_price'];

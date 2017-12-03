@@ -2,23 +2,20 @@
 @section("content")
 <?php 
 $setting=getSettingSystem();
-$contacted_phone=$setting['contacted_phone'];
-$email_to=$setting['email_to'];
-$address=$setting['address'];
-$to_name=$setting['to_name'];
-$telephone=$setting['telephone'];
-$website=$setting['website'];
-$slogan_about=$setting['slogan_about'];
-$opened_time=$setting['opened_time'];
-$opened_date=$setting['opened_date'];
-$contaced_name=$setting['contacted_name'];
-$facebook_url=$setting['facebook_url'];
-$twitter_url=$setting['twitter_url'];
-$google_plus=$setting['google_plus'];
-$youtube_url=$setting['youtube_url'];
-$instagram_url=$setting['instagram_url'];
-$pinterest_url=$setting['pinterest_url']; 
-$map_url=$setting['map_url'];
+$email_to=$setting['email_to']['field_value'];
+$address=$setting['address']['field_value'];
+$to_name=$setting['to_name']['field_value'];
+$telephone=$setting['telephone']['field_value'];
+$website=$setting['website']['field_value'];
+$slogan_about=$setting['slogan_about']['field_value'];
+$facebook_url=$setting['facebook_url']['field_value'];
+$twitter_url=$setting['twitter_url']['field_value'];
+$google_plus=$setting['google_plus']['field_value'];
+$youtube_url=$setting['youtube_url']['field_value'];
+$instagram_url=$setting['instagram_url']['field_value'];
+$pinterest_url=$setting['pinterest_url']['field_value'];   
+$product_width = $setting['product_width']['field_value'];
+$product_height = $setting['product_height']['field_value'];  
 // lấy sản phẩm nổi bật
 $data_featured_product=getModuleByPosition('featured-product');    
 // thiết bị vệ sinh
@@ -166,7 +163,7 @@ if(count($data_slideshow) > 0){
 					for($i=0;$i<count($data_featured_product);$i++){							
 						$id=$data_featured_product[$i]['id'];			
 						$permalink=url($data_featured_product[$i]['alias'].'.html');
-						$featureImg=asset('/upload/'.$setting['product_width'].'x'.$setting['product_height'].'-'.$data_featured_product[$i]['image']);
+						$featureImg=asset('/upload/'.$product_width.'x'.$product_height.'-'.$data_featured_product[$i]['image']);
 						$fullname=$data_featured_product[$i]['fullname'];	
 						$price=$data_featured_product[$i]['price'];
 						$sale_price=$data_featured_product[$i]['sale_price'];
@@ -259,7 +256,7 @@ if(count($data_slideshow) > 0){
 				for($i=0;$i<count($data_toilet_equipment);$i++){
 					$id=$data_toilet_equipment[$i]['id'];			
 					$permalink=url($data_toilet_equipment[$i]['alias'].'.html');
-					$featureImg=asset('/upload/'.$setting['product_width'].'x'.$setting['product_height'].'-'.$data_toilet_equipment[$i]['image']);
+					$featureImg=asset('/upload/'.$product_width.'x'.$product_height.'-'.$data_toilet_equipment[$i]['image']);
 					$fullname=$data_toilet_equipment[$i]['fullname'];	
 					$price=$data_toilet_equipment[$i]['price'];
 					$sale_price=$data_toilet_equipment[$i]['sale_price'];
@@ -343,7 +340,7 @@ if(count($data_slideshow) > 0){
 				for($i=0;$i<count($data_chicken_equipment);$i++){
 					$id=$data_chicken_equipment[$i]['id'];			
 					$permalink=url($data_chicken_equipment[$i]['alias'].'.html');
-					$featureImg=asset('/upload/'.$setting['product_width'].'x'.$setting['product_height'].'-'.$data_chicken_equipment[$i]['image']);
+					$featureImg=asset('/upload/'.$product_width.'x'.$product_height.'-'.$data_chicken_equipment[$i]['image']);
 					$fullname=$data_chicken_equipment[$i]['fullname'];	
 					$price=$data_chicken_equipment[$i]['price'];
 					$sale_price=$data_chicken_equipment[$i]['sale_price'];
@@ -452,7 +449,7 @@ if(count($data_clever_house) > 0){
 					for($i=0;$i<count($data_clever_house);$i++){
 						$id=$data_clever_house[$i]['id'];			
 						$permalink=url($data_clever_house[$i]['alias'].'.html');
-						$featureImg=asset('/upload/'.$setting['product_width'].'x'.$setting['product_height'].'-'.$data_clever_house[$i]['image']);
+						$featureImg=asset('/upload/'.$product_width.'x'.$product_height.'-'.$data_clever_house[$i]['image']);
 						$fullname=$data_clever_house[$i]['fullname'];	
 						$price=$data_clever_house[$i]['price'];
 						$sale_price=$data_clever_house[$i]['sale_price'];
@@ -671,7 +668,7 @@ if(count($data_customer) > 0){
 		<div class="address-phone-email">
 			<div class="col-xs-2 no-padding"><div class="icon"><center><i class="fa fa-envelope-o"></i></center></div></div>
 			<div class="col-xs-10 no-padding-right phone-email-padding">Phone:
-				<?php echo $contacted_phone; ?></div>
+				<?php echo $telephone; ?></div>
 				<div class="clr"></div>
 			</div>
 			<div class="address-phone-email">

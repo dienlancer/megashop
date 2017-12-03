@@ -23,8 +23,10 @@ function uploadImage($fileObj,$width,$height){
 }
 function getSettingSystem(){        
     $alias='setting-system';
-    $setting                   =   SettingSystemModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower(@$alias))])->get()->toArray(); 
-    return $setting[0];     
+    $data                   =   SettingSystemModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower(@$alias))])->get()->toArray(); 
+    $data=convertToArray(json_decode($data[0]['setting']));
+    $data=get_field_data_array($data,'field_code');    
+    return $data;     
 }
 function getStringCategoryID($category_id,&$arrCategoryID,$model){
     $arrCategory=array();    

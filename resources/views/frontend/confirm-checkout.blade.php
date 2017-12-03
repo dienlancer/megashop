@@ -1,8 +1,8 @@
 <h3 class="page-title h-title">Xác nhận thanh toán</h3>
 <?php
 $setting=getSettingSystem();
-$product_width=$setting['product_width'];
-$product_height=$setting['product_height'];
+$product_width = $setting['product_width']['field_value'];
+$product_height = $setting['product_height']['field_value'];
      
 $ssName="vmart";
 $arrCart=array();
@@ -29,7 +29,7 @@ if(count($arrCart) > 0){
         $product_name=$value["product_name"];
         $product_code=$value["product_code"];
         $product_price=$value["product_price"];        
-        $product_image=    url('/upload/'.$product_width."x".$product_height."-"). $value["product_image"] ;        
+        $product_image=    asset('/upload/'.$product_width."x".$product_height."-". $value["product_image"]) ;        
         $product_link= url($value['product_alias'].'.html');           
         $product_quantity=$value["product_quantity"];
         $product_price=fnPrice($value["product_price"]) ;

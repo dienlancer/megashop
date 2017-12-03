@@ -357,7 +357,9 @@ class CategoryProductController extends Controller {
       }
     public function uploadFile(Request $request){ 
       $setting= getSettingSystem();
-      uploadImage($_FILES["image"],$setting['product_width'],$setting['product_height']);
+      $product_width=$setting['product_width']['field_value'];
+    $product_height=$setting['product_height']['field_value'];
+      uploadImage($_FILES["image"],$product_width,$product_height);
     }
 }
 ?>

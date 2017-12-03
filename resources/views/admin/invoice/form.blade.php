@@ -24,8 +24,8 @@ $inputSortOrder         =   '<input type="text" class="form-control" name="sort_
 $id                     =   (count($arrRowData) > 0) ? @$arrRowData['id'] : "" ;
 $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$id.'" />'; 
 $setting= getSettingSystem();
-$product_width = $setting['product_width'];
-$product_height = $setting['product_height'];
+$product_width = $setting['product_width']['field_value'];
+$product_height = $setting['product_height']['field_value'];
 ?>
 <div class="portlet light bordered">
     <div class="portlet-title">

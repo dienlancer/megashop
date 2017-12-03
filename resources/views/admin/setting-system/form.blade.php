@@ -82,10 +82,10 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                         <table class="table table-bordered table-recursive setting-system">
                             <thead>
                                 <tr>
-                                    <th>Tên field</th>
-                                    <th>Mã field</th>                                    
+                                    <th width="20%">Tên field</th>
+                                    <th width="20%">Mã field</th>                                    
                                     <th>Giá trị</th>
-                                    <th></th>                                
+                                    <th width="1%"></th>                                
                                 </tr>
                             </thead>                            
                             <tbody>

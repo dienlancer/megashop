@@ -1,8 +1,8 @@
 <h3 class="page-title h-title">Thanh toán</h3>
     <?php
 $setting=getSettingSystem();
-$product_width=$setting['product_width'];
-$product_height=$setting['product_height'];
+$product_width = $setting['product_width']['field_value'];
+$product_height = $setting['product_height']['field_value'];
 $ssName="vmart";
 $arrCart=array();
 if(Session::has($ssName)){    

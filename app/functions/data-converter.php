@@ -169,6 +169,8 @@ function menuConverter($data=array(),$controller){
 function categoryProductConverter($data=array(),$controller){        
     $result = array();
     $setting= getSettingSystem();
+    $product_width=$setting['product_width']['field_value'];
+    $product_height=$setting['product_height']['field_value'];
     if( count($data) > 0){
         for($i = 0 ;$i < count($data);$i++){
             $edited='<center><a href="'.route('admin.'.$controller.'.getForm',['edit',$data[$i]['id']]).'"><img src="'.asset("/public/admin/images/edit-icon.png").'" /></a></center>';
@@ -188,7 +190,7 @@ function categoryProductConverter($data=array(),$controller){
             $link_image="";
             $image="";
             if(!empty($data[$i]["image"])){
-                $link_image=url("/upload/" . $setting["product_width"] . "x" . $setting["product_height"] . "-".$data[$i]["image"]);            
+                $link_image=url("/upload/" . $product_width.'x'.$product_height . "-".$data[$i]["image"]);            
                 $image = '<center><img src="'.$link_image.'" style="width:100%" /></center>';
             }            
             $result[$i] = array(
@@ -214,6 +216,8 @@ function categoryProductConverter($data=array(),$controller){
 function productConverter($data=array(),$controller){        
     $result = array();
     $setting= getSettingSystem();
+    $product_width=$setting['product_width']['field_value'];
+    $product_height=$setting['product_height']['field_value'];
     if( count($data) > 0){
         for($i = 0 ;$i < count($data);$i++){
             $edited='<center><a href="'.route('admin.'.$controller.'.getForm',['edit',$data[$i]['id']]).'"><img src="'.asset("/public/admin/images/edit-icon.png").'" /></a></center>';
@@ -230,7 +234,7 @@ function productConverter($data=array(),$controller){
             $link_image="";
             $image="";
             if(!empty($data[$i]["image"])){
-                $link_image=url("/upload/" . $setting["product_width"] . "x" . $setting["product_height"] . "-".$data[$i]["image"]);            
+                $link_image=url("/upload/" . $product_width.'x'.$product_height . "-".$data[$i]["image"]);            
                 $image = '<center><img src="'.$link_image.'" style="width:100%" /></center>';
             }          
             $id=$data[$i]["id"];  
@@ -635,6 +639,8 @@ function itemArticleConverter($data=array(),$controller){
 function itemProductConverter($data=array(),$controller){        
     $result = array();
     $setting= getSettingSystem();
+    $product_width=$setting['product_width']['field_value'];
+    $product_height=$setting['product_height']['field_value'];
     if( count($data) > 0){
         for($i = 0 ;$i < count($data);$i++){            
             $deleted='<center><a href="javascript:void(0)" onclick="deleteItem(this)"><img src="'.asset("/public/admin/images/delete-icon.png").'" /></a></center>';            
@@ -642,7 +648,7 @@ function itemProductConverter($data=array(),$controller){
             $id=$data[$i]["id"]; 
             $image="";
             if(!empty($data[$i]["image"])){
-                $link_image=url("/upload/" . $setting["product_width"] . "x" . $setting["product_height"] . "-".$data[$i]["image"]);            
+                $link_image=url("/upload/" . $product_width.'x'.$product_height . "-".$data[$i]["image"]);            
                 $image = '<center><img src="'.$link_image.'" style="width:100%" /></center>';
             }          
             $result[$i] = array(
@@ -708,6 +714,8 @@ function categoryArticleComponentConverter($data=array(),$controller,$menu_type_
 function categoryProductComponentConverter($data=array(),$controller,$menu_type_id){        
     $result = array();    
     $setting= getSettingSystem();
+    $product_width=$setting['product_width']['field_value'];
+    $product_height=$setting['product_height']['field_value'];
     if( count($data) > 0){
         for($i = 0 ;$i < count($data);$i++){
             $edited='';
@@ -727,7 +735,7 @@ function categoryProductComponentConverter($data=array(),$controller,$menu_type_
             $link_image="";
             $image="";
             if(!empty($data[$i]["image"])){
-                $link_image=url("/upload/" . $setting["product_width"] . "x" . $setting["product_height"] . "-".$data[$i]["image"]);            
+                $link_image=url("/upload/" . $product_width.'x'.$product_height . "-".$data[$i]["image"]);            
                 $image = '<center><img src="'.$link_image.'" style="width:100%" /></center>';
             }         
             $linkMenu=route('admin.menu.getForm',['add',$menu_type_id,0,$data[$i]["alias"]]);
@@ -782,13 +790,15 @@ function articleComponentConverter($data=array(),$controller,$menu_type_id){
 function productComponentConverter($data=array(),$controller,$menu_type_id){        
     $result = array();
     $setting= getSettingSystem();
+    $product_width=$setting['product_width']['field_value'];
+    $product_height=$setting['product_height']['field_value'];
     if( count($data) > 0){
         for($i = 0 ;$i < count($data);$i++){            
             $sort_order = '<center>'.$data[$i]["sort_order"].'</center>';
             $link_image="";
             $image="";
             if(!empty($data[$i]["image"])){
-                $link_image=url("/upload/" . $setting["product_width"] . "x" . $setting["product_height"] . "-".$data[$i]["image"]);            
+                $link_image=url("/upload/" . $product_width.'x'.$product_height . "-".$data[$i]["image"]);            
                 $image = '<center><img src="'.$link_image.'" style="width:100%" /></center>';
             }           
             $id=$data[$i]["id"];       

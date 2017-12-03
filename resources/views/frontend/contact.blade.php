@@ -1,24 +1,19 @@
 @extends("frontend.master")
 @section("content")
 <?php 
-$setting=getSettingSystem(); 
-$contacted_phone=$setting['contacted_phone'];
-$email_to=$setting['email_to'];
-$address=$setting['address'];
-$to_name=$setting['to_name'];
-$telephone=$setting['telephone'];
-$website=$setting['website'];
-$slogan_about=$setting['slogan_about'];
-$opened_time=$setting['opened_time'];
-$opened_date=$setting['opened_date'];
-$contaced_name=$setting['contacted_name'];
-$facebook_url=$setting['facebook_url'];
-$twitter_url=$setting['twitter_url'];
-$google_plus=$setting['google_plus'];
-$youtube_url=$setting['youtube_url'];
-$instagram_url=$setting['instagram_url'];
-$pinterest_url=$setting['pinterest_url'];  
-$map_url=$setting['map_url'];     
+$setting=getSettingSystem();
+$email_to=$setting['email_to']['field_value'];
+$address=$setting['address']['field_value'];
+$to_name=$setting['to_name']['field_value'];
+$telephone=$setting['telephone']['field_value'];
+$website=$setting['website']['field_value'];
+$slogan_about=$setting['slogan_about']['field_value'];
+$facebook_url=$setting['facebook_url']['field_value'];
+$twitter_url=$setting['twitter_url']['field_value'];
+$google_plus=$setting['google_plus']['field_value'];
+$youtube_url=$setting['youtube_url']['field_value'];
+$instagram_url=$setting['instagram_url']['field_value'];
+$pinterest_url=$setting['pinterest_url']['field_value'];     
 ?>
 <div class="container margin-top-15 margin-bottom-15 page-right">
 	<h3 class="page-title h-title">Liên hệ</h3>
