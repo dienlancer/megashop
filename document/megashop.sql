@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 03, 2017 lúc 06:03 AM
+-- Thời gian đã tạo: Th12 03, 2017 lúc 09:24 AM
 -- Phiên bản máy phục vụ: 10.1.22-MariaDB
 -- Phiên bản PHP: 7.1.4
 
@@ -1889,36 +1889,6 @@ CREATE TABLE `setting_system` (
   `id` int(11) NOT NULL,
   `fullname` varchar(255) DEFAULT NULL,
   `alias` varchar(255) DEFAULT NULL,
-  `article_perpage` int(11) DEFAULT NULL,
-  `product_perpage` int(11) DEFAULT NULL,
-  `product_width` int(11) DEFAULT NULL,
-  `product_height` int(11) DEFAULT NULL,
-  `currency_unit` varchar(255) DEFAULT NULL,
-  `smtp_host` varchar(255) DEFAULT NULL,
-  `smtp_port` varchar(255) DEFAULT NULL,
-  `encription` varchar(255) DEFAULT NULL,
-  `authentication` int(11) NOT NULL,
-  `smtp_username` varchar(255) DEFAULT NULL,
-  `smtp_password` varchar(255) DEFAULT NULL,
-  `email_from` varchar(255) DEFAULT NULL,
-  `email_to` varchar(255) DEFAULT NULL,
-  `from_name` varchar(255) DEFAULT NULL,
-  `to_name` varchar(255) DEFAULT NULL,
-  `contacted_phone` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `website` varchar(255) DEFAULT NULL,
-  `telephone` varchar(255) DEFAULT NULL,
-  `opened_time` varchar(255) DEFAULT NULL,
-  `opened_date` varchar(255) DEFAULT NULL,
-  `contacted_name` varchar(255) DEFAULT NULL,
-  `facebook_url` varchar(255) DEFAULT NULL,
-  `twitter_url` varchar(255) DEFAULT NULL,
-  `google_plus` varchar(255) DEFAULT NULL,
-  `youtube_url` varchar(255) DEFAULT NULL,
-  `instagram_url` varchar(255) DEFAULT NULL,
-  `pinterest_url` varchar(255) DEFAULT NULL,
-  `slogan_about` text,
-  `map_url` text,
   `setting` text,
   `sort_order` int(11) DEFAULT NULL,
   `status` int(11) DEFAULT NULL,
@@ -1930,8 +1900,8 @@ CREATE TABLE `setting_system` (
 -- Đang đổ dữ liệu cho bảng `setting_system`
 --
 
-INSERT INTO `setting_system` (`id`, `fullname`, `alias`, `article_perpage`, `product_perpage`, `product_width`, `product_height`, `currency_unit`, `smtp_host`, `smtp_port`, `encription`, `authentication`, `smtp_username`, `smtp_password`, `email_from`, `email_to`, `from_name`, `to_name`, `contacted_phone`, `address`, `website`, `telephone`, `opened_time`, `opened_date`, `contacted_name`, `facebook_url`, `twitter_url`, `google_plus`, `youtube_url`, `instagram_url`, `pinterest_url`, `slogan_about`, `map_url`, `setting`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'settingsystem', 'setting-system', 12, 16, 400, 400, 'vi_VN', 'smtp.gmail.com', '465', 'ssl', 1, 'dien.toannang@gmail.com', 'lienhoancuoc', 'dienit02@gmail.com', 'tichtacso.com@gmail.com', 'Hệ thống', 'Công Ty TNHH VIDOCO', '096.302.7721', '35/6 Bùi Quang Là - P.12 - Q. Gò Vấp - HCM', 'noithatgialai.net', '096.302.7720', '8h - 20h', '(T2-T7). Chủ Nhật nghỉ', 'Mr. Vinh', 'https://www.facebook.com/nguyenvan.laptrinh', 'https://twitter.com/', 'https://plus.google.com/u/0/?hl=vi', 'https://www.youtube.com/watch?v=kAcV7S3sySU', 'http://flickr.com', 'http://daidung.vn/', 'Mipec cung cấp thực phẩm sạch, an toàn, đảm bảo chất lượng hàng đầu. Xóa đi nỗi lo về an toàn thực phẩm', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3871.605543764119!2d108.07355431421081!3d13.982069195684272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDU4JzU1LjQiTiAxMDjCsDA0JzMyLjciRQ!5e0!3m2!1svi!2s!4v1508913801584', NULL, 1, 1, '2017-11-10 19:46:32', '2017-11-25 17:28:37');
+INSERT INTO `setting_system` (`id`, `fullname`, `alias`, `setting`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'settingsystem-2', 'setting-system-2', '[{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"article_perpage\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"product_perpage\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"product_width\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"product_height\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"currency_unit\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"smtp_host\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"smtp_port\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"encription\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"authentication\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"smtp_username\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"smtp_password\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"email_from\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"email_to\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"from_name\",\"field_value\":\"400\"}]', 2, 0, '2017-12-03 07:45:35', '2017-12-03 08:04:36');
 
 -- --------------------------------------------------------
 

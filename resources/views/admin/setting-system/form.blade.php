@@ -6,6 +6,13 @@ $linkCancel             =   route('admin.'.$controller.'.getList');
 $linkSave               =   route('admin.'.$controller.'.save');
 $inputFullName          =   '<input type="text" class="form-control" name="fullname"    id="fullname"           value="'.@$arrRowData['fullname'].'">';  
 $inputAlias             =   '<input type="text" class="form-control" name="alias"       id="alias"              value="'.@$arrRowData['alias'].'">';  
+$data                   =   array();
+if(count(@$arrRowData) > 0){
+    if(!empty(@$arrRowData)){
+        $data                   =   json_decode(@$arrRowData['setting']);
+        $data = convertToArray($data);
+    }
+}
 $status                 =   (count($arrRowData) > 0) ? @$arrRowData['status'] : 1 ;
 $arrStatus              =   array(-1 => '- Select status -', 1 => 'Publish', 0 => 'Unpublish');  
 $ddlStatus              =   cmsSelectbox("status","status","form-control",$arrStatus,$status,"");
@@ -82,12 +89,23 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
                                 </tr>
                             </thead>                            
                             <tbody>
-                                <tr>
-                                    <td><input type="text" name="field_name" class="form-control"></td>
-                                    <td><input type="text" name="field_code" class="form-control"></td>                                    
-                                    <td><input type="text" name="field_value" class="form-control"></td>
+                                <?php 
+                                if(count($data) > 0){
+                                    for($i=0;$i<count($data);$i++){
+                                        $field_name=$data[$i]['field_name'];
+                                        $field_code=$data[$i]['field_code'];
+                                        $field_value=$data[$i]['field_value'];
+                                        ?>
+                                        <tr>
+                                    <td><input type="text" name="field_name" value="<?php echo $field_name; ?>" class="form-control"></td>
+                                    <td><input type="text" name="field_code" value="<?php echo $field_code; ?>" class="form-control"></td>                                    
+                                    <td><input type="text" name="field_value" value="<?php echo $field_value; ?>" class="form-control"></td>
                                     <td class="tdcmd"><center><a href="javascript:void(0);"><img src="<?php echo asset('public/admin/images/add.png'); ?>" onclick="addRow(this);" /></a></center></td>                         
                                 </tr>
+                                        <?php                                        
+                                    }
+                                }
+                                ?>                                
                             </tbody>                            
                         </table>
                     </div> 
@@ -139,14 +157,14 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
         var dataItem={
             "id":id,
             "fullname":fullname,
-            "setting":setting,
+            "setting":JSON.stringify(setting),
             "alias":alias,              
             "status":status,        
             "sort_order":sort_order,                      
             "_token": token
         };
-        console.log(dataItem);
-        /*$.ajax({
+        
+        $.ajax({
             url: '<?php echo $linkSave; ?>',
             type: 'POST',
             data: dataItem,
@@ -186,7 +204,7 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
             beforeSend  : function(jqXHR,setting){
                 spinner.show();
             },
-        });*/
+        });
     }
     function addRow(control) {
         var tbody=$(control).closest("tbody")[0];
@@ -210,5 +228,8 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
         }
         $(tdcmd[tdcmd.length - 1]).html('<center><a href="javascript:void(0)"  onclick="addRow(this);"><img  src="<?php echo asset("public/admin/images/add.png"); ?>" /></a></center>');
     }
+    $(document).ready(function(){
+        reIndex();
+    });
 </script>
 @endsection()            
