@@ -139,12 +139,13 @@ $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$i
         var dataItem={
             "id":id,
             "fullname":fullname,
-            "setting":JSON.stringify(setting),
+            "setting":setting,
             "alias":alias,              
             "status":status,        
             "sort_order":sort_order,                      
             "_token": token
         };
+        console.log(dataItem);
         /*$.ajax({
             url: '<?php echo $linkSave; ?>',
             type: 'POST',
