@@ -22,6 +22,8 @@ use App\InvoiceDetailModel;
 use App\BannerModel;
 use App\ModuleItemModel;
 use App\PaymentMethodModel;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 use Session;
 use DB;
 class IndexController extends Controller {  
@@ -262,11 +264,11 @@ class IndexController extends Controller {
           $email_to       = @$setting['email_to']['field_value'];
           $to_name        = @$setting['to_name']['field_value'];
           /* end load config contact */
-          $filePhpMailer=base_path("app".DS."scripts".DS."phpmailer".DS."PHPMailer.php")   ;
-          
-          require_once $filePhpMailer;    
+          /*$filePhpMailer=base_path("app".DS."scripts".DS."phpmailer".DS."PHPMailer.php")   ;
+
+          require_once $filePhpMailer;    */
           $strMsg="";
-          $mail = new PHPMailer;        
+          $mail = new PHPMailer(true);    
           $mail->CharSet = "UTF-8";   
           $mail->isSMTP();             
           $mail->SMTPDebug = 2;
