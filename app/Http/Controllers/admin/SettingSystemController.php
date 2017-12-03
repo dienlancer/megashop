@@ -87,7 +87,7 @@ class SettingSystemController extends Controller {
                 }        
                 $item->fullname  =  @$fullname;
                 $item->alias = @$alias;        
-                $item->setting = @$setting;                            
+                $item->setting =@$setting ;                            
                 $item->sort_order       = (int)@$sort_order;
                 $item->status           = (int)@$status;    
                 $item->updated_at       = date("Y-m-d H:i:s",time());               

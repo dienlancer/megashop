@@ -99,7 +99,9 @@ $arrCart=array();
        }
      });
     });
+    
   </script>
+
 </head>
 <body>
   <header class="relative header">

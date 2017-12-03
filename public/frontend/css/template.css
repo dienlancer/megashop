@@ -958,6 +958,10 @@ div.megashop-map{
     color: #ffffff;
     margin: auto;
 }
+div#google-map{
+    height: 400px;
+    width: 100%
+}
 .contact-info .address .icon, .contact-info label {
     display: inline-block;
     vertical-align: middle;

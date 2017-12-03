@@ -155,7 +155,7 @@ function mooMenuRecursive($source,$parent,&$menu_str,&$lanDau,$url,$alias,$menu_
 }
 function fnPrice($value){
   $data = getSettingSystem();
-  $language = $data["currency_unit"] ;
+  $language = $data["currency_unit"]['field_value'] ;
   $strCurrency="";
   switch ($language) {
     case "vi_VN":

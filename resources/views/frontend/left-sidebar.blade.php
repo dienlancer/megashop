@@ -92,18 +92,15 @@ switch ($component) {
                         $fullname=$data_featured_product[$i]['fullname'];   
                         $price=$data_featured_product[$i]['price'];
                         $sale_price=$data_featured_product[$i]['sale_price'];
-                        $str_price='';
-                        $sale_price_des='';
-                        $regular_price='';
-                        if(!empty($price)){                     
-                            $sale_price_des=fnPrice($price);                                
-                        }
-                        if(!empty($sale_price)){                
-                            $regular_price ='<span class="price-regular">'.fnPrice($price).' đ</span>';                                     
-                            $sale_price_des=fnPrice($sale_price);                       
-                        }
-                        $sale_price_des='<span class="price-sale">'.$sale_price_des. ' đ'.'</span>' ;                   
-                        $str_price=$regular_price . '&nbsp;&nbsp;' . $sale_price_des ;              
+                        $html_price='';                      
+                        if((int)($sale_price) > 0){             
+                            $price ='<span class="price-regular">'.fnPrice($price).' đ</span>';
+                            $sale_price='<span class="price-sale">'.fnPrice($sale_price). ' đ'.'</span>' ;                  
+                            $html_price=$price . '&nbsp;&nbsp;' . $sale_price ;              
+                        }else{
+                            $price='<span class="price-sale">'.fnPrice($price). ' đ'.'</span>' ;    
+                            $html_price=$price;      
+                        }              
                 ?>
                 <div class="product-index">
                     <div class="col-lg-4 no-padding-right">
@@ -111,7 +108,7 @@ switch ($component) {
                     </div>
                     <div class="col-lg-8 no-padding-right">
                         <div class="margin-top-15"><a href="<?php echo $permalink; ?>"><?php echo $fullname; ?></a></div>
-                        <div class="product-index-status"><?php echo $str_price; ?></div>
+                        <div class="product-index-status"><?php echo $html_price; ?></div>
                     </div>
                     <div class="clr"></div>
                 </div>

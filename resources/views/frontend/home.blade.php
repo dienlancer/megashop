@@ -13,7 +13,8 @@ $twitter_url=$setting['twitter_url']['field_value'];
 $google_plus=$setting['google_plus']['field_value'];
 $youtube_url=$setting['youtube_url']['field_value'];
 $instagram_url=$setting['instagram_url']['field_value'];
-$pinterest_url=$setting['pinterest_url']['field_value'];   
+$pinterest_url=$setting['pinterest_url']['field_value'];
+$map_url=$setting['map_url']['field_value'];   
 $product_width = $setting['product_width']['field_value'];
 $product_height = $setting['product_height']['field_value'];  
 // lấy sản phẩm nổi bật
@@ -164,21 +165,19 @@ if(count($data_slideshow) > 0){
 						$id=$data_featured_product[$i]['id'];			
 						$permalink=url($data_featured_product[$i]['alias'].'.html');
 						$featureImg=asset('/upload/'.$product_width.'x'.$product_height.'-'.$data_featured_product[$i]['image']);
+
 						$fullname=$data_featured_product[$i]['fullname'];	
 						$price=$data_featured_product[$i]['price'];
-						$sale_price=$data_featured_product[$i]['sale_price'];
-						$str_price='';
-						$sale_price_des='';
-						$regular_price='';
-						if(!empty($price)){						
-							$sale_price_des=fnPrice($price);								
-						}
-						if(!empty($sale_price)){				
-							$regular_price ='<span class="price-regular">'.fnPrice($price).' đ</span>';										
-							$sale_price_des=fnPrice($sale_price);						
-						}
-						$sale_price_des='<span class="price-sale">'.$sale_price_des. ' đ'.'</span>' ;					
-						$str_price=$regular_price . '&nbsp;&nbsp;' . $sale_price_des ;				
+						$sale_price=$data_featured_product[$i]['sale_price'];						
+						$html_price='';						
+						if((int)($sale_price) > 0){				
+							$price ='<span class="price-regular">'.fnPrice($price).' đ</span>';
+							$sale_price='<span class="price-sale">'.fnPrice($sale_price). ' đ'.'</span>' ;					
+							$html_price=$price . '&nbsp;&nbsp;' . $sale_price ;				
+						}else{
+							$price='<span class="price-sale">'.fnPrice($price). ' đ'.'</span>' ;	
+							$html_price=$price;		
+						}						
 						?>
 						<div class="col-lg-3 no-padding-right">
 							<div class="box-product">
@@ -198,7 +197,7 @@ if(count($data_slideshow) > 0){
 									<i class="fa fa-star" aria-hidden="true"></i>								
 								</div>
 								<div class="box-product-general-price margin-top-5">
-									<center><?php echo $str_price; ?></center>								                    
+									<center><?php echo $html_price; ?></center>								                    
 								</div>							                     
 							</div>           
 						</div>		
@@ -260,18 +259,15 @@ if(count($data_slideshow) > 0){
 					$fullname=$data_toilet_equipment[$i]['fullname'];	
 					$price=$data_toilet_equipment[$i]['price'];
 					$sale_price=$data_toilet_equipment[$i]['sale_price'];
-					$str_price='';
-					$sale_price_des='';
-					$regular_price='';
-					if(!empty($price)){						
-						$sale_price_des=fnPrice($price);								
-					}
-					if(!empty($sale_price)){				
-						$regular_price ='<span class="price-regular">'.fnPrice($price).' đ</span>';										
-						$sale_price_des=fnPrice($sale_price);						
-					}
-					$sale_price_des='<span class="price-sale">'.$sale_price_des. ' đ'.'</span>' ;					
-					$str_price=$regular_price . '&nbsp;&nbsp;' . $sale_price_des ;				
+					$html_price='';						
+						if((int)($sale_price) > 0){				
+							$price ='<span class="price-regular">'.fnPrice($price).' đ</span>';
+							$sale_price='<span class="price-sale">'.fnPrice($sale_price). ' đ'.'</span>' ;					
+							$html_price=$price . '&nbsp;&nbsp;' . $sale_price ;				
+						}else{
+							$price='<span class="price-sale">'.fnPrice($price). ' đ'.'</span>' ;	
+							$html_price=$price;		
+						}		
 					?>
 					<div>
 						<div class="box-product">
@@ -291,7 +287,7 @@ if(count($data_slideshow) > 0){
 								<i class="fa fa-star" aria-hidden="true"></i>								
 							</div>
 							<div class="box-product-general-price margin-top-5">
-								<center><?php echo $str_price; ?></center>								                    
+								<center><?php echo $html_price; ?></center>								                    
 							</div>							                     
 						</div>           
 					</div>				
@@ -344,18 +340,15 @@ if(count($data_slideshow) > 0){
 					$fullname=$data_chicken_equipment[$i]['fullname'];	
 					$price=$data_chicken_equipment[$i]['price'];
 					$sale_price=$data_chicken_equipment[$i]['sale_price'];
-					$str_price='';
-					$sale_price_des='';
-					$regular_price='';
-					if(!empty($price)){						
-						$sale_price_des=fnPrice($price);								
-					}
-					if(!empty($sale_price)){				
-						$regular_price ='<span class="price-regular">'.fnPrice($price).' đ</span>';										
-						$sale_price_des=fnPrice($sale_price);						
-					}
-					$sale_price_des='<span class="price-sale">'.$sale_price_des. ' đ'.'</span>' ;					
-					$str_price=$regular_price . '&nbsp;&nbsp;' . $sale_price_des ;				
+					$html_price='';						
+						if((int)($sale_price) > 0){				
+							$price ='<span class="price-regular">'.fnPrice($price).' đ</span>';
+							$sale_price='<span class="price-sale">'.fnPrice($sale_price). ' đ'.'</span>' ;					
+							$html_price=$price . '&nbsp;&nbsp;' . $sale_price ;				
+						}else{
+							$price='<span class="price-sale">'.fnPrice($price). ' đ'.'</span>' ;	
+							$html_price=$price;		
+						}		
 					?>
 					<div>
 						<div class="box-product">
@@ -375,7 +368,7 @@ if(count($data_slideshow) > 0){
 								<i class="fa fa-star" aria-hidden="true"></i>								
 							</div>
 							<div class="box-product-general-price margin-top-5">
-								<center><?php echo $str_price; ?></center>								                    
+								<center><?php echo $html_price; ?></center>								                    
 							</div>							                     
 						</div>           
 					</div>				
@@ -453,18 +446,15 @@ if(count($data_clever_house) > 0){
 						$fullname=$data_clever_house[$i]['fullname'];	
 						$price=$data_clever_house[$i]['price'];
 						$sale_price=$data_clever_house[$i]['sale_price'];
-						$str_price='';
-						$sale_price_des='';
-						$regular_price='';
-						if(!empty($price)){						
-							$sale_price_des=fnPrice($price);								
-						}
-						if(!empty($sale_price)){				
-							$regular_price ='<span class="price-regular">'.fnPrice($price).' đ</span>';										
-							$sale_price_des=fnPrice($sale_price);						
-						}
-						$sale_price_des='<span class="price-sale">'.$sale_price_des. ' đ'.'</span>' ;					
-						$str_price=$regular_price . '&nbsp;&nbsp;' . $sale_price_des ;				
+						$html_price='';						
+						if((int)($sale_price) > 0){				
+							$price ='<span class="price-regular">'.fnPrice($price).' đ</span>';
+							$sale_price='<span class="price-sale">'.fnPrice($sale_price). ' đ'.'</span>' ;					
+							$html_price=$price . '&nbsp;&nbsp;' . $sale_price ;				
+						}else{
+							$price='<span class="price-sale">'.fnPrice($price). ' đ'.'</span>' ;	
+							$html_price=$price;		
+						}		
 						?>
 						<div>
 							<div class="box-product">
@@ -484,7 +474,7 @@ if(count($data_clever_house) > 0){
 									<i class="fa fa-star" aria-hidden="true"></i>								
 								</div>
 								<div class="box-product-general-price margin-top-5">
-									<center><?php echo $str_price; ?></center>								                    
+									<center><?php echo $html_price; ?></center>								                    
 								</div>							                     
 							</div>           
 						</div>				
@@ -650,7 +640,7 @@ if(count($data_customer) > 0){
 	</div>
 </div>
 <div class="relative megashop-map">
-	<iframe src="<?php echo $map_url; ?>" width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+	<?php echo $map_url; ?>
 	<div class="map">
 		<div>
 			<div class="col-xs-2 no-padding"><center><img src="<?php echo asset('/upload/icon_shop.png'); ?>" /></center></div>

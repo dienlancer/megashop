@@ -18,18 +18,15 @@ $product_height = $setting['product_height']['field_value'];
 						$fullname=$items[$i]['fullname'];	
 						$price=$items[$i]['price'];
 						$sale_price=$items[$i]['sale_price'];
-						$str_price='';
-						$sale_price_des='';
-						$regular_price='';
-						if(!empty($price)){						
-							$sale_price_des=fnPrice($price);								
-						}
-						if(!empty($sale_price)){				
-							$regular_price ='<span class="price-regular">'.fnPrice($price).' đ</span>';										
-							$sale_price_des=fnPrice($sale_price);						
-						}
-						$sale_price_des='<span class="price-sale">'.$sale_price_des. ' đ'.'</span>' ;					
-						$str_price=$regular_price . '&nbsp;&nbsp;' . $sale_price_des ;				
+						$html_price='';						
+						if((int)($sale_price) > 0){				
+							$price ='<span class="price-regular">'.fnPrice($price).' đ</span>';
+							$sale_price='<span class="price-sale">'.fnPrice($sale_price). ' đ'.'</span>' ;					
+							$html_price=$price . '&nbsp;&nbsp;' . $sale_price ;				
+						}else{
+							$price='<span class="price-sale">'.fnPrice($price). ' đ'.'</span>' ;	
+							$html_price=$price;		
+						}		
 						?>
 						<div class="col-lg-3">
 							<div class="box-product margin-top-15">
@@ -49,7 +46,7 @@ $product_height = $setting['product_height']['field_value'];
 									<i class="fa fa-star" aria-hidden="true"></i>								
 								</div>
 								<div class="box-product-general-price margin-top-5">
-									<center><?php echo $str_price; ?></center>								                    
+									<center><?php echo $html_price; ?></center>								                    
 								</div>							                     
 							</div>           
 						</div>		
