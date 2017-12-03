@@ -5,6 +5,7 @@ $linkCancel             =   route('admin.'.$controller.'.getList');
 $linkSave               =   route('admin.'.$controller.'.save');
 ?>
 <form class="form-horizontal" method="post" action="{!! $linkSave !!}" role="form" enctype="multipart/form-data">
+    {{ csrf_field() }}           
 <div class="portlet light bordered">
     <div class="portlet-title">
         <div class="caption">
@@ -34,14 +35,11 @@ $linkSave               =   route('admin.'.$controller.'.save');
                             <tbody>
                                 <tr>                                    
                                     <td align="center" valign="middle"><input type="file" name="media_file[]"></td>
-                                    <td align="center" valign="middle" class="tdcmd"><a href="javascript:void(0)"  onclick="addRow(this);"><img class="img_media_file" src=" <?php echo url("/public/admin/images/add.png"); ?>" /></a></td>
+                                    <td align="center" valign="middle" class="tdcmd"><center><a href="javascript:void(0)"  onclick="addRow(this);"><img  src=" <?php echo url("/public/admin/images/add.png"); ?>" /></a></center></td>
                                 </tr>
                             </tbody>
                         </table>    
-                    <div class="clr"></div>
-                    <div>
-                        <input type="hidden" name="_token" value="{!!   csrf_token()  !!}"                                                                              
-                    </div>
+                    <div class="clr"></div>                    
                 </fieldset>        
     </div>
 </div>
@@ -65,9 +63,9 @@ $linkSave               =   route('admin.'.$controller.'.save');
         var tbody=jQuery(".table-image > tbody")[0];
         var tdcmd = jQuery(tbody).find("td.tdcmd");                    
         for (var i = 0; i < tdcmd.length - 1; i++) {                
-            jQuery(tdcmd[i]).html('<a href="javascript:void(0)"  onclick="removeRow(this);"><img class="img_media_file" src="<?php echo url("/public/admin/images/delete-icon.png"); ?>" /></a>');
+            jQuery(tdcmd[i]).html('<center><a href="javascript:void(0)"  onclick="removeRow(this);"><img  src="<?php echo url("/public/admin/images/delete-icon.png"); ?>" /></a></center>');
         }
-        jQuery(tdcmd[tdcmd.length - 1]).html('<a href="javascript:void(0)"  onclick="addRow(this);"><img class="img_media_file" src="<?php echo url("/public/admin/images/add.png"); ?>" /></a>');
+        jQuery(tdcmd[tdcmd.length - 1]).html('<center><a href="javascript:void(0)"  onclick="addRow(this);"><img  src="<?php echo url("/public/admin/images/add.png"); ?>" /></a></center>');
     }
 </script>
 @endsection()            
