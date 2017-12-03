@@ -91,7 +91,7 @@ class IndexController extends Controller {
                   $data=DB::select('call pro_getArticleFrontend(?,?)',array(mb_strtolower($filter_search),$str_category_id));
                   $data=convertToArray($data);
                   $totalItems=count($data);
-                  $totalItemsPerPage=(int)$setting['article_perpage']; 
+                  $totalItemsPerPage=(int)$setting['article_perpage']['field_value']; 
                   $pageRange=$this->_pageRange;
                   if(!empty(@$_POST["filter_page"])){
                     $currentPage=@$_POST["filter_page"];
@@ -133,7 +133,7 @@ class IndexController extends Controller {
                   $data=convertToArray($data);
 
                   $totalItems=count($data);
-                  $totalItemsPerPage=(int)$setting['product_perpage']; 
+                  $totalItemsPerPage=(int)$setting['product_perpage']['field_value']; 
                   $pageRange=$this->_pageRange;
                   if(!empty(@$_POST["filter_page"])){
                     $currentPage=@$_POST["filter_page"];
@@ -252,18 +252,18 @@ class IndexController extends Controller {
           $address  = @$_POST['address'];
           $content  = @$_POST["content"];
           /* begin load config contact */
-          $smtp_host      = @$setting['smtp_host'];
-          $smtp_port      = @$setting['smtp_port'];
-          $smtp_auth      = @$setting['smtp_auth'];
-          $encription     = @$setting['encription'];
-          $smtp_username  = @$setting['smtp_username'];
-          $smtp_password  = @$setting['smtp_password'];
-          $email_from     = @$setting['email_from'];
-          $email_to       = @$setting['email_to'];
-          $to_name        = @$setting['to_name'];
+          $smtp_host      = @$setting['smtp_host']['field_value'];
+          $smtp_port      = @$setting['smtp_port']['field_value'];
+          $smtp_auth      = @$setting['smtp_auth']['field_value'];
+          $encription     = @$setting['encription']['field_value'];
+          $smtp_username  = @$setting['smtp_username']['field_value'];
+          $smtp_password  = @$setting['smtp_password']['field_value'];
+          $email_from     = @$setting['email_from']['field_value'];
+          $email_to       = @$setting['email_to']['field_value'];
+          $to_name        = @$setting['to_name']['field_value'];
           /* end load config contact */
-          $filePhpMailer=base_path("app".DS."scripts".DS."phpmailer".DS."PHPMailerAutoload.php")   ;
-
+          $filePhpMailer=base_path("app".DS."scripts".DS."phpmailer".DS."PHPMailer.php")   ;
+          echo "<pre>".print_r($filePhpMailer,true)."</pre>";die();
           require_once $filePhpMailer;    
           $strMsg="";
           $mail = new PHPMailer;        

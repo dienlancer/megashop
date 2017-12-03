@@ -13,7 +13,8 @@ $twitter_url=$setting['twitter_url']['field_value'];
 $google_plus=$setting['google_plus']['field_value'];
 $youtube_url=$setting['youtube_url']['field_value'];
 $instagram_url=$setting['instagram_url']['field_value'];
-$pinterest_url=$setting['pinterest_url']['field_value'];     
+$pinterest_url=$setting['pinterest_url']['field_value']; 
+$map_url=$setting['map_url']['field_value'];       
 ?>
 <div class="container margin-top-15 margin-bottom-15 page-right">
 	<h3 class="page-title h-title">Liên hệ</h3>

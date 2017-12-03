@@ -640,7 +640,7 @@ if(count($data_customer) > 0){
 	</div>
 </div>
 <div class="relative megashop-map">
-	<?php echo $map_url; ?>
+	<iframe src="<?php echo $map_url; ?>" width="100%" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
 	<div class="map">
 		<div>
 			<div class="col-xs-2 no-padding"><center><img src="<?php echo asset('/upload/icon_shop.png'); ?>" /></center></div>
