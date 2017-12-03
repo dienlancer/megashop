@@ -263,7 +263,7 @@ class IndexController extends Controller {
           $to_name        = @$setting['to_name']['field_value'];
           /* end load config contact */
           $filePhpMailer=base_path("app".DS."scripts".DS."phpmailer".DS."PHPMailer.php")   ;
-          echo "<pre>".print_r($filePhpMailer,true)."</pre>";die();
+          
           require_once $filePhpMailer;    
           $strMsg="";
           $mail = new PHPMailer;        
