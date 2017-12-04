@@ -39,7 +39,7 @@ $inputMenuTypeId 		=	'<input type="hidden" class="form-control" id="menu_type_id
 			<table class="table table-striped table-bordered table-hover table-checkable order-column" id="tbl-article-component">
 				<thead>
 					<tr>	
-                        <th width="1%"><input type="checkbox"  name="checkall-toggle"></th>											
+                        <th width="1%"><input type="checkbox" onclick="checkAllAgent(this)" name="checkall-toggle"></th>											
 						<th>Bài viết</th>						
 						<th width="1%">Hình</th>
 						<th width="1%">Sắp xếp</th>              
@@ -52,6 +52,17 @@ $inputMenuTypeId 		=	'<input type="hidden" class="form-control" id="menu_type_id
 	</div>	
 </form>
 <script type="text/javascript" language="javascript">	
+    function checkWithList(this_checkbox){
+        var dr = vArticleComponentTable.row( $(this_checkbox).closest('tr') ).data();               
+        if(parseInt(dr['is_checked']) == 0){
+            dr['checked'] ='<input type="checkbox" checked onclick="checkWithList(this)" name="cid" />';
+            dr['is_checked'] = 1;
+        }else{
+            dr['checked'] ='<input type="checkbox" onclick="checkWithList(this)" name="cid" />';
+            dr['is_checked'] = 0;
+        }
+        vArticleComponentTable.row( $(this_checkbox).closest('tr') ).data(dr);
+    }   
 	function getListArticle() {    
         var token = $('form[name="frm"] > input[name="_token"]').val(); 
         var category_article_id=$('#category_article_id').val();

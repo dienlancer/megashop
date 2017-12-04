@@ -35,6 +35,7 @@ class IndexController extends Controller {
     $alias="trang-chu";
     $meta_keyword="";
     $meta_description="";  
+     
     return view("frontend.home",compact("component","meta_keyword","meta_description","alias"));
   }  
 	public function index($alias)
@@ -256,40 +257,46 @@ class IndexController extends Controller {
           /* begin load config contact */
           $smtp_host      = @$setting['smtp_host']['field_value'];
           $smtp_port      = @$setting['smtp_port']['field_value'];
-          $smtp_auth      = @$setting['smtp_auth']['field_value'];
+          $smtp_auth      = @$setting['authentication']['field_value'];
           $encription     = @$setting['encription']['field_value'];
           $smtp_username  = @$setting['smtp_username']['field_value'];
           $smtp_password  = @$setting['smtp_password']['field_value'];
           $email_from     = @$setting['email_from']['field_value'];
           $email_to       = @$setting['email_to']['field_value'];
           $to_name        = @$setting['to_name']['field_value'];
-          /* end load config contact */
-          /*$filePhpMailer=base_path("app".DS."scripts".DS."phpmailer".DS."PHPMailer.php")   ;
 
-          require_once $filePhpMailer;    */
+
+          /* end load config contact */       
           $strMsg="";
-          $mail = new PHPMailer(true);    
-          $mail->CharSet = "UTF-8";   
-          $mail->isSMTP();             
-          $mail->SMTPDebug = 2;
-          $mail->Debugoutput = 'html';
-          $mail->Host = @$smtp_host;
-          $mail->Port = @$smtp_port;
-          $mail->SMTPSecure = @$encription;
-          $mail->SMTPAuth = true;
-          $mail->Username = @$smtp_username;
-          $mail->Password = @$smtp_password;
-          $mail->setFrom(@$email_from, $fullname);
-          $mail->addAddress(@$email_to, @$to_name);
-          $mail->Subject = 'Khách hàng '. @$fullname . " - Số điện thoại : " . @$phone ;       
-          $strContent=@$content . "\n\n" . " Điện thoại : " . @$phone; 
-          $mail->Body=$strContent;   
-          if ($mail->send()) {                
-            echo '<script language="javascript" type="text/javascript">alert("Mail gửi thành công");</script>'; 
+          $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+          try {
+              //Server settings
+              $mail->SMTPDebug = 2;                                 // Enable verbose debug output
+              $mail->isSMTP();                                      // Set mailer to use SMTP
+              $mail->Host = $smtp_host; 
+              $mail->SMTPAuth = $smtp_auth;                         
+              $mail->Username = $smtp_username;                 // SMTP username
+              $mail->Password = $smtp_password;                           // SMTP password
+              $mail->SMTPSecure = $encription;                            // Enable TLS encryption, `ssl` also accepted
+              $mail->Port = $smtp_port;                                    // TCP port to connect to
+
+              //Recipients
+              $mail->setFrom($email_from, $fullname);
+              $mail->addAddress($email_to, $to_name);     // Add a recipient
+              
+              //Content
+              $mail->isHTML(true);                                  // Set email format to HTML
+              $mail->Subject = 'Khách hàng '. @$fullname . " - Số điện thoại : " . @$phone;
+              $content=@$content . "\n\n" . " Điện thoại : " . @$phone; 
+              $mail->Body    = $content;              
+
+              $mail->send();
+              
+          } catch (Exception $e) {
+              echo 'Message could not be sent.';
+              echo 'Mailer Error: ' . $mail->ErrorInfo;
           }
-          else{
-            echo '<script language="javascript" type="text/javascript">alert("Mail gửi không thành công");</script>'; 
-          }          
+          echo "<pre>".print_r($mail,true)."</pre>";
         }
         return view("frontend.contact",compact("component","alias"));          
       }

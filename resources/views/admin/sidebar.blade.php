@@ -105,7 +105,7 @@ switch ($controller) {
     <li class="nav-item  <?php echo $li_product_management; ?>">
         <a href="javascript:;" class="nav-link nav-toggle">
             <i class="fa fa-folder-open-o" ></i>
-            <span class="title">Sản phẩm</span>
+            <span class="title">Thương mại điện tử</span>
             <span class="arrow"></span>
         </a>
         <ul class="sub-menu">                                    

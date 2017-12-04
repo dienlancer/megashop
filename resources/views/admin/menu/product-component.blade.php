@@ -39,7 +39,7 @@ $inputMenuTypeId 		=	'<input type="hidden" class="form-control" id="menu_type_id
 			<table class="table table-striped table-bordered table-hover table-checkable order-column" id="tbl-product-component">
 				<thead>
 					<tr>				
-                        <th width="1%"><input type="checkbox"  name="checkall-toggle"></th>								
+                        <th width="1%"><input type="checkbox" onclick="checkAllAgent(this)"  name="checkall-toggle"></th>								
 						<th>Sản phẩm</th>						
 						<th width="1%">Hình</th>
 						<th width="1%">Sắp xếp</th>              
@@ -52,6 +52,17 @@ $inputMenuTypeId 		=	'<input type="hidden" class="form-control" id="menu_type_id
 	</div>	
 </form>
 <script type="text/javascript" language="javascript">	
+    function checkWithList(this_checkbox){
+        var dr = vProductComponentTable.row( $(this_checkbox).closest('tr') ).data();               
+        if(parseInt(dr['is_checked']) == 0){
+            dr['checked'] ='<input type="checkbox" checked onclick="checkWithList(this)" name="cid" />';
+            dr['is_checked'] = 1;
+        }else{
+            dr['checked'] ='<input type="checkbox" onclick="checkWithList(this)" name="cid" />';
+            dr['is_checked'] = 0;
+        }
+        vProductComponentTable.row( $(this_checkbox).closest('tr') ).data(dr);
+    }   
 	function getListProduct() {    
         var token = $('form[name="frm"] > input[name="_token"]').val(); 
         var category_product_id=$('#category_product_id').val();
