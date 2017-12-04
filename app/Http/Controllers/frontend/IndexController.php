@@ -268,25 +268,27 @@ class IndexController extends Controller {
           echo "<pre>".print_r($setting,true)."</pre>";
           /* end load config contact */       
           $strMsg="";
-          $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
+          $mail = new PHPMailer(true);                           
           try {
               //Server settings
-              $mail->SMTPDebug = 2;                                 // Enable verbose debug output
-              $mail->isSMTP();                                      // Set mailer to use SMTP
+              $mail->SMTPDebug = 2;                           
+              $mail->isSMTP();     
+              $mail->charSet = "UTF-8";                           
               $mail->Host = $smtp_host; 
               $mail->SMTPAuth = $smtp_auth;                         
-              $mail->Username = $smtp_username;                 // SMTP username
-              $mail->Password = $smtp_password;                           // SMTP password
-              $mail->SMTPSecure = $encription;                            // Enable TLS encryption, `ssl` also accepted
-              $mail->Port = $smtp_port;                                    // TCP port to connect to
+              $mail->Username = $smtp_username;             
+              $mail->Password = $smtp_password;             
+              $mail->SMTPSecure = $encription;                       
+              $mail->Port = $smtp_port;                            
 
               //Recipients
               $mail->setFrom($email_from, $fullname);
-              $mail->addAddress($email_to, $to_name);     // Add a recipient
+              $mail->addAddress($email_to, $to_name);    
               
               //Content
-              $mail->isHTML(true);                                  // Set email format to HTML
-              $mail->Subject = 'Khách hàng '. @$fullname . " - Số điện thoại : " . @$phone;
+              $mail->isHTML(true);   
+              $subject=       'Khách hàng '. @$fullname . " - Số điện thoại : " . @$phone;                     
+              $mail->Subject = $subject;
               $content=@$content . "\n\n" . " Điện thoại : " . @$phone; 
               $mail->Body    = $content;              
 
@@ -297,7 +299,8 @@ class IndexController extends Controller {
               echo '<script language="javascript" type="text/javascript">alert("Mail gửi không thành công");</script>'; 
               echo 'Message could not be sent.';
               echo 'Mailer Error: ' . $mail->ErrorInfo;              
-          }          
+          }  
+          echo "<pre>".print_r($mail,true)."</pre>";
         }
         return view("frontend.contact",compact("component","alias"));          
       }
