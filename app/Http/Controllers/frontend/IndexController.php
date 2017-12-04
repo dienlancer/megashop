@@ -265,7 +265,7 @@ class IndexController extends Controller {
           $email_to       = @$setting['email_to']['field_value'];
           $to_name        = @$setting['to_name']['field_value'];
 
-
+          echo "<pre>".print_r($setting,true)."</pre>";
           /* end load config contact */       
           $strMsg="";
           $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
@@ -291,12 +291,13 @@ class IndexController extends Controller {
               $mail->Body    = $content;              
 
               $mail->send();
+              echo '<script language="javascript" type="text/javascript">alert("Mail gửi thành công");</script>'; 
               
           } catch (Exception $e) {
+              echo '<script language="javascript" type="text/javascript">alert("Mail gửi không thành công");</script>'; 
               echo 'Message could not be sent.';
-              echo 'Mailer Error: ' . $mail->ErrorInfo;
-          }
-          echo "<pre>".print_r($mail,true)."</pre>";
+              echo 'Mailer Error: ' . $mail->ErrorInfo;              
+          }          
         }
         return view("frontend.contact",compact("component","alias"));          
       }
