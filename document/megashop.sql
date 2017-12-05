@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 05, 2017 lúc 12:14 PM
+-- Thời gian đã tạo: Th12 05, 2017 lúc 07:34 PM
 -- Phiên bản máy phục vụ: 10.1.22-MariaDB
 -- Phiên bản PHP: 7.1.4
 
@@ -1322,11 +1322,11 @@ INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `lev
 (68, 'Phòng bếp', 'phong-bep', 0, 9, 0, 4, 1, '2017-11-15 17:57:21', '2017-11-15 17:57:21'),
 (69, 'Phòng trẻ em', 'phong-tre-em', 0, 9, 0, 5, 1, '2017-11-15 17:57:44', '2017-11-15 17:57:44'),
 (71, 'Liên hệ', 'lien-he', 0, 1, 0, 5, 1, '2017-11-25 12:25:45', '2017-11-25 12:25:59'),
-(73, 'Trang chủ', '', 0, 1, 0, 1, 1, '2017-11-25 12:33:11', '2017-11-25 12:33:11'),
+(73, 'Trang chủ', NULL, 0, 1, 0, 1, 1, '2017-11-25 12:33:11', '2017-11-25 12:33:11'),
 (74, 'Tin tức', 'meo-hay-nha-bep', 0, 1, 0, 3, 1, '2017-11-26 02:55:34', '2017-11-26 02:56:17'),
 (75, 'Sản phẩm', 'sofa', 0, 1, 0, 4, 1, '2017-11-26 02:57:24', '2017-11-26 02:58:17'),
 (76, 'Tin tức', 'meo-hay-nha-bep', 0, 3, 0, 3, 1, '2017-11-26 03:12:21', '2017-11-26 03:12:27'),
-(77, 'Trang chủ', '', 0, 3, 0, 1, 1, '2017-11-26 03:13:00', '2017-11-26 03:13:00'),
+(77, 'Trang chủ', 'cong-trinh-thuc-te', 0, 3, 0, 1, 1, '2017-11-26 03:13:00', '2017-11-26 03:13:00'),
 (78, 'Sản phẩm', 'sofa', 0, 3, 0, 4, 1, '2017-11-26 03:13:41', '2017-11-26 03:13:58'),
 (79, 'Chăm sóc khách hàng', 'cham-soc-khach-hang', 0, 4, 0, 1, 1, '2017-11-26 03:53:59', '2017-11-26 18:27:38'),
 (80, 'Kiểm tra đơn hàng', 'kiem-tra-don-hang', 0, 4, 0, 2, 1, '2017-11-26 03:54:14', '2017-11-26 03:54:14'),
@@ -1341,7 +1341,7 @@ INSERT INTO `menu` (`id`, `fullname`, `alias`, `parent_id`, `menu_type_id`, `lev
 (89, 'Giá cả hợp lý', 'gia-ca-hop-ly', 0, 7, 0, 2, 1, '2017-11-26 03:58:26', '2017-11-26 03:58:26'),
 (90, 'Kinh nghiệm trên 20 năm', 'kinh-nghiem-tren-20-nam', 0, 7, 0, 3, 1, '2017-11-26 03:58:43', '2017-11-26 03:58:43'),
 (91, 'Đảm bảo tiến độ', 'dam-bao-tien-do', 0, 7, 0, 4, 1, '2017-11-26 03:59:00', '2017-11-26 03:59:00'),
-(92, 'Trang chủ', '', 0, 10, 0, 1, 1, '2017-11-27 15:00:12', '2017-11-27 15:00:12'),
+(92, 'Trang chủ', 'cong-trinh-thuc-te', 0, 10, 0, 1, 1, '2017-11-27 15:00:12', '2017-11-27 15:00:12'),
 (93, 'Giới thiệu', 'gioi-thieu', 0, 10, 0, 2, 1, '2017-11-27 15:00:30', '2017-11-27 15:00:30'),
 (94, 'Tin tức', 'meo-hay-nha-bep', 0, 10, 0, 3, 1, '2017-11-27 15:01:01', '2017-11-27 15:01:01'),
 (95, 'Sản phẩm', 'sofa-da', 0, 10, 0, 4, 1, '2017-11-27 15:01:22', '2017-11-27 15:01:22'),
@@ -1659,7 +1659,8 @@ INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`)
 (212, 1, 'xoOGCB3x8fVFoBznts5EU1k13GmZiO11', '2017-12-02 19:53:50', '2017-12-02 19:53:50'),
 (214, 1, 'Jqk5DXGugxgRtsZy4pBEFn7brMvOjghm', '2017-12-03 11:57:16', '2017-12-03 11:57:16'),
 (216, 1, 'nYe5QuFSOr8eu7GG8atx6EbvbM1XUMlY', '2017-12-03 17:58:34', '2017-12-03 17:58:34'),
-(217, 1, 'P5Q1q3gYWSt4k7c0BLPth6QEpGmYVG5T', '2017-12-04 11:12:33', '2017-12-04 11:12:33');
+(217, 1, 'P5Q1q3gYWSt4k7c0BLPth6QEpGmYVG5T', '2017-12-04 11:12:33', '2017-12-04 11:12:33'),
+(218, 1, '0aNMDBXR8Xzt5DTF9HcK4OBSaZyohSzF', '2017-12-05 09:04:17', '2017-12-05 09:04:17');
 
 -- --------------------------------------------------------
 
@@ -2271,7 +2272,10 @@ INSERT INTO `throttle` (`id`, `user_id`, `type`, `ip`, `created_at`, `updated_at
 (342, NULL, 'ip', '127.0.0.1', '2017-12-03 11:54:18', '2017-12-03 11:54:18'),
 (343, NULL, 'global', NULL, '2017-12-04 11:12:12', '2017-12-04 11:12:12'),
 (344, NULL, 'ip', '127.0.0.1', '2017-12-04 11:12:12', '2017-12-04 11:12:12'),
-(345, 1, 'user', NULL, '2017-12-04 11:12:12', '2017-12-04 11:12:12');
+(345, 1, 'user', NULL, '2017-12-04 11:12:12', '2017-12-04 11:12:12'),
+(346, NULL, 'global', NULL, '2017-12-05 09:04:13', '2017-12-05 09:04:13'),
+(347, NULL, 'ip', '127.0.0.1', '2017-12-05 09:04:13', '2017-12-05 09:04:13'),
+(348, 1, 'user', NULL, '2017-12-05 09:04:13', '2017-12-05 09:04:13');
 
 -- --------------------------------------------------------
 
@@ -2301,7 +2305,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `group_member_id`, `password`, `permissions`, `last_login`, `fullname`, `image`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$bKK3nNM9Oal3krxuLWgvZed0q0yZFXligSRB/Ygh1MgeLD.UTbwyq', NULL, '2017-12-04 11:12:33', 'Nguyễn Kim Điền', 'nguyen-kim-dien.png', 1, 1, '2017-11-12 07:23:56', '2017-12-04 11:12:33');
+(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$bKK3nNM9Oal3krxuLWgvZed0q0yZFXligSRB/Ygh1MgeLD.UTbwyq', NULL, '2017-12-05 09:04:17', 'Nguyễn Kim Điền', 'nguyen-kim-dien.png', 1, 1, '2017-11-12 07:23:56', '2017-12-05 09:04:17');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -2531,7 +2535,7 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT cho bảng `category_article`
 --
 ALTER TABLE `category_article`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT cho bảng `category_product`
 --
@@ -2566,7 +2570,7 @@ ALTER TABLE `invoice_detail`
 -- AUTO_INCREMENT cho bảng `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 --
 -- AUTO_INCREMENT cho bảng `menu_type`
 --
@@ -2606,7 +2610,7 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT cho bảng `persistences`
 --
 ALTER TABLE `persistences`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=218;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=219;
 --
 -- AUTO_INCREMENT cho bảng `photo`
 --
@@ -2646,7 +2650,7 @@ ALTER TABLE `setting_system`
 -- AUTO_INCREMENT cho bảng `throttle`
 --
 ALTER TABLE `throttle`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=346;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=349;
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
