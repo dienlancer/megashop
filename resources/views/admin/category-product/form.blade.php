@@ -4,6 +4,7 @@
 $linkCancel             =   route('admin.'.$controller.'.getList');
 $linkSave               =   route('admin.'.$controller.'.save');
 $linkUploadFile         =   route('admin.'.$controller.'.uploadFile');
+$linkCreateAlias        =   route('admin.'.$controller.'.createAlias');
 $inputFullName          =   '<input type="text" class="form-control" name="fullname"   id="fullname"       value="'.@$arrRowData['fullname'].'">'; 
 $inputAlias             =   '<input type="text" class="form-control" name="alias"      id="alias"          value="'.@$arrRowData['alias'].'">';
 $inputTitle             =   '<textarea id="title" name="title" rows="2" cols="100" class="form-control" >'.@$arrRowData['title'].'</textarea>'; 
@@ -17,6 +18,7 @@ $parent_id              =   (count($arrRowData) > 0) ? @$arrRowData['parent_id']
 $ddlCategoryProduct     =   cmsSelectboxCategory('category_product_id','category_product_id', 'form-control', $arrCategoryProductRecursive, $parent_id,"");
 $id                     =   (count($arrRowData) > 0) ? @$arrRowData['id'] : "" ;
 $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$id.'" />'; 
+$inputAliasMenu       =   '<input type="hidden" name="alias-menu" id="alias-menu" value="'.@$arrRowData['alias'].'" />'; 
 $picture                =   "";
 $strImage               =   "";
 $setting= getSettingSystem();
@@ -50,7 +52,8 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
         <form class="form-horizontal" role="form" name="frm" enctype="multipart/form-data">
             {{ csrf_field() }}          
                 <?php echo $inputPictureHidden; ?>                
-                <?php echo  $inputID; ?>        
+                <?php echo  $inputID; ?>
+                <?php echo $inputAliasMenu; ?>            
             <div class="form-body">
                 <div class="row">
                     <div class="form-group col-md-12">
@@ -189,6 +192,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
         var id=$("#id").val();        
         var fullname=$("#fullname").val();
         var alias=$("#alias").val();
+        var alias_menu=$("#alias-menu").val();
         var title=$("#title").val();
         var meta_keyword=$("#meta_keyword").val();
         var meta_description=$("#meta_description").val();
@@ -205,6 +209,7 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
             "id":id,
             "fullname":fullname,
             "alias":alias,
+            "alias_menu":alias_menu,
             "title":title,
             "meta_keyword":meta_keyword,
             "meta_description":meta_description,
@@ -248,6 +253,43 @@ $inputPictureHidden     =   '<input type="hidden" name="image_hidden" id="image_
                         $("#status").closest('.form-group').find('span').show();
 
                     }                    
+                }
+                spinner.hide();
+            },
+            error : function (data){
+                spinner.hide();
+            },
+            beforeSend  : function(jqXHR,setting){
+                spinner.show();
+            },
+        });
+    }
+    function createAlias(ctrl){
+        var id=$("#id").val();   
+        var fullname    = $(ctrl).val();
+        var token       = $('form[name="frm"] > input[name="_token"]').val();     
+        var dataItem={      
+            "id":id,      
+            "fullname":fullname,            
+            "_token": token
+        };   
+        $("#alias").val(''); 
+        resetErrorStatus();    
+        $.ajax({
+            url: '<?php echo $linkCreateAlias; ?>',
+            type: 'POST',
+            data: dataItem,            
+            async: false,
+            success: function (data) {                
+                if(data.checked==true){
+                    $("#alias").val(data.alias); 
+                }else{                    
+                    var data_error=data.error;
+                    if(typeof data_error.fullname               != "undefined"){
+                        $("#fullname").closest('.form-group').addClass(data_error.fullname.type_msg);
+                        $("#fullname").closest('.form-group').find('span').text(data_error.fullname.msg);
+                        $("#fullname").closest('.form-group').find('span').show();                        
+                    }                            
                 }
                 spinner.hide();
             },

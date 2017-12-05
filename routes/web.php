@@ -10,6 +10,7 @@ Route::group(["prefix"=>"admin","middleware"=>"TestLogin"],function(){
 		Route::post("change-status",["as"=>"admin.category-product.changeStatus","uses"=>"admin\CategoryProductController@changeStatus"]);
 		Route::post("trash",["as"=>"admin.category-product.trash","uses"=>"admin\CategoryProductController@trash"]);
 		Route::post("upload-file",["as"=>"admin.category-product.uploadFile","uses"=>"admin\CategoryProductController@uploadFile"]);
+		Route::post("create-alias",["as"=>"admin.category-product.createAlias","uses"=>"admin\CategoryProductController@createAlias"]);
 	});	
 	Route::group(["prefix"=>"banner"],function(){		
 		Route::get("list",["as"=>"admin.banner.getList","uses"=>"admin\BannerController@getList"]);
@@ -56,6 +57,7 @@ Route::group(["prefix"=>"admin","middleware"=>"TestLogin"],function(){
 		Route::post("change-status",["as"=>"admin.product.changeStatus","uses"=>"admin\ProductController@changeStatus"]);
 		Route::post("trash",["as"=>"admin.product.trash","uses"=>"admin\ProductController@trash"]);
 		Route::post("upload-file",["as"=>"admin.product.uploadFile","uses"=>"admin\ProductController@uploadFile"]);
+		Route::post("create-alias",["as"=>"admin.product.createAlias","uses"=>"admin\ProductController@createAlias"]);
 	});		
 	Route::group(["prefix"=>"privilege"],function(){		
 		Route::get("list",["as"=>"admin.privilege.getList","uses"=>"admin\PrivilegeController@getList"]);
@@ -143,6 +145,7 @@ Route::group(["prefix"=>"admin","middleware"=>"TestLogin"],function(){
 		Route::post("change-status",["as"=>"admin.article.changeStatus","uses"=>"admin\ArticleController@changeStatus"]);
 		Route::post("trash",["as"=>"admin.article.trash","uses"=>"admin\ArticleController@trash"]);
 		Route::post("upload-file",["as"=>"admin.article.uploadFile","uses"=>"admin\ArticleController@uploadFile"]);
+		Route::post("create-alias",["as"=>"admin.article.createAlias","uses"=>"admin\ArticleController@createAlias"]);
 	});	
 	Route::group(["prefix"=>"menu"],function(){		
 		Route::match(["get","post"],"list/{menu_type_id}",["as"=>"admin.menu.getList","uses"=>"admin\MenuController@getList"]);	

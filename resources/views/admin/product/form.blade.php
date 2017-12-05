@@ -4,6 +4,7 @@
 $linkCancel             =   route('admin.'.$controller.'.getList');
 $linkSave               =   route('admin.'.$controller.'.save');
 $linkUploadFile         =   route('admin.'.$controller.'.uploadFile');
+$linkCreateAlias        =   route('admin.'.$controller.'.createAlias');
 $inputCode              =   '<input type="text" class="form-control" name="code"   id="code"       value="'.@$arrRowData['code'].'">'; 
 $inputFullName          =   '<input type="text" class="form-control" name="fullname"   id="fullname"       value="'.@$arrRowData['fullname'].'">';
 $inputAlias             =   '<input type="text" class="form-control" name="alias"      id="alias"          value="'.@$arrRowData['alias'].'">'; 
@@ -22,6 +23,7 @@ $inputSortOrder         =   '<input type="text" class="form-control" name="sort_
 $ddlCategoryProduct     =   cmsSelectboxCategoryProductMultiple("category_product_id","category_product_id[]", 'form-control', @$arrCategoryProductRecursive, @$arrProductCategory,"");
 $id                     =   (count($arrRowData) > 0) ? @$arrRowData['id'] : "" ;
 $inputID                =   '<input type="hidden" name="id" id="id" value="'.@$id.'" />'; 
+$inputAliasMenu       =   '<input type="hidden" name="alias-menu" id="alias-menu" value="'.@$arrRowData['alias'].'" />'; 
 $picture                =   "";
 $strImage               =   "";
 $setting= getSettingSystem();
@@ -73,7 +75,8 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
                     echo $inputPictureHidden; 
                     echo $inputChildPictureHidden;
                     echo $inputID;
-                ?>                     
+                ?>                
+                <?php echo $inputAliasMenu; ?>         
             <div class="form-body">                
                 <div class="row">
                     <div class="form-group col-md-12">
@@ -283,6 +286,7 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
         var code = $("#code").val();
         var fullname=$("#fullname").val();        
         var alias=$("#alias").val();
+        var alias_menu=$("#alias-menu").val();
         var title=$("#title").val();
         var meta_keyword=$("#meta_keyword").val();
         var meta_description=$("#meta_description").val();
@@ -317,6 +321,7 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
             "code":code,
             "fullname":fullname,            
             "alias":alias,
+            "alias_menu":alias_menu,
             "title":title,
             "meta_keyword":meta_keyword,
             "meta_description":meta_description,
@@ -439,5 +444,42 @@ $inputChildPictureHidden     =   '<input type="hidden" name="image_child_hidden"
             jQuery(tdcmd[tdcmd.length - 1]).html('<a href="javascript:void(0)"  onclick="addRow(this);"><img  src="<?php echo url("/public/admin/images/add.png"); ?>" /></a>');
 
         }
+        function createAlias(ctrl){
+        var id=$("#id").val();   
+        var fullname    = $(ctrl).val();
+        var token       = $('form[name="frm"] > input[name="_token"]').val();     
+        var dataItem={      
+            "id":id,      
+            "fullname":fullname,            
+            "_token": token
+        };   
+        $("#alias").val(''); 
+        resetErrorStatus();    
+        $.ajax({
+            url: '<?php echo $linkCreateAlias; ?>',
+            type: 'POST',
+            data: dataItem,            
+            async: false,
+            success: function (data) {                
+                if(data.checked==true){
+                    $("#alias").val(data.alias); 
+                }else{                    
+                    var data_error=data.error;
+                    if(typeof data_error.fullname               != "undefined"){
+                        $("#fullname").closest('.form-group').addClass(data_error.fullname.type_msg);
+                        $("#fullname").closest('.form-group').find('span').text(data_error.fullname.msg);
+                        $("#fullname").closest('.form-group').find('span').show();                        
+                    }                            
+                }
+                spinner.hide();
+            },
+            error : function (data){
+                spinner.hide();
+            },
+            beforeSend  : function(jqXHR,setting){
+                spinner.show();
+            },
+        });
+    }
 </script>
 @endsection()            
