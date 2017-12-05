@@ -123,7 +123,7 @@ class CategoryArticleController extends Controller {
         if(empty($alias)){
              $checked = 0;
              $error["alias"]["type_msg"] = "has-error";
-             $error["alias"]["msg"] = "Alias is required";
+             $error["alias"]["msg"] = "Thiếu alias";
         }else{
               $dataCategoryArticle=array();
               $dataCategoryProduct=array();
