@@ -6,6 +6,7 @@ use App\CategoryArticleModel;
 use App\CategoryProductModel;
 use App\ArticleModel;
 use App\ProductModel;
+use App\MenuModel;
 use App\ArticleCategoryModel;
 use App\PaginationModel;
 use DB;
@@ -88,9 +89,10 @@ class CategoryArticleController extends Controller {
         $id 					           =	trim($request->id)	;        
         $fullname 				       =	trim($request->fullname)	;
         $alias 					         = 	trim($request->alias);
-        $title                =   trim($request->title);
-        $meta_keyword         =   trim($request->meta_keyword);
-        $meta_description     =   trim($request->meta_description);
+        $alias_menu              =  trim($request->alias_menu);
+        $title                   =  trim($request->title);
+        $meta_keyword            =  trim($request->meta_keyword);
+        $meta_description        =  trim($request->meta_description);
         $category_article_id	   =	trim($request->category_article_id);
         $image                   =  trim($request->image);
         $image_hidden            =  trim($request->image_hidden);
@@ -128,13 +130,13 @@ class CategoryArticleController extends Controller {
               $dataArticle=array();
               $dataProduct=array();
              if (empty($id)) {
-              $dataCategoryArticle=CategoryArticleModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
-              $dataCategoryProduct=CategoryProductModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
-              $dataArticle=ArticleModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
-              $dataProduct=ProductModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
+              $dataCategoryArticle=CategoryArticleModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();              
             }else{
               $dataCategoryArticle=CategoryArticleModel::whereRaw("trim(lower(alias)) = ? and id != ?",[trim(mb_strtolower($alias,'UTF-8')),(int)@$id])->get()->toArray();		
             }  
+            $dataCategoryProduct=CategoryProductModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
+              $dataArticle=ArticleModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
+              $dataProduct=ProductModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
             if (count($dataCategoryArticle) > 0) {
               $checked = 0;
               $error["alias"]["type_msg"] 	= "has-error";
@@ -194,6 +196,14 @@ class CategoryArticleController extends Controller {
         $item->status 			=	(int)$status;    
         $item->updated_at 	=	date("Y-m-d H:i:s",time());    	        	
         $item->save();  	
+        $dataMenu=MenuModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias_menu,'UTF-8'))])->get()->toArray();
+        //echo "<pre>".print_r($dataMenu,true)."</pre>";
+        if(count($dataMenu) > 0){
+          $menu_id=(int)$dataMenu[0]['id'];
+          $sql = "update  `menu` set `alias` = '".$alias."' WHERE `id` = ".$menu_id; 
+          //echo "<pre>".print_r($sql,true)."</pre>";     die();           
+            DB::statement($sql);    
+        } 
         $info = array(
           'type_msg' 			=> "has-success",
           'msg' 				=> 'Lưu dữ liệu thành công',
@@ -363,28 +373,50 @@ class CategoryArticleController extends Controller {
           }   
         }
         public function createAlias(Request $request){
+          $id                =  trim($request->id)  ; 
           $fullname                =  trim($request->fullname)  ;        
           $data                    =  array();
           $info                    =  array();
           $error                   =  array();
           $item                    =  null;
-          $checked  = 1;              
+          $checked  = 1;   
+          $alias='';                     
           if(empty($fullname)){
            $checked = 0;
            $error["fullname"]["type_msg"] = "has-error";
-           $error["fullname"]["msg"] = "Thiếu chủ đề bài viết";
+           $error["fullname"]["msg"] = "Thiếu tên bài viết";
          }else{
-          $data=array();
+          $alias=stripUnicode($fullname);
+          $alias=convertToAlias($alias);
+          $dataCategoryArticle=array();
+          $dataCategoryProduct=array();
+          $dataArticle=array();
+          $dataProduct=array();
+          $checked_trung_alias=0;
           if (empty($id)) {
-            $data=CategoryArticleModel::whereRaw("trim(lower(fullname)) = ?",[trim(mb_strtolower($fullname,'UTF-8'))])->get()->toArray();           
+            $dataCategoryArticle=CategoryArticleModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();              
           }else{
-            $data=CategoryArticleModel::whereRaw("trim(lower(fullname)) = ? and id != ?",[trim(mb_strtolower($fullname,'UTF-8')),(int)@$id])->get()->toArray();   
+            $dataCategoryArticle=CategoryArticleModel::whereRaw("trim(lower(alias)) = ? and id != ?",[trim(mb_strtolower($alias,'UTF-8')),(int)@$id])->get()->toArray();    
           }  
-          if (count($data) > 0) {
-            $checked = 0;
-            $error["fullname"]["type_msg"] = "has-error";
-            $error["fullname"]["msg"] = "Chủ đề bài viết đã tồn tại";
+          $dataCategoryProduct=CategoryProductModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
+          $dataArticle=ArticleModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
+          $dataProduct=ProductModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
+          if (count($dataCategoryArticle) > 0) {
+            $checked_trung_alias=1;
+          }
+          if (count($dataCategoryProduct) > 0) {
+            $checked_trung_alias=1;
+          }
+          if (count($dataArticle) > 0) {
+            $checked_trung_alias=1;
+          }
+          if (count($dataProduct) > 0) {
+            $checked_trung_alias=1;
           }       
+          if((int)$checked_trung_alias == 1){
+            $code_alias=rand(1,999);
+            $alias=$alias.'-'.$code_alias;
+          }
         }
         if ($checked == 1){
           $info = array(
@@ -392,7 +424,8 @@ class CategoryArticleController extends Controller {
             'msg'         => 'Lưu dữ liệu thành công',
             "checked"       => 1,
             "error"       => $error,
-            "id"          => $id
+            
+            "alias"       =>$alias
           );
         }else {
           $info = array(
@@ -400,10 +433,10 @@ class CategoryArticleController extends Controller {
             'msg'         => 'Nhập dữ liệu có sự cố',
             "checked"       => 0,
             "error"       => $error,
-            "id"        => ""
+            "alias"        => $alias
           );
         }    
-        return __METHOD__;
+        return $info;
       }
 }
 ?>
