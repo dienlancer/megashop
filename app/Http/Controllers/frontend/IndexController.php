@@ -38,6 +38,28 @@ class IndexController extends Controller {
      
     return view("frontend.home",compact("component","meta_keyword","meta_description","alias"));
   }  
+  public function search(Request $request){
+    $title="";
+            $meta_keyword="";
+            $meta_description="";            
+            $filter_search="";                       
+            $currentPage=1;                                          
+            $totalItems=0;
+            $totalItemsPerPage=0;
+            $pageRange=0;      
+            $currentPage=1;  
+            $pagination ;
+            $action="";
+            $arrError=array();
+            $arrData =array();   
+            $flag = 1;                        
+            $item=array();
+            $items=array();
+            $setting= getSettingSystem();     
+            $category=array();  
+            $component=$alias;
+            return view("frontend.index",compact("component","alias","title","meta_keyword","meta_description","item","items","category","pagination")); 
+  }
 	public function index($alias)
       {                       
             $title="";
