@@ -1,9 +1,12 @@
 /* begin standard */
 *{margin:0;padding:0;}
-@font-face{font-family:"notoserif";src:url("../fonts/noto-serif.ttf");}
-@font-face{font-family:"robotocondensed";src:url("../fonts/RobotoCondensed-Regular.woff");}
-@font-face{font-family:"baomoi";src:url("../fonts/baomoi_gdi.ttf");}
-body{font-size:13px;color:#333;background: #f1f1f1}
+@font-face{font-family:"robotocondensed";src:url("../fonts/RobotoCondensed-Regular.woff") format('truetype');}
+@font-face{font-family:"arial";src:url("../fonts/arial.ttf") format('truetype');}
+@font-face{font-family:"notoserif";src:url("../fonts/noto-serif.ttf") format('truetype');}
+@font-face{font-family:"baomoi";src:url("../fonts/baomoi_gdi.ttf") format('truetype');}
+@font-face{font-family:"Parisienne-Regular";src:url("../fonts/Parisienne-Regular.ttf") format('truetype');}
+@font-face{font-family:"Ovo";src:url("../fonts/Ovo-Regular.ttf") format('truetype');}
+body{font-size:13px;color:#333;background:#ffffff;font-family: 'arial'}
 table{max-width:100%;}
 p{margin:1em 0;}
 img{max-width:100%;}
