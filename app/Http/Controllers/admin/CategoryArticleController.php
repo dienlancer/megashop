@@ -197,11 +197,10 @@ class CategoryArticleController extends Controller {
         $item->updated_at 	=	date("Y-m-d H:i:s",time());    	        	
         $item->save();  	
         $dataMenu=MenuModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias_menu,'UTF-8'))])->get()->toArray();
-        //echo "<pre>".print_r($dataMenu,true)."</pre>";
         if(count($dataMenu) > 0){
           $menu_id=(int)$dataMenu[0]['id'];
           $sql = "update  `menu` set `alias` = '".$alias."' WHERE `id` = ".$menu_id; 
-          //echo "<pre>".print_r($sql,true)."</pre>";     die();           
+          
             DB::statement($sql);    
         } 
         $info = array(

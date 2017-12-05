@@ -6,6 +6,7 @@ use App\CategoryArticleModel;
 use App\CategoryProductModel;
 use App\ArticleModel;
 use App\ProductModel;
+use App\MenuModel;
 use App\ProductCategoryModel;
 use DB;
 class ProductController extends Controller {
@@ -85,6 +86,7 @@ class ProductController extends Controller {
             $code                 =   trim($request->code);  
             $fullname 				    =		trim($request->fullname);          
             $alias                =   trim($request->alias);
+            $alias_menu              =  trim($request->alias_menu);
             $title                =   trim($request->title);
         $meta_keyword         =   trim($request->meta_keyword);
         $meta_description     =   trim($request->meta_description);
@@ -241,6 +243,13 @@ class ProductController extends Controller {
           }
           // end upload product child image  	        	
           $item->save();  	
+          $dataMenu=MenuModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias_menu,'UTF-8'))])->get()->toArray();
+          if(count($dataMenu) > 0){
+            $menu_id=(int)$dataMenu[0]['id'];
+            $sql = "update  `menu` set `alias` = '".$alias."' WHERE `id` = ".$menu_id; 
+
+            DB::statement($sql);    
+          } 
           if(count(@$category_product_id) > 0){                            
               $arrProductCategory=ProductCategoryModel::whereRaw("product_id = ?",[@$item->id])->select("category_product_id")->get()->toArray();
               $arrCategoryProductID=array();
@@ -409,5 +418,71 @@ class ProductController extends Controller {
     $product_height=$setting['product_height']['field_value'];
       uploadImage($_FILES["image"],$product_width,$product_height);
     }
+    public function createAlias(Request $request){
+          $id                =  trim($request->id)  ; 
+          $fullname                =  trim($request->fullname)  ;        
+          $data                    =  array();
+          $info                    =  array();
+          $error                   =  array();
+          $item                    =  null;
+          $checked  = 1;   
+          $alias='';                     
+          if(empty($fullname)){
+           $checked = 0;
+           $error["fullname"]["type_msg"] = "has-error";
+           $error["fullname"]["msg"] = "Thiếu tên bài viết";
+         }else{
+          $alias=stripUnicode($fullname);
+          $alias=convertToAlias($alias);
+          $dataCategoryArticle=array();
+          $dataCategoryProduct=array();
+          $dataArticle=array();
+          $dataProduct=array();
+          $checked_trung_alias=0;
+          if (empty($id)) {              
+              $dataProduct=ProductModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
+            }else{
+              $dataProduct=ProductModel::whereRaw("trim(lower(alias)) = ? and id != ?",[trim(mb_strtolower($alias,'UTF-8')),(int)@$id])->get()->toArray();    
+            }  
+            $dataCategoryArticle=CategoryArticleModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
+              $dataCategoryProduct=CategoryProductModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
+              $dataArticle=ArticleModel::whereRaw("trim(lower(alias)) = ?",[trim(mb_strtolower($alias,'UTF-8'))])->get()->toArray();
+          if (count($dataCategoryArticle) > 0) {
+            $checked_trung_alias=1;
+          }
+          if (count($dataCategoryProduct) > 0) {
+            $checked_trung_alias=1;
+          }
+          if (count($dataArticle) > 0) {
+            $checked_trung_alias=1;
+          }
+          if (count($dataProduct) > 0) {
+            $checked_trung_alias=1;
+          }       
+          if((int)$checked_trung_alias == 1){
+            $code_alias=rand(1,999);
+            $alias=$alias.'-'.$code_alias;
+          }
+        }
+        if ($checked == 1){
+          $info = array(
+            'type_msg'      => "has-success",
+            'msg'         => 'Lưu dữ liệu thành công',
+            "checked"       => 1,
+            "error"       => $error,
+            
+            "alias"       =>$alias
+          );
+        }else {
+          $info = array(
+            'type_msg'      => "has-error",
+            'msg'         => 'Nhập dữ liệu có sự cố',
+            "checked"       => 0,
+            "error"       => $error,
+            "alias"        => $alias
+          );
+        }    
+        return $info;
+      }
 }
 ?>
