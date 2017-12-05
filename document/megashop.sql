@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 03, 2017 lúc 09:24 AM
+-- Thời gian đã tạo: Th12 05, 2017 lúc 12:14 PM
 -- Phiên bản máy phục vụ: 10.1.22-MariaDB
 -- Phiên bản PHP: 7.1.4
 
@@ -1656,7 +1656,10 @@ INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`)
 (209, 1, 'YN8x4updqv0OrIsWStBz2c7ZxI7VO5ug', '2017-11-27 20:17:20', '2017-11-27 20:17:20'),
 (210, 1, 'UpPwfQYjNbyRmztTDCfl16md4weLyjG3', '2017-11-30 08:03:21', '2017-11-30 08:03:21'),
 (211, 1, 'ArOxlkVdyW3lu3SJqot209bFrPZUAPgD', '2017-12-01 10:48:28', '2017-12-01 10:48:28'),
-(212, 1, 'xoOGCB3x8fVFoBznts5EU1k13GmZiO11', '2017-12-02 19:53:50', '2017-12-02 19:53:50');
+(212, 1, 'xoOGCB3x8fVFoBznts5EU1k13GmZiO11', '2017-12-02 19:53:50', '2017-12-02 19:53:50'),
+(214, 1, 'Jqk5DXGugxgRtsZy4pBEFn7brMvOjghm', '2017-12-03 11:57:16', '2017-12-03 11:57:16'),
+(216, 1, 'nYe5QuFSOr8eu7GG8atx6EbvbM1XUMlY', '2017-12-03 17:58:34', '2017-12-03 17:58:34'),
+(217, 1, 'P5Q1q3gYWSt4k7c0BLPth6QEpGmYVG5T', '2017-12-04 11:12:33', '2017-12-04 11:12:33');
 
 -- --------------------------------------------------------
 
@@ -1786,7 +1789,7 @@ CREATE TABLE `product` (
 
 INSERT INTO `product` (`id`, `code`, `fullname`, `title`, `meta_keyword`, `meta_description`, `alias`, `image`, `status`, `child_image`, `price`, `sale_price`, `intro`, `detail`, `sort_order`, `created_at`, `updated_at`) VALUES
 (7, '123456789', 'Sofa 1', NULL, NULL, NULL, 'sofa-1', 'sofa-1.png', 1, '[\"sofa-2.png\",\"sofa-3.png\",\"sofa-4.png\",\"sofa-5.png\",\"sofa-6.png\"]', '5000000.00', '4000000.00', 'Trung vệ của Chelsea gây khó hiểu khi khựng người lại, để El Shaarawy thoát xuống và ghi bàn ở Champions League tối 31/10.', '<p style=\"text-align:justify\">&ldquo;B&agrave;n thua thứ hai thật thiếu may mắn với ch&uacute;ng t&ocirc;i&rdquo;, Thibaut Courtois giải th&iacute;ch sau thất bại 0-3 ở lượt trận thứ tư. &ldquo;Đ&oacute; l&agrave; t&igrave;nh huống b&oacute;ng d&agrave;i. T&ocirc;i thấy El Shaarawy ở đằng sau Antonio Rudiger n&ecirc;n h&eacute;t l&ecirc;n: &lsquo;Away&rsquo;. C&oacute; thể anh ấy đ&atilde; hiểu theo nghĩa kh&aacute;c. Kh&ocirc;ng kh&iacute; tr&ecirc;n s&acirc;n l&uacute;c đ&oacute; rất ồn. Anh ấy để b&oacute;ng nảy qua trước mặt. El Shaarawy th&igrave; nhanh nhẹn đ&oacute;n b&oacute;ng v&agrave; ghi b&agrave;n&rdquo;.<br />\nTheo ng&ocirc;n ngữ thủ m&ocirc;n, &ldquo;away&rdquo; được d&ugrave;ng để cảnh b&aacute;o hậu vệ rằng thủ m&ocirc;n kh&ocirc;ng lao ra đ&oacute;n b&oacute;ng v&agrave; hậu vệ phải t&igrave;m c&aacute;ch ph&aacute;. T&acirc;n binh của Chelsea c&oacute; vẻ như đ&atilde; kh&ocirc;ng ch&uacute; &yacute; tới El Shaarawy từ đường chuyền d&agrave;i của Radja Nainggolan, v&agrave; nghĩ đồng đội bảo &quot;Tr&aacute;nh ra&quot;. Anh v&igrave; vậy khựng người lại, t&iacute;nh thả b&oacute;ng tr&ocirc;i qua cho Courtois. Nhưng từ ph&iacute;a sau, El Shaarawy đ&atilde; chớp thời cơ, ch&iacute;ch b&oacute;ng v&agrave;o lưới đ&aacute;nh dấu c&uacute; đ&uacute;p của anh trận n&agrave;y.</p>\n\n<p style=\"text-align:justify\">Trước đ&oacute;, ngay ph&uacute;t đầu ti&ecirc;n, El Shaarawy đ&atilde; chọc thủng lưới Chelsea. Sang hiệp hai đội kh&aacute;ch c&oacute; nhiều điều chỉnh về nh&acirc;n sự nhưng cũng kh&ocirc;ng thể cải thiện được t&igrave;nh h&igrave;nh. Ph&uacute;t 63 họ nhận b&agrave;n thua thứ ba, từ Diego Perotti. &ldquo;T&ocirc;i kh&ocirc;ng biết v&igrave; sao ch&uacute;ng t&ocirc;i đ&aacute;nh mất tinh thần chiến đấu trong hiệp hai&rdquo;, Courtois n&oacute;i. &ldquo;Điều đ&oacute; kh&ocirc;ng thể xảy ra khi ch&uacute;ng t&ocirc;i c&oacute; trận quan trọng v&agrave;o Chủ nhật tới. Ch&uacute;ng t&ocirc;i phải chứng minh cho người h&acirc;m mộ rằng đ&acirc;y chỉ l&agrave; tai nạn&rdquo;.</p>\n\n<p style=\"text-align:justify\">Thua trận nhưng Chelsea vẫn c&oacute; quyền tự quyết tại Champions League. Họ chỉ cần đoạt th&ecirc;m ba điểm để gi&agrave;nh v&eacute; v&agrave;o v&ograve;ng 1/8, trong đ&oacute; c&oacute; trận đấu được xem l&agrave; dễ thở gặp Qarabag, đại diện của Azerbaijan. V&agrave;o cuối tuần, nh&agrave; đương v&ocirc; địch Ngoại hạng Anh đ&oacute;n tiếp Man Utd trong trận cầu được v&iacute; như &quot;Super Sunday&quot;.</p>\n\n<p style=\"text-align:justify\">&ldquo;Ch&uacute;ng t&ocirc;i phải chơi hăng m&aacute;u hơn khi gặp Man Utd. M&ugrave;a trước, c&oacute; trận t&ocirc;i kh&ocirc;ng phải hoạt động, nhưng cũng c&oacute; trận l&agrave;m việc vất vả. H&ocirc;m nay Chelsea để lại h&igrave;nh ảnh tồi tệ, v&agrave; ch&uacute;ng t&ocirc;i phải nhanh ch&oacute;ng gượng dậy&rdquo;, thủ m&ocirc;n 25 tuổi nhấn mạnh.</p>', 1, '2017-11-13 18:51:54', '2017-11-26 18:30:31'),
-(8, '123456781', 'Sofa 2', '', '', '', 'sofa-2', 'category-product-6.png', 1, '[\"category-product-1.png\",\"category-product-2.png\",\"category-product-3.png\"]', '5000000.00', '4000000.00', 'đang cập nhật...', '<p>đang cập nhật...</p>', 2, '2017-11-14 07:41:35', '2017-11-26 18:30:31'),
+(8, '123456781', 'Sofa 2', '', '', '', 'sofa-2', 'category-product-6.png', 1, '[\"category-product-1.png\",\"category-product-2.png\",\"category-product-3.png\"]', '5000000.00', '0.00', 'đang cập nhật...', '<p>đang cập nhật...</p>', 2, '2017-11-14 07:41:35', '2017-12-03 16:39:30'),
 (9, '123456782', 'Sofa 3', NULL, NULL, NULL, 'sofa-3', 'sofa-3.png', 1, NULL, '5000000.00', '4000000.00', 'đang cập nhật...', '<p>đang cập nhật...</p>', 3, '2017-11-14 07:42:26', '2017-11-14 07:42:26'),
 (10, '1234567894', 'Sofa 4', NULL, NULL, NULL, 'sofa-4', 'sofa-4.png', 1, NULL, '5000000.00', '4000000.00', 'đang cập nhật', '<p>đang cập nhật...</p>', 4, '2017-11-14 07:43:14', '2017-11-22 08:10:39'),
 (11, '123456785', 'Sofa 5', NULL, NULL, NULL, 'sofa-5', 'sofa-5.png', 1, NULL, '5000000.00', '4000000.00', 'đang cập nhật', '<p>đang cập nhật</p>', 5, '2017-11-14 07:46:55', '2017-11-14 07:46:55'),
@@ -1901,7 +1904,7 @@ CREATE TABLE `setting_system` (
 --
 
 INSERT INTO `setting_system` (`id`, `fullname`, `alias`, `setting`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'settingsystem-2', 'setting-system-2', '[{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"article_perpage\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"product_perpage\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"product_width\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"product_height\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"currency_unit\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"smtp_host\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"smtp_port\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"encription\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"authentication\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"smtp_username\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"smtp_password\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"email_from\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"email_to\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"from_name\",\"field_value\":\"400\"}]', 2, 0, '2017-12-03 07:45:35', '2017-12-03 08:04:36');
+(1, 'settingsystem', 'setting-system', '[{\"field_name\":\"Số bài viết trên 1 trang\",\"field_code\":\"article_perpage\",\"field_value\":\"12\"},{\"field_name\":\"Số sản phẩm trên 1 trang\",\"field_code\":\"product_perpage\",\"field_value\":\"16\"},{\"field_name\":\"Độ rộng hình sản phẩm\",\"field_code\":\"product_width\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"product_height\",\"field_value\":\"400\"},{\"field_name\":\"Đơn vị tiền tệ\",\"field_code\":\"currency_unit\",\"field_value\":\"vi_VN\"},{\"field_name\":\"Smtp host\",\"field_code\":\"smtp_host\",\"field_value\":\"smtp.gmail.com\"},{\"field_name\":\"Smtp port\",\"field_code\":\"smtp_port\",\"field_value\":\"465\"},{\"field_name\":\"Encription\",\"field_code\":\"encription\",\"field_value\":\"ssl\"},{\"field_name\":\"Smtp authication\",\"field_code\":\"authentication\",\"field_value\":\"true\"},{\"field_name\":\"Smtp username\",\"field_code\":\"smtp_username\",\"field_value\":\"dien.toannang@gmail.com\"},{\"field_name\":\"Smtp password\",\"field_code\":\"smtp_password\",\"field_value\":\"lgepuouzaiynlncu\"},{\"field_name\":\"Email from\",\"field_code\":\"email_from\",\"field_value\":\"dienit02@gmail.com\"},{\"field_name\":\"Email to\",\"field_code\":\"email_to\",\"field_value\":\"trietnk01@gmail.com\"},{\"field_name\":\"From name\",\"field_code\":\"from_name\",\"field_value\":\"Hệ thống\"},{\"field_name\":\"To name\",\"field_code\":\"to_name\",\"field_value\":\"Công Ty TNHH VIDOCO\"},{\"field_name\":\"Địa chỉ\",\"field_code\":\"address\",\"field_value\":\"35/6 Bùi Quang Là - P.12 - Q. Gò Vấp - HCM\"},{\"field_name\":\"Website\",\"field_code\":\"website\",\"field_value\":\"noithatgialai.net\"},{\"field_name\":\"Telephone\",\"field_code\":\"telephone\",\"field_value\":\"096.302.7721\"},{\"field_name\":\"Facebook\",\"field_code\":\"facebook_url\",\"field_value\":\"https://www.facebook.com/nguyenvan.laptrinh\"},{\"field_name\":\"Twitter\",\"field_code\":\"twitter_url\",\"field_value\":\"https://twitter.com/\"},{\"field_name\":\"Google Plus\",\"field_code\":\"google_plus\",\"field_value\":\"https://plus.google.com/u/0/?hl=vi\"},{\"field_name\":\"Youtube\",\"field_code\":\"youtube_url\",\"field_value\":\"https://www.youtube.com/watch?v=kAcV7S3sySU\"},{\"field_name\":\"Instagram\",\"field_code\":\"instagram_url\",\"field_value\":\"http://flickr.com\"},{\"field_name\":\"Pinterest\",\"field_code\":\"pinterest_url\",\"field_value\":\"http://daidung.vn/\"},{\"field_name\":\"Slogan\",\"field_code\":\"slogan_about\",\"field_value\":\"Mipec cung cấp thực phẩm sạch, an toàn, đảm bảo chất lượng hàng đầu. Xóa đi nỗi lo về an toàn thực phẩm\"},{\"field_name\":\"Map\",\"field_code\":\"map_url\",\"field_value\":\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.257683433271!2d106.65122531418271!3d10.791565461866467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ecaab26b129%3A0x6a3e66ad2406aa1c!2zQuG7h25oIHZp4buHbiBUaOG7kW5nIE5o4bqldA!5e0!3m2!1svi!2s!4v1512324613289\"}]', 1, 1, '2017-12-03 07:45:35', '2017-12-04 18:42:42');
 
 -- --------------------------------------------------------
 
@@ -2252,7 +2255,23 @@ INSERT INTO `throttle` (`id`, `user_id`, `type`, `ip`, `created_at`, `updated_at
 (326, 1, 'user', NULL, '2017-11-27 00:24:45', '2017-11-27 00:24:45'),
 (327, NULL, 'global', NULL, '2017-11-30 08:03:16', '2017-11-30 08:03:16'),
 (328, NULL, 'ip', '127.0.0.1', '2017-11-30 08:03:16', '2017-11-30 08:03:16'),
-(329, 1, 'user', NULL, '2017-11-30 08:03:16', '2017-11-30 08:03:16');
+(329, 1, 'user', NULL, '2017-11-30 08:03:16', '2017-11-30 08:03:16'),
+(330, NULL, 'global', NULL, '2017-12-03 07:41:47', '2017-12-03 07:41:47'),
+(331, NULL, 'ip', '127.0.0.1', '2017-12-03 07:41:47', '2017-12-03 07:41:47'),
+(332, 1, 'user', NULL, '2017-12-03 07:41:47', '2017-12-03 07:41:47'),
+(333, NULL, 'global', NULL, '2017-12-03 11:49:24', '2017-12-03 11:49:24'),
+(334, NULL, 'ip', '127.0.0.1', '2017-12-03 11:49:24', '2017-12-03 11:49:24'),
+(335, NULL, 'global', NULL, '2017-12-03 11:49:31', '2017-12-03 11:49:31'),
+(336, NULL, 'ip', '127.0.0.1', '2017-12-03 11:49:31', '2017-12-03 11:49:31'),
+(337, NULL, 'global', NULL, '2017-12-03 11:49:49', '2017-12-03 11:49:49'),
+(338, NULL, 'ip', '127.0.0.1', '2017-12-03 11:49:49', '2017-12-03 11:49:49'),
+(339, NULL, 'global', NULL, '2017-12-03 11:50:32', '2017-12-03 11:50:32'),
+(340, NULL, 'ip', '127.0.0.1', '2017-12-03 11:50:32', '2017-12-03 11:50:32'),
+(341, NULL, 'global', NULL, '2017-12-03 11:54:18', '2017-12-03 11:54:18'),
+(342, NULL, 'ip', '127.0.0.1', '2017-12-03 11:54:18', '2017-12-03 11:54:18'),
+(343, NULL, 'global', NULL, '2017-12-04 11:12:12', '2017-12-04 11:12:12'),
+(344, NULL, 'ip', '127.0.0.1', '2017-12-04 11:12:12', '2017-12-04 11:12:12'),
+(345, 1, 'user', NULL, '2017-12-04 11:12:12', '2017-12-04 11:12:12');
 
 -- --------------------------------------------------------
 
@@ -2282,7 +2301,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `group_member_id`, `password`, `permissions`, `last_login`, `fullname`, `image`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$bKK3nNM9Oal3krxuLWgvZed0q0yZFXligSRB/Ygh1MgeLD.UTbwyq', NULL, '2017-12-02 19:53:50', 'Nguyễn Kim Điền', 'nguyen-kim-dien.png', 1, 1, '2017-11-12 07:23:56', '2017-12-02 19:53:50');
+(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$bKK3nNM9Oal3krxuLWgvZed0q0yZFXligSRB/Ygh1MgeLD.UTbwyq', NULL, '2017-12-04 11:12:33', 'Nguyễn Kim Điền', 'nguyen-kim-dien.png', 1, 1, '2017-11-12 07:23:56', '2017-12-04 11:12:33');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -2587,7 +2606,7 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT cho bảng `persistences`
 --
 ALTER TABLE `persistences`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=218;
 --
 -- AUTO_INCREMENT cho bảng `photo`
 --
@@ -2627,7 +2646,7 @@ ALTER TABLE `setting_system`
 -- AUTO_INCREMENT cho bảng `throttle`
 --
 ALTER TABLE `throttle`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=330;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=346;
 --
 -- AUTO_INCREMENT cho bảng `users`
 --
