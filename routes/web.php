@@ -239,5 +239,5 @@ Route::get("lgout",["as"=>"frontend.index.getLgout","uses"=>"frontend\IndexContr
 Route::get("add-to-cart",["as"=>"frontend.index.addToCart","uses"=>"frontend\IndexController@addToCart"]);
 Route::get("show-invoice-detail",["as"=>"frontend.index.showInvoiceDetail","uses"=>"frontend\IndexController@showInvoiceDetail"]);
 Route::post("get-paymentmethod",["as"=>"frontend.index.getPaymentmethod","uses"=>"frontend\IndexController@getPaymentmethod"]);
-Route::match(["get","post"],"tim-kiem",["as"=>"frontend.index.search","uses"=>"frontend\IndexController@search"]);
+Route::post("tim-kiem",["as"=>"frontend.index.search","uses"=>"frontend\IndexController@search"]);
 ?>

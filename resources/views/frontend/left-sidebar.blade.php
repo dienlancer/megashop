@@ -5,6 +5,7 @@ $product_height = $setting['product_height']['field_value'];
 switch ($component) {
     case 'category-article':
     case 'article':
+    case 'tim-kiem':
     
         $args = array(                         
             'menu_class'            => 'categoryarticlemenu', 

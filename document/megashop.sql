@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 05, 2017 lúc 07:34 PM
+-- Thời gian đã tạo: Th12 06, 2017 lúc 03:18 AM
 -- Phiên bản máy phục vụ: 10.1.22-MariaDB
 -- Phiên bản PHP: 7.1.4
 
@@ -27,7 +27,7 @@ DELIMITER $$
 -- Thủ tục
 --
 DROP PROCEDURE IF EXISTS `pro_getArticle`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getArticle` (IN `keyword` VARCHAR(255), IN `strCategoryArticleID` VARCHAR(255))  begin
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getArticle` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255))  begin
 SELECT
     0 AS is_checked
     ,n.id
@@ -50,7 +50,7 @@ SELECT
     LEFT JOIN `category_article` cate ON ac.category_article_id = cate.id
     WHERE
     (keyword ='' OR trim(lower(n.fullname)) LIKE CONCAT('%',keyword,'%'))
-    AND ( ac.category_article_id is null or INSTR(strCategoryArticleID,'#'+ac.category_article_id+'#') > 0)
+    AND ( ac.category_article_id is null or INSTR(category_id,'#'+ac.category_article_id+'#') > 0)
      GROUP BY 
     n.id
     ,n.fullname
@@ -79,7 +79,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getArticleFrontend` (IN `keywor
     LEFT JOIN `article_category` ac ON n.id = ac.article_id
     WHERE
     (keyword ='' OR TRIM(LOWER(n.fullname)) LIKE CONCAT('%',keyword,'%'))
-    AND (category_id = '#0#' OR INSTR(category_id,'#'+ac.category_article_id+'#') > 0)    
+    AND (category_id ='##' or INSTR(category_id,'#'+ac.category_article_id+'#') > 0 )
     and n.status=1
      GROUP BY 
     n.id
@@ -109,7 +109,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getArticleFrontendLimit` (IN `k
     LEFT JOIN `category_article` cate ON ac.category_article_id = cate.id
     WHERE
     (keyword ='' OR TRIM(LOWER(n.fullname)) LIKE CONCAT('%',keyword,'%'))
-    AND (category_id = '#0#' OR INSTR(category_id,'#'+ac.category_article_id+'#') > 0)    
+    AND (category_id ='##' OR INSTR(category_id,'#'+ac.category_article_id+'#') > 0 )
     AND n.status=1
      GROUP BY 
     n.id
@@ -564,7 +564,7 @@ SELECT
     ORDER BY n.controller ASC , n.sort_order ASC$$
 
 DROP PROCEDURE IF EXISTS `pro_getProduct`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getProduct` (IN `keyword` VARCHAR(255), IN `strCategoryProductID` VARCHAR(255))  begin
+CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getProduct` (IN `keyword` VARCHAR(255), IN `category_id` VARCHAR(255))  begin
 SELECT
     0 AS is_checked
     ,n.id
@@ -585,7 +585,7 @@ SELECT
     LEFT JOIN `category_product` cate ON ac.category_product_id = cate.id
     WHERE
     (keyword ='' OR trim(lower(n.fullname))  LIKE CONCAT('%',keyword,'%'))
-    AND ( ac.category_product_id is null or INSTR(strCategoryProductID,'#'+ac.category_product_id+'#') > 0)
+    AND ( ac.category_product_id is null or INSTR(category_id,'#'+ac.category_product_id+'#') > 0)
      GROUP BY 
     n.id
     ,n.code
@@ -612,7 +612,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getProductFrontend` (IN `keywor
     LEFT JOIN `product_category` ac ON n.id = ac.product_id
     WHERE
     (keyword ='' OR TRIM(LOWER(n.fullname)) LIKE CONCAT('%',keyword,'%'))
-    AND (category_id = '#0#' OR INSTR(category_id,'#'+ac.category_product_id+'#') > 0)    
+    AND (category_id = '##' OR INSTR(category_id,'#'+ac.category_product_id+'#') > 0)    
     and n.status=1
      GROUP BY 
     n.id
@@ -641,7 +641,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `pro_getProductFrontendLimit` (IN `k
     LEFT JOIN `category_product` cate ON ac.category_product_id = cate.id
     WHERE
     (keyword ='' OR TRIM(LOWER(n.fullname)) LIKE CONCAT('%',keyword,'%'))
-    AND (category_id = '#0#' OR INSTR(category_id,'#'+ac.category_product_id+'#') > 0)  
+    AND (category_id = '##' OR INSTR(category_id,'#'+ac.category_product_id+'#') > 0)  
     AND n.status=1
      GROUP BY 
     n.id
@@ -1660,7 +1660,8 @@ INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`)
 (214, 1, 'Jqk5DXGugxgRtsZy4pBEFn7brMvOjghm', '2017-12-03 11:57:16', '2017-12-03 11:57:16'),
 (216, 1, 'nYe5QuFSOr8eu7GG8atx6EbvbM1XUMlY', '2017-12-03 17:58:34', '2017-12-03 17:58:34'),
 (217, 1, 'P5Q1q3gYWSt4k7c0BLPth6QEpGmYVG5T', '2017-12-04 11:12:33', '2017-12-04 11:12:33'),
-(218, 1, '0aNMDBXR8Xzt5DTF9HcK4OBSaZyohSzF', '2017-12-05 09:04:17', '2017-12-05 09:04:17');
+(218, 1, '0aNMDBXR8Xzt5DTF9HcK4OBSaZyohSzF', '2017-12-05 09:04:17', '2017-12-05 09:04:17'),
+(219, 1, '8J8vasVhkLwqagOIRNKwiIU94QoexH4O', '2017-12-05 18:41:41', '2017-12-05 18:41:41');
 
 -- --------------------------------------------------------
 
@@ -2305,7 +2306,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `group_member_id`, `password`, `permissions`, `last_login`, `fullname`, `image`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$bKK3nNM9Oal3krxuLWgvZed0q0yZFXligSRB/Ygh1MgeLD.UTbwyq', NULL, '2017-12-05 09:04:17', 'Nguyễn Kim Điền', 'nguyen-kim-dien.png', 1, 1, '2017-11-12 07:23:56', '2017-12-05 09:04:17');
+(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$bKK3nNM9Oal3krxuLWgvZed0q0yZFXligSRB/Ygh1MgeLD.UTbwyq', NULL, '2017-12-05 18:41:41', 'Nguyễn Kim Điền', 'nguyen-kim-dien.png', 1, 1, '2017-11-12 07:23:56', '2017-12-05 18:41:41');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -2535,7 +2536,7 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT cho bảng `category_article`
 --
 ALTER TABLE `category_article`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT cho bảng `category_product`
 --
@@ -2570,7 +2571,7 @@ ALTER TABLE `invoice_detail`
 -- AUTO_INCREMENT cho bảng `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 --
 -- AUTO_INCREMENT cho bảng `menu_type`
 --
@@ -2610,7 +2611,7 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT cho bảng `persistences`
 --
 ALTER TABLE `persistences`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=219;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=220;
 --
 -- AUTO_INCREMENT cho bảng `photo`
 --

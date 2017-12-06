@@ -174,6 +174,7 @@ $arrCart=array();
           <div class="desktop-box-search">                    
             <div class="box-search">
               <form action="<?php echo route('frontend.index.search'); ?>" method="post">
+                {{ csrf_field() }}
                 <input type="text" name="q" autocomplete="off" placeholder="Tìm kiếm sản phẩm" value="">
                 <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
               </form>

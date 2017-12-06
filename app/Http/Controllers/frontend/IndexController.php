@@ -39,26 +39,53 @@ class IndexController extends Controller {
     return view("frontend.home",compact("component","meta_keyword","meta_description","alias"));
   }  
   public function search(Request $request){
+
     $title="";
-            $meta_keyword="";
-            $meta_description="";            
-            $filter_search="";                       
-            $currentPage=1;                                          
-            $totalItems=0;
-            $totalItemsPerPage=0;
-            $pageRange=0;      
-            $currentPage=1;  
-            $pagination ;
-            $action="";
-            $arrError=array();
-            $arrData =array();   
-            $flag = 1;                        
-            $item=array();
-            $items=array();
-            $setting= getSettingSystem();     
-            $category=array();  
-            $component=$alias;
-            return view("frontend.index",compact("component","alias","title","meta_keyword","meta_description","item","items","category","pagination")); 
+    $meta_keyword="";
+    $meta_description="";            
+    $filter_search="";                       
+    $currentPage=1;                                          
+    $totalItems=0;
+    $totalItemsPerPage=0;
+    $pageRange=0;      
+    $currentPage=1;  
+    $pagination ;
+    $action="";
+    $arrError=array();
+    $arrData =array();   
+    $flag = 1;                        
+    $item=array();
+    $items=array();
+    $setting= getSettingSystem();     
+    $category=array();  
+    $component='tim-kiem';
+    $alias='tim-kiem';
+    $lst=array();
+    $str_category_id="##";     
+    $q="";                               
+    if(!empty(@$request->q)){
+      $q=@$request->q;      
+    }                                
+    $data=DB::select('call pro_getArticleFrontend(?,?)',array(mb_strtolower($q),$str_category_id));
+    $data=convertToArray($data);
+    $totalItems=count($data);
+    $totalItemsPerPage=(int)$setting['article_perpage']['field_value']; 
+    $pageRange=$this->_pageRange;
+    if(!empty(@$request->filter_page)){
+      $currentPage=@$request->filter_page;
+    }       
+    $arrPagination=array(
+      "totalItems"=>$totalItems,
+      "totalItemsPerPage"=>$totalItemsPerPage,
+      "pageRange"=>$pageRange,
+      "currentPage"=>$currentPage   
+    );           
+    $pagination=new PaginationModel($arrPagination);
+
+    $position   = ((int)@$arrPagination['currentPage']-1)*$totalItemsPerPage;
+    $data=DB::select('call pro_getArticleFrontendLimit(?,?,?,?)',array($q,$str_category_id,$position,$totalItemsPerPage));      
+    $items=convertToArray($data);  
+    return view("frontend.index",compact("component","alias","title","meta_keyword","meta_description","item","items","category","pagination","q"));
   }
 	public function index($alias)
       {                       

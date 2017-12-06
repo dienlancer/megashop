@@ -12,6 +12,9 @@
         case "article":                                                
         ?>@include("frontend.article")<?php
         break; 
+        case "tim-kiem":                                                
+        ?>@include("frontend.search")<?php
+        break;   
         case "lien-he":                                                
         ?>@include("frontend.contact")<?php
         break; 
