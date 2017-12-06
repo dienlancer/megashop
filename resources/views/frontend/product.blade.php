@@ -9,8 +9,8 @@ if(count($item) > 0){
     $featureImg=asset('/upload/'.$product_width.'x'.$product_height.'-'.$item['image']); 
     $largeImg=asset('/upload/'.$item['image']); 
     $fullname=$item['fullname'];   
-    $price=fnPrice($item['price']).' đ';
-    $sale_price=fnPrice($item['sale_price']). ' đ';
+    $price=fnPrice($item['price']);
+    $sale_price=fnPrice($item['sale_price']);
     $arrPicture=json_decode($item['child_image']);
     $arrPicture[]=$item['image'];    
     $intro=$item['intro'];

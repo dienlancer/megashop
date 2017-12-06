@@ -95,11 +95,11 @@ switch ($component) {
                         $sale_price=$data_featured_product[$i]['sale_price'];
                         $html_price='';                      
                         if((int)($sale_price) > 0){             
-                            $price ='<span class="price-regular">'.fnPrice($price).' đ</span>';
-                            $sale_price='<span class="price-sale">'.fnPrice($sale_price). ' đ'.'</span>' ;                  
+                            $price ='<span class="price-regular">'.fnPrice($price).'</span>';
+                            $sale_price='<span class="price-sale">'.fnPrice($sale_price).'</span>' ;                  
                             $html_price=$price . '&nbsp;&nbsp;' . $sale_price ;              
                         }else{
-                            $price='<span class="price-sale">'.fnPrice($price). ' đ'.'</span>' ;    
+                            $price='<span class="price-sale">'.fnPrice($price).'</span>' ;    
                             $html_price=$price;      
                         }              
                 ?>
