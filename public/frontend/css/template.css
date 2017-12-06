@@ -184,6 +184,16 @@ div.owl-nav{
     position: fixed !important; 
     top: 0 !important; 
 }
+div.opacity-absolute::before{
+        position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    content: "";
+    opacity: .5;
+}
 /* end standard */
 
 .logo {
