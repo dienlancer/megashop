@@ -20,7 +20,7 @@ class ArticleController extends Controller {
     		$icon=$this->_icon;		
         $arrCategoryArticle=CategoryArticleModel::select("id","fullname","parent_id")->orderBy("sort_order","asc")->get()->toArray();
         $arrCategoryArticleRecursive=array();              
-        categoryArticleRecursiveForm($arrCategoryArticle ,0,"",$arrCategoryArticleRecursive)  ;          
+        categoryRecursiveForm($arrCategoryArticle ,0,"",$arrCategoryArticleRecursive)  ;          
         $arrPrivilege=getArrPrivilege();
         $requestControllerAction=$this->_controller."-list";         
         if(in_array($requestControllerAction,$arrPrivilege)){
@@ -73,7 +73,7 @@ class ArticleController extends Controller {
         }    
         $arrCategoryArticle=CategoryArticleModel::select("id","fullname","alias","parent_id","image","sort_order","status","created_at","updated_at")->orderBy("sort_order","asc")->get()->toArray();        
         $arrCategoryArticleRecursive=array();
-        categoryArticleRecursiveForm($arrCategoryArticle ,0,"",$arrCategoryArticleRecursive)   ;      
+        categoryRecursiveForm($arrCategoryArticle ,0,"",$arrCategoryArticleRecursive)   ;      
         return view("admin.".$this->_controller.".form",compact("arrCategoryArticleRecursive","arrRowData","arrArticleCategory","controller","task","title","icon"));
         }else{
           return view("admin.no-access");

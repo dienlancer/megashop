@@ -34,7 +34,7 @@ function categoryArticleRecursive($data ,$parent=null,$str="--",&$arrRecursiveMe
     }
   }  
 }
-function categoryArticleRecursiveForm($data ,$parent=null,$str="--",&$arrRecursiveMenu){
+function categoryRecursiveForm($data ,$parent=null,$str="--",&$arrRecursiveMenu){
   foreach ($data as $key => $val) {    
     $id=$val["id"];
     $fullname=$val["fullname"];  
@@ -43,7 +43,7 @@ function categoryArticleRecursiveForm($data ,$parent=null,$str="--",&$arrRecursi
           $arrRecursiveMenu[$key]["id"]=$id;
           $arrRecursiveMenu[$key]["fullname"]=$str . $fullname;              
           $arrRecursiveMenu[$key]["parent_id"]=$parent_id;                  
-          categoryArticleRecursiveForm($data,$id,$str."--------",$arrRecursiveMenu);
+          categoryRecursiveForm($data,$id,$str."--------",$arrRecursiveMenu);
     }
   }  
 }
@@ -131,17 +131,5 @@ function categoryProductRecursive($data ,$parent=0,$str="--",&$arrRecursiveMenu)
     }
   }  
 }
-function categoryProductRecursiveForm($data ,$parent=0,$str="--",&$arrRecursiveMenu){
-  foreach ($data as $key => $val) {    
-    $id=$val["id"];
-    $fullname=$val["fullname"];  
-    $parent_id=$val["parent_id"];    
-    if((int)$val["parent_id"] == (int)$parent) {          
-          $arrRecursiveMenu[$key]["id"]=$id;
-          $arrRecursiveMenu[$key]["fullname"]=$str . $fullname;              
-          $arrRecursiveMenu[$key]["parent_id"]=$parent_id;                  
-          categoryProductRecursiveForm($data,$id,$str."--------",$arrRecursiveMenu);
-    }
-  }  
-}
+
 ?>

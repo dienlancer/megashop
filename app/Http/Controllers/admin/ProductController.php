@@ -20,7 +20,7 @@ class ProductController extends Controller {
     		$icon=$this->_icon;		
         $arrCategoryProduct=CategoryProductModel::select("id","fullname","parent_id")->orderBy("sort_order","asc")->get()->toArray();
         $arrCategoryProductRecursive=array();              
-        categoryProductRecursiveForm($arrCategoryProduct ,0,"",$arrCategoryProductRecursive)  ;      
+        categoryRecursiveForm($arrCategoryProduct ,0,"",$arrCategoryProductRecursive)  ;      
     		
         $arrPrivilege=getArrPrivilege();
         $requestControllerAction=$this->_controller."-list";         
@@ -74,7 +74,7 @@ class ProductController extends Controller {
         }    
         $arrCategoryProduct=CategoryProductModel::select("id","fullname","alias","parent_id","image","sort_order","status","created_at","updated_at")->orderBy("sort_order","asc")->get()->toArray();        
         $arrCategoryProductRecursive=array();
-        categoryProductRecursiveForm($arrCategoryProduct ,0,"",$arrCategoryProductRecursive)   ;      
+        categoryRecursiveForm($arrCategoryProduct ,0,"",$arrCategoryProductRecursive)   ;      
         return view("admin.".$this->_controller.".form",compact("arrCategoryProductRecursive","arrRowData","arrProductCategory","controller","task","title","icon"));
         }else{
             return view("admin.no-access");

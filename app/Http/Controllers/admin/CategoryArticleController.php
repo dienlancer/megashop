@@ -79,7 +79,7 @@ class CategoryArticleController extends Controller {
          }             
          $arrCategoryArticle=CategoryArticleModel::select("id","fullname","parent_id")->where("id","!=",(int)$id)->orderBy("sort_order","asc")->get()->toArray();
          $arrCategoryArticleRecursive=array();      
-         categoryArticleRecursiveForm($arrCategoryArticle ,0,"",$arrCategoryArticleRecursive)  ;      
+         categoryRecursiveForm($arrCategoryArticle ,0,"",$arrCategoryArticleRecursive)  ;      
          return view("admin.".$this->_controller.".form",compact("arrCategoryArticleRecursive","arrRowData","controller","task","title","icon")); 
         } else{
           return view("admin.no-access");

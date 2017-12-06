@@ -59,8 +59,8 @@ class ModuleItemController extends Controller {
      $arrCategoryProduct=CategoryProductModel::select("id","fullname","parent_id")->orderBy("sort_order","asc")->get()->toArray();
      $arrCategoryArticleRecursive=array();      
      $arrCategoryProductRecursive=array();      
-     categoryArticleRecursiveForm($arrCategoryArticle ,0,"",$arrCategoryArticleRecursive)  ;    
-     categoryProductRecursiveForm($arrCategoryProduct ,0,"",$arrCategoryProductRecursive)  ;         
+     categoryRecursiveForm($arrCategoryArticle ,0,"",$arrCategoryArticleRecursive)  ;    
+     categoryRecursiveForm($arrCategoryProduct ,0,"",$arrCategoryProductRecursive)  ;         
      return view("admin.".$this->_controller.".form",compact("arrRowData","controller","task","title","icon","arrCategoryArticleRecursive","arrCategoryProductRecursive"));
         } else{
           return view("admin.no-access");
