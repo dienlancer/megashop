@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 06, 2017 lúc 03:22 AM
+-- Thời gian đã tạo: Th12 06, 2017 lúc 09:54 AM
 -- Phiên bản máy phục vụ: 10.1.22-MariaDB
 -- Phiên bản PHP: 7.1.4
 
@@ -1661,7 +1661,8 @@ INSERT INTO `persistences` (`id`, `user_id`, `code`, `created_at`, `updated_at`)
 (216, 1, 'nYe5QuFSOr8eu7GG8atx6EbvbM1XUMlY', '2017-12-03 17:58:34', '2017-12-03 17:58:34'),
 (217, 1, 'P5Q1q3gYWSt4k7c0BLPth6QEpGmYVG5T', '2017-12-04 11:12:33', '2017-12-04 11:12:33'),
 (218, 1, '0aNMDBXR8Xzt5DTF9HcK4OBSaZyohSzF', '2017-12-05 09:04:17', '2017-12-05 09:04:17'),
-(219, 1, '8J8vasVhkLwqagOIRNKwiIU94QoexH4O', '2017-12-05 18:41:41', '2017-12-05 18:41:41');
+(219, 1, '8J8vasVhkLwqagOIRNKwiIU94QoexH4O', '2017-12-05 18:41:41', '2017-12-05 18:41:41'),
+(220, 1, 'JChXlObze9eklsMJrTNLH6ekOw47H5mz', '2017-12-06 00:14:21', '2017-12-06 00:14:21');
 
 -- --------------------------------------------------------
 
@@ -1906,7 +1907,7 @@ CREATE TABLE `setting_system` (
 --
 
 INSERT INTO `setting_system` (`id`, `fullname`, `alias`, `setting`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'settingsystem', 'setting-system', '[{\"field_name\":\"Số bài viết trên 1 trang\",\"field_code\":\"article_perpage\",\"field_value\":\"12\"},{\"field_name\":\"Số sản phẩm trên 1 trang\",\"field_code\":\"product_perpage\",\"field_value\":\"16\"},{\"field_name\":\"Độ rộng hình sản phẩm\",\"field_code\":\"product_width\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"product_height\",\"field_value\":\"400\"},{\"field_name\":\"Đơn vị tiền tệ\",\"field_code\":\"currency_unit\",\"field_value\":\"vi_VN\"},{\"field_name\":\"Smtp host\",\"field_code\":\"smtp_host\",\"field_value\":\"smtp.gmail.com\"},{\"field_name\":\"Smtp port\",\"field_code\":\"smtp_port\",\"field_value\":\"465\"},{\"field_name\":\"Encription\",\"field_code\":\"encription\",\"field_value\":\"ssl\"},{\"field_name\":\"Smtp authication\",\"field_code\":\"authentication\",\"field_value\":\"true\"},{\"field_name\":\"Smtp username\",\"field_code\":\"smtp_username\",\"field_value\":\"dien.toannang@gmail.com\"},{\"field_name\":\"Smtp password\",\"field_code\":\"smtp_password\",\"field_value\":\"lgepuouzaiynlncu\"},{\"field_name\":\"Email from\",\"field_code\":\"email_from\",\"field_value\":\"dienit02@gmail.com\"},{\"field_name\":\"Email to\",\"field_code\":\"email_to\",\"field_value\":\"trietnk01@gmail.com\"},{\"field_name\":\"From name\",\"field_code\":\"from_name\",\"field_value\":\"Hệ thống\"},{\"field_name\":\"To name\",\"field_code\":\"to_name\",\"field_value\":\"Công Ty TNHH VIDOCO\"},{\"field_name\":\"Địa chỉ\",\"field_code\":\"address\",\"field_value\":\"35/6 Bùi Quang Là - P.12 - Q. Gò Vấp - HCM\"},{\"field_name\":\"Website\",\"field_code\":\"website\",\"field_value\":\"noithatgialai.net\"},{\"field_name\":\"Telephone\",\"field_code\":\"telephone\",\"field_value\":\"096.302.7721\"},{\"field_name\":\"Facebook\",\"field_code\":\"facebook_url\",\"field_value\":\"https://www.facebook.com/nguyenvan.laptrinh\"},{\"field_name\":\"Twitter\",\"field_code\":\"twitter_url\",\"field_value\":\"https://twitter.com/\"},{\"field_name\":\"Google Plus\",\"field_code\":\"google_plus\",\"field_value\":\"https://plus.google.com/u/0/?hl=vi\"},{\"field_name\":\"Youtube\",\"field_code\":\"youtube_url\",\"field_value\":\"https://www.youtube.com/watch?v=kAcV7S3sySU\"},{\"field_name\":\"Instagram\",\"field_code\":\"instagram_url\",\"field_value\":\"http://flickr.com\"},{\"field_name\":\"Pinterest\",\"field_code\":\"pinterest_url\",\"field_value\":\"http://daidung.vn/\"},{\"field_name\":\"Slogan\",\"field_code\":\"slogan_about\",\"field_value\":\"Mipec cung cấp thực phẩm sạch, an toàn, đảm bảo chất lượng hàng đầu. Xóa đi nỗi lo về an toàn thực phẩm\"},{\"field_name\":\"Map\",\"field_code\":\"map_url\",\"field_value\":\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.257683433271!2d106.65122531418271!3d10.791565461866467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ecaab26b129%3A0x6a3e66ad2406aa1c!2zQuG7h25oIHZp4buHbiBUaOG7kW5nIE5o4bqldA!5e0!3m2!1svi!2s!4v1512324613289\"}]', 1, 1, '2017-12-03 07:45:35', '2017-12-04 18:42:42');
+(1, 'settingsystem', 'setting-system', '[{\"field_name\":\"Số bài viết trên 1 trang\",\"field_code\":\"article_perpage\",\"field_value\":\"12\"},{\"field_name\":\"Số sản phẩm trên 1 trang\",\"field_code\":\"product_perpage\",\"field_value\":\"16\"},{\"field_name\":\"Độ rộng hình sản phẩm\",\"field_code\":\"product_width\",\"field_value\":\"400\"},{\"field_name\":\"Độ cao hình sản phẩm\",\"field_code\":\"product_height\",\"field_value\":\"400\"},{\"field_name\":\"Đơn vị tiền tệ\",\"field_code\":\"currency_unit\",\"field_value\":\"vi_VN\"},{\"field_name\":\"Smtp host\",\"field_code\":\"smtp_host\",\"field_value\":\"smtp.gmail.com\"},{\"field_name\":\"Smtp port\",\"field_code\":\"smtp_port\",\"field_value\":\"465\"},{\"field_name\":\"Encription\",\"field_code\":\"encription\",\"field_value\":\"ssl\"},{\"field_name\":\"Smtp authication\",\"field_code\":\"authentication\",\"field_value\":\"true\"},{\"field_name\":\"Smtp username\",\"field_code\":\"smtp_username\",\"field_value\":\"dien.toannang@gmail.com\"},{\"field_name\":\"Smtp password\",\"field_code\":\"smtp_password\",\"field_value\":\"lgepuouzaiynlncu\"},{\"field_name\":\"Email from\",\"field_code\":\"email_from\",\"field_value\":\"dienit02@gmail.com\"},{\"field_name\":\"Email to\",\"field_code\":\"email_to\",\"field_value\":\"trietnk01@gmail.com\"},{\"field_name\":\"From name\",\"field_code\":\"from_name\",\"field_value\":\"Hệ thống\"},{\"field_name\":\"To name\",\"field_code\":\"to_name\",\"field_value\":\"Công Ty TNHH VIDOCO\"},{\"field_name\":\"Địa chỉ\",\"field_code\":\"address\",\"field_value\":\"35/6 Bùi Quang Là - P.12 - Q. Gò Vấp - HCM\"},{\"field_name\":\"Website\",\"field_code\":\"website\",\"field_value\":\"noithatgialai.net\"},{\"field_name\":\"Telephone\",\"field_code\":\"telephone\",\"field_value\":\"096.302.7721\"},{\"field_name\":\"Facebook\",\"field_code\":\"facebook_url\",\"field_value\":\"https://www.facebook.com/nguyenvan.laptrinh\"},{\"field_name\":\"Twitter\",\"field_code\":\"twitter_url\",\"field_value\":\"https://twitter.com/\"},{\"field_name\":\"Google Plus\",\"field_code\":\"google_plus\",\"field_value\":\"https://plus.google.com/u/0/?hl=vi\"},{\"field_name\":\"Youtube\",\"field_code\":\"youtube_url\",\"field_value\":\"https://www.youtube.com/watch?v=kAcV7S3sySU\"},{\"field_name\":\"Instagram\",\"field_code\":\"instagram_url\",\"field_value\":\"http://flickr.com\"},{\"field_name\":\"Pinterest\",\"field_code\":\"pinterest_url\",\"field_value\":\"http://daidung.vn/\"},{\"field_name\":\"Slogan\",\"field_code\":\"slogan_about\",\"field_value\":\"Mipec cung cấp thực phẩm sạch, an toàn, đảm bảo chất lượng hàng đầu. Xóa đi nỗi lo về an toàn thực phẩm\"},{\"field_name\":\"Map\",\"field_code\":\"map_url\",\"field_value\":\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.257683433271!2d106.65122531418271!3d10.791565461866467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752ecaab26b129%3A0x6a3e66ad2406aa1c!2zQuG7h25oIHZp4buHbiBUaOG7kW5nIE5o4bqldA!5e0!3m2!1svi!2s!4v1512324613289\"}]', 1, 1, '2017-12-03 07:45:35', '2017-12-06 07:15:19');
 
 -- --------------------------------------------------------
 
@@ -2306,7 +2307,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `group_member_id`, `password`, `permissions`, `last_login`, `fullname`, `image`, `sort_order`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$bKK3nNM9Oal3krxuLWgvZed0q0yZFXligSRB/Ygh1MgeLD.UTbwyq', NULL, '2017-12-05 18:41:41', 'Nguyễn Kim Điền', 'nguyen-kim-dien.png', 1, 1, '2017-11-12 07:23:56', '2017-12-05 18:41:41');
+(1, 'admin', 'diennk@dienkim.com', 1, '$2y$10$bKK3nNM9Oal3krxuLWgvZed0q0yZFXligSRB/Ygh1MgeLD.UTbwyq', NULL, '2017-12-06 00:14:21', 'Nguyễn Kim Điền', 'nguyen-kim-dien.png', 1, 1, '2017-11-12 07:23:56', '2017-12-06 00:14:21');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -2611,7 +2612,7 @@ ALTER TABLE `payment_method`
 -- AUTO_INCREMENT cho bảng `persistences`
 --
 ALTER TABLE `persistences`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=220;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=221;
 --
 -- AUTO_INCREMENT cho bảng `photo`
 --
