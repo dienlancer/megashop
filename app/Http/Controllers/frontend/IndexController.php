@@ -490,7 +490,7 @@ class IndexController extends Controller {
             if(Session::has($this->_ssNameUser)){                
                 $arrUser = Session::get($this->_ssNameUser)["userInfo"];    
             }   
-            if(empty($arrUser)){
+            if(count($arrUser) == 0){
               return redirect()->route("frontend.index.login"); 
             }
               $arrData=CustomerModel::find((int)$arrUser["id"])->toArray();    
